@@ -86,3 +86,34 @@ MRR 原文证明的是模在 ε=0 处连续，并**猜测**模关于 √ε 是 1
 > 把 Glutsyuk 的汇流理论应用到 Kneser 构造上：证明 Kneser 解与正则解的分离由两图转移映射（Glutsyuk 模）决定，其极限是 e^u−1 的反向 horn map；并给出模沿 Glutsyuk 方向渐近展开的系数公式（展开的存在性由 Christopher–Rousseau / Ribón 的可和性给出）。
 
 **不要说**「发现了转移映射不变量」，也**不要说**「回答了 MRR 的开放问题」。
+
+## 3. Lavaurs 侧补查（同日）
+
+逐页或按关键词核查了以下文献：
+- Chéritat 博士论文（207 页全文）
+- Buff–Chéritat Annals 2012
+- Inou–Shishikura 草稿（2008-12 版）
+- Bedford–Smillie–Ueda、Bianchi JEMS 2019
+- Astorg–Bianchi 2026（arXiv:2603.27686）
+- Kapiamba arXiv:2210.06647 / 2103.03211
+- Jaksztas 系列
+- Buff–Écalle–Epstein GAFA 2013
+- Gelfreich–Brännström arXiv:0806.2403
+
+**结论：Lavaurs 侧没有人给过一阶系数。** 但有三件事要在论文里交代：
+
+1. **存在性在 Lavaurs 侧也已知。** Shishikura 2000 与 Inou–Shishikura（Thm 1.3/2.1）、Kapiamba（Prop 2.13）证明了规范化后的扰动 Fatou 坐标与 horn map 关于扰动全纯依赖，所以展开必然存在。Chéritat 论文里只有周期点"爆炸速度"的一阶量，不是模的一阶量。Buff–Chéritat 2012 只有 O(1/α) 的误差界。Astorg–Bianchi 2026 只有经典 Lavaurs 相位加 o(1)。
+2. **最近的类比在保面积映射的分界线分裂文献里。** 这是我们之前没注意到的近邻领域。
+   - Gelfreich–Brännström 证明鞍-中心分岔附近的 homoclinic invariant 形如 e^{−2π²/log λ}·Σ a_k δ^{2k}，a₀ 是抛物极限下的 Stokes 常数（Gelfreich–Sauzin 2001 对 Hénon 证明 a₀≠0）。指数小因子与我们的 Λ 同型，级数结构就是"log(τ/τ(0)) 关于参数展开"。
+   - Gelfreich–Simó（DCDS-B 10, 2008）用数千位高精度**数值提取**了高阶 a_k。
+   - 1:3 共振展开（arXiv:1612.04752）也是同一种形式。
+   - 区别：那里只有一个 Fourier 模，对象是二维保面积映射；a_k（k≥1）由辅助问题定义（核对 gb.txt 确认没有显式公式），或者靠数值拟合，不是收敛的轨道级数。
+3. **方法上最相近的是 Buff–Écalle–Epstein Prop 9.1。** 它沿轨道逐阶递推，得到 horn map 关于参数的显式展开（系数用 multitangent / 多重 zeta 值表示）。但那里的参数在抛物族内部变动，不把不动点分裂开。
+
+**已对论文所做的修改：** 在"Relation to the literature" Remark 中加了一段，说明 Lavaurs 侧有存在性、分界线分裂的类比、BEE 的方法，以及我们的区别。新增参考文献 InouShishikura、GelfreichBrannstrom、GelfreichSauzin2001、GelfreichSimo2008、BuffEcalleEpstein2013。
+
+**对外表述再收紧一步：** 展开的**存在性**两侧都已知，指数小因子乘以参数级数这种结构在分界线分裂里也有先例。我们新的地方是：
+- 对 1 维全纯开折的**所有 Fourier 模**，系数在抛物点上由**绝对收敛的轨道级数**显式给出，并有直接证明；
+- 把这些结果用于 Kneser 构造。
+
+**仍未取得全文的：** Shishikura 2000 原文、Lavaurs 与 Oudkerk 的博士论文、Douady 1994、Buff–Chéritat 2004/2006、Jaksztas TAMS 2011、Gelfreich–Simó 2008（只看了摘要）。
