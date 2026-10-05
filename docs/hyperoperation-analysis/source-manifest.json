@@ -1,0 +1,22 @@
+{
+  "version": "v0.8",
+  "date": "2026-10-05",
+  "chapter_count": 14,
+  "source_sha256": {
+    "chapters/00-preface.md": "07677e3fd243e0f3a9f007249563ca3a62e989f14fba5cfad82116edfc9b3324",
+    "chapters/01-hierarchy.md": "7b5bcad8316a69caea690caf794dca2a8fc4ab9f3266681edceca426553b1138",
+    "chapters/02-domains.md": "fd7c97f05185a4f5543a456a849b866a06c6a4c313e82695133782c1c46f8777",
+    "chapters/03-abel-and-flow.md": "4b68c4fa3c68919df4399e2fec93cf978d50641a09c1eb318152accf945569a0",
+    "chapters/04-gauge-and-uniqueness.md": "e27270012b90efd214f18b82dd1035bec7080258bdc6213dd42d3d6ae62bab7a",
+    "chapters/05-successor.md": "9c0dcef6714d98dd2dc8bbaefa7e135c2ec2c9b2c07d09f00af5cd8f67c3c350",
+    "chapters/06-base-geometry.md": "102d44e6d8cf71a8024202c5b14dbbd9d695b75289a138836af23df61e34365f",
+    "chapters/07-rank-limit.md": "ab096a4e4a8f6bd9de35e2484506ddddf262e81684cc88a840679b040c9dc98a",
+    "chapters/08-critical-bases.md": "9278c5709b1adccb472d13b471f683aa8da9eec163c0c2c9d2f280f96b153a9e",
+    "chapters/09-fractional-rank.md": "f305b875d3103bf163f19392fef2e852aed38d8c968ba1aca1cf4dcb8f46024e",
+    "chapters/10-computation.md": "5ec5d0931073e6154de1f3598b3444653a6ba2c6974db90f1fe985a7eee0c28e",
+    "chapters/11-first-results.md": "77d875d9e8fec0e2aa8506ac5218fcad261d24e6f9893fbe66bca906a8a95800",
+    "chapters/12-program.md": "56434a4c854d1fca594de371ae15e89faf7714522a0e5e99f37d1b80eca5bba1",
+    "chapters/13-appendix.md": "f0eefd7c8fe75a4007ed2be5cc991ca642fd578d467a68a32f66ecca64e015ba"
+  },
+  "book_sha256": "5f3e4ffba145805c4babee353c94c7ce8a25843f73bd652ffde3e919e6824fc6"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "parts": 14,
+  "markdown_files": 30,
+  "book_characters": 35360,
+  "checks": [
+    "source synchronisation",
+    "relative file links",
+    "math/code fences",
+    "chapter/book hashes",
+    "experiment status",
+    "experiment input hashes"
+  ]
+}

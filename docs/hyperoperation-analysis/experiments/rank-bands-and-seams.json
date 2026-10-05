@@ -1,0 +1,174 @@
+{
+  "experiment": "R007-v1",
+  "status": "PASS",
+  "date": "2026-10-05",
+  "python": "3.13.5",
+  "mpmath": "1.3.0",
+  "input_sha256": {
+    "docs/hyperoperation-analysis/experiments/rank_bands_and_seams.py": "b235ace3eefb675bd12e34a5f74855178cb11ad731794aa9c22f90ec21f5f04d",
+    "docs/hyperoperation-analysis/experiments/rank_band_family.py": "fddc0ecb693222b04f0fe9b49df6b409d1e95ebabf4b6077953e0d040e1c6437",
+    "docs/hyperoperation-analysis/experiments/regular_parameter_family.py": "ad2f444880787876f2a83352f13bb9dae5fe532fac16d283ada3eb7f3ef8f4da",
+    "src/kneser/_regular.py": "35330647af5ba56593af437b84c2683d0930dc30238e7e78e9b3223f0d6b9eb8",
+    "src/kneser/_koenigs.py": "9dad2cb4cdfe0c08fb1f352ce522125d467d430870b76b8cd3495ffeb27835e7"
+  },
+  "exact_rational_inequalities_checked": 4,
+  "records": [
+    {
+      "requested_dps": 30,
+      "outer_working_dps": 60,
+      "seed_engine_working_dps": 65,
+      "independent_tetration_difference_max": "9.85889428052386948699812e-60",
+      "actual_noninteger_rank_successor_error_max": "4.21675370385835597053369e-53",
+      "normalization_error_max": "6.95079829922790155389859e-53",
+      "integer_anchor_error_max": "9.98622742942701688140094e-53",
+      "extra_inverse_map_seam_error_max": "1.67929508523421261607702e-52",
+      "sixteen_extra_coordinate_steps_error_max": "7.55936719270118937407205e-53",
+      "fractional_rank_states": [
+        {
+          "real_rank": "4.2",
+          "seed_parameter": "0.022977369910025615",
+          "fixed_point": "1.466999770133549442511",
+          "multiplier": "0.3790944818897087486414",
+          "coordinate_steps": 119,
+          "sample_S_rank_at_half_height": "(1.18979737053301034664145 + 0.0j)"
+        },
+        {
+          "real_rank": "4.6",
+          "seed_parameter": "0.697059283965407279",
+          "fixed_point": "1.37800023376565788781",
+          "multiplier": "0.1943939067560011788544",
+          "coordinate_steps": 76,
+          "sample_S_rank_at_half_height": "(1.20413579916231857003269 + 0.0j)"
+        },
+        {
+          "real_rank": "4.8",
+          "seed_parameter": "0.977022630089974385",
+          "fixed_point": "1.351661069902957401963",
+          "multiplier": "0.1241482341691742860083",
+          "coordinate_steps": 62,
+          "sample_S_rank_at_half_height": "(1.21185443146606308569768 + 0.0j)"
+        }
+      ],
+      "analytic_join_derivative_jumps": [
+        {
+          "matched_derivatives": 0,
+          "next_derivative_jump": "(0.220736624539095964243318 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 1,
+          "next_derivative_jump": "(-2.07810017391079089038336 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 2,
+          "next_derivative_jump": "(13.2441974723457578545991 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 3,
+          "next_derivative_jump": "(-290.93402434751072465367 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 4,
+          "next_derivative_jump": "(3337.53776303113097935897 + 0.0j)"
+        }
+      ],
+      "different_flat_rank_clocks_height_2_witness": "-0.0382782500510100919012406",
+      "flat_join_value_offsets": [
+        {
+          "distance_to_rank_4": "0.1",
+          "height_2_left_value_offset": "0.0000390988645281489549521255",
+          "height_2_right_value_offset": "(-0.0000086606543335714582016003 + 0.0j)"
+        },
+        {
+          "distance_to_rank_4": "0.05",
+          "height_2_left_value_offset": "1.67448736984635638312869e-9",
+          "height_2_right_value_offset": "(-3.70909909307718979060903e-10 + 0.0j)"
+        },
+        {
+          "distance_to_rank_4": "0.025",
+          "height_2_left_value_offset": "3.35946709973599796733415e-18",
+          "height_2_right_value_offset": "(-7.44143945021023170448556e-19 + 0.0j)"
+        }
+      ],
+      "invalid_input_checks_passed": 4
+    },
+    {
+      "requested_dps": 50,
+      "outer_working_dps": 80,
+      "seed_engine_working_dps": 85,
+      "independent_tetration_difference_max": "1.29264822742022458688691e-80",
+      "actual_noninteger_rank_successor_error_max": "2.54013300102126623113065e-73",
+      "normalization_error_max": "4.18709590785728746351321e-73",
+      "integer_anchor_error_max": "5.47762244544608740890962e-73",
+      "extra_inverse_map_seam_error_max": "1.01159165157602902324122e-72",
+      "sixteen_extra_coordinate_steps_error_max": "4.55369207102289357480094e-73",
+      "fractional_rank_states": [
+        {
+          "real_rank": "4.2",
+          "seed_parameter": "0.022977369910025615",
+          "fixed_point": "1.466999770133549442511",
+          "multiplier": "0.3790944818897087486414",
+          "coordinate_steps": 167,
+          "sample_S_rank_at_half_height": "(1.18979737053301034664145 + 0.0j)"
+        },
+        {
+          "real_rank": "4.6",
+          "seed_parameter": "0.697059283965407279",
+          "fixed_point": "1.37800023376565788781",
+          "multiplier": "0.1943939067560011788544",
+          "coordinate_steps": 104,
+          "sample_S_rank_at_half_height": "(1.20413579916231857003269 + 0.0j)"
+        },
+        {
+          "real_rank": "4.8",
+          "seed_parameter": "0.977022630089974385",
+          "fixed_point": "1.351661069902957401963",
+          "multiplier": "0.1241482341691742860083",
+          "coordinate_steps": 84,
+          "sample_S_rank_at_half_height": "(1.21185443146606308569768 + 0.0j)"
+        }
+      ],
+      "analytic_join_derivative_jumps": [
+        {
+          "matched_derivatives": 0,
+          "next_derivative_jump": "(0.220736624539095964243318 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 1,
+          "next_derivative_jump": "(-2.07810017391079089038336 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 2,
+          "next_derivative_jump": "(13.2441974723457578545991 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 3,
+          "next_derivative_jump": "(-290.93402434751072465367 + 0.0j)"
+        },
+        {
+          "matched_derivatives": 4,
+          "next_derivative_jump": "(3337.53776303113097935897 + 0.0j)"
+        }
+      ],
+      "different_flat_rank_clocks_height_2_witness": "-0.0382782500510100919012406",
+      "flat_join_value_offsets": [
+        {
+          "distance_to_rank_4": "0.1",
+          "height_2_left_value_offset": "0.0000390988645281489549521255",
+          "height_2_right_value_offset": "(-0.0000086606543335714582016003 + 0.0j)"
+        },
+        {
+          "distance_to_rank_4": "0.05",
+          "height_2_left_value_offset": "1.67448736984635638312869e-9",
+          "height_2_right_value_offset": "(-3.70909909307718979060903e-10 + 0.0j)"
+        },
+        {
+          "distance_to_rank_4": "0.025",
+          "height_2_left_value_offset": "3.35946709973599796733415e-18",
+          "height_2_right_value_offset": "(-7.44143945021023170448556e-19 + 0.0j)"
+        }
+      ],
+      "invalid_input_checks_passed": 4
+    }
+  ],
+  "scope": "Actual smooth real ranks 3 through 5 at base 1.3, regular successors. Complex height samples are finite-precision diagnostics. No certified complex tube, no holomorphic rank join, no all-rank or all-base construction."
+}

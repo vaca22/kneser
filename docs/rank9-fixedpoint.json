@@ -1,0 +1,344 @@
+{
+  "base": "1.85",
+  "dps": 22,
+  "note": "Evaluator residual, not distance to true heptation. Hexation anchor |H(1)-b| = 1.28e-7, so z*_7 is trusted to about 1e-6 and the multiplier to about 5 digits.",
+  "m8": "0.296238",
+  "m8_argmin": "3.03816",
+  "real_minimum_f_second": "0.8802",
+  "quadratic_predicted_im": "0.8204",
+  "hexation_zfix": "-3.66597147587808",
+  "hexation_mu": "9.4519640891526",
+  "hexation_anchor": "1.28e-7",
+  "integer_chain_holds_through_k": 4,
+  "z_star_7": {"re": "3.29422644057", "im": "0.76288734322"},
+  "residual": "1.881e-12",
+  "conjugate_residual": "1.881e-12",
+  "multiplier": {"re": "0.568635747", "im": "0.5836151684"},
+  "multiplier_modulus": "0.814833",
+  "multiplier_distance_to_1": "0.7257",
+  "jet_multiplier": {"re": "0.56863575", "im": "0.58361517"},
+  "jet_c0_residual": "1.88e-12",
+  "inverse_step_0.01_error": "1.21e-20",
+  "regular_superfunction_inverse_steps_to_height_0": 16,
+  "smax": "0.04068",
+  "inverse_orbit_dies_at_step": 5,
+  "death_argument": {"re": "3.2669", "im": "0.90327"},
+  "internal_hexation_modulus": "73.35",
+  "hexation_root_test_R": {"k8": "2.928", "k12": "2.455", "k16": "2.14", "k20": "2.074", "k23": "1.861"},
+  "series_vs_theta_0.2_0.6i": "2.94e-7",
+  "Q_at_3.2i": {"re": "3.35149", "im": "0.712843", "inverse_steps": 4, "schroeder_abs": "0.0343"},
+  "Q_at_0.4_plus_3.2i": {"re": "3.36018", "im": "0.73515", "inverse_steps": 3, "schroeder_abs": "0.0387"},
+  "one_step_inverse_residual_at_Q_of_1_plus_3.2i": "7.46e-21",
+  "height0_internal_hexation_trace": [
+    {"re": "-25.18", "im": "73.35", "Q6_steps": 0},
+    {"re": "-1.914", "im": "1.439", "Q6_steps": 4},
+    {"re": "-0.1766", "im": "1.464", "Q6_steps": 5},
+    {"re": "1.057", "im": "1.467", "Q6_steps": 7}
+  ],
+  "fourier_modes_retained_at_delta_3.2_dps22": 2,
+  "strip": {
+    "log_abs_lambda": "-0.2048",
+    "arg_lambda": "0.7984",
+    "rectangle": "Re in [-0.5, 1], Im in [2.6, 3.6], plus 0.5+2.4i and 1+2.4i",
+    "points_succeeded": 22,
+    "points_skipped_n_gt_6": ["-0.5+2.4i", "0+2.4i"],
+    "max_inverse_steps": 6,
+    "max_distance_to_zstar": "0.136",
+    "farthest_value": {"height": "1+2.4i", "re": "3.4189", "im": "0.79054"},
+    "max_forward_abel_error": "1.07e-18",
+    "note": "Forward Abel walks Hep toward z*_7 and reads the Schroeder coordinate. The 1e-18 is internal closure of this evaluator, not distance to true heptation."
+  },
+  "cauchy_jet_at_1_plus_3i": {
+    "radius": "0.4",
+    "points": 24,
+    "c0": {"re": "3.37034", "im": "0.772579"},
+    "root_test_R": ["15.31", "5.899", "4.795", "4.472", "4.280", "4.124", "4.008", "3.918", "3.838"],
+    "series_vs_value_at_1.1_plus_3.1i": "6.58e-12",
+    "one_over_k_intercept_last_four": "3.2 to 3.3",
+    "distance_center_to_real_axis": 3
+  },
+  "fourier_noise_on_real_axis_from_anchor_1.28e-7": {
+    "delta_2.6_n1": "1.6",
+    "delta_2.6_n2": "2.0e7",
+    "delta_0.5_n4": "0.037",
+    "delta_0.5_n5": "0.85",
+    "delta_2.2_n1": "0.13",
+    "delta_2.2_n2": "1.3e5"
+  },
+  "descend": {
+    "im_2.2": [
+      {"re": "1", "n": 7, "Q_re": "3.4417", "Q_im": "0.79981", "dist": "0.152", "abel": "1.01e-10"},
+      {"re": "0.5", "n": 7, "Q_re": "3.4522", "Q_im": "0.73313", "dist": "0.161", "abel": "5.34e-19"},
+      {"re": "0", "n": 8, "Q_re": "3.4334", "Q_im": "0.66853", "dist": "0.168", "abel": "1.01e-10"},
+      {"re": "-0.5", "n": 8, "Q_re": "3.3918", "Q_im": "0.61681", "dist": "0.176", "abel": "7.35e-19"}
+    ],
+    "im_2.0": "all four rays failed, non-finite hexation",
+    "shared_newton_point": {"re": "3.338", "im": "0.89986"},
+    "internal_hexation_seen": {"re": "-8.133", "im": "16.71"}
+  },
+  "trace_printed_newton_point": {
+    "z": {"re": "3.338", "im": "0.89986"},
+    "steps": 9,
+    "schroeder_abs": "0.0304",
+    "start": {"re": "-3.6787", "im": "0.027988", "dist_to_zfix": "0.03074"},
+    "tightest_rem": "1.202",
+    "rmax": "1.35",
+    "image": {"re": "3.18587", "im": "0.904257"},
+    "image_minus_z": "0.152",
+    "note": "The 5-digit reprint has a finite 9-step walk. The exact Newton value is 4e-5 away and dies at hex step 2 without leaving the Taylor disc."
+  },
+  "exact_failing_newton_point": {
+    "re": "3.338039042413178",
+    "im": "0.8998613798237568",
+    "delta_from_5_digit_reprint": {"re": "3.90e-5", "im": "1.38e-6"},
+    "left_taylor_disc": false,
+    "walk": [
+      {"re": "-3.67869", "im": "0.027990"},
+      {"re": "-3.72628", "im": "0.300589", "rem": "0.4065"},
+      {"re": "-6.09669", "im": "0.533136", "rem": "0.5418"},
+      "non-finite"
+    ],
+    "five_digit_hex1_image": {"re": "-2.7343", "im": "1.1725"},
+    "image_jump": "about 3.4"
+  },
+  "pen_inverse_at_jump": {
+    "inputs": ["-3.72628+0.300589i", "-3.72629+0.3005745i", "-3.7263+0.30056i"],
+    "k": -4,
+    "rem": "0.4065",
+    "series": "1.2561+0.2646i",
+    "first_three_residuals": "below 1e-21",
+    "fourth_seed": "about -5.09",
+    "fourth_residual": "0.303 to 0.317",
+    "fourth_images": ["-7.2202+0.38113i", "-4.464+7.2881i", "-20.90-37.666i"],
+    "note": "hex_complex returns the last Newton iterate with no residual check. The jump is a failed solve of pen(v)=y, not a second analytic preimage."
+  },
+  "fourth_inverse_seed": {
+    "seed": "-5.0896",
+    "target": {"re": "-1.6849", "im": "0.30217"},
+    "pen_seed": "-1.70044",
+    "residual": "0.3026",
+    "derivative": "0.01143",
+    "linear_step": {"re": "1.36", "im": "26.45"},
+    "cap": "about 2",
+    "capped_cycle": ["-5.2485+2.0895i", "-5.8653+0.1493i"],
+    "uncapped_steps": ["3.6", "879", "2.4e271"],
+    "note": "The step cap turns a size-26 correction into a period-2 orbit at residual 0.30. Removing the cap diverges; the residual stays 0.30."
+  },
+  "pentation_image_near_seed": {
+    "x_star": "-1.7075799",
+    "target_distance_to_x_star": "0.303",
+    "real_axis": {
+      "-12": {"pen": "-1.70758", "dist_x": "1.084e-7", "steps": 0},
+      "-8": {"pen": "-1.70751", "dist_x": "6.682e-5", "steps": 0},
+      "-5.0896": {"pen": "-1.70044", "dist_x": "0.007137", "steps": 0},
+      "-3": {"pen": "-1.51985", "dist_x": "0.1877", "steps": 1}
+    },
+    "closest_on_grid": {"z": "-3+i", "pen_re": "-1.6953", "pen_im": "0.20442", "dist_y": "0.0983"},
+    "left_strip": "Re<=-5 and Im<=8 stays within about 0.007 of the real axis; |pen-y| stays 0.30"
+  },
+  "pentation_preimage": {
+    "lambda": "4.9832969",
+    "C_abs": "25.413",
+    "u1": "1",
+    "smax": "0.05",
+    "series_s_abs": "0.3043",
+    "z": {"re": "-2.75519", "im": "1.01909"},
+    "pen_minus_y": "2.48e-15",
+    "grid_best": {"z": "-2.75+i", "dist": "0.009553"},
+    "note": "The preimage of the failed fourth-inverse target sits at Re=-2.76, not at the real seed -5.09. The series coordinate |s|=0.30 is outside smax=0.05."
+  },
+  "preimage_continuation": {
+    "real_preimage_of_-1.6849": "-4.36524",
+    "at_imag_0.30217": {"re": "-2.7552", "im": "1.0191", "residual": "1.4e-22"},
+    "steps": 40,
+    "max_residual_on_path": "below 1e-19",
+    "note": "Same point as the grid Newton. The path is the continuous extension of the real inverse. The solver seed -5.09 is the real inverse of about -1.700, not of Re(y)."
+  },
+  "reseeded_inverse": {
+    "trigger": "original Newton residual >= 1e-8",
+    "seed": "pen_inv(Re y)",
+    "step_cap": "1.2",
+    "known_y": {"re": "-2.75519", "im": "1.01909", "residual": "1.59e-16"},
+    "hex_walk_steps": 9,
+    "max_abs_rem": "1.048",
+    "hex1_image": {"re": "-2.75518", "im": "1.01904"},
+    "hep_image": {"re": "3.23607", "im": "0.856469"},
+    "hep_image_minus_input": "0.111",
+    "Q_1_plus_2i": {"re": "3.46932", "im": "0.811322"},
+    "Q_minus_zstar_abs": "0.182",
+    "note": "The 0.111 gap is |Hep(old Newton point) - that point|, not a fixed-point residual. Default hex_complex still uses the real-orbit seed; this path is the --fix-inv patch."
+  },
+  "lower_ray": {
+    "reseed": true,
+    "Q_1_plus_2i": {"re": "3.46932", "im": "0.811322", "dist_zstar": "0.182", "steps": 7, "abel_err": "7.31e-19"},
+    "fail_at": "1+1.8i",
+    "fail_steps": 8,
+    "newton_v": {"re": "3.355120395606543", "im": "0.9363322463425354"},
+    "fail": "non-finite hexation argument",
+    "hex_trace": {
+      "steps": 9,
+      "hex0": {"from": "-3.68156+0.027974i", "to": "-3.75327+0.31431i", "abs_rem": "0.3996"},
+      "hex1_image": "nan",
+      "inverses": [
+        {"residual": "3.19e-22", "image": "0.257709205+0.3252000306i"},
+        {"residual": "7.8e-22", "image": "-0.76706595+0.3065435188i"},
+        {"residual": "2.05e-22", "image": "-1.709672208+0.3182559298i"},
+        {"real_seed": "-inf", "image": "nan"}
+      ]
+    },
+    "note": "Abel error is internal closure of the superfunction. The fourth pentation inverse inside hex step 1 has real seed -inf: the real orbit -1.728214 and Re(y)=-1.70967 both lie at or below the pentation fixed point x*=-1.70758, where pen_inv returns -inf."
+  },
+  "cross_fixed_point": {
+    "x_star": "-1.7075799",
+    "y": {"re": "-1.7096722", "im": "0.31825593"},
+    "abs_y_minus_x": "0.3183",
+    "pen_inv_real_orbit": "-inf",
+    "pen_inv_re_y": "-inf",
+    "start": {"y": "-1.69758", "z": "-4.87879"},
+    "steps": 40,
+    "max_residual_on_path": "2.53e-19",
+    "endpoint": {"re": "-2.7321845", "im": "1.0737904", "residual": "4.13e-22"},
+    "note": "Continuous extension of the real inverse just above x*. A non-finite old residual must not be compared against the continuation."
+  },
+  "rewalk_across": {
+    "across_calls": 1,
+    "re_y": "-1.7096722",
+    "image": {"re": "-2.7321845", "im": "1.0737904", "residual": "2.96e-23"},
+    "hex_steps": 9,
+    "max_abs_rem": "1.107",
+    "final_image": {"re": "3.22199", "im": "0.881191"},
+    "image_minus_input": "0.144",
+    "note": "The 0.144 gap is |Hep(old Newton point)-that point|. Q(1+1.8i) is not yet recomputed."
+  },
+  "lower_ray_continued": {
+    "re": "1",
+    "points": [
+      {"im": "2.0", "n": 7, "Q": "3.46932+0.811322i", "dist": "0.182", "abel": "7.31e-19"},
+      {"im": "1.8", "n": 8, "Q": "3.50297+0.825524i", "dist": "0.218", "abel": "4.36e-19"},
+      {"im": "1.6", "n": 9, "Q": "3.54454+0.842907i", "dist": "0.263", "abel": "8.72e-8", "hex_upper": "-2.957+12.73i"},
+      {"im": "1.4", "n": 10, "Q": "3.59675+0.863973i", "dist": "0.319", "abel": "1.04e-18"},
+      {"im": "1.2", "n": 10, "Q": "3.66381+0.889471i", "dist": "0.391", "abel": "4.05e-11"},
+      {"im": "1.0", "n": 11, "Q": "3.75424+0.916528i", "dist": "0.485", "abel": "2.47e-19"},
+      {"im": "0.8", "n": 12, "Q": "3.88494+0.946158i", "dist": "0.618", "abel": "6.44e-19"}
+    ],
+    "note": "The ray stopped at Im=0.8 because that was the last requested height, not because evaluation failed. Abel errors are internal closure. Im=1.6 called the upper-half hexation."
+  },
+  "below_0_6": {
+    "z": "1+0.6i",
+    "steps": 13,
+    "fail": "Hep inverse residual 0.251",
+    "newton_v": {"re": "2.986135751577334", "im": "0.9597904032966465"},
+    "hex_upper": [
+      {"z": "-3.308+16.63i", "Q6_steps": 0, "abs_theta": "2.54"},
+      {"z": "-1.914+1.439i", "Q6_steps": 4},
+      {"z": "-0.1766+1.464i", "Q6_steps": 5},
+      {"z": "1.057+1.467i", "Q6_steps": 7}
+    ],
+    "note": "First failure below Im=0.8. The 9-step hexation walk at the Newton point is finite. Step 1 maps to -3.30774+16.6321i. That image is a genuine pentation preimage: the fourth inverse from seed -5.5616261 has residual 2.65e-23. The upper-half formula then returns -1.9138+1.4386i, which matches z*_5 at the printed five digits, because Q6 takes 0 steps."
+  },
+  "jump_inverse": {
+    "input_rem_abs": "0.2964",
+    "k": -4,
+    "inverses": [
+      {"residual": "4.86e-22", "image": "0.2795201572+0.1258440367i"},
+      {"residual": "3.11e-22", "image": "-0.7398645821+0.1196211571i"},
+      {"residual": "1.0e-21", "image": "-1.701460613+0.1249020122i"},
+      {"residual": "2.65e-23", "seed": "-5.5616261", "image": "-3.307740026+16.63208491i"}
+    ],
+    "note": "The fourth inverse converged. The continuous extension of pen_inv(Re y) ends at imag 0.9837 with the same printed real part. The imag gap equals four periods 2*pi/ln(lambda), lambda=4.9832969."
+  },
+  "principal_sheet": {
+    "pen_inv_re_y": "-5.1857082",
+    "abs_y_minus_x": "0.1251",
+    "endpoint": {"re": "-3.30774", "im": "0.9837", "residual": "2.19e-22"},
+    "far_root": {"re": "-3.307740026", "im": "16.63208491"},
+    "lambda": "4.9832969",
+    "period": "3.9120962438",
+    "imag_gap_over_period": "4",
+    "note": "Same printed real part. Imaginary parts differ by four logarithmic periods of the real pentation multiplier."
+  },
+  "principal_walk": {
+    "lift": {"from": "-3.30774+16.6321i", "to": "-3.30774+0.9837i", "residual": "2.13e-22"},
+    "hex1_abs_rem": "1.031",
+    "max_abs_rem": "1.031",
+    "final_image": {"re": "3.04795", "im": "0.730834"},
+    "image_minus_input": "0.237",
+    "upper_half_calls": 0,
+    "note": "The isolated walk at the old Newton point stayed in the disk. Recomputing Q(1+0.6i) with the same lift still fails; see below_principal."
+  },
+  "below_principal": {
+    "z": "1+0.6i",
+    "steps": 13,
+    "fail": "Hep inverse residual 1.83",
+    "newton_v": {"re": "2.823944901525305", "im": "6.997397331089787"},
+    "lifts": 4,
+    "lift_image": "-3.30774+0.9837i",
+    "lift_residual": "2.2e-22",
+    "lower_half_preimages": [
+      {"re_y": "-1.94373", "image": "-2.97849-1.93451i", "residual": "7.95e-23"},
+      {"re_y": "-1.81378", "image": "-3.43206-1.85711i", "residual": "7.95e-23"},
+      {"re_y": "-1.73974", "image": "-4.16327-1.93535i", "residual": "5.17e-25"}
+    ],
+    "note": "The four-period sheet was replaced. Continuations across x* also landed in the lower half plane. The hexation walk at the Newton point is in im7_walk. Heights 0.4, 0.2, and 0 were not evaluated."
+  },
+  "im7_walk": {
+    "z": {"re": "2.823944901525305", "im": "6.997397331089787"},
+    "n": 9,
+    "abs_arg": "0.009582",
+    "start": "-3.67563-0.000095i",
+    "hex1": {
+      "from": "-3.76439-0.001045i",
+      "to": "-4.16327-1.93535i",
+      "abs_rem": "1.942",
+      "across_re_y": "-1.7397394",
+      "residual": "6.72e-25"
+    },
+    "later_abs_rem": ["1.367", "1.241", "1.388", "1.376"],
+    "final_image": {"re": "2.89916", "im": "-0.872393"},
+    "image_minus_input": "7.87",
+    "note": "Hep(v)-v is 7.87. The inverse residual 1.83 is against a different target. Later images stay in the lower half plane because the upper-half formula conjugates."
+  },
+  "im7_chain": {
+    "k": -4,
+    "rem": "0.23560713-0.0010449223i",
+    "inverses": [
+      {"y": "1.214311552-0.0009282125033i", "image": "0.2436396625-0.001077067757i", "residual": "3.18e-22"},
+      {"y": "0.2436396625-0.001077067757i", "image": "-0.7727243674-0.00101914572i", "residual": "5.13e-22"},
+      {"y": "-0.7727243674-0.00101914572i", "image": "-1.739739412-0.001085439639i", "residual": "3.04e-22"},
+      {"y": "-1.739739412-0.001085439639i", "image": "-4.16327166-1.935352016i", "residual": "6.72e-25", "seed": "-inf"}
+    ],
+    "straight_path_gap_to_x": "2.6e-4",
+    "arg_y_minus_x": "-3.11",
+    "image_imag_over_half_period": "0.99",
+    "note": "The fourth target imag is -0.001085. The image imag is -1.935. Integer period shifts are preimages; half-period shifts are not. See period_shifts."
+  },
+  "period_shifts": {
+    "x": "-1.707579911",
+    "abs_y_minus_x": "0.03218",
+    "arg_y_minus_x": "-3.108",
+    "period": "3.9120962",
+    "printed_z0_residual": "4.18e-10",
+    "shifts": [
+      {"k": -2, "image": "-4.1632717-5.8474482i", "residual": "4.39e-25", "abs_rem": "5.85"},
+      {"k": -1, "image": "-7.8794258-5.8968304i", "residual": "0.0321", "abs_rem": "5.898"},
+      {"k": 0, "image": "-4.1632717-1.935352i", "residual": "7.24e-25", "abs_rem": "1.942"},
+      {"k": 1, "image": "-7.8794473-1.984718i", "residual": "0.0321", "abs_rem": "1.988"},
+      {"k": 2, "image": "-4.1632717+1.9767442i", "residual": "7.75e-25", "abs_rem": "1.983"}
+    ],
+    "note": "k is a multiple of half a logarithmic period. Even k are preimages of the same y. Odd k leave the seed and keep residual 0.0321, equal to |y-x*| at the printed digits. None of the genuine sheets has |rem| <= 1.35. The straight homotopy is in homotopy_path."
+  },
+  "homotopy_path": {
+    "start": "-4.87879",
+    "max_residual": "6.15e-19",
+    "end_residual": "1.55e-25",
+    "samples": [
+      {"t": "0.225", "z": "-6.66609-0.276195i", "residual": "1.25e-23", "abs_rem": "0.433"},
+      {"t": "0.25", "z": "-6.62917-1.66614i", "residual": "6.15e-19", "abs_rem": "1.707"},
+      {"t": "1", "z": "-4.16327-1.93535i", "residual": "1.55e-25", "abs_rem": "1.942"}
+    ],
+    "imag_jump": "1.390",
+    "note": "The imaginary part stays below 0.276 until t=0.225 and reaches 1.666 at t=0.25, while the target passes nearest x*. Residuals stay at most 6.15e-19, so this is the continuous preimage, not a jump to another root."
+  },
+  "script": "docs/demo_rank9_fixedpoint.py",
+  "orbit_script": "docs/demo_rank9_octation.py"
+}

@@ -1,0 +1,230 @@
+{
+  "experiment": "R009-v1",
+  "status": "PASS",
+  "date": "2026-10-05",
+  "python": "3.13.5",
+  "mpmath": "1.3.0",
+  "input_sha256": {
+    "docs/hyperoperation-analysis/experiments/bounded_rank_pick.py": "680835082eb4906bd660c7ab07a466d9e673c3290f2a4d9a5d2664bf6378b31d",
+    "docs/hyperoperation-analysis/experiments/bounded_rank_interpolation.py": "7b3b358f7725e3eb145bffd56b8776d23c856af4def778fc294dca508b8d2bce",
+    "docs/hyperoperation-analysis/experiments/rank_band_family.py": "fddc0ecb693222b04f0fe9b49df6b409d1e95ebabf4b6077953e0d040e1c6437",
+    "docs/hyperoperation-analysis/experiments/regular_parameter_family.py": "ad2f444880787876f2a83352f13bb9dae5fe532fac16d283ada3eb7f3ef8f4da",
+    "src/kneser/_regular.py": "35330647af5ba56593af437b84c2683d0930dc30238e7e78e9b3223f0d6b9eb8",
+    "src/kneser/_koenigs.py": "9dad2cb4cdfe0c08fb1f352ce522125d467d430870b76b8cd3495ffeb27835e7",
+    "src/kneser/_bases.py": "b6eb9889ec065bcf9ad3b5e0afed96ba7160b2bd7dfff60393da7f92b8605474"
+  },
+  "exact_two_anchor_certificate": {
+    "certified": true,
+    "arithmetic": "Python fractions.Fraction; rational series bounds",
+    "sigma": "5/2",
+    "nodes": [
+      3,
+      4
+    ],
+    "height": 2,
+    "base": "13/10",
+    "excluded_supremum_bound": "37/20",
+    "second_anchor_strict_lower": "175807/125000",
+    "second_anchor_strict_upper": "1406457/1000000",
+    "test_vector": [
+      "1",
+      "-543/500"
+    ],
+    "quadratic_form_upper_bound": "-319179930078267/250000000000000000",
+    "quadratic_form_derivative_lower_bound": "91186686669/125000000000",
+    "scope": "No bounded holomorphic scalar rank slice on Re r>5/2 with these two anchors has supremum norm <=37/20. Does not exclude larger bounds or other domains."
+  },
+  "records": [
+    {
+      "requested_dps": 40,
+      "actual_working_dps": 90,
+      "actual_height_two_anchors": [
+        "1.69",
+        "1.40645667323788611034639",
+        "(1.34364997101486818493611 + 0.0j)"
+      ],
+      "finite_minimum_bounds_one_two_three_anchors": [
+        "1.69",
+        "1.85112381781300548249558",
+        "1.94216684092355216359088"
+      ],
+      "smallest_three_point_pick_eigenvalue_at_bound_two": "0.00197841217569732226918634",
+      "smallest_two_point_pick_eigenvalue_at_bound_1_85": "-0.000586400260464803042552772",
+      "independent_tetration_reference_error": "4.90909346529772655309577e-91",
+      "finite_interpolant_anchor_error_max": "0.0",
+      "actual_data_finite_interpolants": [
+        {
+          "rank": "(3.5 + 0.0j)",
+          "free_zero_value": "(1.505052721568379482105 + 0.0j)",
+          "free_complex_value": "(1.5095652371248664707216 + 0.000931219823642166126278294j)",
+          "difference": "0.00460759883317560791468304",
+          "analytic_diameter_bound": "0.114285714285714285714286"
+        },
+        {
+          "rank": "(4.2 + 0.4j)",
+          "free_zero_value": "(1.37044234122927978345606 - 0.0371542096779866857915258j)",
+          "free_complex_value": "(1.36785569975323733049835 - 0.0402896813583308059866954j)",
+          "difference": "0.00406471361645849047280434",
+          "analytic_diameter_bound": "0.0665224599940850801124147"
+        },
+        {
+          "rank": "(2.8 + 0.3j)",
+          "free_zero_value": "(1.77353108614196015760241 - 0.173085485743015723473454j)",
+          "free_complex_value": "(1.76686076501732856629848 - 0.156070589469791505947364j)",
+          "difference": "0.0182756635746635975175831",
+          "analytic_diameter_bound": "0.902154047788520325886911"
+        }
+      ],
+      "known_model_truncation_checks": [
+        {
+          "last_integer_node": 4,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.0122839454973044446535179",
+          "analytic_error_bound": "0.16"
+        },
+        {
+          "last_integer_node": 4,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.0115923394538889773189703",
+          "analytic_error_bound": "0.188271489732656670647196"
+        },
+        {
+          "last_integer_node": 8,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.00256752939282438674611174",
+          "analytic_error_bound": "0.0167832167832167832167832"
+        },
+        {
+          "last_integer_node": 8,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.000444367005851661799367591",
+          "analytic_error_bound": "0.00340408703208239530115938"
+        },
+        {
+          "last_integer_node": 16,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.000470613070270519980782596",
+          "analytic_error_bound": "0.00306513409961685823754789"
+        },
+        {
+          "last_integer_node": 16,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.0000242193486013262602955437",
+          "analytic_error_bound": "0.00018566100051639690159415"
+        },
+        {
+          "last_integer_node": 32,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.000102459841307367608193194",
+          "analytic_error_bound": "0.000666851903306474020561267"
+        },
+        {
+          "last_integer_node": 32,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.00000180553475138245500378794",
+          "analytic_error_bound": "0.000013842630775672402467689"
+        }
+      ],
+      "invalid_input_checks_passed": 6,
+      "three_anchor_minimum_interval_certified": false,
+      "all_integer_all_height_pick_positivity_established": false,
+      "actual_global_complex_rank_constructed": false
+    },
+    {
+      "requested_dps": 60,
+      "actual_working_dps": 110,
+      "actual_height_two_anchors": [
+        "1.69",
+        "1.40645667323788611034639",
+        "(1.34364997101486818493611 + 0.0j)"
+      ],
+      "finite_minimum_bounds_one_two_three_anchors": [
+        "1.69",
+        "1.85112381781300548249558",
+        "1.94216684092355216359088"
+      ],
+      "smallest_three_point_pick_eigenvalue_at_bound_two": "0.00197841217569732226918634",
+      "smallest_two_point_pick_eigenvalue_at_bound_1_85": "-0.000586400260464803042552772",
+      "independent_tetration_reference_error": "4.98979668750955162489459e-111",
+      "finite_interpolant_anchor_error_max": "0.0",
+      "actual_data_finite_interpolants": [
+        {
+          "rank": "(3.5 + 0.0j)",
+          "free_zero_value": "(1.505052721568379482105 + 0.0j)",
+          "free_complex_value": "(1.5095652371248664707216 + 0.000931219823642166126278294j)",
+          "difference": "0.00460759883317560791468304",
+          "analytic_diameter_bound": "0.114285714285714285714286"
+        },
+        {
+          "rank": "(4.2 + 0.4j)",
+          "free_zero_value": "(1.37044234122927978345606 - 0.0371542096779866857915258j)",
+          "free_complex_value": "(1.36785569975323733049835 - 0.0402896813583308059866954j)",
+          "difference": "0.00406471361645849047280434",
+          "analytic_diameter_bound": "0.0665224599940850801124147"
+        },
+        {
+          "rank": "(2.8 + 0.3j)",
+          "free_zero_value": "(1.77353108614196015760241 - 0.173085485743015723473454j)",
+          "free_complex_value": "(1.76686076501732856629848 - 0.156070589469791505947364j)",
+          "difference": "0.0182756635746635975175831",
+          "analytic_diameter_bound": "0.902154047788520325886911"
+        }
+      ],
+      "known_model_truncation_checks": [
+        {
+          "last_integer_node": 4,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.0122839454973044446535179",
+          "analytic_error_bound": "0.16"
+        },
+        {
+          "last_integer_node": 4,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.0115923394538889773189703",
+          "analytic_error_bound": "0.188271489732656670647196"
+        },
+        {
+          "last_integer_node": 8,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.00256752939282438674611174",
+          "analytic_error_bound": "0.0167832167832167832167832"
+        },
+        {
+          "last_integer_node": 8,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.000444367005851661799367591",
+          "analytic_error_bound": "0.00340408703208239530115938"
+        },
+        {
+          "last_integer_node": 16,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.000470613070270519980782596",
+          "analytic_error_bound": "0.00306513409961685823754789"
+        },
+        {
+          "last_integer_node": 16,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.0000242193486013262602955437",
+          "analytic_error_bound": "0.00018566100051639690159415"
+        },
+        {
+          "last_integer_node": 32,
+          "rank": "(3.5 + 0.0j)",
+          "actual_error": "0.000102459841307367608193194",
+          "analytic_error_bound": "0.000666851903306474020561267"
+        },
+        {
+          "last_integer_node": 32,
+          "rank": "(4.2 + 0.4j)",
+          "actual_error": "0.00000180553475138245500378794",
+          "analytic_error_bound": "0.000013842630775672402467689"
+        }
+      ],
+      "invalid_input_checks_passed": 6,
+      "three_anchor_minimum_interval_certified": false,
+      "all_integer_all_height_pick_positivity_established": false,
+      "actual_global_complex_rank_constructed": false
+    }
+  ],
+  "scope": "Exact rational two-anchor norm obstruction; finite Schur and Pick diagnostics. Infinite bounded interpolation and automatic successor are conditional paper theorems; the complete actual integer chain on a common height disk has not been verified."
+}

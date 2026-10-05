@@ -1,0 +1,144 @@
+{
+  "experiment": "R006-v1",
+  "status": "PASS",
+  "date": "2026-10-05",
+  "python": "3.13.5",
+  "mpmath": "1.3.0",
+  "input_sha256": {
+    "docs/hyperoperation-analysis/experiments/exponential_parameter_family.py": "928602450da572e45b1e42a819490c0e85023807d8d411c759f6f0c71c39e38c",
+    "docs/hyperoperation-analysis/experiments/regular_parameter_family.py": "ad2f444880787876f2a83352f13bb9dae5fe532fac16d283ada3eb7f3ef8f4da",
+    "docs/hyperoperation-analysis/experiments/translation_resolvent.py": "35da377883ac56e3eabbf95ae8587d00d37f312d24244a40c36c4130abb0763b",
+    "src/kneser/_koenigs.py": "9dad2cb4cdfe0c08fb1f352ce522125d467d430870b76b8cd3495ffeb27835e7"
+  },
+  "exact_rational_inequalities_checked": 10,
+  "records": [
+    {
+      "requested_dps": 40,
+      "actual_working_dps": 65,
+      "coordinate_steps": 389,
+      "coordinate_reference_method": "32-term inverse Schroder series with 16 forward reductions",
+      "coordinate_convergence": [
+        {
+          "iterations": 32,
+          "coordinate_error_max": "2.28924611999790610193242e-15",
+          "paper_coordinate_tail_bound_max": "0.000001104610066436400431873964"
+        },
+        {
+          "iterations": 64,
+          "coordinate_error_max": "1.343208758030413809003329e-28",
+          "paper_coordinate_tail_bound_max": "9.453861806405383421036927e-12"
+        },
+        {
+          "iterations": 128,
+          "coordinate_error_max": "4.624295420402487144407931e-55",
+          "paper_coordinate_tail_bound_max": "6.924840193837447663530166e-22"
+        }
+      ],
+      "parameters": [
+        {
+          "parameter_offset": "(0.0 + 0.0j)",
+          "fixed_point": "(1.470988960090154267887675 + 0.0j)",
+          "multiplier_abs": "0.385934936553852874625955",
+          "multiplier_arg_abs": "0.0"
+        },
+        {
+          "parameter_offset": "(0.0004 + 0.0003j)",
+          "fixed_point": "(1.472399526183936238857696 + 0.001060808848955933428258215j)",
+          "multiplier_abs": "0.3868943310693046545365155",
+          "multiplier_arg_abs": "0.001862169779508263396253683"
+        },
+        {
+          "parameter_offset": "(-0.0005 + 0.0002j)",
+          "fixed_point": "(1.469230298173429037194442 + 0.0007016981816996783257260728j)",
+          "multiplier_abs": "0.3847390674566857575975407",
+          "multiplier_arg_abs": "0.001241350049734575569671456"
+        }
+      ],
+      "actual_exponential_successor_residual_max": "1.399748204251338731934431e-59",
+      "normalization_and_minus_one_error_max": "7.906375494520710859461695e-65",
+      "extra_logarithm_seam_error_max": "5.35989320788676259998558e-64",
+      "actual_parameter_and_height_response_residual_max": "1.271377427510224576460323e-59",
+      "parameter_fd_error_h_1e_5": "1.647072918223705818756447e-10",
+      "parameter_fd_error_h_5e_6": "4.117682295444506421725148e-11",
+      "fd_error_ratio_when_h_halved": "4.000000000111478367617559",
+      "virtual_period": "(0.0 - 6.599385063006724690613795j)",
+      "periodicity_error_max": "8.160253531512327048609818e-67",
+      "affine_response_period_increment_error_max": "1.144751637416699657710793e-62",
+      "invalid_input_checks_passed": 3
+    },
+    {
+      "requested_dps": 70,
+      "actual_working_dps": 95,
+      "coordinate_steps": 579,
+      "coordinate_reference_method": "32-term inverse Schroder series with 16 forward reductions",
+      "coordinate_convergence": [
+        {
+          "iterations": 32,
+          "coordinate_error_max": "2.28924611999790610193242e-15",
+          "paper_coordinate_tail_bound_max": "0.000001104610066436400431873964"
+        },
+        {
+          "iterations": 64,
+          "coordinate_error_max": "1.343208758030413809003329e-28",
+          "paper_coordinate_tail_bound_max": "9.453861806405383421036927e-12"
+        },
+        {
+          "iterations": 128,
+          "coordinate_error_max": "4.624295420482797312919648e-55",
+          "paper_coordinate_tail_bound_max": "6.924840193837447663530166e-22"
+        }
+      ],
+      "parameters": [
+        {
+          "parameter_offset": "(0.0 + 0.0j)",
+          "fixed_point": "(1.470988960090154267887675 + 0.0j)",
+          "multiplier_abs": "0.385934936553852874625955",
+          "multiplier_arg_abs": "0.0"
+        },
+        {
+          "parameter_offset": "(0.0004 + 0.0003j)",
+          "fixed_point": "(1.472399526183936238857696 + 0.001060808848955933428258215j)",
+          "multiplier_abs": "0.3868943310693046545365155",
+          "multiplier_arg_abs": "0.001862169779508263396253683"
+        },
+        {
+          "parameter_offset": "(-0.0005 + 0.0002j)",
+          "fixed_point": "(1.469230298173429037194442 + 0.0007016981816996783257260728j)",
+          "multiplier_abs": "0.3847390674566857575975407",
+          "multiplier_arg_abs": "0.001241350049734575569671456"
+        }
+      ],
+      "actual_exponential_successor_residual_max": "5.907457465743082008093228e-93",
+      "normalization_and_minus_one_error_max": "1.779002884556063809759754e-91",
+      "extra_logarithm_seam_error_max": "1.777471646196467020191985e-91",
+      "actual_parameter_and_height_response_residual_max": "3.009714434663357381563336e-92",
+      "parameter_fd_error_h_1e_5": "1.647072918223705818756447e-10",
+      "parameter_fd_error_h_5e_6": "4.117682295444506421725148e-11",
+      "fd_error_ratio_when_h_halved": "4.000000000111478367617559",
+      "virtual_period": "(0.0 - 6.599385063006724690613795j)",
+      "periodicity_error_max": "2.068200409214303283270804e-96",
+      "affine_response_period_increment_error_max": "5.938048266180439823969786e-92",
+      "invalid_input_checks_passed": 3
+    }
+  ],
+  "actual_source_green_bridge": {
+    "requested_dps": 60,
+    "actual_working_dps": 150,
+    "paper_global_remainder_norm_certified_numerically": false,
+    "finite_sum_comparison": [
+      {
+        "terms": 8,
+        "selected_actual_response_error_max": "0.0001009902164424441274850695"
+      },
+      {
+        "terms": 16,
+        "selected_actual_response_error_max": "4.970387678995510103307379e-8"
+      },
+      {
+        "terms": 32,
+        "selected_actual_response_error_max": "1.203970309632571305121781e-14"
+      }
+    ]
+  },
+  "scope": "Actual regular exponential parameter family near base 1.3. Finite-precision diagnostics and exact rational checks; no interval inversion certificate, no Kneser-base-e parameter theorem, no fractional rank."
+}

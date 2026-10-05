@@ -1,0 +1,677 @@
+{
+  "experiment": "R001-v1",
+  "status": "PASS",
+  "book_date": "2026-10-04",
+  "python": "3.13.5",
+  "mpmath": "1.3.0",
+  "parameters": {
+    "epsilon": "0.2",
+    "q": 12,
+    "retained_times": [
+      "1/2",
+      "1/3",
+      "1/4",
+      "1/6"
+    ],
+    "witness_times": [
+      "1/5",
+      "sqrt(2)/10"
+    ]
+  },
+  "scope": "Finite sample diagnostics, not certified global error bounds. Kneser coefficients: 50 digits.",
+  "input_sha256": {
+    "docs/hyperoperation-analysis/experiments/rational_time.py": "a6d272840aad5dc13dd77955c9e218af5755d85838606533cbe85c9e06cb3d7e",
+    "src/kneser/hp.py": "1e72a8046db1a5384859339879e36c25d4294e957f9f263a15c24f02dde8d36a",
+    "src/kneser/_coeffs.py": "ae9e9f79c354fc04f164f5eff9bc1afd5e77bc55a58c08e711760c01888c4c54",
+    "src/kneser/_bases.py": "b6eb9889ec065bcf9ad3b5e0afed96ba7160b2bd7dfff60393da7f92b8605474",
+    "src/kneser/__init__.py": "f1640735f959df592b27cd4ddd48fa9fd70886c57257e638af88abff5ab39a6d"
+  },
+  "records": [
+    {
+      "model": "analytic_exp_superfunction",
+      "working_dps": 35,
+      "inverse_residual_max": "1.238029553009981560961724e-64",
+      "retained_time_difference_max": "0.0",
+      "superfunction_residual_max": "1.069105884036878258456215e-50",
+      "witness_at_zero_time_one_fifth": "0.00190583400574062957302778483791",
+      "generator_ratio_at_normalisation": "1.2",
+      "central_difference_generator_ratio": "1.19999999999999999810591595499",
+      "central_difference_generator_step": "1e-10",
+      "samples": [
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        }
+      ],
+      "other_time_witnesses": [
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.2",
+          "difference": "-0.002858980715612469062513013"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.003301577363672138838882872"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.2",
+          "difference": "0.001905834005740629573027785"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.002884409820212030449552377"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.2",
+          "difference": "-0.006052462222446913517455028"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.006989439333741948557633986"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.2",
+          "difference": "0.005180593945864065069363673"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.007840638800111184062795653"
+        }
+      ]
+    },
+    {
+      "model": "repository_kneser_e",
+      "working_dps": 35,
+      "inverse_residual_max": "1.238029553009981560961724e-64",
+      "retained_time_difference_max": "0.0",
+      "superfunction_residual_max": "3.010174527094234424509318e-46",
+      "witness_at_zero_time_one_fifth": "0.0019163842375288745360810205309",
+      "generator_ratio_at_normalisation": "1.2",
+      "central_difference_generator_ratio": "1.19999999999999999810606342037",
+      "central_difference_generator_step": "1e-10",
+      "samples": [
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        }
+      ],
+      "other_time_witnesses": [
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.2",
+          "difference": "-0.003519850641351867110015076"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.004240156776756575697987469"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.2",
+          "difference": "0.001916384237528874536081021"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.002961595478776542911170495"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.2",
+          "difference": "-0.005783673694217015330350857"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.006679480816112905373730608"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.2",
+          "difference": "0.006569498324273988164407093"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.009437658848936868335942985"
+        }
+      ]
+    },
+    {
+      "model": "analytic_exp_superfunction",
+      "working_dps": 50,
+      "inverse_residual_max": "5.934729841099874217170776e-67",
+      "retained_time_difference_max": "4.747783872879899373736621e-66",
+      "superfunction_residual_max": "9.495567745759798747473242e-66",
+      "witness_at_zero_time_one_fifth": "0.00190583400574062957302778483791",
+      "generator_ratio_at_normalisation": "1.2",
+      "central_difference_generator_ratio": "1.19999999999999999810591595499",
+      "central_difference_generator_step": "1e-10",
+      "samples": [
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.5",
+          "difference": "-2.37389193643994969e-66"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.3333333333333333333333333",
+          "difference": "-1.18694596821997484e-66"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.6703200460356393007444329",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.5",
+          "difference": "-4.74778387287989937e-66"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.3333333333333333333333333",
+          "difference": "-4.74778387287989937e-66"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.25",
+          "difference": "-2.37389193643994969e-66"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.419067548593257248270396",
+          "time": "0.1666666666666666666666667",
+          "difference": "-2.37389193643994969e-66"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        }
+      ],
+      "other_time_witnesses": [
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.2",
+          "difference": "-0.002858980715612469062513013"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.003301577363672138838882872"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.2",
+          "difference": "0.001905834005740629573027785"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.002884409820212030449552377"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.2",
+          "difference": "-0.006052462222446913517455028"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.006989439333741948557633986"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.2",
+          "difference": "0.005180593945864065069363673"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.007840638800111184062795653"
+        }
+      ]
+    },
+    {
+      "model": "repository_kneser_e",
+      "working_dps": 50,
+      "inverse_residual_max": "5.934729841099874217170776e-67",
+      "retained_time_difference_max": "0.0",
+      "superfunction_residual_max": "2.337239044941316863703064e-61",
+      "witness_at_zero_time_one_fifth": "0.0019163842375288745360810205309",
+      "generator_ratio_at_normalisation": "1.2",
+      "central_difference_generator_ratio": "1.19999999999999999810606342037",
+      "central_difference_generator_step": "1e-10",
+      "samples": [
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "x": "0.59450765927989233114002",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "x": "1.0",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "x": "1.425793810231724141389605",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.5",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.3333333333333333333333333",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.25",
+          "difference": "0.0"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "x": "2.718281828459045235360287",
+          "time": "0.1666666666666666666666667",
+          "difference": "0.0"
+        }
+      ],
+      "other_time_witnesses": [
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.2",
+          "difference": "-0.003519850641351867110015076"
+        },
+        {
+          "abel_coordinate": "-0.4",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.004240156776756575697987469"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.2",
+          "difference": "0.001916384237528874536081021"
+        },
+        {
+          "abel_coordinate": "0.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.002961595478776542911170495"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.2",
+          "difference": "-0.005783673694217015330350857"
+        },
+        {
+          "abel_coordinate": "0.35",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.006679480816112905373730608"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.2",
+          "difference": "0.006569498324273988164407093"
+        },
+        {
+          "abel_coordinate": "1.0",
+          "time": "0.1414213562373095048801689",
+          "difference": "-0.009437658848936868335942985"
+        }
+      ]
+    }
+  ],
+  "precision_comparison": [
+    {
+      "model": "analytic_exp_superfunction",
+      "witness_precision_difference": "0.0"
+    },
+    {
+      "model": "repository_kneser_e",
+      "witness_precision_difference": "0.0"
+    }
+  ],
+  "high_frequency_sequence": [
+    {
+      "q": 1,
+      "grid_max_value_difference": "0.067180188693237393182",
+      "analytic_compact_bound": "0.089324096468581268008",
+      "generator_ratio_at_one": "1.2"
+    },
+    {
+      "q": 4,
+      "grid_max_value_difference": "0.020255794223601374998",
+      "analytic_compact_bound": "0.021804223426108271546",
+      "generator_ratio_at_one": "1.2"
+    },
+    {
+      "q": 12,
+      "grid_max_value_difference": "0.0070497663670680527363",
+      "analytic_compact_bound": "0.0072296182412432759541",
+      "generator_ratio_at_one": "1.2"
+    },
+    {
+      "q": 48,
+      "grid_max_value_difference": "0.0017899598225922360116",
+      "analytic_compact_bound": "0.0018038124175418186545",
+      "generator_ratio_at_one": "1.2"
+    },
+    {
+      "q": 192,
+      "grid_max_value_difference": "0.00044523627522850540972",
+      "analytic_compact_bound": "0.00045072887447752545916",
+      "generator_ratio_at_one": "1.2"
+    }
+  ]
+}

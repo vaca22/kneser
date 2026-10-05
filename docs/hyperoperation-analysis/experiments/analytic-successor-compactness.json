@@ -1,0 +1,152 @@
+{
+  "experiment": "R008-v1",
+  "status": "PASS",
+  "date": "2026-10-05",
+  "python": "3.13.5",
+  "mpmath": "1.3.0",
+  "input_sha256": {
+    "docs/hyperoperation-analysis/experiments/analytic_successor_compactness.py": "201aeb16dc97e34a2c0b1c2f23ad27e8730a43c469f0aae616b55c4e695971a9",
+    "docs/hyperoperation-analysis/experiments/polynomial_successor.py": "c8b748fd7233c036477c649528a42ee5637b0f08c839708388999607f8936372",
+    "docs/hyperoperation-analysis/experiments/regular_parameter_family.py": "ad2f444880787876f2a83352f13bb9dae5fe532fac16d283ada3eb7f3ef8f4da"
+  },
+  "exact_rational_inequalities_checked": 4,
+  "records": [
+    {
+      "requested_dps": 35,
+      "actual_working_dps": 85,
+      "actual_polynomial_perturbation_successor_error_max": "1.61535870934059388816264e-74",
+      "normalization_and_response_endpoint_error_max": "5.75235992569548300325186e-71",
+      "actual_directional_response_equation_error_max": "3.19882100872579299604893e-71",
+      "independent_exponential_family_reference_error_max": "3.14754612485264553367397e-74",
+      "sixteen_extra_steps_response_change_max": "6.2064237284807920384145e-71",
+      "linearity_error_max": "3.09014316542752610992029e-83",
+      "finite_difference_checks": [
+        {
+          "q_coefficients": [
+            "(1.0 + 0.0j)"
+          ],
+          "error_eta_1e_12": "1.50313197304565344924014e-25",
+          "error_eta_5e_13": "3.75782993261413362310037e-26",
+          "error_ratio": "3.99999999999999999999999"
+        },
+        {
+          "q_coefficients": [
+            "(0.0 + 0.0j)",
+            "(1.0 + 0.0j)"
+          ],
+          "error_eta_1e_12": "1.63796454313709138799843e-25",
+          "error_eta_5e_13": "4.09491135784272846999603e-26",
+          "error_ratio": "4.00000000000000000000005"
+        },
+        {
+          "q_coefficients": [
+            "(1.0 + 0.0j)",
+            "(0.0 + 1.0j)"
+          ],
+          "error_eta_1e_12": "4.53731597007422924117494e-25",
+          "error_eta_5e_13": "1.1343289925185573102937e-25",
+          "error_ratio": "4.00000000000000000000014"
+        }
+      ],
+      "boundary_peak_directions": [
+        {
+          "degree": 0,
+          "sample_response_max": "108415.702248180395395944",
+          "near_left_boundary_input_abs": "0.9999999899999900000101"
+        },
+        {
+          "degree": 4,
+          "sample_response_max": "992.290903348087859436636",
+          "near_left_boundary_input_abs": "0.99999998999996280745713"
+        },
+        {
+          "degree": 8,
+          "sample_response_max": "3.62750092779084245390842",
+          "near_left_boundary_input_abs": "0.999999989999935614904161"
+        },
+        {
+          "degree": 16,
+          "sample_response_max": "0.0000338721495399086469066117",
+          "near_left_boundary_input_abs": "0.999999989999881229798222"
+        },
+        {
+          "degree": 24,
+          "sample_response_max": "3.10948507246376119345474e-10",
+          "near_left_boundary_input_abs": "0.999999989999826844692283"
+        }
+      ],
+      "invalid_input_checks_passed": 4,
+      "final_Banach_ball_radius_certified_numerically": false,
+      "full_operator_norm_certified_numerically": false
+    },
+    {
+      "requested_dps": 55,
+      "actual_working_dps": 105,
+      "actual_polynomial_perturbation_successor_error_max": "2.29586062536904291969372e-94",
+      "normalization_and_response_endpoint_error_max": "1.03630573513912868238155e-90",
+      "actual_directional_response_equation_error_max": "5.75943507999153855716661e-91",
+      "independent_exponential_family_reference_error_max": "4.47351239648815013401769e-94",
+      "sixteen_extra_steps_response_change_max": "1.11846361443712716993317e-90",
+      "linearity_error_max": "4.70242271994756152465714e-103",
+      "finite_difference_checks": [
+        {
+          "q_coefficients": [
+            "(1.0 + 0.0j)"
+          ],
+          "error_eta_1e_12": "1.50313197304565344924014e-25",
+          "error_eta_5e_13": "3.75782993261413362310037e-26",
+          "error_ratio": "3.99999999999999999999999"
+        },
+        {
+          "q_coefficients": [
+            "(0.0 + 0.0j)",
+            "(1.0 + 0.0j)"
+          ],
+          "error_eta_1e_12": "1.63796454313709138799843e-25",
+          "error_eta_5e_13": "4.09491135784272846999603e-26",
+          "error_ratio": "4.00000000000000000000005"
+        },
+        {
+          "q_coefficients": [
+            "(1.0 + 0.0j)",
+            "(0.0 + 1.0j)"
+          ],
+          "error_eta_1e_12": "4.53731597007422924117494e-25",
+          "error_eta_5e_13": "1.1343289925185573102937e-25",
+          "error_ratio": "4.00000000000000000000014"
+        }
+      ],
+      "boundary_peak_directions": [
+        {
+          "degree": 0,
+          "sample_response_max": "108415.702248180395395944",
+          "near_left_boundary_input_abs": "0.9999999899999900000101"
+        },
+        {
+          "degree": 4,
+          "sample_response_max": "992.290903348087859436636",
+          "near_left_boundary_input_abs": "0.99999998999996280745713"
+        },
+        {
+          "degree": 8,
+          "sample_response_max": "3.62750092779084245390842",
+          "near_left_boundary_input_abs": "0.999999989999935614904161"
+        },
+        {
+          "degree": 16,
+          "sample_response_max": "0.0000338721495399086469066117",
+          "near_left_boundary_input_abs": "0.999999989999881229798222"
+        },
+        {
+          "degree": 24,
+          "sample_response_max": "3.10948507246376119345474e-10",
+          "near_left_boundary_input_abs": "0.999999989999826844692283"
+        }
+      ],
+      "invalid_input_checks_passed": 4,
+      "final_Banach_ball_radius_certified_numerically": false,
+      "full_operator_norm_certified_numerically": false
+    }
+  ],
+  "scope": "Actual polynomial perturbations and derivatives of the regular exponential successor near base 1.3. Banach compactness and flow obstruction are paper proofs; finite samples do not certify the full ball, operator norm or a global fractional-rank family."
+}

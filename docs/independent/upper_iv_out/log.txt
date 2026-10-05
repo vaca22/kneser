@@ -1,0 +1,354 @@
+18:08:04 ==== verify_upper_iv start, parts ['P', 'T', 'K', 'I'] iv.prec 64 direct-marks False
+18:08:04 (P) cusp lemma
+18:08:05   max|th cot th| on |th|=1 <= [1.3217352528653637194853, 1.3217352528653637194853]  max|a| <= [0.62716860999156128582323, 0.62716860999156128582323]  max|M-1+w/3| <= [0.071376420601950419975211, 0.071376420601950419975211]
+18:08:05   |D| <= [0.33391148234020913174538, 0.33391148234020913174538]
+18:08:06   Rouche |th^2 D| < [0.0027046830069556939673442, 0.0027046830069556939673442] < 0.01 : True
+18:08:08   Im lam = Re th*(1+2 Im th*c), 1-2*0.09*max|M'| >= [0.76014482758769485879402, 0.76014482758769485879402] : True
+18:08:08   Re A'(w) >= [0.17361297333630434985765, 0.17361297333630434985765] : True
+18:08:09   (|lam|^2-1)/rho <= -2 sin(atan .1) + 2 rho|D| + rho(1+rho|D|)^2 <= [-0.043412723982758629913317, -0.043412723982758629913317] : True
+18:08:14 (P) result: PASS  9.1s
+18:08:15 (T) tails: u=1/|Re lam| in [0,1/12], Im lam = pi*Y, Y in [0,1]
+18:08:15   tail boxes passed: 128  failed: 0  area check: True
+18:08:16 (T) result: PASS  1.2s
+18:08:19 (K) core: [-12,5] x [0,pi], root grid 34x8, LMAX=15
+18:08:19   root (0, 0, 1) leaves 1 ok 0 FAIL 0  [1/272] 0s
+18:08:19   root (0, 0, 2) leaves 1 ok 0 FAIL 0  [2/272] 0s
+18:08:19   root (0, 0, 4) leaves 1 ok 0 FAIL 0  [3/272] 1s
+18:08:20   root (0, 0, 3) leaves 1 ok 0 FAIL 0  [4/272] 1s
+18:08:20   root (0, 0, 5) leaves 1 ok 0 FAIL 0  [5/272] 1s
+18:08:20   root (0, 0, 6) leaves 1 ok 0 FAIL 0  [6/272] 1s
+18:08:20   root (0, 1, 1) leaves 1 ok 0 FAIL 0  [7/272] 1s
+18:08:21   root (0, 1, 2) leaves 1 ok 0 FAIL 0  [8/272] 2s
+18:08:21   root (0, 1, 3) leaves 1 ok 0 FAIL 0  [9/272] 3s
+18:08:21   root (0, 1, 4) leaves 1 ok 0 FAIL 0  [10/272] 3s
+18:08:22   root (0, 1, 5) leaves 1 ok 0 FAIL 0  [11/272] 3s
+18:08:22   root (0, 1, 6) leaves 1 ok 0 FAIL 0  [12/272] 3s
+18:08:22   root (0, 2, 1) leaves 1 ok 0 FAIL 0  [13/272] 4s
+18:08:22   root (0, 2, 2) leaves 1 ok 0 FAIL 0  [14/272] 4s
+18:08:23   root (0, 2, 3) leaves 1 ok 0 FAIL 0  [15/272] 4s
+18:08:23   root (0, 2, 4) leaves 1 ok 0 FAIL 0  [16/272] 4s
+18:08:23   root (0, 2, 5) leaves 1 ok 0 FAIL 0  [17/272] 4s
+18:08:23   root (0, 3, 1) leaves 1 ok 0 FAIL 0  [18/272] 4s
+18:08:23   root (0, 3, 2) leaves 1 ok 0 FAIL 0  [19/272] 4s
+18:08:25   root (0, 3, 3) leaves 1 ok 0 FAIL 0  [20/272] 6s
+18:08:25   root (0, 3, 4) leaves 1 ok 0 FAIL 0  [21/272] 7s
+18:08:25   root (0, 3, 5) leaves 1 ok 0 FAIL 0  [22/272] 7s
+18:08:25   root (1, 4, 12) leaves 4 ok 0 FAIL 0  [23/272] 7s
+18:08:26   root (1, 6, 12) leaves 4 ok 0 FAIL 0  [24/272] 7s
+18:08:26   root (0, 4, 1) leaves 1 ok 0 FAIL 0  [25/272] 7s
+18:08:26   root (0, 4, 2) leaves 1 ok 0 FAIL 0  [26/272] 7s
+18:08:26   root (0, 4, 3) leaves 1 ok 0 FAIL 0  [27/272] 7s
+18:08:26   root (0, 4, 4) leaves 1 ok 0 FAIL 0  [28/272] 8s
+18:08:27   root (0, 4, 5) leaves 1 ok 0 FAIL 0  [29/272] 8s
+18:08:27   root (1, 6, 14) leaves 4 ok 2 FAIL 0  [30/272] 8s
+18:08:27   root (1, 8, 12) leaves 4 ok 0 FAIL 0  [31/272] 9s
+18:08:28   root (1, 6, 0) leaves 4 ok 2 FAIL 0  [32/272] 9s
+18:08:28   root (0, 5, 1) leaves 1 ok 0 FAIL 0  [33/272] 9s
+18:08:28   root (0, 5, 2) leaves 1 ok 0 FAIL 0  [34/272] 9s
+18:08:28   root (0, 2, 0) leaves 1 ok 1 FAIL 0  [35/272] 9s
+18:08:28   root (0, 5, 3) leaves 1 ok 0 FAIL 0  [36/272] 9s
+18:08:28   root (0, 5, 5) leaves 1 ok 0 FAIL 0  [37/272] 10s
+18:08:29   root (1, 8, 14) leaves 4 ok 2 FAIL 0  [38/272] 10s
+18:08:29   root (0, 5, 4) leaves 1 ok 0 FAIL 0  [39/272] 10s
+18:08:29   root (1, 10, 12) leaves 4 ok 0 FAIL 0  [40/272] 10s
+18:08:29   root (0, 6, 1) leaves 1 ok 0 FAIL 0  [41/272] 10s
+18:08:29   root (0, 6, 2) leaves 1 ok 0 FAIL 0  [42/272] 10s
+18:08:29   root (0, 6, 3) leaves 1 ok 0 FAIL 0  [43/272] 11s
+18:08:29   root (0, 6, 4) leaves 1 ok 0 FAIL 0  [44/272] 11s
+18:08:30   root (0, 6, 5) leaves 1 ok 0 FAIL 0  [45/272] 11s
+18:08:30   root (0, 1, 0) leaves 1 ok 1 FAIL 0  [46/272] 11s
+18:08:30   root (0, 0, 0) leaves 1 ok 1 FAIL 0  [47/272] 11s
+18:08:30   root (1, 10, 14) leaves 4 ok 2 FAIL 0  [48/272] 11s
+18:08:30   root (0, 7, 1) leaves 1 ok 0 FAIL 0  [49/272] 11s
+18:08:30   root (0, 7, 2) leaves 1 ok 0 FAIL 0  [50/272] 12s
+18:08:31   root (0, 7, 3) leaves 1 ok 0 FAIL 0  [51/272] 12s
+18:08:31   root (0, 7, 4) leaves 1 ok 0 FAIL 0  [52/272] 12s
+18:08:31   root (0, 7, 5) leaves 1 ok 0 FAIL 0  [53/272] 12s
+18:08:31   root (1, 2, 14) leaves 4 ok 2 FAIL 0  [54/272] 12s
+18:08:31   root (1, 12, 12) leaves 4 ok 1 FAIL 0  [55/272] 12s
+18:08:31   root (1, 10, 0) leaves 4 ok 2 FAIL 0  [56/272] 13s
+18:08:31   root (0, 8, 1) leaves 1 ok 0 FAIL 0  [57/272] 13s
+18:08:32   root (0, 8, 2) leaves 1 ok 0 FAIL 0  [58/272] 13s
+18:08:32   root (1, 14, 12) leaves 4 ok 2 FAIL 0  [59/272] 13s
+18:08:32   root (0, 8, 3) leaves 1 ok 0 FAIL 0  [60/272] 13s
+18:08:32   root (1, 12, 14) leaves 4 ok 2 FAIL 0  [61/272] 14s
+18:08:33   root (1, 4, 14) leaves 4 ok 2 FAIL 0  [62/272] 14s
+18:08:33   root (0, 8, 5) leaves 1 ok 0 FAIL 0  [63/272] 14s
+18:08:33   root (0, 8, 4) leaves 1 ok 0 FAIL 0  [64/272] 14s
+18:08:33   root (1, 12, 0) leaves 4 ok 2 FAIL 0  [65/272] 15s
+18:08:33   root (0, 9, 1) leaves 1 ok 0 FAIL 0  [66/272] 15s
+18:08:33   root (1, 14, 0) leaves 4 ok 2 FAIL 0  [67/272] 15s
+18:08:34   root (0, 9, 2) leaves 1 ok 0 FAIL 0  [68/272] 15s
+18:08:34   root (0, 9, 4) leaves 1 ok 0 FAIL 0  [69/272] 15s
+18:08:34   root (0, 9, 3) leaves 1 ok 0 FAIL 0  [70/272] 15s
+18:08:34   root (1, 8, 0) leaves 4 ok 2 FAIL 0  [71/272] 15s
+18:08:34   root (0, 9, 5) leaves 1 ok 0 FAIL 0  [72/272] 16s
+18:08:35   root (0, 10, 1) leaves 1 ok 0 FAIL 0  [73/272] 16s
+18:08:35   root (0, 10, 2) leaves 1 ok 0 FAIL 0  [74/272] 16s
+18:08:35   root (0, 10, 3) leaves 1 ok 0 FAIL 0  [75/272] 16s
+18:08:35   root (0, 10, 4) leaves 1 ok 0 FAIL 0  [76/272] 17s
+18:08:35   root (0, 10, 5) leaves 1 ok 0 FAIL 0  [77/272] 17s
+18:08:36   root (1, 0, 14) leaves 4 ok 4 FAIL 0  [78/272] 17s
+18:08:36   root (1, 14, 14) leaves 4 ok 2 FAIL 0  [79/272] 17s
+18:08:36   root (1, 16, 14) leaves 4 ok 2 FAIL 0  [80/272] 17s
+18:08:36   root (0, 11, 1) leaves 1 ok 0 FAIL 0  [81/272] 18s
+18:08:36   root (0, 11, 2) leaves 1 ok 0 FAIL 0  [82/272] 18s
+18:08:36   root (0, 11, 3) leaves 1 ok 0 FAIL 0  [83/272] 18s
+18:08:37   root (0, 11, 4) leaves 1 ok 0 FAIL 0  [84/272] 18s
+18:08:37   root (0, 11, 5) leaves 1 ok 0 FAIL 0  [85/272] 18s
+18:08:37   root (1, 16, 12) leaves 4 ok 2 FAIL 0  [86/272] 18s
+18:08:37   root (1, 16, 0) leaves 4 ok 2 FAIL 0  [87/272] 18s
+18:08:37   root (1, 18, 0) leaves 4 ok 2 FAIL 0  [88/272] 18s
+18:08:37   root (0, 12, 1) leaves 1 ok 0 FAIL 0  [89/272] 19s
+18:08:37   root (0, 12, 2) leaves 1 ok 0 FAIL 0  [90/272] 19s
+18:08:38   root (0, 12, 3) leaves 1 ok 0 FAIL 0  [91/272] 19s
+18:08:38   root (0, 12, 4) leaves 1 ok 0 FAIL 0  [92/272] 19s
+18:08:38   root (0, 12, 5) leaves 1 ok 0 FAIL 0  [93/272] 19s
+18:08:38   root (1, 18, 14) leaves 7 ok 3 FAIL 0  [94/272] 19s
+18:08:38   root (1, 20, 0) leaves 4 ok 2 FAIL 0  [95/272] 19s
+18:08:38   root (1, 18, 12) leaves 4 ok 2 FAIL 0  [96/272] 20s
+18:08:38   root (0, 13, 1) leaves 1 ok 0 FAIL 0  [97/272] 20s
+18:08:39   root (0, 13, 2) leaves 1 ok 0 FAIL 0  [98/272] 20s
+18:08:39   root (0, 13, 3) leaves 1 ok 0 FAIL 0  [99/272] 20s
+18:08:39   root (0, 13, 4) leaves 1 ok 0 FAIL 0  [100/272] 20s
+18:08:39   root (0, 13, 5) leaves 1 ok 0 FAIL 0  [101/272] 20s
+18:08:39   root (1, 24, 0) leaves 4 ok 2 FAIL 0  [102/272] 20s
+18:08:39   root (1, 22, 0) leaves 4 ok 2 FAIL 0  [103/272] 21s
+18:08:39   root (2, 52, 28) leaves 10 ok 0 FAIL 0  [104/272] 21s
+18:08:40   root (0, 14, 1) leaves 1 ok 0 FAIL 0  [105/272] 21s
+18:08:40   root (0, 14, 2) leaves 1 ok 0 FAIL 0  [106/272] 21s
+18:08:40   root (0, 14, 3) leaves 1 ok 0 FAIL 0  [107/272] 21s
+18:08:40   root (0, 14, 4) leaves 1 ok 0 FAIL 0  [108/272] 21s
+18:08:40   root (0, 14, 5) leaves 1 ok 0 FAIL 0  [109/272] 22s
+18:08:40   root (2, 48, 28) leaves 10 ok 2 FAIL 0  [110/272] 22s
+18:08:40   root (1, 28, 14) leaves 4 ok 0 FAIL 0  [111/272] 22s
+18:08:41   root (1, 20, 12) leaves 10 ok 4 FAIL 0  [112/272] 22s
+18:08:41   root (0, 15, 1) leaves 1 ok 0 FAIL 0  [113/272] 22s
+18:08:41   root (0, 15, 2) leaves 1 ok 0 FAIL 0  [114/272] 22s
+18:08:41   root (0, 15, 3) leaves 1 ok 0 FAIL 0  [115/272] 22s
+18:08:41   root (0, 15, 4) leaves 1 ok 0 FAIL 0  [116/272] 22s
+18:08:41   root (0, 15, 5) leaves 1 ok 0 FAIL 0  [117/272] 23s
+18:08:41   root (2, 44, 28) leaves 10 ok 4 FAIL 0  [118/272] 23s
+18:08:42   root (2, 52, 0) leaves 10 ok 4 FAIL 0  [119/272] 23s
+18:08:42   root (1, 30, 14) leaves 4 ok 0 FAIL 0  [120/272] 23s
+18:08:42   root (0, 16, 1) leaves 1 ok 0 FAIL 0  [121/272] 23s
+18:08:42   root (0, 16, 2) leaves 1 ok 0 FAIL 0  [122/272] 23s
+18:08:42   root (0, 16, 3) leaves 1 ok 0 FAIL 0  [123/272] 23s
+18:08:42   root (0, 16, 4) leaves 1 ok 0 FAIL 0  [124/272] 24s
+18:08:42   root (2, 40, 28) leaves 10 ok 4 FAIL 0  [125/272] 24s
+18:08:43   root (1, 32, 10) leaves 4 ok 0 FAIL 0  [126/272] 24s
+18:08:43   root (0, 16, 7) leaves 1 ok 0 FAIL 0  [127/272] 24s
+18:08:43   root (2, 56, 0) leaves 10 ok 4 FAIL 0  [128/272] 24s
+18:08:43   root (0, 17, 1) leaves 1 ok 0 FAIL 0  [129/272] 24s
+18:08:43   root (0, 17, 2) leaves 1 ok 0 FAIL 0  [130/272] 24s
+18:08:43   root (0, 17, 3) leaves 1 ok 0 FAIL 0  [131/272] 25s
+18:08:43   root (0, 17, 4) leaves 1 ok 0 FAIL 0  [132/272] 25s
+18:08:44   root (1, 22, 12) leaves 10 ok 4 FAIL 0  [133/272] 25s
+18:08:44   root (1, 34, 10) leaves 7 ok 0 FAIL 0  [134/272] 25s
+18:08:44   root (0, 17, 7) leaves 1 ok 0 FAIL 0  [135/272] 25s
+18:08:44   root (1, 24, 12) leaves 10 ok 6 FAIL 0  [136/272] 25s
+18:08:44   root (0, 18, 1) leaves 1 ok 0 FAIL 0  [137/272] 25s
+18:08:44   root (0, 18, 2) leaves 1 ok 0 FAIL 0  [138/272] 26s
+18:08:44   root (0, 18, 3) leaves 1 ok 0 FAIL 0  [139/272] 26s
+18:08:45   root (0, 18, 4) leaves 1 ok 0 FAIL 0  [140/272] 26s
+18:08:45   root (2, 60, 0) leaves 10 ok 4 FAIL 0  [141/272] 26s
+18:08:45   root (2, 68, 0) leaves 10 ok 4 FAIL 0  [142/272] 26s
+18:08:45   root (0, 18, 7) leaves 1 ok 0 FAIL 0  [143/272] 26s
+18:08:45   root (1, 26, 12) leaves 10 ok 8 FAIL 0  [144/272] 26s
+18:08:45   root (0, 19, 1) leaves 1 ok 0 FAIL 0  [145/272] 27s
+18:08:45   root (0, 19, 2) leaves 1 ok 0 FAIL 0  [146/272] 27s
+18:08:46   root (0, 19, 3) leaves 1 ok 0 FAIL 0  [147/272] 27s
+18:08:46   root (0, 19, 4) leaves 1 ok 0 FAIL 0  [148/272] 27s
+18:08:46   root (2, 64, 0) leaves 10 ok 4 FAIL 0  [149/272] 27s
+18:08:46   root (1, 36, 10) leaves 10 ok 4 FAIL 0  [150/272] 27s
+18:08:46   root (0, 19, 7) leaves 1 ok 0 FAIL 0  [151/272] 28s
+18:08:47   root (2, 56, 24) leaves 16 ok 8 FAIL 0  [152/272] 28s
+18:08:47   root (0, 20, 1) leaves 1 ok 0 FAIL 0  [153/272] 28s
+18:08:47   root (0, 20, 2) leaves 1 ok 0 FAIL 0  [154/272] 28s
+18:08:47   root (0, 20, 3) leaves 1 ok 0 FAIL 0  [155/272] 28s
+18:08:47   root (2, 60, 24) leaves 16 ok 9 FAIL 0  [156/272] 28s
+18:08:47   root (2, 64, 24) leaves 16 ok 9 FAIL 0  [157/272] 28s
+18:08:47   root (2, 80, 24) leaves 7 ok 0 FAIL 0  [158/272] 29s
+18:08:47   root (0, 20, 7) leaves 1 ok 0 FAIL 0  [159/272] 29s
+18:08:48   root (1, 40, 8) leaves 10 ok 2 FAIL 0  [160/272] 29s
+18:08:48   root (2, 76, 24) leaves 10 ok 4 FAIL 0  [161/272] 29s
+18:08:48   root (1, 42, 4) leaves 7 ok 0 FAIL 0  [162/272] 29s
+18:08:48   root (2, 72, 24) leaves 13 ok 7 FAIL 0  [163/272] 29s
+18:08:48   root (2, 68, 24) leaves 16 ok 10 FAIL 0  [164/272] 30s
+18:08:49   root (1, 42, 6) leaves 16 ok 4 FAIL 0  [165/272] 30s
+18:08:49   root (1, 42, 12) leaves 4 ok 0 FAIL 0  [166/272] 30s
+18:08:49   root (0, 21, 7) leaves 1 ok 0 FAIL 0  [167/272] 30s
+18:08:49   root (2, 76, 20) leaves 19 ok 9 FAIL 0  [168/272] 30s
+18:08:49   root (2, 72, 0) leaves 19 ok 13 FAIL 0  [169/272] 30s
+18:08:49   root (3, 168, 40) leaves 46 ok 32 FAIL 0  [170/272] 30s
+18:08:49   root (3, 152, 0) leaves 40 ok 28 FAIL 0  [171/272] 31s
+18:08:49   root (2, 84, 16) leaves 55 ok 43 FAIL 0  [172/272] 31s
+18:08:49   root (3, 176, 40) leaves 22 ok 6 FAIL 0  [173/272] 31s
+18:08:50   root (0, 22, 6) leaves 1 ok 0 FAIL 0  [174/272] 31s
+18:08:50   root (0, 22, 7) leaves 1 ok 0 FAIL 0  [175/272] 31s
+18:08:50   root (0, 23, 0) leaves 1 ok 0 FAIL 0  [176/272] 31s
+18:08:50   root (0, 23, 1) leaves 1 ok 0 FAIL 0  [177/272] 31s
+18:08:50   root (2, 80, 20) leaves 58 ok 45 FAIL 0  [178/272] 31s
+18:08:50   root (5, 704, 0) leaves 79 ok 40 FAIL 0  [179/272] 31s
+18:08:50   root (2, 84, 4) leaves 91 ok 64 FAIL 0  [180/272] 32s
+18:08:50   root (1, 46, 10) leaves 4 ok 0 FAIL 0  [181/272] 32s
+18:08:51   root (0, 23, 6) leaves 1 ok 0 FAIL 0  [182/272] 32s
+18:08:51   root (0, 23, 7) leaves 1 ok 0 FAIL 0  [183/272] 32s
+18:08:51   root (0, 24, 0) leaves 1 ok 0 FAIL 0  [184/272] 32s
+18:08:51   root (0, 24, 1) leaves 1 ok 0 FAIL 0  [185/272] 32s
+18:08:51   root (3, 160, 0) leaves 85 ok 73 FAIL 0  [186/272] 32s
+18:08:51   root (3, 176, 32) leaves 64 ok 62 FAIL 0  [187/272] 32s
+18:08:51   root (4, 384, 64) leaves 13 ok 1 FAIL 0  [188/272] 32s
+18:08:51   root (0, 24, 5) leaves 1 ok 0 FAIL 0  [189/272] 33s
+18:08:51   root (0, 24, 6) leaves 1 ok 0 FAIL 0  [190/272] 33s
+18:08:52   root (0, 24, 7) leaves 1 ok 0 FAIL 0  [191/272] 33s
+18:08:52   root (4, 352, 16) leaves 148 ok 118 FAIL 0  [192/272] 33s
+18:08:52   root (3, 176, 24) leaves 106 ok 99 FAIL 0  [193/272] 33s
+18:08:52   root (3, 184, 16) leaves 112 ok 97 FAIL 0  [194/272] 33s
+18:08:52   root (5, 800, 96) leaves 16 ok 1 FAIL 0  [195/272] 33s
+18:08:52   root (0, 25, 4) leaves 1 ok 0 FAIL 0  [196/272] 33s
+18:08:52   root (0, 25, 5) leaves 1 ok 0 FAIL 0  [197/272] 34s
+18:08:52   root (0, 25, 6) leaves 1 ok 0 FAIL 0  [198/272] 34s
+18:08:52   root (0, 25, 7) leaves 1 ok 0 FAIL 0  [199/272] 34s
+18:08:53   root (3, 184, 32) leaves 118 ok 91 FAIL 0  [200/272] 34s
+18:08:53   root (5, 832, 32) leaves 82 ok 0 FAIL 0  [201/272] 34s
+18:08:53   root (3, 208, 16) leaves 16 ok 0 FAIL 0  [202/272] 34s
+18:08:53   root (1, 52, 6) leaves 4 ok 0 FAIL 0  [203/272] 34s
+18:08:53   root (0, 26, 4) leaves 1 ok 0 FAIL 0  [204/272] 34s
+18:08:53   root (0, 26, 5) leaves 1 ok 0 FAIL 0  [205/272] 34s
+18:08:53   root (0, 26, 6) leaves 1 ok 0 FAIL 0  [206/272] 35s
+18:08:53   root (0, 26, 7) leaves 1 ok 0 FAIL 0  [207/272] 35s
+18:08:54   root (2, 108, 0) leaves 19 ok 0 FAIL 0  [208/272] 35s
+18:08:54   root (2, 108, 4) leaves 13 ok 0 FAIL 0  [209/272] 35s
+18:08:54   root (1, 54, 4) leaves 4 ok 0 FAIL 0  [210/272] 35s
+18:08:54   root (0, 27, 3) leaves 1 ok 0 FAIL 0  [211/272] 35s
+18:08:54   root (0, 27, 4) leaves 1 ok 0 FAIL 0  [212/272] 35s
+18:08:54   root (0, 27, 5) leaves 1 ok 0 FAIL 0  [213/272] 35s
+18:08:54   root (0, 27, 6) leaves 1 ok 0 FAIL 0  [214/272] 36s
+18:08:54   root (0, 27, 7) leaves 1 ok 0 FAIL 0  [215/272] 36s
+18:08:54   root (1, 56, 0) leaves 4 ok 0 FAIL 0  [216/272] 36s
+18:08:55   root (1, 56, 2) leaves 4 ok 0 FAIL 0  [217/272] 36s
+18:08:55   root (0, 28, 2) leaves 1 ok 0 FAIL 0  [218/272] 36s
+18:08:55   root (0, 28, 3) leaves 1 ok 0 FAIL 0  [219/272] 36s
+18:08:55   root (0, 28, 4) leaves 1 ok 0 FAIL 0  [220/272] 36s
+18:08:55   root (0, 28, 5) leaves 1 ok 0 FAIL 0  [221/272] 36s
+18:08:55   root (0, 28, 6) leaves 1 ok 0 FAIL 0  [222/272] 36s
+18:08:55   root (0, 28, 7) leaves 1 ok 0 FAIL 0  [223/272] 37s
+18:08:55   root (0, 29, 0) leaves 1 ok 0 FAIL 0  [224/272] 37s
+18:08:55   root (0, 29, 1) leaves 1 ok 0 FAIL 0  [225/272] 37s
+18:08:56   root (0, 29, 2) leaves 1 ok 0 FAIL 0  [226/272] 37s
+18:08:56   root (0, 29, 3) leaves 1 ok 0 FAIL 0  [227/272] 37s
+18:08:56   root (0, 29, 4) leaves 1 ok 0 FAIL 0  [228/272] 37s
+18:08:56   root (0, 29, 5) leaves 1 ok 0 FAIL 0  [229/272] 37s
+18:08:56   root (0, 29, 6) leaves 1 ok 0 FAIL 0  [230/272] 37s
+18:08:56   root (0, 29, 7) leaves 1 ok 0 FAIL 0  [231/272] 38s
+18:08:56   root (0, 30, 0) leaves 1 ok 0 FAIL 0  [232/272] 38s
+18:08:56   root (0, 30, 1) leaves 1 ok 0 FAIL 0  [233/272] 38s
+18:08:57   root (0, 30, 2) leaves 1 ok 0 FAIL 0  [234/272] 38s
+18:08:57   root (0, 30, 3) leaves 1 ok 0 FAIL 0  [235/272] 38s
+18:08:57   root (0, 30, 4) leaves 1 ok 0 FAIL 0  [236/272] 38s
+18:08:57   root (0, 30, 5) leaves 1 ok 0 FAIL 0  [237/272] 39s
+18:08:57   root (0, 30, 6) leaves 1 ok 0 FAIL 0  [238/272] 39s
+18:08:58   root (0, 30, 7) leaves 1 ok 0 FAIL 0  [239/272] 39s
+18:08:58   root (0, 31, 0) leaves 1 ok 0 FAIL 0  [240/272] 39s
+18:08:58   root (0, 31, 1) leaves 1 ok 0 FAIL 0  [241/272] 39s
+18:08:58   root (0, 31, 2) leaves 1 ok 0 FAIL 0  [242/272] 39s
+18:08:58   root (0, 31, 3) leaves 1 ok 0 FAIL 0  [243/272] 39s
+18:08:58   root (0, 31, 4) leaves 1 ok 0 FAIL 0  [244/272] 39s
+18:08:58   root (0, 31, 5) leaves 1 ok 0 FAIL 0  [245/272] 39s
+18:08:58   root (0, 31, 6) leaves 1 ok 0 FAIL 0  [246/272] 39s
+18:08:58   root (0, 31, 7) leaves 1 ok 0 FAIL 0  [247/272] 40s
+18:08:58   root (0, 32, 0) leaves 1 ok 0 FAIL 0  [248/272] 40s
+18:08:59   root (0, 32, 1) leaves 1 ok 0 FAIL 0  [249/272] 40s
+18:08:59   root (0, 32, 2) leaves 1 ok 0 FAIL 0  [250/272] 40s
+18:08:59   root (0, 32, 3) leaves 1 ok 0 FAIL 0  [251/272] 40s
+18:08:59   root (0, 32, 4) leaves 1 ok 0 FAIL 0  [252/272] 40s
+18:08:59   root (0, 32, 5) leaves 1 ok 0 FAIL 0  [253/272] 40s
+18:08:59   root (0, 32, 6) leaves 1 ok 0 FAIL 0  [254/272] 41s
+18:08:59   root (0, 32, 7) leaves 1 ok 0 FAIL 0  [255/272] 41s
+18:09:00   root (0, 33, 0) leaves 1 ok 0 FAIL 0  [256/272] 41s
+18:09:00   root (0, 33, 1) leaves 1 ok 0 FAIL 0  [257/272] 41s
+18:09:00   root (0, 33, 2) leaves 1 ok 0 FAIL 0  [258/272] 41s
+18:09:00   root (0, 33, 3) leaves 1 ok 0 FAIL 0  [259/272] 41s
+18:09:00   root (0, 33, 4) leaves 1 ok 0 FAIL 0  [260/272] 41s
+18:09:00   root (0, 33, 5) leaves 1 ok 0 FAIL 0  [261/272] 42s
+18:09:00   root (0, 33, 6) leaves 1 ok 0 FAIL 0  [262/272] 42s
+18:09:01   root (0, 33, 7) leaves 1 ok 0 FAIL 0  [263/272] 42s
+18:09:01   root (4, 352, 32) leaves 220 ok 196 FAIL 0  [264/272] 42s
+18:09:01   root (3, 184, 24) leaves 220 ok 220 FAIL 0  [265/272] 42s
+18:09:01   root (4, 384, 48) leaves 376 ok 319 FAIL 0  [266/272] 42s
+18:09:01   root (4, 400, 32) leaves 445 ok 315 FAIL 0  [267/272] 43s
+18:09:01   root (3, 208, 0) leaves 5950 ok 0 FAIL 0  [268/272] 43s
+18:09:02   root (2, 96, 8) leaves 601 ok 560 FAIL 0  [269/272] 43s
+18:09:02   root (4, 336, 0) leaves 538 ok 531 FAIL 0  [270/272] 43s
+18:09:02   root (1, 50, 2) leaves 1810 ok 1226 FAIL 0  [271/272] 43s
+18:12:37   root (1, 50, 0) leaves 25726 ok 16550 FAIL 0  [272/272] 259s
+18:12:38 (K) cells processed 259.0s
+18:12:38 (I) interfaces / continuity / anchor
+18:12:38   leaves: ok 20901  discarded 16811  FAIL 0
+18:12:38   tiling area check (x,Y units): True
+18:12:42   adjacent certified pairs (edge+corner): 78491  hull-uniqueness failures: 0
+18:12:43   anchor lam=cot1+i: cells [((5, 809, 81), True, True, True)]  -> True
+18:12:43   tail/core interface cells: 3  failures: 0
+18:12:44   core cells meeting |lam-1|<0.08 (theta-box checked inside 0<|theta|<0.09): 30
+18:12:44   marks: theta-box in Theta or conj(Theta) (cited): 20042  direct entry index histogram: [(-1, 859), (None, 20042)]
+18:12:44   cells relying only on the paper for the mark: 20042
+18:12:44   total e-intervals in crescent checks: 668832
+18:12:44 (I) result: PASS  6.7s
+18:12:45 ==== summary {'P': True, 'T': True, 'I': True}  total 280.3s
+18:15:27 ==== verify_upper_iv start, parts ['M'] iv.prec 64 direct-marks False
+18:15:27 (M) direct (orbit) marks on all certified core cells, no citation
+18:15:27    2000 / 20901  failures so far 926
+18:15:28    4000 / 20901  failures so far 2399
+18:15:28    6000 / 20901  failures so far 4399
+18:15:28    8000 / 20901  failures so far 6399
+18:15:29    10000 / 20901  failures so far 8399
+18:15:29    12000 / 20901  failures so far 10399
+18:15:30    14000 / 20901  failures so far 12399
+18:15:30    16000 / 20901  failures so far 14399
+18:15:31    18000 / 20901  failures so far 16399
+18:15:31    20000 / 20901  failures so far 18399
+18:15:32   entry-index histogram: [(-1, 1381), (0, 220), (999, 19300)]
+18:15:32   direct failures: 19300  of which theta-box in Theta u conj(Theta): 19300
+18:15:32 (M) done 5.2s
+18:15:32 ==== summary {'M_fail': 19300}  total 5.3s
+18:20:53 ==== verify_upper_iv start, parts ['M'] iv.prec 64 direct-marks False
+18:20:53 (M) direct (orbit + seam) marks on all certified core cells, theta-subdivision, no citation
+18:23:30 ==== verify_upper_iv start, parts ['M'] iv.prec 64 direct-marks False
+18:23:31 (M) direct (orbit + seam) marks on all certified core cells, theta-subdivision, no citation
+18:25:31    500 / 20901  failures so far 0  278s
+18:30:56    500 / 20901  failures so far 0  446s
+18:35:38    1000 / 20901  failures so far 0  727s
+18:47:41 ==== verify_upper_iv start, parts ['M'] iv.prec 64 direct-marks False
+18:47:42 (M) direct (orbit + seam) marks on all certified core cells, theta-subdivision, no citation
+18:47:42   resumed 1000
+18:47:49    500 / 19901  failures so far 0  current |theta|=2.3712  7s
+18:47:53    1000 / 19901  failures so far 0  current |theta|=2.1367  11s
+18:47:58    1500 / 19901  failures so far 0  current |theta|=1.8247  16s
+18:49:08    2000 / 19901  failures so far 9  current |theta|=1.4319  87s
+18:49:15    2500 / 19901  failures so far 9  current |theta|=1.2369  93s
+18:49:55    3000 / 19901  failures so far 13  current |theta|=0.9579  133s
+18:51:47    3500 / 19901  failures so far 25  current |theta|=0.5659  245s
+18:53:45    4000 / 19901  failures so far 30  current |theta|=0.4701  363s
+18:58:10    4500 / 19901  failures so far 32  current |theta|=0.3714  628s
+19:01:10    5000 / 19901  failures so far 34  current |theta|=0.3205  808s
+19:02:54 ==== verify_upper_iv start, parts ['MF', 'M'] iv.prec 64 direct-marks False
+19:02:54 (MF) re-run direct marks on previously failed cells (patched seam rule)
+19:02:55   failed cells to redo: 34
+19:02:56    still FAIL (5, 797, 72) ('interior@0', ['[1.0089005032550875935564, 1.0089517472388164018998]', '[0.19133037557721051919422, 0.19138161956093932732081]'])
+19:03:07 (MF) remaining failures: 1
+19:03:07 (M) direct (orbit + seam) marks on all certified core cells, theta-subdivision, no citation
+19:03:07   resumed 6000
+19:05:18    500 / 14901  failures so far 1  current |theta|=0.2691  130s
+19:06:34    1000 / 14901  failures so far 1  current |theta|=0.2426  207s
+19:07:52    1500 / 14901  failures so far 1  current |theta|=0.2174  285s
+19:10:35    2000 / 14901  failures so far 1  current |theta|=0.2029  448s
+19:13:13    2500 / 14901  failures so far 1  current |theta|=0.1920  605s
+19:16:46    3000 / 14901  failures so far 1  current |theta|=0.1837  819s
+19:20:54    3500 / 14901  failures so far 1  current |theta|=0.1763  1067s
+19:25:40    4000 / 14901  failures so far 1  current |theta|=0.1692  1353s
+19:30:18    4500 / 14901  failures so far 1  current |theta|=0.1621  1631s
+19:34:57    5000 / 14901  failures so far 1  current |theta|=0.1549  1910s
+19:40:34    5500 / 14901  failures so far 1  current |theta|=0.1483  2247s
+19:45:04    6000 / 14901  failures so far 1  current |theta|=0.1428  2517s
+19:49:08    6500 / 14901  failures so far 1  current |theta|=0.1380  2761s
