@@ -92,6 +92,17 @@ base continuation $\kappa$ has a boundary value, denote it by
 \end{equation}
 High-precision algorithms for the relevant pointwise constructions are
 developed in~\cite{Kouznetsov2009,KouznetsovTrappmann2010,KouznetsovTrappmann2012}.
+A different line of work constructs non-regular solutions by infinite
+compositions: Nixon~\cite{Nixon2022} builds, for $b$ in the interior of the
+Shell--Thron region, a family of solutions of period $2\pi\ii/\lambda$ and
+compares them with the regular solution through a $1$-periodic
+``$\theta$-mapping'' $F=\Rr_b\circ(\mathrm{id}+\theta)$, the normal form we
+also use below.  That work does not treat Kneser's solution for $b<\eta$, the
+limit $b\to\eta$, or continuation in the base, and for $b>\eta$ the link
+between its construction and Kneser's solution is left as a conjecture.
+Here the $1$-periodic correction is determined by the transition map between
+the two regular charts, and its Fourier coefficients are shown to be
+asymptotic to $\Lambda^nB_n\eee^{2\pi\ii na}$ (notation below).
 We construct a two-sided sewing solution $\Kk^W_b$ independently and
 determine its difference from $\Rr_b$.  We then prove that the
 continuation of Kneser's solution through the upper half-disc about
@@ -1524,10 +1535,17 @@ normalisation, is $\tfrac12$-summable in the canonical parameter
 $\epsilon=(A_2-A_1)^{-2}$, with the Glutsyuk direction as the singular
 direction~\cite[Cor.~4.9]{ChristopherRousseau}.  One checks the exact identity
 $p=4\epsilon/(1-\nu^2\epsilon)$.  Their result gives the existence of an
-asymptotic expansion.  Marde\v{s}i\'c--Roussarie--Rousseau record that at
-$\epsilon=0$ only continuity was known~\cite[\S11]{MRR2004}.
-Theorems~\ref{thm:D} and~\ref{thm:E} give the coefficients, in the
-normalisation of $\tau_n$, as explicit convergent series over parabolic orbits.  We know of no
+asymptotic expansion.  Marde\v{s}i\'c--Roussarie--Rousseau proved continuity
+at $\epsilon=0$ and conjectured $1$-summability in
+$\sqrt\epsilon$~\cite[\S11]{MRR2004}; this is the result
+of~\cite{ChristopherRousseau}, and Rib\'on proved multisummability of Fatou
+coordinates and \'Ecalle--Voronin invariants for unfoldings of any finite
+codimension~\cite{Ribon2010}.  These results give existence of the expansion
+but not its coefficients.  Theorems~\ref{thm:D} and~\ref{thm:E} give the
+coefficients, in the normalisation of $\tau_n$, as explicit convergent series
+over parabolic orbits, with a direct proof that does not use summability
+theory.  This parallels the expression of the \'Ecalle--Voronin invariants
+themselves by convergent numerical series~\cite{DudkoSauzin2014}.  We know of no
 closed form.  An integer-relation search on $\kappa^{(1)}$ against
 $\pi,\pi^2,\log2,\gamma$ returns only spurious relations.
 \end{remark}
@@ -4632,8 +4650,8 @@ Theorems~\ref{thm:last-arc} and~\ref{thm:upper}.  The following questions remain
   $\kappa^{(n)}$ as a convergent series over parabolic orbits.  Is there a closed
   form, for instance in terms of the horn-map data $B_n$, $a$ and the iterative
   residue?  Determine the radius of convergence and the optimal Gevrey
-  order of the expansion in $p$.  The $\tfrac12$-summability result
-  of~\cite{ChristopherRousseau} is in a different normalisation.
+  order of the expansion in $p$.  The $\tfrac12$-summability results
+  of~\cite{ChristopherRousseau,Ribon2010} are in a different normalisation.
 \item \emph{Remaining certification.}  The coordinate $a$, the moduli
   of the first three horn coefficients, and the two horn ratios used in the
   numerical comparisons have interval enclosures above.  Give interval enclosures
@@ -4920,6 +4938,12 @@ C.~Christopher and C.~Rousseau,
 diffeomorphisms unfolding a parabolic fixed point},
 Int.\ Math.\ Res.\ Not.\ IMRN (2014); arXiv:0809.2167.
 
+\bibitem{DudkoSauzin2014}
+A.~Dudko and D.~Sauzin,
+\emph{On the resurgent approach to \'Ecalle--Voronin's invariants},
+C.\ R.\ Math.\ Acad.\ Sci.\ Paris \textbf{353} (2015), 265--271;
+\href{https://arxiv.org/abs/1307.8095}{arXiv:1307.8095}.
+
 \bibitem{Ecalle1981}
 J.~\'Ecalle,
 \emph{Les fonctions r\'esurgentes}, Publ.\ Math.\ d'Orsay, 1981.
@@ -4971,6 +4995,11 @@ P.~Marde\v{s}i\'c, R.~Roussarie and C.~Rousseau,
 diffeomorphisms},
 Mosc.\ Math.\ J.\ \textbf{4} (2004), no.~2, 455--502.
 
+\bibitem{Nixon2022}
+J.~D.~Nixon,
+\emph{Asymptotic solutions of the tetration equation},
+preprint, 2022, \href{https://arxiv.org/abs/2208.05328}{arXiv:2208.05328}.
+
 \bibitem{Oudkerk1999}
 R.~Oudkerk,
 \emph{The parabolic implosion for
@@ -4997,6 +5026,12 @@ W.~Paulsen,
 \emph{Analyzing the function $z\uparrow\uparrow a$ for fractional $a$},
 Adv.\ Comput.\ Math.\ \textbf{52} (2026), article~25.
 \href{https://doi.org/10.1007/s10444-026-10300-z}{doi:10.1007/s10444-026-10300-z}.
+
+\bibitem{Ribon2010}
+J.~Rib\'on,
+\emph{Multisummability of unfoldings of tangent to the identity
+diffeomorphisms}, preprint, 2010,
+\href{https://arxiv.org/abs/1009.3518}{arXiv:1009.3518}.
 
 \bibitem{RousseauTeyssier2008}
 C.~Rousseau and L.~Teyssier,
