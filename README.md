@@ -280,6 +280,12 @@ Besides the library, `docs/` holds the research behind it:
 - `docs/paper-submission/` — the preprint *Kneser's tetration continued around
   the cusp e^(1/e): separation from regular iteration and the inverse horn map
   of e^u−1* (LaTeX source and PDF).
+- `docs/hyperoperation-analysis/` — *超运算分析学* (Hyperoperation Analysis),
+  a Chinese book draft and research programme on hyperoperations continued in
+  base, height and rank; start from [`BOOK.md`](docs/hyperoperation-analysis/BOOK.md).
+  `docs/theory-framework-zh.md` sets out the conceptual framework.
+- `docs/independent/` — independent interval-arithmetic re-verification of the
+  computer-assisted theorems.
 - `docs/certify_*.py`, `docs/certificates/` — the computer-assisted
   certificates used in the preprint, with their scripts.
 - `references/kneser1950/` — expository notes on Kneser's 1950 paper and on
