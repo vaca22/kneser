@@ -1,0 +1,5 @@
+PASS rejects wrong_q
+PASS rejects broken_normalization
+PASS rejects mismatched_shift
+PASS rejects missing_root_axis
+PASS rejects missing_log_coverage

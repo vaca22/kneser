@@ -1,0 +1,5 @@
+analytic cover 32 seconds 6.4
+analytic cover 64 seconds 12.8
+analytic cover 96 seconds 19.1
+analytic cover 128 seconds 25.5
+PASS uniform tail 2.1108912784442054e-23 endpoint 3.321212790242244e-53 remainder 2.1108912784442054e-23

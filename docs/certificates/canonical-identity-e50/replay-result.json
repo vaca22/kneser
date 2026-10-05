@@ -1,0 +1,10 @@
+{
+  "finite_slope_lower": "1",
+  "endpoint_scaled_slope_lower": "1/2",
+  "endpoint_height_lower": "3",
+  "bridge_modulus_upper": "9/20",
+  "replayed_finite_cells": 213,
+  "working_digits": 160,
+  "certificate_sha256": "aba7cae2ccef3b1df5b419b8d5f1d3ca1cedca1e65177d1ece6abd18c273f70d",
+  "scope": "numerical hypotheses replayed; canonical identity additionally uses the analytic proof"
+}

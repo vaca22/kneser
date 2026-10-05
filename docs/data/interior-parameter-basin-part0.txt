@@ -1,0 +1,53 @@
+tile 2 p interval 3/2500 9/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0030447791186923433)
+tile 1 p interval 3/5000 3/2500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0030017313298960884)
+tile 3 p interval 9/5000 3/1250 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.00310939804394133)
+tile 0 p interval 0 3/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0029801603526916965)
+tile 4 p interval 3/1250 3/1000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0031958173347752)
+tile 6 p interval 9/2500 21/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0034360302785177094)
+tile 7 p interval 21/5000 3/625 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0035918852681379025)
+tile 5 p interval 3/1000 9/2500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.003304451679730294)
+tile 10 p interval 3/500 33/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.004254401137519182)
+tile 11 p interval 33/5000 9/1250 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.004627423321400436)
+tile 8 p interval 3/625 27/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.003774647954856694)
+tile 9 p interval 27/5000 3/500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.003990191328015984)
+tile 12 p interval 9/1250 39/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.005623950774736117)
+tile 13 p interval 39/5000 21/2500 leaves/depth/cells/max entry/max dist (1, 0, 4, 0, 0.00730431858070988)
+tile 17 p interval 51/5000 27/2500 leaves/depth/cells/max entry/max dist (1, 0, 4, 0, 0.009492311088519504)
+tile 18 p interval 27/2500 57/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.010879467961496326)
+tile 19 p interval 57/5000 3/250 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.008122732431081203)
+tile 16 p interval 6/625 51/5000 leaves/depth/cells/max entry/max dist (2, 1, 20, 0, 0.007562405371666473)
+tile 14 p interval 21/2500 9/1000 leaves/depth/cells/max entry/max dist (3, 2, 24, 0, 0.0052933344001533525)
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/process.py", line 254, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 210, in certify_tile
+    result = certify_interval(p,fmpq(3,10000))
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 200, in certify_interval
+    left = certify_interval(p-h/2,h/2,level+1)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 201, in certify_interval
+    right = certify_interval(p+h/2,h/2,level+1)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 200, in certify_interval
+    left = certify_interval(p-h/2,h/2,level+1)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 201, in certify_interval
+    right = certify_interval(p+h/2,h/2,level+1)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 200, in certify_interval
+    left = certify_interval(p-h/2,h/2,level+1)
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 199, in certify_interval
+    raise RuntimeError(f'uncertified parameter interval: p={p}, h={h}')
+RuntimeError: uncertified parameter interval: p=2943/320000, h=3/320000
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/dream/halfexp/kneser/docs/certify_interior_parameter_basin.py", line 232, in <module>
+    j,result = future.result()
+               ~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+RuntimeError: uncertified parameter interval: p=2943/320000, h=3/320000

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "certificate_sha256": "a4bf99b9626ac1a3ef228b89a106e9d0c30891e09c9fd3c9db7e4bb8ea70ffb1",
+  "accepted_boxes_replayed": 4013,
+  "exact_rational_slabs": 282,
+  "max_orbit_index": 21,
+  "charts": {
+    "chord-collar": 921,
+    "interior": 3092
+  },
+  "arithmetic": "Arb outward-rounded balls, 90 decimal digits",
+  "coverage": "Exact rational sweep: each open R slab tiles [0,1] once; closed boxes include every boundary."
+}

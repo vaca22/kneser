@@ -1,0 +1,8 @@
+PASS rejected: uncovered boundary
+PASS rejected: zero analytic remainder
+PASS rejected: zero region bound
+PASS rejected: missing branch cell
+PASS rejected: zero parameter derivative
+PASS rejected: non-univalent derivative disc
+PASS rejected: false Kneser identity
+PASS 9 QC and branch checks

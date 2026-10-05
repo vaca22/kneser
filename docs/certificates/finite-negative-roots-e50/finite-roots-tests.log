@@ -1,0 +1,9 @@
+PASS rejected: zero inverse bound
+PASS rejected: zero center residual
+PASS rejected: zero variation
+PASS rejected: zero root distance
+PASS rejected: wrong scalar domain
+PASS rejected: missing matrix row
+PASS rejected: false infinite existence
+PASS rejected: false Kneser identity
+PASS 9 finite-root checks

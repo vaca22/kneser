@@ -1,0 +1,7 @@
+inverse-domain columns 10 seconds 25.9
+inverse-domain columns 20 seconds 52.3
+inverse-domain columns 30 seconds 79.1
+inverse-domain columns 40 seconds 105.7
+inverse-domain columns 50 seconds 132.3
+PASS branch domains and local inverse comparison; max A derivative 2.3421439803438853
+parameter difference 1.536136892864646e-50 displaced difference 1.4277020204659321e-31

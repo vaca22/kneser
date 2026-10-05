@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kneser"
+version = "0.3.3"
+description = "Kneser's real-analytic half-exponential f(f(x)) = e^x, with tetration a ↑↑ b to any base and continuous iteration"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Guanghao Li", email = "wsmslgh@gmail.com" }]
+keywords = ["tetration", "half-exponential", "functional-square-root", "Kneser", "iteration"]
+dependencies = ["mpmath>=1.2"]
+
+[project.optional-dependencies]
+build = ["numpy>=1.24"]
+test = ["pytest>=7"]
+research = ["numpy>=1.24", "python-flint>=0.6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+addopts = "-ra"
+markers = [
+    "boundary: numerical precision-envelope and domain-boundary contracts",
+    "research: reproducible finite-domain research findings (not theorem proofs)",
+]

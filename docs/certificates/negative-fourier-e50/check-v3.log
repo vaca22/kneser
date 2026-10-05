@@ -1,0 +1,6 @@
+PASS negative-mode integral certificates, dependency hashes and fixed-point propagation
+PASS whole-ball positive real part and univalence inequalities
+moments: 16 propagation budget: 2.915393117880955e-20
+maximum center modulus upper: 8.879183021696264e-51
+all propagated rectangles contain zero: True
+Exact gluing and Kneser identification are NOT certified

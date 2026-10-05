@@ -1,0 +1,3 @@
+PASS local Re f > 0.28937119619251467 Re f prime > 0.544083818924612 |f| < 1.7106288038074853
+PASS overlap defect <= 7.049595912043675e-20 functional-equation defect <= 2.2383804748470607e-20
+No exact gluing or Kneser identity is certified

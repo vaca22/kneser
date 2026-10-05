@@ -1,0 +1,10 @@
+PASS rejected: false derivative lower bound
+PASS rejected: zero fixed-point uncertainty
+PASS rejected: missing overlap coefficient
+PASS rejected: missing overlap remainder
+PASS rejected: zero overlap defect
+PASS rejected: zero functional-equation defect
+PASS rejected: false exact gluing
+PASS rejected: false global extension
+PASS rejected: false Kneser identification
+PASS 10 checks

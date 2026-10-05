@@ -1,0 +1,8 @@
+PASS 160-digit replay of every finite cell, common inverse, and full endpoint interval
+PASS rejected corruption 1
+PASS rejected corruption 2
+PASS rejected corruption 3
+PASS rejected corruption 4
+PASS rejected corruption 5
+PASS rejected corruption 6
+PASS rejected corruption 7

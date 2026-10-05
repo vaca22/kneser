@@ -1,0 +1,6 @@
+PASS complete rectangle covers, interval budgets, parent certificates and source hashes
+epsilon_upper 3.26547217545012e-38
+beltrami_norm_upper 3.26547217545012e-33
+straightening_displacement_upper 1.306188870180048e-31
+weighted_distance_upper 2.8772075337891006e-30
+Kneser identification is NOT certified

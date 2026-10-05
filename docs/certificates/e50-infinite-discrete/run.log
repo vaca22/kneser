@@ -1,0 +1,13 @@
+parameters BuildParams(digits=50, depth=370, dps=114, nt=150, idelta=0.1, n_modes=192, nf=404, n_circ=600, n_loops=42) dps 130 radius 1e-30 weight 11/20
+    (A) theta samples: 128s  max|theta| = 1.1062234950853658
+    (C) circle values: 311s  arc points 562, band 38 (both half-planes)
+    (D) Cauchy: 342s
+point eta 4.335860898130069e-52
+    (A) theta samples: 123s  max|theta| = 1.1062234950853658
+    (C) circle values: 303s  arc points 562, band 38 (both half-planes)
+    (D) Cauchy: 334s
+FLINT A/B factors 38.8 s
+FLINT CBA 70.5 s
+FLINT DT complete 93.9 s
+INFINITE TAYLOR {'a': 0.05481513593099083, 'b': 0.009472551421407089, 'c': 1.545375479024337e-36, 'd': 1.9521253723679871e-41, 'q': 0.05481513593099083, 'defect': 6.846764532320426e-39, 'output_tail': 6.846764532319993e-39, 'distance': 7.24383640978463e-39, 'passed': True}
+RESULT {'q': 0.05481513593099083, 'eta': 4.335860898130069e-52, 'distance': 4.5873152046301735e-52} passed True

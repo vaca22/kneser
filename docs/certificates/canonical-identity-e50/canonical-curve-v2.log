@@ -1,0 +1,7 @@
+PASS low lift 64 seconds 6.2
+high lift cells 25 seconds 16.0
+high lift cells 50 seconds 25.9
+high lift cells 75 seconds 35.9
+high lift cells 100 seconds 46.1
+high lift cells 125 seconds 57.6
+PASS all finite lift cells 213 endpoint scaled slope 0.5019188434759476

@@ -1,0 +1,10 @@
+N 2 iteration 0 residual 4.7390924e-20 correction 1.3453238e-18 seconds 5.2
+N 2 iteration 1 residual 2.840181e-38 correction 4.2973195e-37 seconds 7.8
+N 2 cross residual 4.7390823e-20
+N 4 iteration 0 residual 1.7359781e-19 correction 1.8167071e-16 seconds 15.3
+N 4 iteration 1 residual 2.1976622e-35 correction 2.2337734e-33 seconds 18.1
+N 4 cross residual 1.7359744e-19
+N 8 iteration 0 residual 2.3404901e-18 correction 2.2669498e-12 seconds 26.0
+N 8 iteration 1 residual 1.2739598e-28 correction 7.24969e-26 seconds 29.0
+N 8 cross residual 2.3404853e-18
+DONE exploratory only; no exact feasibility certified

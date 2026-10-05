@@ -1,0 +1,43 @@
+stages:
+  - test
+
+variables:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+.pytest:
+  stage: test
+  before_script:
+    - python -m pip install -e ".[test]"
+  script:
+    - python -m pytest -p no:cacheprovider -m "not research" -v --tb=short
+
+pytest:python3.9:
+  extends: .pytest
+  image: python:3.9-slim
+
+pytest:python3.12:
+  extends: .pytest
+  image: python:3.12-slim
+
+research-tests:
+  stage: test
+  image: python:3.12-slim
+  before_script:
+    - python -m pip install -e ".[test]"
+  script:
+    - python -m pytest -p no:cacheprovider -m research -v --tb=short
+  allow_failure: true
+
+# Small, bundled research inputs: no private machine or coefficient rebuild.
+research-analysis:
+  stage: test
+  image: python:3.12-slim
+  before_script:
+    - python -m pip install -e ".[test,build]"
+  script:
+    - python -m pytest -p no:cacheprovider tests/test_deficit_audit.py -q
+    - python docs/deficit_audit.py --output build_out/deficit-audit.json
+  artifacts:
+    paths:
+      - build_out/deficit-audit.json

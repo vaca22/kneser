@@ -1,0 +1,11 @@
+PASS rejected: missing sample cell
+PASS rejected: input outside analytic disc
+PASS rejected: input disc too small
+PASS rejected: zero Fourier tail
+PASS rejected: missing boundary cell
+PASS rejected: zero arc derivative
+PASS rejected: zero operator derivative
+PASS rejected: zero derivative variation
+PASS rejected: false contraction
+PASS rejected: false Kneser claim
+PASS 11 checks

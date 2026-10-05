@@ -1,0 +1,14 @@
+inverse segments 16 seconds 7.9
+inverse segments 32 seconds 15.9
+inverse segments 48 seconds 24.1
+inverse segments 64 seconds 32.5
+forward rows 4 seconds 36.1
+forward rows 8 seconds 39.5
+forward rows 12 seconds 43.3
+forward rows 16 seconds 46.7
+PASS regular limits on stated domains
+inverse value_error_upper 4.779572476867214e-51
+inverse derivative_relative_error_upper 3.284897428217748e-50
+inverse g_center_upper 1.1274344210830862
+inverse g_center_derivative_upper 0.9118603398302608
+forward value_error_upper 1.6749261341718331e-49

@@ -1,0 +1,4 @@
+right done 25.5
+arc done 60.9
+left done 61.4
+PASS continuous ball domain; derivative <= 222990.3521627687 variation at radius 1e-18 <= 2.2299035216299168e-07

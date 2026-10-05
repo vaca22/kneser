@@ -1,0 +1,71 @@
+{
+  "scope": "Numerical illustration only; not an interval certificate or a proof of Fatou/horn convergence.",
+  "digits": 80,
+  "intrinsic_p": "0.01",
+  "max_equation_residual": "9.14577051803e-69",
+  "rows": [
+    {
+      "degree": 2,
+      "R_at_p_0_01": "1.000833609768855063626512416316000386491",
+      "R_prime_at_zero_formula": "0.08333333333333333333333333333333333333333",
+      "R_prime_extrapolation_error": "6.69643079944e-16",
+      "degree_scaled_R_difference": "0.667518796420132369057415"
+    },
+    {
+      "degree": 3,
+      "R_at_p_0_01": "0.6668518312344985567715031841294653904511",
+      "R_prime_at_zero_formula": "0.01851851851851851851851851851851851851852",
+      "R_prime_extrapolation_error": "2.06169564234e-17",
+      "degree_scaled_R_difference": "0.667074035771551724404812"
+    },
+    {
+      "degree": 9,
+      "R_at_p_0_01": "0.4166695512504521436349019733159492523964",
+      "R_prime_at_zero_formula": "0.0002893518518518518518518518518518518518519",
+      "R_prime_extrapolation_error": "3.52230927802e-18",
+      "degree_scaled_R_difference": "0.66683790321383559252644"
+    },
+    {
+      "degree": 10,
+      "R_at_p_0_01": "0.4074071199683634448482036260600526746166",
+      "R_prime_at_zero_formula": "-0.00002794289488390997307321038459584412945181",
+      "R_prime_extrapolation_error": "3.35972055598e-18",
+      "degree_scaled_R_difference": "0.66683075957676675251196"
+    },
+    {
+      "degree": 20,
+      "R_at_p_0_01": "0.3684096520728724949120098927945025350808",
+      "R_prime_at_zero_formula": "-0.001139621907955484278563444622636924721777",
+      "R_prime_extrapolation_error": "2.5675432357e-18",
+      "degree_scaled_R_difference": "0.666801935758846206515345"
+    },
+    {
+      "degree": 50,
+      "R_at_p_0_01": "0.3469227096682555231731829421350191134458",
+      "R_prime_at_zero_formula": "-0.001606331828858157173739966623884039246686",
+      "R_prime_extrapolation_error": "2.10484290106e-18",
+      "degree_scaled_R_difference": "0.666786919657108601600212"
+    },
+    {
+      "degree": 100,
+      "R_at_p_0_01": "0.3400499875554296673790780551052849005285",
+      "R_prime_at_zero_formula": "-0.001735053185018608048004141373298715520031",
+      "R_prime_extrapolation_error": "1.95842976229e-18",
+      "degree_scaled_R_difference": "0.666782246463990308188127"
+    },
+    {
+      "degree": 200,
+      "R_at_p_0_01": "0.3366654664554365500903481595820947448175",
+      "R_prime_at_zero_formula": "-0.001794891056716204779188316353448090261497",
+      "R_prime_extrapolation_error": "1.8869735922e-18",
+      "degree_scaled_R_difference": "0.666779968236057248728985"
+    },
+    {
+      "degree": "exponential",
+      "R_at_p_0_01": "0.3333148133487226945690969786886965485669",
+      "R_prime_at_zero_formula": "-0.001851851851851851851851851851851851851852",
+      "R_prime_extrapolation_error": "1.81674164246e-18",
+      "degree_scaled_R_difference": null
+    }
+  ]
+}

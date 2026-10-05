@@ -1,0 +1,9 @@
+arc cells 32 seconds 26.1
+arc cells 64 seconds 48.6
+arc cells 96 seconds 71.3
+arc cells 128 seconds 94.0
+arc cells 160 seconds 116.5
+arc cells 192 seconds 139.6
+arc cells 224 seconds 162.1
+arc cells 256 seconds 184.6
+PASS continuous ideal POINT defect 7.208107713237306e-21 low 4.403543347067744e-29 boundary 5.897542638437896e-21 seconds 188.0

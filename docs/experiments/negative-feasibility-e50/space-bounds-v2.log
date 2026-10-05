@@ -1,0 +1,7 @@
+degree 16 derivative upper 1.0339348796118237 conditional inverse lower 0.9671789004501289
+degree 32 derivative upper 0.3079476812099893 conditional inverse lower 3.2473048540933833
+degree 64 derivative upper 0.027317719540557502 conditional inverse lower 36.606276688482026
+degree 128 derivative upper 0.00021497078850275407 conditional inverse lower 4651.794818100082
+degree 256 derivative upper 1.3312188675341575e-08 conditional inverse lower 75119127.61966178
+degree 512 derivative upper 5.104926505655974e-17 conditional inverse lower 1.958892060232514e+16
+degree 1024 derivative upper 7.507054236057545e-34 conditional inverse lower 1.3320804253642462e+33

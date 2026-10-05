@@ -1,0 +1,8 @@
+PASS rejects missing_interval
+PASS rejects zero_inverse_error
+PASS rejects zero_forward_error
+PASS rejects invalid_log_lower
+PASS rejects false_identification
+PASS depth 60/100 overlapping exact inverse enclosures
+PASS depth 60/100 overlapping exact forward enclosures
+PASS rejects singular real log orbit

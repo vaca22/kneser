@@ -1,0 +1,3 @@
+PASS linked curve replay, common inverse and norm budget
+Canonical identity follows using the hashed analytic proof and cited uniqueness theorem.
+||F_K-p||_(0.55) < 2.878e-30

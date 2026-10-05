@@ -1,0 +1,16 @@
+tile 3 p interval 9/5000 3/1250 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0031438023569178024)
+tile 0 p interval 0 3/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0030106073358194454)
+tile 2 p interval 3/2500 9/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0030771948977408076)
+tile 1 p interval 3/5000 3/2500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0030328514843927946)
+tile 5 p interval 3/1000 9/2500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.003345681473411743)
+tile 7 p interval 21/5000 3/625 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0036469917672100633)
+tile 4 p interval 3/1250 3/1000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0032330637003336092)
+tile 6 p interval 9/2500 21/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.003482895454436021)
+tile 8 p interval 3/625 27/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.0038425635825966504)
+tile 10 p interval 3/500 33/5000 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.004390003714887727)
+tile 9 p interval 27/5000 3/500 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.004080174138544139)
+tile 11 p interval 33/5000 9/1250 leaves/depth/cells/max entry/max dist (1, 0, 1, 0, 0.004900887748105887)
+tile 12 p interval 9/1250 39/5000 leaves/depth/cells/max entry/max dist (2, 1, 2, 0, 0.004715369877969627)
+tile 13 p interval 39/5000 21/2500 leaves/depth/cells/max entry/max dist (3, 2, 3, 0, 0.0050070903922483445)
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown: {'/mp-vu546k3z', '/mp-8egvv2gq', '/mp-qn5zjxul', '/mp-1bfqw_j4', '/mp-ya7onzno'}
+  warnings.warn(

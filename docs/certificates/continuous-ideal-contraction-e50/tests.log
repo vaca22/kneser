@@ -1,0 +1,8 @@
+PASS rejected: missing column
+PASS rejected: zero quadrature remainder
+PASS rejected: zero Fourier consistency
+PASS rejected: zero input tail
+PASS rejected: zero output tail
+PASS rejected: zero derivative variation
+PASS rejected: false Kneser identity
+PASS 8 checks

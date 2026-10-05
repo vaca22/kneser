@@ -1,0 +1,29 @@
+{
+  "scope": "quadratic cusp geometric constants only; not marked F/G",
+  "arithmetic": "python-flint Arb, 60 decimal digits, outward-rounded balls",
+  "rho_domain": "[0, 1/128]",
+  "bounds": {
+    "step_error_scaled": "[7e+0 +/- 0.501]",
+    "step_derivative_scaled": "[39.9548849260783417162017985063252552964487120865721688766956 +/- 2.62e-59]",
+    "A_Delta_error_scaled": "[7e+0 +/- 0.381]",
+    "basis_sine": "[0.50 +/- 5.89e-3]",
+    "max_qc_dilatation": "[0.242718446601941747572815533980582524271844660194174757281553 +/- 4.09e-61]"
+  },
+  "checks": {
+    "log_denominator_positive": true,
+    "step_error_scaled_lt_7": true,
+    "step_derivative_scaled_lt_40": true,
+    "normal_lower_gt_two_fifths": true,
+    "normal_upper_lt_six_fifths": true,
+    "tangential_derivative_positive": true,
+    "interpolation_jacobian_scaled_positive": true,
+    "A_Delta_error_scaled_lt_8": true,
+    "basis_sine_gt_49_over_100": true,
+    "inverse_basis_frobenius_lt_3": true,
+    "derivative_error_scaled_le_25": true,
+    "qc_dilatation_lt_1": true,
+    "line_distance_gt_1_48": true,
+    "crescent_width_lt_quarter": true
+  },
+  "passed": true
+}

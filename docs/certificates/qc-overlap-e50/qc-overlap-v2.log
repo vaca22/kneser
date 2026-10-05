@@ -1,0 +1,10 @@
+upper boundary cells 16 seconds 19.4
+upper boundary cells 32 seconds 38.7
+upper boundary cells 48 seconds 58.5
+upper boundary cells 64 seconds 78.1
+upper boundary cells 80 seconds 97.7
+upper uniform bound 3.26547217545012e-38
+seam boundary cells 16 seconds 111.0
+seam boundary cells 32 seconds 112.1
+seam boundary cells 48 seconds 113.2
+seam uniform bound 2.3569244175322955e-38

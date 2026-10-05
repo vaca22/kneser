@@ -1,0 +1,7 @@
+Jacobian cells 16 seconds 21.0
+Jacobian cells 32 seconds 42.3
+Jacobian cells 48 seconds 63.5
+Jacobian cells 64 seconds 84.5
+CERTIFIED finite 2 inverse bound 26.28787428162536 root distance 4.658332123591129e-49
+CERTIFIED finite 4 inverse bound 694.6983080427613 root distance 2.4564320969121735e-47
+CERTIFIED finite 8 inverse bound 773033.2389651632 root distance 5.4558337114124e-44

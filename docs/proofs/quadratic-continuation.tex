@@ -1,0 +1,2229 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\Log}{\operatorname{Log}}
+\title{Quadratic Kneser continuation: proofs of F and G}
+\author{Research notes}
+\date{4 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For $f_c(w)=w^2+c$, the real critical-orbit marked Kneser crescent family
+has a single-valued holomorphic continuation to the whole upper parameter
+half-plane (G). Its continuation through the upper cusp corridor has the
+specified sewn boundary value for every real $0<c<1/4$ (F).
+The normalisation is $F_c(0)=f_c^3(0)$ throughout.
+The proof combines exact crescent geometry, a marked tilted corridor,
+an explicit polynomial multiplier deformation with an open-overlap
+comparison, an analytic small-radius orbit estimate, and an independently
+replayed Arb cover of the compact exterior core. The continuation concerns
+regular height germs; a common global height domain is not asserted.
+The existing two-sided Schr\"oder-based numerical iteration has no
+all-upper-half-plane convergence theorem: we give an exact resonance
+counterexample and state a separate, conditional local convergence result.
+We then isolate a marked-cylinder continuation criterion, prove its
+coordinate invariants and a general polynomial resonance obstruction,
+and identify the additional hypotheses needed beyond the quadratic family.
+An analytic interpolation in reciprocal degree connects the unicritical
+polynomials to an exponential map. We follow this limit through the
+intrinsic multiplier spectrum, local Fatou and horn coordinates, and
+singular-value marked parabolic height germs.
+\end{abstract}
+
+\section{Precise targets and normalisation}
+The intended exterior germ is the inverse of the two-ended, real-symmetric
+crescent uniformisation, followed along the positive real critical orbit,
+with $F_c(0)=w_0(c):=f_c^3(0)$ for real $c>1/4$.
+The quadratic target F includes continuation through an upper cusp
+neighbourhood, identification with the specified upper sewn branch for
+$0<c<1/4$, and continuation throughout the upper main cardioid.
+The target G is continuation of this same germ along every path in $\HH$,
+jointly holomorphically near $(c,0)$ and without monodromy. A global family
+with a different moving mark is not sufficient for either identification.
+We distinguish a germ at $0$ from a common global time domain.
+
+\section{Exact straight crescents on all of $\HH$}
+Choose the holomorphic square root
+\[
+ a(c)^2=\tfrac14-c,\qquad \re a<0,\quad \im a>0,\qquad c\in\HH.
+\]
+Write $a=r+ib$, $b>0$, and $w=1/2+a\zeta$. The fixed points are
+$L_\pm=1/2\pm a$, and the map becomes
+\[
+ S_a(\zeta)=\zeta+a(\zeta^2-1).
+\]
+The upper fixed point is $L_+$; its multiplier $1+2a$ has positive imaginary
+part. The other multiplier $1-2a$ has negative imaginary part.
+
+\begin{theorem}[Global straight-crescent geometry]\label{thm:straight}
+For every $c\in\HH$, the chord $[-1,1]$ and its image $S_a([-1,1])$ meet only
+at their endpoints and bound a Jordan region $H_a$. Its closed region is
+parametrised by
+\[
+ M_a(t,s)=t+s a(t^2-1),\qquad -1\le t\le1,\quad 0\le s\le1.
+\]
+The open region is convex, contained in $\im\zeta<0$, and $S_a$ is injective
+on the entire lower half-plane. The map $S_a$ identifies analytic collars
+of the chord and its image with the correct seam orientation.
+\end{theorem}
+\begin{proof}
+Introduce the real linear coordinates
+\[
+ T=\re\zeta-\frac rb\im\zeta,\qquad Y=\frac{\im\zeta}{b}.
+\]
+For $\zeta=M_a(t,s)$ they give $T=t$, $Y=s(t^2-1)$. Thus the open region is
+exactly
+\[
+ -1<T<1,\qquad T^2-1<Y<0.
+\]
+This is an invertible linear image of the intersection of the epigraph of
+the convex function $T^2-1$ with a half-plane. In particular it is convex,
+and the parametrisation is bijective away from the collapsed endpoints.
+Its Jacobian in the $(t,s)$ orientation is
+\[
+ \im(\overline{\partial_tM_a}\,\partial_sM_a)=b(t^2-1)<0.
+\]
+The two boundary arcs are injective and disjoint in their interiors, since
+their $T$ coordinate is $t$ and their $Y$ coordinates are $0$ and $t^2-1$.
+This proves the Jordan assertion.
+
+If $S_a(\zeta)=S_a(\eta)$ and $\zeta\ne\eta$, then $\zeta+\eta=-1/a$.
+The latter has positive imaginary part; hence two points in the closed
+lower half-plane cannot collide. The critical point $-1/(2a)$ also has
+positive imaginary part. Compactness of the chord and absence of collisions
+give injective collars. Along the image arc its tangent is $1+2at$;
+the determinant of this tangent with the displacement $a(t^2-1)$ is still
+$b(t^2-1)<0$. The image under $S_a$ of the outer side of the chord therefore
+lies on the inner side of its image. This is the required seam orientation.
+\end{proof}
+
+\begin{lemma}[Image half-plane]\label{lem:image}
+In the coordinates of Theorem~\ref{thm:straight},
+\[
+ S_a(\{\im\zeta<0\})=\{Y<T^2-1\}.
+\]
+Consequently a point whose two physical preimages $w,-w$ are on the
+opposite side of the chord cannot map into the lower half-plane outside
+the crescent. Its first crossing to the lower half-plane is in the crescent
+or on the chord.
+\end{lemma}
+\begin{proof}
+The real line maps to the full parabola $Y=T^2-1$, with $T=t$. This curve,
+completed by infinity, is a Jordan curve on the sphere. The polynomial
+$S_a$ is proper, and is injective on the closed lower half-plane by
+Theorem~\ref{thm:straight}. Its interior image is therefore one of the two
+components of the complement of this parabola. Testing $\zeta=-i\delta$
+for small $\delta>0$ selects $Y<T^2-1$.
+The physical preimages of any value are $w,-w$. If neither is in the lower
+half-plane, that value is outside its image. Intersecting the complement
+of the image with $Y\le0$ gives the crescent, including its chord.
+\end{proof}
+
+\begin{lemma}[A uniform chord collar for the exterior core]\label{lem:collar}
+Suppose $R=|a|\le1/2$, $-R^2\le r\le0$, $b>0$. With $\eta=1/4$, the region
+\[
+ K_a=\{\zeta=x+iy:|x|<1,\ |y|<\eta b(1-x^2)\}
+\]
+is a holomorphic chord chart of the quotient: its lower part is inside
+$H_a$, and its upper part maps inside $H_a$ under $S_a$. The two
+representations are identified by the seam.
+\end{lemma}
+\begin{proof}
+Here $b^2\ge3R^2/4$, $|r|\le R^2\le1/4$. For $y<0$, the margin above
+the image parabola in the coordinates of Theorem~\ref{thm:straight} is
+\[
+ Y-(T^2-1)=1-x^2+\frac yb(1+2rx)-\frac{r^2y^2}{b^2}
+ >(1-x^2)(1-3\eta/2-\eta^2/16)>0.
+\]
+For $y>0$, write $T',Y'$ for the coordinates of $S_a(x+iy)$. Directly,
+\[
+ T'=x-(r+2R^2x)y/b,\quad
+ Y'=x^2-y^2-1+(1+2rx)y/b,
+\]
+and
+\[
+ Y'-(T'^2-1)=\frac yb|1+2ax|^2
+             -y^2\left(1+\frac{(r+2R^2x)^2}{b^2}\right)>0.
+\]
+Indeed the squared modulus is at least $3/4$, the parenthesis at most $4$,
+and $4by\le\eta$. Also $Y'<-(1-x^2)(1-3\eta/2)<0$.
+These inequalities imply $|T'|<1$ and $S_a(x+iy)\in H_a$.
+Finally $S_a$ is injective on $\im\zeta<\eta b$, since the imaginary part
+of its collision sum $-1/a$ is $b/R^2\ge4b>2\eta b$.
+Thus this is an analytic seam collar, not an approximate membership test.
+\end{proof}
+
+\begin{theorem}[An explicit global cylinder model]\label{thm:qc}
+Let $X_a$ be $H_a$ with the two open edges identified by $S_a$, and with the
+fixed endpoints omitted. Then $X_a\simeq\C^*$.
+The family has a single-valued, jointly holomorphic uniformisation near
+every interior holomorphic marked section. In particular
+\[
+ m(c)=\tfrac12-\tfrac12 a(c)^2
+\]
+defines such a section on all of $\HH$.
+\end{theorem}
+\begin{proof}
+Parametrise $t=\tanh x$ and use the source cylinder coordinate $z=s+ix$,
+where $x\in\mathbb R$ and $s\in[0,1]$, identifying $s=0$ and $s=1$.
+The map to the physical plane is $J_a=1/2+aM_a(\tanh x,s)$.
+Since the affine factor $a$ cancels from the dilatation, put $B=1+2sat$.
+The Beltrami coefficient is
+\[
+ \mu_a(x,s)=\frac{-a+iB}{-a-iB}.
+\]
+An exact calculation gives
+\[
+ |a+iB|^2-|-a+iB|^2=4b>0.
+\]
+Consequently $|\mu_a|<1$, uniformly for $(t,s)\in[-1,1]\times[0,1]$
+at each fixed parameter, and uniformly on compact parameter sets. The
+coefficient is holomorphic in $a$ as an $L^\infty$-valued function.
+Extend it periodically in $s$. The edge identification agrees with the
+holomorphic seam map, so this measurable coefficient gives the pulled-back
+complex structure across the seam as well.
+
+The map is a quasiconformal homeomorphism from $\C/\mathbb Z$ to $X_a$.
+Under $\xi=e^{2\pi iz}$ its ends are $0,\infty$; quasiconformal
+uniformisation of the sphere, after assigning arbitrary values to the
+coefficient at these two points, proves $X_a\simeq\C^*$.
+The $x\to+\infty$ end corresponds to $L_+$ and hence to $\xi=0$.
+
+For the last assertion apply the analytic parameter version of the
+Ahlfors--Bers theorem to this coefficient. Initially normalise its solution
+$W_a$ at $0,1,\infty$. In a fixed smooth interior source chart, both
+$V_a=W_a\circ\exp(2\pi iz)$ and $J_a$ are holomorphic in $a$ at fixed source
+point and have the same Beltrami coefficient. Put $x=J_a^{-1}(w)$, using
+$x$ here for a two-dimensional source coordinate. Differentiating
+$J_a(x)=w$ at fixed $w$ gives
+$x_{\bar a}+\mu_a\bar x_{\bar a}=0$; hence
+\[
+ \partial_{\bar a}(V_a\circ J_a^{-1})
+ =(V_a)_x(x_{\bar a}+\mu_a\bar x_{\bar a})=0.
+\]
+The solutions are $C^1$ in these smooth interior charts by interior elliptic
+regularity. Thus the descended coordinate is jointly holomorphic in the
+physical variable and parameter there. In a physical seam collar it is
+continuous in both variables by continuous dependence of the normalised
+Beltrami solutions. Off the analytic seam hypersurface it is jointly
+holomorphic, either by this interior computation or after the holomorphic
+chart change $w\mapsto f_c(w)$. The continuous values coincide on the
+seam by the edge identification. Morera's theorem, applied to transverse
+complex lines and then by continuity to the remaining lines, makes that
+analytic seam removable. Joint holomorphy therefore holds in the seam
+collars too. Multiplication by its nonzero value at
+an interior holomorphic section normalises that section to $1$.
+Uniqueness with the two ordered ends and this mark patches all local charts.
+Finally $m(c)=1/2+aM_a(0,1/2)$ is interior for every $c$.
+\end{proof}
+
+\begin{remark}[What the global model does not prove]
+Normalising at $m(c)$ gives a global family of inverse-uniformisation germs
+with that value at time $0$. It does not identify the critical-orbit marked
+exterior family. A change to a Fourier constant mode likewise requires a
+proved conversion back to the specified mark. This distinction is essential.
+\end{remark}
+
+\section{The outer region with the original normalisation}
+\begin{theorem}[The outer parameter region]\label{thm:outer}
+The real critical-orbit marked crescent family continues to a single-valued
+holomorphic family of germs with $F_c(0)=f_c^3(0)$ on
+\[
+ \mathcal O=\{c\in\HH:|c-1/4|>1/4\}.
+\]
+It agrees with the exterior real family near every real $c>1/2$.
+\end{theorem}
+\begin{proof}
+Mark the quotient at the physical critical value $w=c$. Set $R^2=|a|^2$.
+At this value the coordinates of Theorem~\ref{thm:straight} are
+\[
+ T(c)=-\frac{r}{2R^2},\qquad Y(c)=-1+\frac1{4R^2}.
+\]
+If $R>1/2$, then $|T(c)|<1$, $Y(c)<0$, and
+\[
+ Y(c)-(T(c)^2-1)=\frac{b^2}{4R^4}>0.
+\]
+Thus $c$ is strictly inside the crescent on $\mathcal O$. Use
+Theorem~\ref{thm:qc} to normalise the quotient coordinate at this mark, and
+let $U_c$ be its locally inverse logarithmic lift, $U_c(0)=c$.
+Crossing the seam gives $U_c(z+1)=f_c(U_c(z))$ in the successive dynamical
+charts. Define the requested germ by
+\[
+ F_c(z)=f_c^2(U_c(z)).
+\]
+This is jointly holomorphic and has $F_c(0)=f_c^3(0)$; it obeys the
+functional equation on its continued charts. All choices use a single
+global marked quotient, so there is no parameter monodromy on $\mathcal O$.
+
+For real $c>1/2$, the physical crescent intersects the real axis in
+$(1/2,c+1/4)$, which contains $c$. Reflection interchanges the two ends,
+fixes this mark, and makes the logarithmic coordinate real along the
+real interval. The seam gives increase $1$ under $f_c$. The resulting
+inverse is precisely the real symmetric crescent construction, followed
+forward twice to the specified value $f_c^3(0)$.
+\end{proof}
+
+\begin{proposition}[Local parameter analyticity on the whole exterior ray]
+The same real family has a jointly holomorphic parameter germ near every
+real $c>1/4$, with the normalisation $F_c(0)=f_c^3(0)$.
+\end{proposition}
+\begin{proof}
+For real $c>1/4$, $f_c(x)-x=(x-1/2)^2+c-1/4>0$. Its critical orbit
+$w_n=f_c^n(0)$ is strictly increasing and unbounded, since a finite limit
+would be a real fixed point. The first crossing of $1/2$ lands in
+$[1/2,c+1/4]$. At a strict crossing its orbit point is interior to the
+real crescent; at equality use the analytic seam collar. Hence some finite
+orbit chart is a mark, and the same chart persists in a complex parameter
+neighbourhood. Pulling back from this chart to $w_3$, or pushing forward
+if its index is below $3$, gives the required germ. Every inverse step is
+at a strictly positive orbit point, where $f_c'$ is nonzero. Reflection and
+the ordered ends give the same real germ; uniqueness then patches the
+local parameter discs along the ray.
+\end{proof}
+
+\section{Critical-orbit charts on the complete exterior}
+Put $w_n=f_c^n(0)$ and
+\[
+ P_a(w)=b\re w-r\im w.
+\]
+The chord is $P_a(w)=b/2$; its crescent side is $P_a(w)>b/2$.
+Both $w$ and $-w$ are on the opposite side if $0<P_a(w)<b/2$.
+
+\begin{lemma}[Analytic small-radius entry]\label{lem:tail}
+Let $0<R\le1/16$, $0\le s\le1$, and
+\[
+ a=-R^2s+iR\sqrt{1-R^2s^2},\qquad c=1/4-a^2.
+\]
+The critical orbit first crosses the chord in at most $\lceil2/R\rceil$
+steps. That crossing is in $H_a$ or on its chord. Every earlier $w_j$,
+$j\ge1$, has positive real part and $0<P_a(w_j)<b/2$.
+\end{lemma}
+\begin{proof}
+Write $w_n-1/2=x_n+iy_n$, initially $x_0=-1/2$, $y_0=0$. Exactly,
+\[
+ x_{n+1}=x_n+x_n^2+R^2-2R^4s^2-y_n^2,\qquad
+ y_{n+1}=(1+2x_n)y_n+2R^3s\sqrt{1-R^2s^2}.
+\]
+As long as $-1/2\le x_n<0$ and $n\le\lceil2/R\rceil$, induction gives
+$0\le y_n\le2R^3n\le5R^2$. Consequently
+\[
+ x_{n+1}-x_n\ge x_n^2+(1-27R^2)R^2
+ \ge x_n^2+\tfrac{89}{100}R^2>0.
+\]
+If also $x_{n+1}<0$, integration of the derivative of $\arctan(x/R)$
+gives an increase at least $89R/100$: its denominator $R^2+t^2$ is
+at most $R^2+x_n^2$ along this negative interval. Remaining negative for
+$\lceil2/R\rceil$ steps would give an increase at least $1.78>\pi/2$,
+a contradiction. This also closes the induction used in the bounds.
+Thus some $x_N\ge0$ occurs by this time. Before then $\re w_n>0$ for
+$n\ge1$, $y_n\ge0$, and
+$P_a(w_n)=b(x_n+1/2)+R^2sy_n>0$.
+At $x_N\ge0$ this quantity is at least $b/2$, so a first chord crossing
+occurs no later. At its preceding point both physical preimages are on
+the opposite side. Lemma~\ref{lem:image} places its image in the crescent
+or on the chord; all preceding inverse steps are noncritical.
+\end{proof}
+
+\begin{lemma}[Certified compact core]\label{lem:core}
+For the same parametrisation, all $(R,s)\in[1/16,1/2]\times[0,1]$ have
+an orbit chart of index $1\le n\le21$ in $H_a$ or $K_a$. For every
+$1\le j<n$, $\re w_j>0$ and $0<P_a(w_j)<b/2$.
+\end{lemma}
+\begin{proof}
+This is a finite interval-arithmetic assertion. The accompanying
+\texttt{certify\_quad\_entry.py} starts with the three closed rectangles
+$[1/4,1/2]$, $[1/8,1/4]$, $[1/16,1/8]$ times $[0,1]$.
+It uses rational bisections and Arb outward-rounded balls at 60 decimal
+digits. On each rectangle it propagates $w\mapsto w^2+c$ and verifies
+either the strict inequalities of Theorem~\ref{thm:straight} or those of
+Lemma~\ref{lem:collar}; at every earlier index it verifies the two
+displayed strict inequalities for $P_a$ and $\re w>0$.
+All 4,013 final rectangles passed: 3,092 use the interior and 921 the
+collar. There are no pending rectangles. A separate program,
+\texttt{verify\_quad\_entry.py}, imports no generator code: it replays
+every asserted orbit and predicate at 90 decimal digits and checks the
+rectangle cover by an exact rational sweep. On each of 282 consecutive
+$R$ slabs the active closed $s$ intervals tile $[0,1]$ once. Their
+endpoints cover all slab boundaries, proving coverage of the closed
+rectangle, rather than a grid of sample points.
+The replay result is \texttt{quadratic-entry-verification.json}; it
+records the SHA-256 of \texttt{quadratic-entry-core.json} and maximum
+index 21. These finite checks and the analytic collar lemma prove the
+assertion.
+\end{proof}
+
+\begin{lemma}[Compatibility of first-entry charts]\label{lem:entry-patch}
+The orbit charts in Lemmas~\ref{lem:tail} and~\ref{lem:core}, and the
+critical-value chart of Theorem~\ref{thm:outer}, give compatible germs
+with value $w_3$ at time zero.
+\end{lemma}
+\begin{proof}
+An interior mark $w_n$ has $P_a(w_n)>b/2$. A collar mark either has this
+property or is just above the chord, in which case $f_c(w_n)$ is interior
+by Lemma~\ref{lem:collar}. Thus, if two allowed charts are used at one
+parameter, their indices differ by at most one: a later index would
+violate the required preceding inequalities. In the one-step case the
+two physical marks are related by the analytic seam $w\sim f_c(w)$.
+The same statement holds in a small open parameter neighbourhood,
+using the interior charts and analytic seam collars. In particular the
+core collar inequalities are only used on their certified domain. At an
+upper collar mark $S_a(\zeta)$ is strictly interior and remains so on
+a parameter disc by continuity; at the chord itself one uses the analytic
+seam. We do not apply Lemma~\ref{lem:collar} to parameters outside its
+stated domain in order to cross the neutral arc.
+
+Normalise the logarithmic lift at a chart of index $n$ to have time $n-3$.
+Its inverse $U$ is transported back to $w_3$ by the selected inverses
+of $f_c$, or forward when $n<3$. All required inverse steps have
+$\re w_j>0$, so their local branches are noncritical and agree on
+overlaps. An index change by one adds one seam step and removes exactly
+one inverse step. The ordered ends and the mark determine the quotient
+uniformisation uniquely; hence the resulting germs agree on these
+open overlaps, including at a chord crossing.
+
+At $R=1/2$, the critical value is on the chord, with
+$T(c)=-r/(2R^2)$. On the exterior part this lies in $[0,1/2]$.
+Its collar therefore bridges the interior-mark construction for $R>1/2$
+and the core construction for $R\le1/2$. On the overlap it is the same
+seam marking of $w_1$, followed forward twice. This proves compatibility
+also with the outer family. Subsequent physical returns of an orbit to
+the crescent are never used in this argument.
+\end{proof}
+
+\begin{theorem}[The complete exterior and every open neutral arc point]
+\label{thm:exterior}
+Let $\mathcal C=\{\lambda/2-\lambda^2/4:|\lambda|<1\}$ be the main
+cardioid. The original exterior family extends to a single-valued
+holomorphic family of germs on $\HH\setminus\overline{\mathcal C}$,
+and across every point of $\partial\mathcal C\cap\HH$.
+\end{theorem}
+\begin{proof}
+The upper multiplier is $\lambda=1+2a$, and
+$|\lambda|^2=1+4r+4R^2$. For $R\le1/2$, being exterior or neutral is
+equivalent to $-R^2\le r<0$, precisely the parametrisation of
+Lemmas~\ref{lem:tail} and~\ref{lem:core}, with $s=-r/R^2$.
+They supply all its marks; Theorem~\ref{thm:outer} supplies every $R>1/2$.
+At a tail crossing on the chord use its analytic collar. All these marks
+persist on open parameter discs, and Theorem~\ref{thm:qc} and
+Lemma~\ref{lem:entry-patch} give the holomorphic family and its gluing.
+
+For a neutral point write $\lambda=e^{i\theta}$, $0<\theta<\pi$.
+Then $R=\sin(\theta/2)$ and $r=-R^2$. For $R\le1/16$ the analytic
+lemma applies, for $1/16\le R\le1/2$ the certificate applies, and
+for $R>1/2$ the critical value is strictly interior. The open chart
+discs cross the arc, including every rational and irrational neutral
+multiplier. End linearisation was not used.
+Agreement with the real exterior ray follows from its local first-entry
+construction, proved above, and the same patching rule.
+\end{proof}
+
+\section{Explicit cusp estimates}
+Put $c=1/4-\varepsilon^2/4$ and $w=1/2+u$. Then
+\[
+ P_\varepsilon(u)=u+u^2-\varepsilon^2/4,\quad
+ u_1=-\varepsilon/2,\quad u_2=\varepsilon/2,\quad
+ \lambda_1=1-\varepsilon,\quad\lambda_2=1+\varepsilon.
+\]
+The map $\varepsilon\mapsto c$ is injective on the sector
+$-7\pi/12<\arg\varepsilon<\pi/12$. Its image contains an upper punctured
+half-disc at $1/4$ and both adjacent real segments.
+Set
+\[
+ q=\frac{u+\varepsilon/2}{u-\varepsilon/2},\quad \chi=\log q,
+ \quad u=\frac{\varepsilon}{2}\frac{e^\chi+1}{e^\chi-1},
+ \quad \mathcal G=\{\operatorname{dist}(\chi,2\pi i\mathbb Z)\ge1/2\}.
+\]
+
+\begin{lemma}[Step estimates with explicit constants]\label{lem:step}
+For $0<\rho=|\varepsilon|\le1/128$ on $\mathcal G$,
+\[
+ |u|\le6\rho,\qquad
+ \Delta(\chi)=\Log(1+u-\varepsilon/2)-\Log(1+u+\varepsilon/2),
+\]
+represents the step $\chi(P_\varepsilon u)=\chi(u)+\Delta$ and satisfies
+\[
+ |\Delta+\varepsilon|\le7\rho^2,\qquad
+ |\partial_\chi\Delta|\le40\rho^2.
+\]
+If $\omega=e^{i\alpha}$, $\cos\alpha\ge3/5$, and
+$-\im(\varepsilon\bar\omega)\ge\rho/2$, then
+\[
+ \tfrac25\rho\le\im(\Delta\bar\omega)\le\tfrac65\rho.
+\]
+\end{lemma}
+\begin{proof}
+On $\mathcal G$, $|1-e^\chi|\ge\max(1,|e^\chi|)/6$.
+For completeness reduce modulo $2\pi i$ to $|\im\chi|\le\pi$.
+The function $(e^\chi-1)^{-1}$ has modulus at most $1$ on the horizontal
+edges, limits $-1,0$ at the two infinite ends, and modulus at most
+$(1-e^{-1/2})^{-1}$ on $|\chi|=1/2$. Indeed, if
+$v=e^\chi-1$ has $|v|<1$, the principal logarithm gives
+$1/2=|\Log(1+v)|\le-\log(1-|v|)$; if $|v|\ge1$ the bound is immediate.
+The maximum principle on the exterior of this disc gives
+$|1-e^\chi|\ge1-e^{-1/2}$; for $\re\chi\ge\log2$ the sharper bound
+$|1-e^\chi|\ge|e^\chi|/2$ applies. Together with reflection these imply the
+stated bound with $1/6$. Thus $|u|\le6\rho$ and
+$|u_\chi|=|\varepsilon e^\chi/(e^\chi-1)^2|\le36\rho$.
+The exact factorisation of $P_\varepsilon(u)-u_j$ gives the formula for
+the ratio of the two cross-ratios. Both logarithms here are the branches
+near $1$, since $|u\pm\varepsilon/2|\le13\rho/2<1$.
+Also
+\[
+ \Delta=-\varepsilon\int_{-1/2}^{1/2}\frac{dt}{1+u+t\varepsilon}.
+\]
+It follows that
+\[
+ |\Delta+\varepsilon|\le
+ \frac{13/2}{1-13\rho/2}\rho^2<7\rho^2,\quad
+ |\Delta_\chi|\le\frac{36}{(1-13\rho/2)^2}\rho^2<40\rho^2.
+\]
+The normal-component bounds are $\rho/2-7\rho^2$ and $\rho+7\rho^2$,
+which imply the claimed rational inequalities.
+\end{proof}
+
+\begin{proposition}[Tilted initial regions and their flat quotient]
+For every line $\ell=i\pi+x_0+\mathbb R\omega$ as in
+Lemma~\ref{lem:step}, $|x_0|\le1/2$, the line and its image under
+$\chi\mapsto\chi+\Delta$ bound a thin strip. Its parametrisation is
+\[
+ N(t,s)=i\pi+x_0+t\omega+s\Delta(i\pi+x_0+t\omega).
+\]
+It is embedded by $\chi\mapsto u(\chi)$ as a Jordan crescent. The edge
+quotient is $\C^*$, including at neutral multipliers, and admits a flat
+model with Beltrami bound
+\[
+ \|\mu\|_\infty\le\frac{25\rho}{1-25\rho}<1.
+\]
+\end{proposition}
+\begin{proof}
+The distance from $\ell$ to every hole is at least
+$\pi\cos\alpha-|x_0\sin\alpha|\ge3\pi/5-2/5>1.48$.
+Thus its $1/4$-strip is in $\mathcal G$.
+The derivative estimate in Lemma~\ref{lem:step} makes
+$\chi+\Delta$ injective on this convex strip and gives a positive real
+derivative for the tangential coordinate of the image of $\ell$.
+The image is therefore a graph; its normal height is in
+$[2\rho/5,6\rho/5]$. The Jacobian of $N$ is positive, since it is at least
+$2\rho/5-40\rho^2(\rho+7\rho^2)>0$.
+The parametrisation is proper and bijective on both boundary lines;
+it is therefore a diffeomorphism onto the strip. Its width is less than
+$1/4$. A $2\pi i$-translate changes the normal coordinate by at least
+$6\pi/5$, so the exponential, and hence $u(\chi)$, is injective there.
+The two infinite ends tend to $u_1,u_2$, establishing the Jordan assertion.
+
+Put $A=1/\Log(1-\varepsilon)$ and compare $AN(t,s)$ with the straight strip
+$A(i\pi+x_0+t\omega)+s$. The integral estimates above and
+$|\Log(1-\varepsilon)+\varepsilon|\le\rho^2/[2(1-\rho)]$ give
+$|A\Delta-1|\le8\rho$. In the unit tangential direction the derivative
+error is at most $40\rho^2$; in the $s$ direction it is at most $8\rho$.
+The sine of the angle between these two source directions is at least
+$49/100$. The inverse basis matrix has norm less than $3$, so the
+derivative error has norm at most $3(8\rho+40\rho^2)\le25\rho$.
+The displayed Beltrami bound follows from the Wirtinger derivatives.
+The map respects the edge identifications, and the resulting
+quasiconformal cylinder again has two punctured ends. This proves the
+quotient assertion without requiring linearisation at a neutral endpoint.
+\end{proof}
+
+\section{Polynomial multiplier transport and its comparison}
+\begin{lemma}[An explicit holomorphic multiplier deformation]\label{lem:surgery}
+Let $\lambda_*=i/2$, $c_*=1/16+i/4$, and $p_*=i/4$.
+There is a single-valued holomorphic motion $h_\lambda$ on
+\[
+ D_\lambda=\{0<|\lambda|<1:-\pi<\arg\lambda<\pi\}
+\]
+with $h_{\lambda_*}=\mathrm{id}$, $h_\lambda(0)=0$, and
+\[
+ h_\lambda\circ f_{c_*}=f_{c(\lambda)}\circ h_\lambda,
+ \qquad c(\lambda)=\lambda/2-\lambda^2/4.
+\]
+It transports the marked crescent at $c_*$ to a two-ended cylinder.
+Its inverse-uniformisation, followed forward twice, defines a
+single-valued jointly holomorphic family $F^{\rm tr}$ near time zero,
+with $F^{\rm tr}_{c(\lambda)}(0)=f_{c(\lambda)}^3(0)$.
+\end{lemma}
+\begin{proof}
+The upper attracting fixed point is $p_*$ and
+$c_*-p_*=1/16$. On $|v|\le1/16$,
+\[
+ f_{c_*}(p_*+v)-p_*=(i/2)v+v^2,\qquad
+ |(i/2)v+v^2|\le(9/16)|v|.
+\]
+A nonzero $v$ in this disc never maps to zero. The disc avoids the
+critical point. Thus the critical value is in the attracting basin
+$B_*$, and its orbit never hits $p_*$ or the critical point.
+Extend the Koenigs function $\sigma$ to the whole basin by
+$\sigma(w)=\lambda_*^{-n}\sigma(f_{c_*}^n(w))$ once the orbit reaches
+the linearisation disc. This is well-defined and holomorphic, with
+$\sigma\circ f_{c_*}=\lambda_*\sigma$ and
+$\sigma(c_*),\sigma'(c_*)\ne0$. Its zero and derivative-zero sets
+are discrete in each basin component. Also $\sigma(-w)=\sigma(w)$.
+The full basin is bounded and completely invariant.
+
+Put $s=\Log\lambda$, $s_*=\Log\lambda_*$, and
+\[
+ \beta=\frac{s-s_*}{2\re s_*},\qquad
+ k=\frac{s-s_*}{s+\overline{s_*}},\qquad
+ \phi_\lambda(\zeta)=\zeta|\zeta|^{2\beta}.
+\]
+Since $\re s,\re s_*<0$, $|k|<1$, uniformly on compact parameter sets.
+The radial exponent has positive real part, so $\phi_\lambda$ is an
+orientation-preserving homeomorphism, and
+$\phi_\lambda(\lambda_*\zeta)=\lambda\phi_\lambda(\zeta)$.
+Define, almost everywhere,
+\[
+ \nu_\lambda(w)=
+ k\frac{\sigma(w)}{\overline{\sigma(w)}}
+   \frac{\overline{\sigma'(w)}}{\sigma'(w)}\quad(w\in B_*),
+ \qquad \nu_\lambda=0\quad(w\notin B_*).
+\]
+Assign zero on the discrete exceptional sets. Differentiating the
+Koenigs identity shows
+$f_{c_*}^*\nu_\lambda=\nu_\lambda$ almost everywhere. This includes
+the precritical set: no division at a critical point is asserted.
+The coefficient is even, has bounded support, and is holomorphic in
+$\lambda$ as an $L^\infty$ function.
+
+Let $h_\lambda$ be its principal solution, normalised by
+$h_\lambda(w)=w+O(1/w)$ at infinity. Ahlfors--Bers gives holomorphic
+dependence at every fixed point. Uniqueness applied to
+$-h_\lambda(-w)$ makes it odd, hence $h_\lambda(0)=0$.
+Invariance makes $h_\lambda f_{c_*}h_\lambda^{-1}$ holomorphic.
+It is a proper degree-two map of the plane, monic at infinity and
+critical at zero, so it is $w^2+\widetilde c$.
+Near $p_*$, $\phi_\lambda\circ\sigma\circ h_\lambda^{-1}$ is a
+conformal linearising coordinate, giving multiplier $\lambda$.
+Its fixed point must be $\lambda/2$, so
+$\widetilde c=\lambda/2-\lambda^2/4$. The conjugacy therefore has
+exactly the asserted polynomial normalisation.
+
+Here $|a(c_*)|^2=5/16>1/4$, so $c_*$ is an interior mark of the
+straight crescent. Transport that crescent and its seams by $h_\lambda$.
+The pulled-back structure on its fixed quotient is the restriction
+of $\nu_\lambda$, well-defined by invariance and of norm $<1$.
+Uniformising this fixed quotient with its two ordered ends and the
+critical-value mark produces its transported $\C^*$ family.
+Near $c_*$ the coefficient is smooth, because $\sigma,\sigma'$ are
+nonzero there. Both the physical motion and the quotient Beltrami
+solution are holomorphic in the parameter at fixed source point and
+solve the same equation. The cancellation computation in
+Theorem~\ref{thm:qc} therefore gives joint holomorphy in the physical
+variable and parameter near $h_\lambda(c_*)=c(\lambda)$.
+The holomorphic inverse function theorem and a forward push by $f_c^2$
+give $F^{\rm tr}$ with the asserted mark. No pullback through zero
+is involved.
+\end{proof}
+
+\begin{lemma}[Open-overlap comparison]\label{lem:transport-compare}
+On an open neighbourhood of $c_*=1/16+i/4$, the transported family
+equals the original marked straight-crescent family.
+\end{lemma}
+\begin{proof}
+Use the fixed-point-pair logarithm
+\[
+ \chi=\log\frac{w-L_+}{w-L_-}.
+\]
+The chord lifts to $\ell=\pi i+\mathbb R$, and its image to
+$\chi\mapsto\chi+\Delta_c(\chi)$. At the base parameter
+$a_*=-1/2+i/4$, for a chord point $\zeta=t\in[-1,1]$,
+\[
+ \Delta_{c_*}=\Log(1+a_*(t+1))-\Log(1+a_*(t-1)),\qquad
+ \frac{d\chi(f(w))}{d\chi(w)}
+ =\frac{1+2a_*t}{(1+a_*t)^2-a_*^2}.
+\]
+The imaginary part of the step is strictly positive and uniformly
+bounded: the numerator in the argument of its ratio has imaginary
+part $1/2$ and real part $11/16-t+5t^2/16\ge0$.
+Moreover the real part of the derivative is
+\[
+ \frac{16(-5t^3+23t^2-27t+13)}
+ {(5t^2-26t+37)(5t^2-6t+5)}>0.
+\]
+The cubic numerator has Bernstein coefficients
+$68,28/3,4/3,4$ on $t\in[-1,1]$, all positive; both denominator
+factors are positive there. Hence the image is a graph and the lifted
+crescent lies in a horizontal band between $\pi$ and $\pi+M$, with
+step normal component at least some $m>0$. These inequalities persist
+near the base, on a small analytic collar. At the two infinite ends
+the step tends uniformly to $\Log\lambda$ and $-\Log(2-\lambda)$,
+whose imaginary parts remain positive. Thus, for sufficiently large
+$|\re\chi|$, the same normal lower bound holds for every $\im\chi$.
+
+We justify comparison at the infinite ends, where compact convergence
+of the motion alone would be insufficient. Both fixed points at the
+base are hyperbolic and noncritical. In their parameter-dependent
+Koenigs coordinates the lifted conjugacy satisfies
+\[
+ H_\lambda(v+\Log\lambda_*)=H_\lambda(v)+\Log\lambda,
+ \qquad H_\lambda(v+2\pi i)=H_\lambda(v)+2\pi i
+\]
+at the attracting end, and the corresponding equations with
+$2-\lambda_*$, $2-\lambda$ at the repelling end.
+On a fixed compact fundamental annulus the motion and its lift tend
+uniformly to the identity. Writing a point as an integer iterate of
+that annulus gives, with $\delta\to0$ as $\lambda\to\lambda_*$,
+\[
+ |H_\lambda(v)-v|\le C\delta(1+|\re v|).
+\]
+Koenigs coordinates differ from the pair logarithm by constants and
+exponentially small terms at the ends. Consequently the entire lifted
+transported crescent lies within a tube of width
+$C\delta(1+|\re\chi|)$ about the lifted reference crescent.
+
+At a far end, repeatedly apply the lifted map or its inverse until
+the point reaches the reference crescent, choosing the first crossing
+of its chord. The normal component is at least $m/2$ and each step
+has modulus at most $2M$. Thus at most
+$C_1\delta(1+|\re\chi|)+C_2$ steps suffice. Their total displacement
+has the same bound. Take $\delta$ small enough that their real parts
+stay in the chosen far end. No hole or critical point is then met.
+On the compact middle part, convergence of the motion and the
+injective analytic seam collars give the same construction using
+finitely many charts. The closed reference crescent avoids the physical
+critical point $0$, so these compact collars may all be chosen
+noncritical; at the far ends this follows from their fixed-point
+neighbourhoods. Every chart map is a fixed noncritical iterate
+or inverse iterate of $f_c$; an index change at a reference edge is
+exactly its seam identification. Thus these maps descend to a
+holomorphic map of the transported quotient into the reference
+quotient.
+
+This map is proper at both ends: the displacement bound is less than
+half of $|\re\chi|$ sufficiently far out. It preserves their ordering
+and sends one seam circuit to one seam circuit. After uniformisation
+it is a proper map $\C^*\to\C^*$ extending to the compactified spheres,
+with only one zero and one pole, and with induced winding number one.
+Its degree is therefore one, and it is biholomorphic. The critical
+value is interior to both crescents near the base and is represented
+without an iterate, so the map preserves the time-zero marking before
+the common forward push by two. Uniqueness of the three-point
+uniformisation gives equality of the germs on an open parameter set.
+\end{proof}
+
+\begin{theorem}[Quadratic G]\label{thm:G}
+The critical-orbit marked real Kneser crescent family for $c>1/4$
+has a single-valued holomorphic continuation to all of $\HH$.
+For each $c_0\in\HH$ it is represented by a jointly holomorphic
+$F(c,z)$ near $(c_0,0)$, with $F(c,0)=f_c^3(0)$. In particular its
+continuation along every upper-half-plane parameter path is independent
+of the path.
+\end{theorem}
+\begin{proof}
+The map $\lambda\mapsto c(\lambda)$ is injective on $|\lambda|<1$:
+two different preimages would have sum $2$, impossible in this disc.
+Also $\im c(\lambda)=\im\lambda(1-\re\lambda)/2$.
+Thus the upper half of the main cardioid is the image of
+$\{|\lambda|<1,\im\lambda>0\}$, and
+Lemma~\ref{lem:surgery} supplies a single-valued family there.
+Lemma~\ref{lem:transport-compare} identifies it with the outer family
+on an open subset. The intersection of the cardioid with
+$|c-1/4|>1/4$ is connected: in multiplier coordinates it is
+$|1-\lambda|>1$, $|\lambda|<1$, $\im\lambda>0$.
+Horizontal slices are intervals on the left of the circle centred at
+$1$; these slices join continuously. The identity theorem therefore
+identifies the families on this entire overlap.
+
+Theorem~\ref{thm:exterior} gives compatible open chart discs along the
+whole neutral arc. Starting where $R>1/2$, their inner portions agree
+with $F^{\rm tr}$. Any compact subarc is covered by a finite chain of
+overlapping discs centred on the arc; consecutive inner portions have
+an open intersection. The entry-patching lemma and the identity theorem
+propagate the equality along this chain. Every open arc point is reached
+by such a compact chain; the cusp and the real endpoint are excluded
+from $\HH$ and need not be covered. Hence the cardioid family, the arc
+charts, and the complete exterior family glue on all of $\HH$.
+They are explicit, single-valued local constructions with proved open
+overlap agreement. This proves the assertion about paths as well as
+joint local holomorphy; no inference from numerical interpolation is
+made.
+\end{proof}
+
+\section{The marked cusp corridor and the sewn boundary value}
+In this section $\varepsilon$ is in the sector defined above, and
+$\rho=|\varepsilon|$. All unquantified constants are uniform after
+decreasing a positive sector radius finitely many times. This radius is
+used only for F; the complete-exterior certificate has its independent,
+explicit radius in Lemma~\ref{lem:tail}.
+Write $u^*(\varepsilon)=f_c^3(0)-1/2$ and
+$u_n^*=P_\varepsilon^n(u^*)$. At $\varepsilon=0$,
+$u^*(0)=-39/256$, so the selected inverse chains avoid $u=-1/2$.
+
+\begin{lemma}[A marked tilted corridor]\label{lem:marked-cusp}
+There exist $r_0,\delta>0$ such that on the smaller sector
+\[
+ 0<|\varepsilon|<r_0,\qquad
+ -7\pi/12+1/10<\arg\varepsilon<\pi/12-1/10,
+\]
+the tilted quotients define one jointly holomorphic family $F_\varepsilon$
+on $W_\delta=\{z:\operatorname{dist}(z,[0,1])<\delta\}$, normalised at
+$u^*(\varepsilon)$ in the $u$ coordinate. Its mark is the first crossing
+of the continued logarithmic orbit, and it is independent of the
+admissible line. On the real exterior ray it is the original Kneser
+family, expressed in $u$ coordinates.
+\end{lemma}
+\begin{proof}
+We give the orbit and inverse-chart details needed in addition to the
+unmarked estimates. At $\varepsilon=0$, put $v_n=-1/u_n^*$.
+Then $v_{n+1}=v_n+1+1/(v_n-1)$, so
+$v_n=n+O(\log(n+2))$ and
+$u_n^*=-1/n+O(\log n/n^2)$. Choose a small $\rho_1>0$ and a fixed
+$N_1$ so that $|u_{N_1}^*(0)|<\rho_1/8$. Continuity of this finite
+orbit, including its holomorphic moving base, allows the sector radius
+to be decreased so that $u_{N_1}^*$ differs from this negative real
+value by less than a tenth of its modulus.
+With $A=1/\Log(1-\varepsilon)$, start $\chi_{N_1}^*$ at the principal
+logarithm and continue by $\chi_{n+1}^*=\chi_n^*+\Delta(\chi_n^*)$.
+Initially $Z_{N_1}^*:=A\chi_{N_1}^*=-1/u_{N_1}^*(1+O(\rho/\rho_1))$,
+within relative distance $1/5$ of a real number at least $8/\rho_1$.
+
+Besides Lemma~\ref{lem:step}, the exact integral formula gives, for
+$|u|<1/8$,
+\[
+ A\Delta=1+O(|u|+\rho),\qquad
+ |\Delta_\chi|\le C\rho^2/|\chi|^2\quad(0<|\chi|\le1).
+\]
+The last estimate follows by differentiating $u(\chi)$ and using
+$|(e^\chi-1)/\chi|\ge1-e^{-1}$ on $|\chi|\le1$.
+Here $|u|\le C/|Z|+C\rho$; on $\mathcal G$ it is $O(\rho)$.
+Induction therefore increases $\re Z_n^*$ by at least $1/2$ per step
+and gives, up to $N_1+10/\rho$ and before any hole,
+\[
+ Z_n^*=Z_{N_1}^*+(n-N_1)+E_n,\qquad
+ |E_n|\le C\log(n+2)+C\rho n.
+\]
+To close this bootstrap, the resulting $\chi$ orbit is within
+$C\rho\log(1/\rho)+C\rho/\rho_1$ of the ray $-\varepsilon\tau$,
+$\tau\ge0$, before its first line crossing. The ray's normal coordinate
+increases at rate at least $\rho/2$; at its origin it is between
+$-\sqrt{\pi^2+1/4}$ and $-1.48$. It crosses by $6.4/\rho$.
+Before that crossing it stays at distance at least $1.48$ from the
+upper holes and at least $2\pi\sin(5\pi/12)>6$ from the lower holes.
+The origin hole is handled by $|\chi|\le1$ and the increasing $\re Z$.
+Shrinking $\rho_1$ and then $r_0$ proves that the actual orbit crosses
+by $n_0\le N_1+8/\rho$, and that its normal component is strictly
+increasing. The injective isotopy $\chi\mapsto\chi+s\Delta(\chi)$
+near the crossing puts $\chi_{n_0}^*$ in the tilted strip, including
+its chord and excluding its image edge. The three-unit neighbourhoods
+in $Z$ of the preceding orbit stay in $|u|<2\rho_1$ and away from
+every nonzero hole. This is a first crossing on the logarithmic lift;
+other physical visits to a spiralling crescent are not its mark.
+
+For completeness we control the inverse uniformisation at this mark.
+The flat model differs from the identity in $Z$ by $O(\rho)$ with
+Beltrami norm $O(\rho)$. Put its marked point at $1$ in the exponential
+coordinate. For coefficients $t\mu$ with
+$|t|<(2\|\mu\|_\infty)^{-1}$ the normalised sphere solutions are
+uniformly 3-quasiconformal. Their values on a fixed compact annulus
+are uniformly bounded by normality. Holomorphic dependence in $t$
+and the Schwarz estimate then bound their displacement at $t=1$ by
+$C\|\mu\|_\infty$. The inverse has the same bound on a smaller
+annulus, by its boundary degree and the holomorphic inverse theorem.
+Taking the logarithm and allowing finitely many adjacent seams gives
+\[
+ Z(\widetilde F(n_0+z))=Z_{n_0}^*+z+O(\rho)
+ \quad (|\re z|\le2,\ |\im z|\le1).
+\]
+In $Z$, the selected inverse has derivative
+$1+O(\rho^2+|Z|^{-2})$. Summing along the noncritical orbit gives
+\[
+ \sum_{j=N_1}^{n_0}(\rho^2+|Z_j^*|^{-2})\le C\rho+C\rho_1.
+\]
+The product estimate for these derivatives consequently keeps the
+pulled-back window within $1/10$ of $Z_{n_0-k}^*+z$, for
+$0\le k\le n_0-N_1$, after decreasing the two radii.
+The physical inverse is
+\[
+ g_\varepsilon(v)=-1/2+\sqrt{v+1/4+\varepsilon^2/4},
+\]
+with the square root positive on the selected real orbit at
+$\varepsilon=0$. All these near-cusp steps lie near $u=0$, so this
+branch is jointly holomorphic and noncritical there.
+
+The remaining $N_1$ steps are a fixed finite chain. The parabolic
+attracting Abel coordinate has
+$\Phi(u)=-1/u+\log(-u)+O(u)$; its inverse near the positive real
+orbit-time segment from $u^*(0)$ to $P_0(u^*(0))$ exists because
+all these physical points have $w>0$. Fix a small $\delta>0$ in this
+parabolic time chart and choose $\rho_1$ small enough that its $O(\rho_1)$
+time errors fit within the chart's margin. The compact segment and its
+$N_1$ forward images have noncritical inverse neighbourhoods. The window
+above, pulled back to $N_1$, differs from that Abel-time window by
+$O(\rho_1)+O(\rho)$, since the logarithmic term varies by $O(\rho_1)$
+there. Compactness and continuity preserve the finite chain for small
+$\rho$. Thus
+$F^\ell_\varepsilon(z)=g_\varepsilon^{n_0}
+ (\widetilde F(z+n_0))$ is defined on $W_\delta$ with the required
+mark and functional equation.
+
+We next verify independence of the line. For two sufficiently close
+admissible pairs, at a point of tangential coordinate $t$ their normal
+coordinates differ by at most $C\eta_0(1+|t|)+C\rho$, where
+$\eta_0$ is the distance between the pairs. Each dynamical step has
+normal increase at least $2\rho/5$ and modulus at most $2\rho$.
+In at most $C\eta_0(1+|t|)/\rho+C$ forward or backward steps the
+first crossing of the other strip is reached. Their total displacement
+is at most $C'\eta_0(1+|t|)+C'\rho$; choose $\eta_0$ and $r_0$
+so it is smaller than half the distance to any hole. This is possible
+because the original distance is at least $c(1+|t|)$.
+Fixed iterates give holomorphic chart maps; their jumps are precisely
+the new seam. They induce a proper end-preserving quotient map of
+winding number one, hence a biholomorphism. Both marks belong to the
+same continued base orbit and are its first crossings, so the map
+changes their times by exactly $n_0'-n_0$. The inverse chains cancel
+that change. Admissible pairs form a connected rectangle, so subdivision
+of a path proves equality for arbitrary admissible lines.
+
+Finally freeze an admissible line on a small parameter disc, taking
+its angle nonzero and moving $x_0$ so the mark is strictly interior.
+Then $n_0$ is locally constant. The real source parametrisation $N$
+is holomorphic in $\varepsilon$ at fixed $(t,s)$; relative to one
+fixed fibre its Beltrami coefficient is holomorphic in
+$L^\infty$ and has norm $<1$ after shrinking the disc. The same
+Ahlfors--Bers cancellation as in Theorem~\ref{thm:qc}, followed by
+the noncritical inverse chains just proved, gives joint holomorphy.
+Line independence patches these parameter discs and the finite time
+charts. For $\varepsilon=-i\tau$, $\tau>0$, the horizontal line is
+admissible and is precisely the chord between the conjugate fixed
+points. Its continued critical orbit first crosses that chord with
+the real positive inverse branches. The mark and ordered ends are
+the original real Kneser ones. This proves the last assertion.
+\end{proof}
+
+\begin{lemma}[The sewn real family and the large cusp collar]
+\label{lem:sewn}
+For $0<c<1/4$ put $\varepsilon=\sqrt{1-4c}$,
+$p=(1-\varepsilon)/2$, $q=(1+\varepsilon)/2$, and
+$h=2\pi/|\log(1-\varepsilon)|$.
+Let $r_+$ be attracting Koenigs time normalised by $r_+(w_3)=0$,
+and let $S$ be the real repelling parametrisation of $(p,q)$,
+$S(t+1)=f_c(S(t))$. Choose
+\[
+ T(t)=r_+(S(t)),\qquad \im T(t)=h/2\quad(t\in\mathbb R).
+\]
+Gluing $C_+=\{\im r\ge-h/2\}/\mathbb Z$ and
+$C_-=\{\im t\le0\}/\mathbb Z$ by $r=T(t)-ih$ gives the marked
+sewn sphere and a germ $K_c^W(0)=w_3$. This germ is jointly
+holomorphic on a neighbourhood of every real $c\in(0,1/4)$.
+For sufficiently small positive $\varepsilon$, $T$ is univalent on
+$|\im t|<0.40h-C$; its imaginary part lies above or below $h/2$
+according as $\im t$ is positive or negative.
+\end{lemma}
+\begin{proof}
+For every parameter in this real interval, $0<w_3<p<q$.
+Every orbit point on $(0,q)$ is noncritical. The attracting Koenigs
+function $\sigma$ has $\sigma(w_3)<0$, $\sigma>0$ on $(p,q)$,
+and $\sigma'>0$ there, by pulling back its real normalisation near $p$.
+The repelling parametrisation is real and strictly decreasing from
+$q$ to $p$, with nonzero derivative along $\mathbb R$.
+Hence
+\[
+ T'(t)=\frac{\sigma'(S(t))S'(t)}{\log(1-\varepsilon)\sigma(S(t))}>0,
+ \qquad T(t+1)=T(t)+1.
+\]
+It induces an analytic circle diffeomorphism, with a univalent analytic
+collar by compactness of one period. Sewing two punctured discs along
+this collar and filling their remote punctures gives a compact genus-zero
+surface. Its two ordered ends and the upper time-zero point determine
+the uniformisation uniquely. Inverting at that point in the physical
+Koenigs chart gives $K_c^W$.
+
+The fixed points, their Koenigs charts, and the noncritical finite orbit
+chains depend holomorphically on the parameter near any fixed real $c$.
+Thus $T$ does also on a common collar of one period. To see parameter
+holomorphy of the normalised sphere without making a boundary-value
+assertion, interpolate the small change of this collar map by a fixed
+smooth cut-off on its annulus. This produces source maps holomorphic
+in the parameter at fixed point, equal to the identity outside the
+collar, and with Beltrami coefficients holomorphic in $L^\infty$ and
+of norm $<1$. Ahlfors--Bers and the same cancellation calculation as
+above give holomorphic coordinates at the mark. The inverse function
+theorem proves joint holomorphy of the germ. Different real parameter
+discs agree by their uniquely marked sewing construction.
+
+Here are direct quadratic bounds for the larger collar near the cusp.
+In the $u$ variable set
+\[
+ \Psi=A_1\log(u+\varepsilon/2)+A_2\log(u-\varepsilon/2),
+ \quad A_1=1/\log(1-\varepsilon),\quad A_2=1/\log(1+\varepsilon).
+\]
+The residual $E=\Psi\circ P_\varepsilon-\Psi-1$ is
+\[
+ A_1\Log(1+u-\varepsilon/2)
+ +A_2\Log(1+u+\varepsilon/2)-1.
+\]
+It is holomorphic also at $\varepsilon=0$: the apparent simple poles
+cancel. It vanishes at both fixed points. Division by
+$u^2-\varepsilon^2/4$, or the holomorphic remainder theorem on a
+fixed small disc, gives
+$|E(u)|\le C|u+\varepsilon/2||u-\varepsilon/2|$ uniformly.
+The exact formulas give $A_1+A_2=1+O(\varepsilon^2)$.
+
+On $0.55<\im\chi<2\pi-0.55$ the forward lifted orbit moves left
+by at least $\varepsilon/2$ per step and the backward orbit moves right.
+Their total imaginary drift is $O(\varepsilon)$: near either end
+$|\im\Delta|\le C\varepsilon^2e^{-|\re\chi|}$, because the limiting
+steps are real, and the sum over the middle and the two tails is
+$O(\varepsilon)$. Shrinking the radius keeps both orbits at distance
+greater than $1/2$ from the holes. Summing $E$ along them gives
+\[
+ r_+=\Psi+\sum_{k\ge0}E\circ P_\varepsilon^k+\text{constant},\qquad
+ r_-=\Psi-\sum_{k\ge1}E\circ P_\varepsilon^{-k}+\text{constant},
+\]
+where the sums and their $\chi$ derivatives are $O(\varepsilon)$
+on every slightly smaller horizontal strip. They are the Koenigs
+times, since their limits near the respective fixed points have the
+Koenigs logarithmic singularities and satisfy the Abel equation.
+Using
+$\Psi=A_1\chi+(A_1+A_2)\log(u-\varepsilon/2)$, its second term
+has bounded $\chi$ derivative. Thus
+$r_\pm'=A_1+O(1)$ uniformly there. Normalising $r_-$ to be real on
+$\im\chi=\pi$ gives
+\[
+ \left|\im r_-+\frac h{2\pi}(\im\chi-\pi)\right|\le C.
+\]
+The arguments of $1-e^\chi$ are bounded on this horizontal strip,
+which proves the uniform constant here for all real parts.
+
+Both $-r_+$ and $-r_-$ have derivative with positive real part on
+the convex strip, hence are univalent. Their horizontal boundary
+images are proper graphs, tending to opposite real infinities.
+Using a smaller strip with boundaries at $0.56$ and $2\pi-0.56$,
+the last estimate and the argument principle show that the image of
+$r_-$ contains $|\im t|<0.40h-C$.
+There $T=r_+\circ r_-^{-1}$, up to its specified period $ih$,
+has $T'=1+O(\varepsilon)$. It is univalent as a composition of the
+two univalent charts. Since $T(\mathbb R)$ is exactly the line
+$\im r=h/2$, integrating $\re T'>0$ along vertical segments proves
+the final sign assertion. This is an analytic continuation of the
+original circle collar; no hypothesis on a horn coefficient is needed.
+\end{proof}
+
+\begin{proposition}[Identification of the upper sewn branch]
+\label{prop:sewn-identification}
+For sufficiently small real $\varepsilon>0$,
+$1/2+F_\varepsilon=K_{1/4-\varepsilon^2/4}^W$ on $W_\delta$.
+\end{proposition}
+\begin{proof}
+Take the admissible line $\chi=\pi i+t e^{i\pi/4}$.
+The real continued base orbit has $\chi_n^*<0$ and moves left;
+its first mark is in $[-\pi-2\varepsilon,-\pi]$.
+Along the strip take a curve from this mark in the positive $t$
+direction, keeping its relative transverse position fixed, to the
+point $u_m\in(u_1,u_2)$ where $\im\chi=\pi$.
+The intervening points $0<\im\chi<\pi$ map to the lower physical
+half-plane. Consequently the argument of
+$\sigma(u)/\sigma(u^*)$ reaches $+\pi$ at $u_m$. The continued
+attracting time $r_+$, with $r_+(\chi_{n_0}^*)=n_0$, has
+\[
+ \im r_+(u_m)=-h/2.
+\]
+This equality is exact: the real Koenigs ratio there is negative,
+and the path fixes its logarithm. Equivalently the residual estimates
+give $-h/2+O(\varepsilon)$, selecting the same member of
+$-h/2+h\mathbb Z$. Choose $r_-$ real at $u_m$.
+Since the specified transition $T$ has imaginary part $+h/2$ there,
+\[
+ r_+=T\circ r_--ih
+\]
+on the common continued chart. This fixes the required branch.
+
+To verify that these charts identify whole quotient surfaces, rather
+than only one orbit point, let $U,V$ be the saturated parts of the
+tilted strip with respectively
+$t<\pi\sqrt2-1$ and $t>-\pi\sqrt2+1$.
+The forward orbits on $U$ and backward orbits on $V$ avoid the holes:
+in their bounded middle part their imaginary coordinates have the
+margins used in Lemma~\ref{lem:sewn}, and the total drift is
+$O(\varepsilon)$; at their unbounded ends their real parts keep them
+away from all holes. Thus the two Koenigs times and their residual
+estimates apply on these charts. Crossing a seam adds exactly one,
+since their changes are $O(1)$ and the only possible other logarithmic
+periods have modulus $h\to\infty$.
+On $U$ and on $U\cap V$, respectively, the argument bounds give
+\[
+ \left|\im r_++\frac h{2\pi}\im\chi\right|\le C,
+ \qquad
+ \left|\im r_-+\frac h{2\pi}(\im\chi-\pi)\right|\le C.
+\]
+On $U\cap V$, $|\im\chi-\pi|\le\pi-1/\sqrt2+O(\varepsilon)$,
+so $|\im r_-|<0.39h+C$, within the large collar of
+Lemma~\ref{lem:sewn} after shrinking the radius.
+On $U\setminus V$ the first estimate gives $\im r_+>-h/2$.
+On $V\setminus U$, using
+$\arg(1-e^\chi)=\im\chi-\pi+O(1)$ at the positive real end gives
+$\im r_-<0$. On the overlap the sign assertion for $T$ says
+$\im r_+\ge-h/2$ exactly when $\im r_-\ge0$.
+
+Define a map to the sewn surface by $r_+$ when
+$\im r_+\ge-h/2$ and by $r_-$ when $\im r_-\le0$.
+These regions cover; on the separating analytic curve their images
+are identified by $T-ih$. The map is holomorphic across that curve
+in the sewing collar. At the attracting end $\im r_+\to+\infty$,
+and at the repelling end $\im r_-\to-\infty$. It is therefore proper
+and extends to the two compactified spheres with no additional
+preimages of the ends. A seam circuit near the attracting end changes
+$r_+$ by exactly one, so its local winding number, and hence its
+degree, is one. The map is biholomorphic.
+It takes the tilted mark to attracting time $n_0$. Both germs use
+attracting time zero at $u^*$ and the same selected finite noncritical
+inverse chain from that mark. Their uniquely normalised lifts agree,
+proving the assertion on $W_\delta$.
+\end{proof}
+
+\begin{theorem}[Quadratic F]\label{thm:F}
+The original real exterior Kneser family continues through an upper
+punctured neighbourhood of $c=1/4$, crossing the neutral boundary
+without an arithmetic restriction on its multipliers. Its boundary
+value at every real $0<c<1/4$ is the sewn family $K_c^W$ specified by
+the transition $T-ih$. It extends single-valuedly through the whole
+upper main cardioid. The normalisation throughout is $F_c(0)=f_c^3(0)$.
+\end{theorem}
+\begin{proof}
+The exact map $c=1/4-\varepsilon^2/4$ is injective on the smaller
+sector of Lemma~\ref{lem:marked-cusp}; its image contains an upper
+punctured half-disc and adjacent real segments on both sides of the
+cusp. That lemma gives joint holomorphy on a common $W_\delta$,
+and equality to the real exterior family on the right segment.
+Proposition~\ref{prop:sewn-identification} identifies its left segment.
+Its upper portion agrees with Theorem~\ref{thm:G}: there is an open
+exterior overlap where the horizontal tilted crescent is the straight
+one with the same first-orbit marking, and the identity theorem gives
+equality on the connected upper cusp neighbourhood.
+
+The multiplier deformation in Lemma~\ref{lem:surgery} is also defined
+across the positive real interval $0<\lambda<1$. The map $c(\lambda)$
+therefore gives parameter germs across every $0<c<1/4$ for the same
+global upper family. The sewn family has local holomorphic germs
+along that entire interval by Lemma~\ref{lem:sewn}. They agree near
+the cusp; a chain of overlapping discs along any compact subinterval
+propagates equality by the identity theorem. Their upper boundary
+values coincide with $K_c^W$ at every real point of the interval.
+The full upper-cardioid assertion follows from the already glued
+family of Theorem~\ref{thm:G}. All claims concern regular time germs
+and their specified continuation charts.
+\end{proof}
+
+\section{Scope of the continuation and certificate}
+The cubic $c^3+2c^2+c+1$ has one root
+\[
+ c_{\rm per}=-0.1225611668766536\ldots+0.7448617666197442\ldots i
+\]
+in $\HH$. Its critical point has exact period $3$, because
+$f_c^3(0)=c(c^3+2c^2+c+1)$ and
+$c_{\rm per},c_{\rm per}^2+c_{\rm per}\ne0$.
+This prevents a single global dynamical quasiconformal conjugacy from an
+escaping exterior real polynomial to every upper parameter: a conjugacy
+must preserve the unique critical point and whether its orbit is periodic.
+It does not refute G as a statement about height germs.
+In fact $c_{\rm per}\in\mathcal O$, so Theorem~\ref{thm:outer} handles this
+parameter using the critical-value mark and a forward push, rather than
+pulling a locally univalent mark back through a critical point.
+At $c_{\rm per}$ its time-zero derivative is
+$4c_{\rm per}(c_{\rm per}^2+c_{\rm per})U'_{c_{\rm per}}(0)\ne0$,
+while its forward image at time $1$ has zero derivative. Germ holomorphy must not be confused with
+univalence at all translated times.
+
+The proof of G uses Theorem~\ref{thm:straight}, the analytic and certified
+entry lemmas, Lemma~\ref{lem:entry-patch}, and the explicit transport and
+open-overlap comparison. The proof of F additionally uses the marked
+tilted corridor and the exact $T-ih$ sewing identification. In particular
+the mark is never replaced by an arbitrary interior section or a Fourier
+constant mode without comparison.
+
+The finite certificates have separate roles. The geometry certificate
+checks the explicit rational constants in the cusp estimates; the entry
+certificate proves a full compact parameter cover and the preceding
+noncritical orbit predicates. Its independent verifier proves exact
+coverage as well as replaying every interval inequality. Neither is a
+sampling test. The analytic tail and the $R>1/2$ formula cover the
+noncompact remaining ranges. To reproduce the finite checks from the
+repository root run
+\begin{verbatim}
+python3 docs/certify_quad_geometry.py \
+  --output docs/proofs/quadratic-geometry-certificate.json
+python3 docs/certify_quad_entry.py \
+  --output docs/proofs/quadratic-entry-core.json
+python3 docs/verify_quad_entry.py \
+  docs/proofs/quadratic-entry-core.json \
+  --output docs/proofs/quadratic-entry-verification.json
+\end{verbatim}
+The proofs do not assert continuation at the cusp itself, at the real
+endpoint $-3/4$, or on a common slit height plane for all parameters.
+
+\section{The present theta/Taylor iteration cannot converge on all of $\HH$}
+\label{sec:numerical-obstruction}
+Here ``the present iteration'' means \texttt{docs/quad\_kneser.py}:
+the two fixed-point inverse Schr\"oder series, their Abel inverse branches,
+one-sided Fourier reconstruction, the functional-equation band, the
+unit-circle Cauchy projection, and replacement of its constant Taylor
+coefficient by $w_3$. Its whole-parameter convergence is a different
+claim from Theorems~\ref{thm:F} and~\ref{thm:G}.
+
+\begin{theorem}[Exact obstruction to the requested global convergence]
+\label{thm:theta-no-global}
+The present Schr\"oder-based theta/Taylor scheme cannot be defined, and
+hence cannot converge to the specified family, at every $c\in\HH$.
+Removing its neutral-band refusal, increasing precision or Taylor order,
+moving its time Taylor centre, or fixing the constant mode of theta does
+not repair this obstruction while the same two Schr\"oder charts are used.
+An explicit counterexample is $c_{\rm res}=1/4+i/2$.
+\end{theorem}
+\begin{proof}
+Its upper fixed point is $L=i/2$ and its multiplier is $\lambda=i$.
+In $v=w-L$ the exact map is $v\mapsto iv+v^2$.
+The upper \texttt{Side} object requires
+\[
+ u(s)=s+\sum_{k\ge2}u_ks^k,\qquad
+ iu(s)+u(s)^2=u(is).
+\]
+Coefficient comparison gives precisely the recurrence used in
+\texttt{schroeder\_inverse}:
+\[
+ (i^k-i)u_k=\sum_{j=1}^{k-1}u_ju_{k-j},\qquad u_1=1.
+\]
+At the first three nonsingular orders it forces
+\[
+ u_2=\frac{-1+i}{2},\qquad
+ u_3=\frac{-1-i}{2},\qquad
+ u_4=\frac{1-5i}{4}.
+\]
+At order five it then forces
+\[
+ 0=(i^5-i)u_5=2u_4+2u_2u_3=\frac{3-5i}{2}\ne0.
+\]
+Thus even a formal inverse Schr\"oder series with nonzero linear
+coefficient does not exist. For a general linear coefficient $A\ne0$
+the forced preceding coefficients are $A^ku_k$ and the contradiction
+becomes $0=A^5(3-5i)/2$; changing the scaling does not help.
+A time translation changes the Schr\"oder argument by a nonzero
+factor $e^{z_0\Log\lambda}$, and the constant-mode gauge is also an
+Abel-time translation. Neither can turn a nonexistent invertible
+Schr\"oder germ into an existing one. This obstruction is internal to
+the required upper chart, independent of the downstream Taylor circle.
+
+As written, \texttt{build} already rejects this point via
+$\bigl||\lambda|-1\bigr|<0.02$. If that guard is simply removed,
+the series construction encounters the displayed nonzero numerator
+and zero denominator. In addition, its depth formula divides by
+$|\log|\lambda||=0$. The series contradiction proves that this is
+not just an avoidable guard or depth-estimation failure.
+The accompanying \texttt{certify\_quad\_theta\_obstruction.py} checks
+all of the displayed coefficients and the parameter using exact
+fractions in $\mathbb Q(i)$, with output
+\texttt{quadratic-theta-obstruction.json}.
+\end{proof}
+
+\begin{proposition}[Dense neutral obstructions and loss of a uniform chart]
+\label{prop:theta-resonances}
+The obstruction to an invertible Schr\"oder chart occurs at every
+root-of-unity upper multiplier, a dense set on the open upper neutral
+arc. Already near $\lambda=i$ its fifth coefficient has a genuine pole.
+\end{proposition}
+\begin{proof}
+Let $\lambda=e^{2\pi i p/q}$ with $0<p/q<1/2$ and $(p,q)=1$.
+Then $c=\lambda/2-\lambda^2/4$ has
+$\im c=\sin(2\pi p/q)(1-\cos(2\pi p/q))/2>0$.
+If an invertible formal series $u$ conjugated
+$g(v)=\lambda v+v^2$ to $s\mapsto\lambda s$, then
+$g^{\circ q}\circ u=u$, hence $g^{\circ q}$ would be the identity
+as a formal series. It is a polynomial of degree $2^q$, so this is
+impossible. Density follows from density of the rational angles.
+
+For $\lambda$ near $i$, $u_2,u_3,u_4$ are analytic rational functions
+of $\lambda$, since their denominators are nonzero at $i$. Therefore
+\[
+ u_5(\lambda)=\frac{2u_4(\lambda)+2u_2(\lambda)u_3(\lambda)}
+ {\lambda^5-\lambda},\qquad
+ \lim_{\lambda\to i}(\lambda-i)u_5(\lambda)=\frac{3-5i}{8}.
+\]
+In particular the normalised coefficients are unbounded in any
+punctured neighbourhood of this resonance. A uniform analytic radius
+\emph{and uniform modulus bound} for these charts there would give a
+uniform fifth-coefficient bound by Cauchy's estimate, a contradiction.
+This conclusion does not assert a pole of the marked family $F_c$:
+it is a pole of this particular linearisation representation.
+It does not exclude obtaining a neutral value by a separately proved
+parameter limit of assembled outputs. Such a limit is an additional
+procedure, not evaluation or convergence of the present per-parameter
+Schr\"oder series at that neutral point.
+The general resonance phenomenon is discussed in~\cite{BMS}; the
+quadratic counterexample here is an exact coefficient calculation.
+\end{proof}
+
+\begin{proposition}[Fixed-degree Taylor iteration is not an exact limit]
+\label{prop:finite-taylor}
+At a fixed finite \texttt{nt}, convergence of the stored Taylor
+coefficient vector is not convergence to an exact nonconstant solution
+of $F(z+1)=F(z)^2+c$ on an open height overlap. For example, no such
+limit with the prescribed normalisation can exist at $c=i$.
+\end{proposition}
+\begin{proof}
+A convergent finite coefficient vector defines a polynomial $P$.
+If $P(z+1)=P(z)^2+c$ on any nonempty open set, the identity theorem
+gives a polynomial identity. For a nonconstant polynomial its two
+sides have degrees $d$ and $2d$, impossible. A constant solution
+must be a fixed point. At $c=i$, the critical orbit gives $w_3=-i$,
+but $f_i(-i)=-1+i\ne-i$, so even the constant possibility is excluded.
+These last two equalities are also checked by the exact certificate.
+The observation concerns an exact limit at fixed truncation. It does
+not rule out accurate finite approximations or a proved limit with
+all discretisation and truncation errors tending to zero.
+\end{proof}
+
+\subsection*{A valid local theorem, with its hypotheses exposed}
+There is a useful convergence statement once regular charts, a function
+space, contraction, consistency, and branch identity have been verified.
+It is stated here to identify the actual required inequalities; no
+quadratic parameter-wide contraction certificate is claimed.
+
+Fix a nonneutral parameter for which the following boundary construction
+at the marked time zero is legitimate. Take the unit circle centred at zero,
+sampling heights $0<\delta_s<\delta_a<1$, and choose
+\[
+ \max\left(\sqrt{1/4+\delta_s^2},
+  2\sin\bigl(\tfrac12\arcsin\delta_a\bigr)\right)<r<1.
+\]
+On the complex Wiener space
+$A_r=\{\sum a_kz^k:\sum|a_k|r^k<\infty\}$,
+restrict to the affine normalisation $f(0)=w_3$.
+Assume the two selected regular maps $S_\pm$, their Abel inverse
+branches $A_\pm$, and the selected quadratic inverse in the left band
+are analytic on neighbourhoods of \emph{all} values attained by a
+closed $A_r$ ball $B(p,R)$. Branch and period choices are fixed on
+this ball. Take the exact continuous Fourier integrals of
+$A_\pm(f(t\pm i\delta_s))-(t\pm i\delta_s)$, retain the appropriate
+one-sided modes, and reconstruct on the arcs
+$\pm\im z\ge\delta_a$. The two band values are
+$f_c(f(z-1))$ and the chosen inverse of $f(z+1)$.
+Denote this boundary data by $B_c(f)$, its Cauchy projection by
+$\mathcal P$, and define
+\[
+ \mathcal T_c(f)=w_3+\mathcal P B_c(f)
+                         -(\mathcal P B_c(f))(0).
+\]
+Separated heights make the one-sided mode sums absolutely convergent
+even for nonperiodic candidate inputs. This is a modified ideal operator,
+not the finite same-height program silently relabelled.
+
+\begin{theorem}[Conditional local convergence and discretisation error]
+\label{thm:theta-local}
+Assume this full-ball analytic construction has been verified and
+\[
+ \sup_{f\in B(p,R)}\|D\mathcal T_c(f)\|\le q<1,
+ \qquad d:=\|\mathcal T_c(p)-p\|\le(1-q)R.
+\]
+Then its exact iterations starting anywhere in $B(p,R)$ converge to
+its unique fixed point $f_*$. Suppose computed iterates remain in the
+ball and obey
+\[
+ f_{n+1}=\mathcal T_c(f_n)+e_n,\qquad \|e_n\|\le\eta_n.
+\]
+Then
+\[
+ \|f_n-f_*\|\le q^n\|f_0-f_*\|
+       +\sum_{j=0}^{n-1}q^{n-1-j}\eta_j.
+\]
+If $\eta_n\to0$, they converge to $f_*$. If the marked family has
+independently been proved to belong to this ball and to satisfy
+$\mathcal T_c(F_c)=F_c$, then $f_*=F_c$.
+\end{theorem}
+\begin{proof}
+The derivative bound integrated along the line segment between two
+ball elements proves the $q$-Lipschitz estimate. For $f$ in the ball,
+$\|\mathcal T_c(f)-p\|\le qR+d\le R$. The closed ball is complete,
+so Banach's theorem proves the first assertion. The inexact recursion
+gives $\|f_{n+1}-f_*\|\le q\|f_n-f_*\|+\eta_n$; induction gives
+the displayed error formula. For $\eta_n\to0$, split that sum at a
+fixed index: its finite initial part tends to zero geometrically and
+the remaining part is at most $\sup_{j\ge J}\eta_j/(1-q)$.
+For a uniform margin $\eta_n\le(1-q)R-d$, ball membership itself
+also follows by induction. Finally the independently identified
+$F_c$ is another fixed point in this ball, so uniqueness identifies it.
+\end{proof}
+
+Each numerical error $\eta_n$ here must include the regular-map
+approximation, its inverse and branch error, Fourier truncation and
+quadrature, circle quadrature, Taylor truncation, and roundoff.
+For example, writing $\gamma=e^{-2\pi(\delta_a-\delta_s)}<1$,
+a sampling-line bound $B_\theta$ gives the mode tail
+$B_\theta\gamma^M/(1-\gamma)$; a boundary-data bound $B_0$ gives
+the output $A_r$ Taylor tail $B_0r^N/(1-r)$.
+These follow respectively from bounding each Fourier coefficient by
+$B_\theta$ and each Cauchy coefficient by $B_0$.
+They do not control quadrature or branch errors by themselves.
+At fixed precision and fixed truncations the theorem supplies an error
+floor bound, rather than exact convergence to the marked family.
+
+Neither Theorem~\ref{thm:G} nor the 4,013 entry boxes verify these
+derivative or chart hypotheses: their predicates concern parameter
+holomorphy and critical-orbit geometry, not the numerical iteration.
+Moreover Theorem~\ref{thm:theta-no-global} makes the regular-chart
+hypothesis impossible on all of $\HH$ for the present two-sided
+Schr\"oder scheme. A genuinely whole-half-plane numerical method must
+replace its neutral upper-end representation, for example by quotient
+uniformisation charts; centre or constant-mode changes alone do not
+suffice. Such a replacement would require its own convergence proof.
+
+\section{A general theory of marked cylinder continuation}
+\label{sec:general-cylinders}
+The transferable object is a cylinder equipped with ordered ends, a
+physical orbit marking, and specified analytic seam charts. It is not
+the formula $w^2+c$. This section proves abstract continuation and
+invariance statements. Membership in the class below is a geometric
+hypothesis to be verified for each family; it is not a consequence of
+having a simple saddle-node or a single critical point.
+
+\subsection{An admissible class and a continuation criterion}
+Let $D$ be a connected parameter domain, $f_\nu$ a jointly holomorphic
+family on the physical regions in use, and $s(\nu)$ a holomorphic marked
+section. Fix $N\ge1$ and put $m_N(\nu)=f_\nu^N(s(\nu))$. Call a family
+\emph{admissible for marked cylinder continuation} on $D$ if it has an
+open cover $D_i$ with the following data.
+\begin{enumerate}
+\item Each $D_i$ carries a holomorphic family of seam quotients $X_i$,
+  with ordered ends, biholomorphic fibrewise to $\C^*$. The physical seam
+  map is $f_\nu$. There are jointly holomorphic uniformisations $Q_i$;
+  only multiplication by a nonzero parameter function is allowed when
+  changing their normalisation. A locally uniform Beltrami construction
+  as in Theorem~\ref{thm:qc} is one sufficient way to obtain these data.
+\item A finite orbit point $m_i=f_\nu^{n_i}(s)$ is in a physical interior
+  or seam chart of $X_i$. A specified finite chain of local biholomorphic
+  forward or inverse dynamical charts transports its neighbourhood to a
+  neighbourhood of $m_N$. Denote its composition by $R_i$; thus
+  $R_i(m_i)=m_N$. All inverse branches in this chain are specified and
+  noncritical, and the chain varies holomorphically in $\nu$.
+\item On overlaps the quotient identifications are jointly holomorphic
+  isomorphisms preserving the ordered ends and the orbit marking. Their
+  physical chart identifications are compositions of analytic seam
+  steps. These steps have the recorded integer time displacement and
+  agree with the chosen transport chains to $m_N$. In particular, a
+  later return to a quotient is not identified with a first entry merely
+  because the two points have the same quotient coordinate.
+\end{enumerate}
+The third condition is a diagram of physical charts, rather than an
+assumption that the desired height germs already agree. It can be checked
+by comparing analytic seam maps and the finite inverse branches, as in
+Lemma~\ref{lem:entry-patch}. If two cylinders are obtained by different
+constructions, an isomorphism on an open parameter overlap must first
+be proved, as in Lemma~\ref{lem:transport-compare}.
+
+\begin{theorem}[Marked cylinder continuation criterion]
+\label{thm:atlas-criterion}
+An admissible family determines a single-valued jointly holomorphic
+family of locally univalent height germs $F_\nu$ at zero, with
+$F_\nu(0)=m_N(\nu)$. It satisfies
+\[
+ F_\nu(z+1)=f_\nu(F_\nu(z))
+\]
+in its continued dynamical charts. It is independent of the listed
+quotient coordinate normalisations and of admissible changes of entry
+index. A common global height domain is not implied.
+\end{theorem}
+\begin{proof}
+In a physical chart about $m_i$, set
+\[
+ A_i(w)=\frac{1}{2\pi i}\log\frac{Q_i([w])}{Q_i([m_i])},\qquad A_i(m_i)=0.
+\]
+Here $[w]$ denotes the seam quotient, and the logarithm is the local
+branch with value zero at the mark. Its derivative is nonzero. The
+orientation is chosen so that continuation across one forward seam
+changes $A_i$ by $+1$. Let $U_i$ be its local inverse at zero and define
+$F_i=R_i\circ U_i$. Both are jointly holomorphic by the holomorphic
+inverse theorem; the finite chain gives the functional equation in
+successive charts. Notice that $R_i$ is a dynamical transport, so no
+unproved evaluation of $U_i$ at the large height $N-n_i$ is required.
+
+An automorphism of $\C^*$ preserving its two ordered ends is $q\mapsto
+\alpha q$. The scale $\alpha$ cancels in the displayed ratio. On an
+overlap, the quotient isomorphism therefore identifies the local
+logarithms at the corresponding marked classes. The specified physical
+seam chain identifies their inverse germs after transport to $m_N$.
+The recorded integer seam displacement removes the possible ambiguity
+in the lift. Consequently $F_i=F_j$ as physical germs. This also proves
+consistency on triple overlaps and independence of an admissible entry
+index. Gluing gives a family on $D$, even if $D$ is not simply connected.
+Noncriticality of the transport chains proves local univalence. Nothing
+in this construction supplies a height disc uniform over noncompact $D$.
+\end{proof}
+
+\begin{proposition}[Quantitative stability of finite entry witnesses]
+\label{prop:finite-witness-stability}
+Let $K\subset D$ be compact and consider finitely many orbit witnesses
+with indices at most $M$. Suppose their base orbit points have closed
+physical discs of radius $r>0$ on which $f_\nu$ is holomorphic,
+$|f_\nu'|\le L$, and $|f_\nu'|\ge a>0$ on every disc used for an inverse
+step. Suppose every required real entry predicate $\Psi$ has margin
+$\Psi\ge\sigma>0$ at its witnessed point and is $B$-Lipschitz on the
+corresponding discs. The constants are uniform on $K$ and over the
+finite witnesses.
+
+Let $\widetilde f$ have the same initial section, be holomorphic on
+these discs and satisfy $|\widetilde f-f|\le e$ there. Let the corresponding
+perturbed predicates differ by at most $\eta$ on the discs. Put
+$S_M=\sum_{j=0}^{M-1}L^j$. If
+\[
+ eS_M<r/2,\qquad BeS_M+\eta<\sigma,\qquad 2e/r<a,
+\]
+then all these finite entry inequalities and inverse-step
+noncriticality predicates persist for the perturbed witnesses.
+This assertion concerns finite orbit data; it does not construct the
+perturbed global quotient or its infinite ends.
+\end{proposition}
+\begin{proof}
+For the $j$th orbit pair let $E_j$ be its physical distance. Starting
+with $E_0=0$, the derivative bound along the segment in the base disc
+gives $E_{j+1}\le LE_j+e$. Induction gives
+$E_j\le e\sum_{k=0}^{j-1}L^k<r/2$, so every estimate is evaluated in
+its stated disc. At a witnessed point the perturbed predicate is at
+least $\sigma-BE_j-\eta>0$. For an inverse step the perturbed orbit
+point has a disc of radius $r/2$ within the base disc. Cauchy's estimate
+applied to $\widetilde f-f$ gives derivative difference at most $2e/r$.
+The derivative lower bound therefore leaves
+$|\widetilde f'|\ge a-2e/r>0$.
+\end{proof}
+
+\begin{proposition}[Propagation of a sewn identification]
+\label{prop:general-sewn}
+Suppose an admissible family extends to parameter neighbourhoods of a
+connected real interval $I$, and a prescribed sewn family has jointly
+holomorphic regular germs on the same neighbourhoods. If they agree on
+one nonempty open parameter overlap, they agree along all of $I$ that
+is connected to this overlap by these neighbourhoods.
+\end{proposition}
+\begin{proof}
+Shrink the parameter discs so that their height germs are represented
+on a common local height disc on each adjacent overlap. The identity
+theorem gives equality there and then in the next parameter disc.
+A finite chain covers the path to any fixed point of $I$. Applying the
+argument to all such paths proves the assertion.
+\end{proof}
+This is a general form of the propagation step in F. The initial
+cusp-to-sewing identification is an additional theorem, not supplied
+by abstract gluing. Likewise a compact interval certificate supplies
+only the entry and regularity predicates it actually verifies.
+
+\subsection{A concrete class beyond degree two}
+\begin{proposition}[Unicritical polynomial saddle-nodes]
+\label{prop:unicritical-fold}
+For every integer $d\ge2$, let
+\[
+ f_c(w)=w^d+c,\quad x_d=d^{-1/(d-1)},\quad
+ c_d=\frac{d-1}{d}x_d,\quad \epsilon=c_d-c.
+\]
+At $(c_d,x_d)$ the family has a simple real saddle-node. In $u=w-x_d$
+its expansion is
+\[
+\begin{aligned}
+ f_{c_d-\epsilon}(x_d+u)-x_d
+ &=u-\epsilon+a_2u^2+a_3u^3+O(u^4),\\
+ a_2&=\frac{d(d-1)}2x_d^{d-2},\qquad
+ a_3=\frac{d(d-1)(d-2)}6x_d^{d-3}.
+\end{aligned}
+\]
+Its iterative residue is
+\[
+ \rho_d=1-\frac{a_3}{a_2^2}=\frac{d+1}{3(d-1)}.
+\]
+For small real $\epsilon>0$, the positive fixed points $L_-<x_d<L_+$
+have multipliers
+\[
+ \lambda_\pm=1\pm2\sqrt{a_2\epsilon}+O(\epsilon).
+\]
+The critical orbit from zero increases to $L_-$, and every orbit point
+after zero is positive and noncritical. For $\epsilon<0$ it increases
+to infinity. At $\epsilon=0$ it increases to $x_d$.
+\end{proposition}
+\begin{proof}
+The identities $dx_d^{d-1}=1$ and $x_d^d=x_d/d$ prove the fixed-point
+and multiplier assertions at the cusp. Taylor expansion gives $a_2,a_3$,
+and $x_d^{1-d}=d$ gives the residue formula. The fixed-point equation
+is $-\epsilon+a_2u^2+O(u^3)=0$, hence
+$u_\pm=\pm\sqrt{\epsilon/a_2}+O(\epsilon)$ and the claimed multipliers.
+For $c>0$ the map is increasing on the nonnegative real axis.
+The function $x^d+c-x$ has its unique minimum there at $x_d$,
+with value $-\epsilon$. If $\epsilon>0$ is small, it is positive on
+$[0,L_-)$ and the map sends this interval into $[0,L_-)$; its orbit
+therefore increases to $L_-$. At zero minimum the same argument gives
+limit $x_d$. At positive minimum the orbit increases and cannot have
+a finite limit, since there is no nonnegative fixed point.
+Finally $f_c'(w)=dw^{d-1}>0$ at every positive orbit point.
+\end{proof}
+This proposition proves the local fold and real marking hypotheses
+for an infinite class. It does not prove its global cylinder
+admissibility. For $d>2$ there are additional fixed points, and the
+quadratic collision identity $\zeta+\eta=-1/a$ has no direct substitute.
+Global injectivity, the chosen two ends, neutral crossings, orbit entry,
+and transport comparisons must be checked afresh. Near-parabolic
+renormalisation for unicritical maps of all degrees is already developed
+in \cite{Cheritat}; the claim here is the explicit marked-continuation
+criterion, not priority for that existing theory.
+
+\subsection{Coordinate invariants and their exact scope}
+Let a simple parabolic germ have attracting and repelling Fatou
+coordinates $\phi_{\rm att}$ and $\phi_{\rm rep}$. Its two horn lifts,
+on their respective ends, have convergent expansions
+\[
+ H^+(t)=t+\beta_++\sum_{n\ge1}h_n^+e^{2\pi int},\qquad
+ H^-(t)=t+\beta_-+\sum_{n\ge1}h_n^-e^{-2\pi int}.
+\]
+The coordinates here refer to the same repelling and attracting charts
+at both ends. Independent changes at each end are not allowed.
+
+\begin{proposition}[Phase-free horn coordinates]
+\label{prop:horn-invariants}
+Under the coordinate translations
+$\widetilde\phi_{\rm att}=\phi_{\rm att}+a$ and
+$\widetilde\phi_{\rm rep}=\phi_{\rm rep}+b$, one has
+\[
+ \widetilde\beta_\pm=\beta_\pm+a-b,\quad
+ \widetilde h_n^+=h_n^+e^{-2\pi inb},\quad
+ \widetilde h_n^-=h_n^-e^{2\pi inb}.
+\]
+If $h_1^+\ne0$, the quantities
+\[
+ \delta=\beta_--\beta_+,\qquad
+ J_n^+=\frac{h_n^+}{(h_1^+)^n}\ (n\ge2),\qquad
+ J_n^-=h_n^-(h_1^+)^n\ (n\ge1)
+\]
+are invariant under arbitrary complex coordinate translations. They
+determine the horn pair up to these translations. Together with the
+formal parabolic data, equality of these quantities gives local analytic
+conjugacy by the existing \'Ecalle--Voronin classification theorem.
+If $h_1^+=0$, its vanishing is invariant, and the cross-products
+$(h_n^+)^m(h_m^-)^n$ and same-end ratios
+$(h_n^+)^k/(h_k^+)^n$, where defined, remain invariant.
+\end{proposition}
+\begin{proof}
+The new horn lifts are $\widetilde H^\pm(t)=H^\pm(t-b)+a$.
+Substitution gives all three transformation rules and immediately the
+invariance assertions. Choose $b$ with $e^{2\pi ib}=h_1^+$ and then
+$a=b-\beta_+$. The normalised upper lift has constant zero and first
+coefficient one; its remaining coefficients are $J_n^+$.
+The lower lift has constant $\delta$ and coefficients $J_n^-$.
+The choice of logarithm changes $b$ by an integer, which changes none
+of these normalised lifts. Equality of the listed coefficients gives
+equality of convergent horn germs, not merely of formal expansions.
+The local classification assertion is precisely the classical theorem
+recalled in \cite{DS}, applied to these normalised horn pairs.
+\end{proof}
+These are explicit coordinates on existing horn-map moduli, not newly
+discovered replacements for \'Ecalle--Voronin invariants. Individual
+$|h_n^\pm|$ are invariant under real repelling-time shifts, but not under
+arbitrary complex shifts. The ratios above avoid that restriction.
+With the standard matched logarithm branches used in \cite{DS},
+$\delta=-2\pi i\rho$; this constant difference is then part of the
+formal data, not an additional independent modulus.
+
+For a one-parameter real saddle-node unfolding, the multiplier expression
+\[
+ p=-\Log\lambda_-\,\Log\lambda_+
+\]
+is invariant under analytic spatial conjugacy and parameter change,
+using the logarithms tending to zero and the fixed ordering. In the
+unicritical example $p=4a_2\epsilon+O(\epsilon^2)$, so it is a local
+parameter. This product is analytic in $\epsilon$: on the square-root
+parameter the two multiplier logarithms are exchanged by the sign
+change, leaving their product unchanged.
+
+\begin{proposition}[An intrinsic spectral deformation invariant]
+\label{prop:spectral-deformation}
+Let a simple saddle-node unfolding, in coordinates at its cusp, be
+\[
+ g_\epsilon(u)=u-\gamma\epsilon+a_2u^2+a_3u^3
+       +b_1\epsilon u+O(u^4,\epsilon u^2,\epsilon^2),
+ \qquad a_2\gamma\ne0.
+\]
+For its two nearby fixed-point multipliers choose logarithms tending
+to zero, and define
+\[
+ p=-\ell_-\ell_+,\quad \ell_\pm=\Log\lambda_\pm,\qquad
+ \mathcal R(p)=-\frac{\ell_-+\ell_+}{p}
+             =\frac1{\ell_-}+\frac1{\ell_+}.
+\]
+Then $p$ is an analytic local parameter and $\mathcal R$ extends
+holomorphically to $p=0$, with $\mathcal R(0)=1-a_3/a_2^2$.
+The function $\mathcal R(p)$, including every Taylor coefficient, is
+invariant under analytic conjugacy of unfoldings and analytic parameter
+change with nonzero derivative. This is a spectral invariant; it is
+not claimed to classify unfoldings completely.
+\end{proposition}
+\begin{proof}
+Set $\epsilon=t^2$ and $A=\sqrt{\gamma/a_2}$. The fixed points are
+\[
+ u_\pm=\pm At-\left(\frac{a_3\gamma}{2a_2^2}
+                     +\frac{b_1}{2a_2}\right)t^2+O(t^3).
+\]
+Differentiation gives
+$\lambda_\pm=1\pm2\sqrt{a_2\gamma}\,t+
+2a_3\gamma t^2/a_2+O(t^3)$; the $b_1$ terms cancel.
+The involution $t\mapsto-t$ exchanges the two points. Hence the
+following symmetric expressions are analytic in $\epsilon$:
+\[
+ p=4a_2\gamma\epsilon+O(\epsilon^2),\qquad
+ \ell_-+\ell_+=-4a_2\gamma
+                  (1-a_3/a_2^2)\epsilon+O(\epsilon^2).
+\]
+Division and the inverse function theorem prove the first claims.
+Analytic spatial conjugacy preserves each multiplier; reparametrisation
+composes both symmetric expressions with the same parameter change.
+Expressing their ratio in the intrinsic coordinate $p$ removes that
+change and proves invariance.
+\end{proof}
+
+\begin{corollary}[Classification of the fixed-point spectral data]
+\label{cor:spectral-classification}
+Within these simple unfoldings, $\mathcal R(p)$ is a complete invariant
+of the unordered pair of nearby fixed-point multiplier functions, up
+to analytic parameter change. It is not a complete invariant of the
+maps themselves.
+\end{corollary}
+\begin{proof}
+The two logarithms are exactly the roots of
+\[
+ X^2+p\mathcal R(p)X-p=0.
+\]
+Thus $\mathcal R$ reconstructs the unordered logarithms and hence the
+multiplier pair. Conversely their sum and product reconstruct $p$ and
+$\mathcal R$. If two such functions agree, composing the inverse
+intrinsic parameter of one unfolding with that of the other supplies
+the required analytic reparametrisation of their spectral data. No
+conjugacy of their physical maps follows from this reconstruction.
+\end{proof}
+
+\begin{proposition}[Identical cusp germ, inequivalent unfoldings]
+\label{prop:same-cusp-different-unfolding}
+For $\kappa\in\C$, consider the polynomial unfoldings
+\[
+ g_{\epsilon,\kappa}(u)=u-\epsilon+u^2+\kappa\epsilon u^3.
+\]
+All have the identical cusp germ $g_{0,\kappa}(u)=u+u^2$, including
+the same parabolic horn-map moduli. Nevertheless
+\[
+ \mathcal R_\kappa(p)
+   =1+\left(\frac1{12}-\frac\kappa4\right)p+O(p^2).
+\]
+Consequently distinct $\kappa$ give inequivalent analytic unfoldings
+under spatial conjugacy and analytic reparametrisation at the cusp.
+\end{proposition}
+\begin{proof}
+In the square-root parameter $\epsilon=t^2$, the two roots are
+$u_\pm=\pm t-\kappa t^4/2+O(t^7)$. Thus
+\[
+ \lambda_\pm=1\pm2t+2\kappa t^4+O(t^7),\quad
+ \ell_-+\ell_+=-4t^2+(4\kappa-8)t^4+O(t^6),\quad
+ p=4t^2+\frac{20}{3}t^4+O(t^6).
+\]
+Taking the ratio gives
+$\mathcal R=1+(1/3-\kappa)t^2+O(t^4)$, which is the asserted
+formula in $p$. Its linear coefficient is injective in $\kappa$;
+Proposition~\ref{prop:spectral-deformation} forbids an equivalence
+between two distinct values. Equality of the cusp germs proves the
+horn-moduli assertion directly, without a numerical comparison.
+\end{proof}
+This gives a verified distinction between pointwise parabolic data
+and deformation data. Its novelty relative to existing saddle-node
+unfolding moduli is not asserted: multiplier functions are classical
+conjugacy invariants, and $\mathcal R$ is their intrinsic combination.
+
+Whenever cylinder transition maps in an unfolding have the horn form
+above and possess sectorial asymptotic expansions
+$J_n^\pm(p)\sim\sum_{r\ge0}j_{n,r}^\pm p^r$, their coefficients are
+invariants of that unfolding. The assertion follows from the exact
+translation rules and uniqueness of asymptotic coefficients.
+Existence of such transition maps and expansions is an additional
+hypothesis, and it does not follow from the pointwise parabolic
+classification. Whether these deformation coefficients provide
+information beyond existing unfolding moduli is a literature and
+classification question, not established here.
+
+\begin{proposition}[Relative orbit marks and their collision locus]
+\label{prop:relative-marks}
+Suppose an admissible quotient also carries $k$ labelled holomorphic
+sections $v_j$, arising for example from separately tracked singular
+orbits. With distinguished mark $m$, set
+\[
+ \Xi_j(\nu)=\frac{Q_\nu(v_j(\nu))}{Q_\nu(m(\nu))}\in\C^*.
+\]
+These are holomorphic and invariant under isomorphisms preserving the
+ordered ends and all labels. So is the collision equation
+\[
+ \Delta(\nu)=\prod_j(\Xi_j-1)\prod_{i<j}(\Xi_i-\Xi_j)=0.
+\]
+On $D\setminus\{\Delta=0\}$, continuation of the labelled tuple defines
+a homomorphism into the fundamental group of the ordered configuration
+space of $k$ points in $\C\setminus\{0,1\}$, well-defined up to base-point
+conjugacy. This braid data is preserved by labelled conjugacy of such
+families. It is not claimed to be a complete global classification.
+\end{proposition}
+\begin{proof}
+The multiplier in a coordinate change $Q\mapsto\alpha Q$ cancels in
+every ratio, proving both holomorphy and invariance. Noncollision makes
+$\nu\mapsto(\Xi_1,\ldots,\Xi_k)$ a map into the indicated configuration
+space. Its induced map on fundamental groups proves the last assertion.
+Changing the initial configuration identifies the fundamental groups
+by a path, giving exactly the stated conjugacy ambiguity.
+\end{proof}
+Two successive points of the same orbit represent the same quotient
+class and hence give $\Xi=1$; counting them as independent marks would
+produce no invariant. The relative-mark problem therefore becomes
+substantive for distinct tracked orbits. A unicritical family by itself
+need not furnish these extra marks. Also, a collision in this quotient
+does not by itself prove a singularity of the physical height germ.
+
+\subsection{A general obstruction at roots of unity}
+\begin{theorem}[Finite-order criterion and polynomial obstruction]
+\label{thm:general-resonance}
+Let $g(u)=\lambda u+O(u^2)$, with $\lambda$ a primitive $q$th root of
+unity. It is formally conjugate to $u\mapsto\lambda u$ if and only if
+$g^{\circ q}(u)=u$ as a formal series. If it is a holomorphic germ, this
+condition also gives a holomorphic conjugacy. If $g^{\circ q}\ne\mathrm{id}$
+and its first nonlinear term is $Au^r$, then $r\equiv1\pmod q$.
+In particular a polynomial of degree $d\ge2$ at any fixed point with
+root-of-unity multiplier has no invertible formal Schr\"oder coordinate.
+\end{theorem}
+\begin{proof}
+Conjugacy to the linear rotation makes the $q$th iterate the identity.
+Conversely, if $g^{\circ q}=\mathrm{id}$, the average
+\[
+ L(u)=\frac1q\sum_{j=0}^{q-1}\lambda^{-j}g^{\circ j}(u)
+\]
+has derivative one and obeys $L\circ g=\lambda L$ by shifting the
+summation index. It is formally invertible, and is holomorphic when
+$g$ is. For the next assertion put $h=g^{\circ q}=u+Au^r+O(u^{r+1})$.
+The identity $h\circ g=g\circ h$ at order $r$ gives
+$A\lambda^r=\lambda A$. Hence $\lambda^{r-1}=1$.
+For a polynomial $P$ of degree $d\ge2$, formal identity of its $q$th
+iterate near a fixed point would be a polynomial identity. But
+$\deg(P^{\circ q})=d^q>1$, a contradiction.
+\end{proof}
+Thus replacing degree two by any polynomial degree does not remove
+the neutral resonance obstruction. An algorithm retaining an invertible
+Schr\"oder chart at every endpoint cannot cover a parameter set containing
+such a fixed point. Quotient charts can avoid that representation
+obstruction; their numerical convergence remains a separate problem.
+
+\subsection{Removable branching, reconstruction and the degree limit}
+\label{sec:degree-exponential}
+Three structural features of this framework deserve emphasis. First,
+the exchange of the two square-root fixed-point branches disappears
+in $p$ and $\mathcal R$, and the apparent singularity of $\mathcal R$
+is removable with value equal to the iterative residue. Second, the
+quadratic equation in Corollary~\ref{cor:spectral-classification}
+reconstructs both multiplier logarithms from one intrinsic spectral
+function. Third, an exact affine normalisation connects polynomial
+degree with the exponential map. We now prove this last connection
+and follow it through spectral data, Fatou coordinates and orbit marks.
+
+\begin{proposition}[An analytic bridge in reciprocal degree]
+\label{prop:degree-bridge}
+Let $x_d,c_d$ be as in Proposition~\ref{prop:unicritical-fold}, and set
+\[
+ A_d(u)=x_d\left(1+\frac{u}{d-1}\right),\qquad
+ c=c_d-\frac{x_d}{d-1}\epsilon.
+\]
+Here $\epsilon$ is the rescaled cusp parameter
+$(d-1)(c_d-c)/x_d$, rather than the physical difference $c_d-c$ used
+in Proposition~\ref{prop:unicritical-fold}.
+Then the exact affine conjugate is
+\[
+ A_d^{-1}\circ f_c\circ A_d(u)=G_{d,\epsilon}(u)
+ =\frac{d-1}{d}\left[\left(1+\frac{u}{d-1}\right)^d-1\right]-\epsilon.
+\]
+Put $\tau=1/(d-1)$. The germ family has the analytic interpolation
+\[
+ G_{\tau,\epsilon}(u)
+ =\frac{\exp\bigl((1+1/\tau)\Log(1+\tau u)\bigr)-1}{1+\tau}
+       -\epsilon,\qquad
+ G_{0,\epsilon}(u)=e^u-1-\epsilon.
+\]
+The expression at $\tau=0$ is removable. On every compact $u$ set,
+for sufficiently small $|\tau|$, this family is jointly holomorphic
+and has the expansion
+\[
+ G_{\tau,\epsilon}(u)=e^u-1-\epsilon+\tau B(u)+O(\tau^2),\qquad
+ B(u)=1+e^u\left(u-1-\frac{u^2}{2}\right).
+\]
+The remainder and every fixed number of $u$ derivatives are uniform
+on compact sets. In particular $G_{d,\epsilon}\to e^u-1-\epsilon$
+at rate $O(1/(d-1))$ locally uniformly, also after differentiating.
+At the cusp,
+\[
+ G_{\tau,0}(u)=u+\frac{u^2}{2}
+ +\sum_{k\ge3}\frac{\prod_{j=1}^{k-2}(1-j\tau)}{k!}u^k,
+ \qquad \rho_\tau=\frac{1+2\tau}{3}.
+\]
+\end{proposition}
+\begin{proof}
+Use $x_d^d=x_d/d$ in the affine conjugacy. For $|\tau u|<1/2$,
+\[
+ (1+1/\tau)\Log(1+\tau u)
+ =u+\tau(u-u^2/2)+O(\tau^2),
+\]
+with a normally convergent power series on smaller polydiscs.
+Expanding its exponential and $(1+\tau)^{-1}$ proves both
+removability and the formula for $B$. Cauchy's estimates give the
+derivative bounds on a slightly smaller compact set. The binomial
+coefficients simplify to the displayed products. At integer degree
+the product vanishes for $k>d$, as it should. The cubic coefficient
+is $(1-\tau)/6$, so $1-a_3/(1/2)^2=(1+2\tau)/3$.
+\end{proof}
+Near $u=0$ this interpolation is holomorphic for $\tau$ in a
+neighbourhood of the whole real interval $[0,1]$: choose $u$ small
+enough that $|\tau u|<1/2$ and keep $\tau$ away from $-1$.
+For generic $\tau$ it is only a chosen holomorphic branch, not an
+entire polynomial. Global properties of the integer-degree maps
+are not inherited by every interpolating parameter.
+
+\begin{proposition}[The exponential limit is the exponential-base family]
+\label{prop:degree-tetration}
+For $\epsilon$ near zero set
+\[
+ \alpha=e^{-1-\epsilon},\qquad b=e^\alpha,\qquad
+ C_\epsilon(w)=\alpha w-1-\epsilon.
+\]
+With the local logarithm $\log b=\alpha$, the exponential-base map
+$E_b(w)=b^w$ satisfies the exact conjugacy
+\[
+ C_\epsilon\circ E_b\circ C_\epsilon^{-1}(u)
+   =e^u-1-\epsilon=G_{0,\epsilon}(u).
+\]
+The cusp $\epsilon=0$ corresponds to $b=e^{1/e}$, and
+$b'(0)=-e^{1/e}/e\ne0$, so this is a local analytic parameter change.
+The limiting singular-value mark $-1-\epsilon$ is $C_\epsilon(0)$.
+Following it twice gives $C_\epsilon(b)$, whereas the standard
+exponential mark $1$ is $C_\epsilon(1)$ after conjugacy. The two
+marks differ by one forward dynamical step, not by an arbitrary
+replacement of the height normalisation.
+\end{proposition}
+\begin{proof}
+Since $\alpha e^{1+\epsilon}=1$, substitution of
+$w=(u+1+\epsilon)/\alpha$ gives the conjugacy. Differentiating
+$b=\exp(e^{-1-\epsilon})$ gives its derivative. Finally
+$E_b(0)=1$ and $E_b(1)=b$, proving all three mark identities.
+\end{proof}
+Thus the degree limit connects to the same exponential-base family
+as the original manuscript. The limit of the parabolic marked germs
+below uses the explicitly stated orbit mark; comparison with the
+standard mark is by the indicated regular dynamical chart.
+
+\begin{theorem}[The spectral bridge and its first deformation term]
+\label{thm:degree-spectral}
+There are a neighbourhood $V$ of $[0,1]$ and $p_0>0$ such that the
+intrinsic spectral function of $G_{\tau,\epsilon}$ is jointly
+holomorphic in $(\tau,p)\in V\times\{|p|<p_0\}$. It satisfies
+\[
+ \mathcal R_\tau(p)=\frac{1+2\tau}{3}
+ +\frac{(2\tau+1)(8\tau^2+8\tau-1)}{540}\,p+O(p^2).
+\]
+On every smaller closed $p$ disc,
+$\mathcal R_{1/(d-1)}-\mathcal R_0=O(1/(d-1))$, with the same
+rate for every fixed derivative in $p$. In particular
+\[
+ \mathcal R_0(p)=\frac13-\frac{p}{540}+O(p^2),\qquad
+ \mathcal R_{1/(d-1)}'(0)
+ =\frac{(d+1)(-d^2+10d-1)}{540(d-1)^3}.
+\]
+The last coefficient is positive for $2\le d\le9$ and negative
+for every integer $d\ge10$.
+\end{theorem}
+\begin{proof}
+Apply the parameter-uniform fixed-point construction of
+Proposition~\ref{prop:spectral-deformation} to this analytic family.
+Here $a_2=1/2$ and $\gamma=1$ for every $\tau$, so
+$p=2\epsilon+O(\epsilon^2)$ uniformly near the compact interval.
+The inverse parameter theorem and cancellation of the two symmetric
+logarithms give joint holomorphy, after choosing common neighbourhoods
+by compactness. Holomorphy in $\tau$ gives the rate on smaller
+polydiscs, and Cauchy's estimates give it for $p$ derivatives.
+
+For the explicit coefficient set $\epsilon=t^2/2$. The two fixed
+points have the expansion
+\[
+\begin{aligned}
+ u_\pm={}&\pm t+\frac{\tau-1}{6}t^2
+ \mp\frac{(\tau-1)(\tau+2)}{72}t^3\\
+ &+\frac{(\tau-1)(\tau+2)(2\tau+1)}{540}t^4+O(t^5).
+\end{aligned}
+\]
+For $\tau\ne0$ their multiplier logarithms are
+$\ell_\pm=\tau^{-1}\Log(1+\tau u_\pm)$; at $\tau=0$ they are
+$u_\pm$. Substitution gives
+\[
+\begin{aligned}
+ \ell_\pm={}&\pm t-\frac{2\tau+1}{6}t^2
+ \pm\frac{11\tau^2+11\tau+2}{72}t^3\\
+ &-\frac{(2\tau+1)(43\tau^2+43\tau+4)}{1080}t^4+O(t^5),\\
+ p={}&t^2+\frac{7\tau^2+7\tau+1}{36}t^4+O(t^6).
+\end{aligned}
+\]
+The symmetric sums are even in $t$. Taking
+$-(\ell_-+\ell_+)/p$ and replacing $t^2$ by $p+O(p^2)$ yields
+the formula. At $\tau=1/(d-1)$ its numerator has the sign of
+$-d^2+10d-1$, whose larger zero is $5+2\sqrt6\in(9,10)$.
+\end{proof}
+This sign change describes an intrinsic spectral coefficient. It is
+not by itself a dynamical bifurcation or an algorithmic phase transition.
+The companion \texttt{probe\_degree\_exponential.py} solves the full
+two-fixed-point equations at fixed $p$, rather than evaluating the
+displayed truncated expansion. At $p=0.01$ and 80 decimal digits it
+compares degrees $2,3,9,10,20,50,100,200$ with the exponential map.
+The maximum residual of its three equations is below $10^{-68}$,
+and two-scale extrapolation of $\mathcal R'(0)$ differs from the
+formula by less than $7\cdot10^{-16}$ in these runs. The output is
+\texttt{degree-exponential-probe.json}. These figures are numerical
+illustrations, not interval certificates or bounds for Fatou coordinates.
+The algebraic expansion above is the proof of the spectral coefficient.
+To reproduce the probe from the repository root run
+\begin{verbatim}
+python3 docs/probe_degree_exponential.py \
+  --output docs/proofs/degree-exponential-probe.json
+\end{verbatim}
+
+\begin{theorem}[Uniform local Fatou coordinates along the bridge]
+\label{thm:degree-fatou}
+At $\epsilon=0$, the attracting and repelling Fatou coordinates of
+$G_{\tau,0}$ can be consistently normalised on common local petals,
+jointly holomorphically in $\tau$ near zero. They converge to those
+of $e^u-1$ at rate $O(\tau)$ on compact subsets of these petals.
+The local upper and lower horn lifts can be chosen on common end
+half-planes; there they also depend holomorphically on $\tau$ and
+converge at rate $O(\tau)$ on compact subsets. Every fixed Fourier
+coefficient converges at this rate. If the limiting $h_1^+$ is nonzero,
+so do the phase-free coordinates $J_n^\pm$ of
+Proposition~\ref{prop:horn-invariants}.
+\end{theorem}
+\begin{proof}
+Here is an explicit local coordinate construction. Set $v=-2/u$,
+$g_\tau=G_{\tau,0}$ and
+\[
+ P_\tau(v)=-\frac2{g_\tau(-2/v)}
+          =v+1+\frac{\rho_\tau}{v}+O(v^{-2}).
+\]
+The Laurent remainder is uniform on a closed small $\tau$ disc.
+For large $R$, $P_\tau$ maps $\re v>R$ into itself and increases
+the real part by at least $1/2$. Put
+$a_\tau(v)=v-\rho_\tau\Log v$ there. Its Abel error
+\[
+ E_\tau(v)=a_\tau(P_\tau(v))-a_\tau(v)-1
+\]
+is uniformly $O(v^{-2})$. The normally convergent series
+\[
+ \Phi^{\rm att}_\tau(v)
+ =a_\tau(v)+\sum_{n\ge0}E_\tau(P_\tau^{\circ n}(v))
+\]
+is jointly holomorphic and satisfies
+$\Phi^{\rm att}_\tau\circ P_\tau=\Phi^{\rm att}_\tau+1$.
+Indeed the sum is bounded by
+$C\sum_{n\ge0}(\re v+n/2)^{-2}=O(1/\re v)$; subtracting its
+first term proves the equation. This also fixes the asymptotic
+normalisation $\Phi^{\rm att}_\tau-a_\tau\to0$ at that end.
+On a farther right half-plane, Cauchy's estimate gives
+$|(\Phi^{\rm att}_\tau)'-1|<1/2$, so the coordinate is univalent.
+
+The uniform inverse germ $K_\tau=P_\tau^{-1}$ has expansion
+$v-1-\rho_\tau/v+O(v^{-2})$. On $\re v<-R$, repeat the construction
+with $a^-_\tau(v)=v-\rho_\tau\Log(-v)$ and
+$E^-_\tau=a^-_\tau\circ K_\tau-a^-_\tau+1$.
+The resulting coordinate satisfies
+$\Phi^{\rm rep}_\tau\circ K_\tau=\Phi^{\rm rep}_\tau-1$ and is
+univalent on a farther left half-plane. Returning by $u=-2/v$ gives
+common physical petals. Holomorphy in $\tau$ proves the stated
+compact-set rates by a parameter Cauchy estimate.
+
+For the uniform end domains use the compact-family petal and horn
+estimates in \cite[Propositions 29, 31 and 33]{Cheritat}, applied to
+our germs restricted to a common small disc. Their quadratic
+coefficient is the fixed nonzero value $1/2$, and the family on a
+closed $\tau$ disc is compact in the topology of locally uniform
+convergence; these are precisely the needed hypotheses.
+The horn transitions are obtained from the two coordinates by local
+inversion and finite holomorphic orbit charts. The uniform end
+domains and local inverse theorem therefore give joint holomorphy
+there; \cite[Proposition 34]{Cheritat} also supplies continuous
+dependence of the extended maps on their surviving compact domains.
+These are applications of existing Fatou-coordinate continuity
+results, not new versions of them.
+On a fixed line $t=x+iY$, $0\le x\le1$, above the common threshold,
+Fourier integration of $H^+_\tau(t)-t$ proves holomorphy and the
+$O(\tau)$ rate for each upper coefficient. A fixed lower line does
+the same for the lower coefficients. Division by $h_1^+$ is justified
+only under the nonvanishing assumption in the statement.
+\end{proof}
+This theorem concerns the parabolic slice $\epsilon=0$ and local horn
+germs. It does not establish uniform convergence of near-parabolic
+transit maps in a coupled limit $\epsilon\to0$, $d\to\infty$.
+
+\begin{proposition}[The critical-value mark survives the degree limit]
+\label{prop:degree-mark}
+For integer degree the critical point and value of the normalised map
+are
+\[
+ u_{\rm crit}=-(d-1),\qquad
+ v_{d,\epsilon}=-\frac{d-1}{d}-\epsilon.
+\]
+The point tends to infinity, but the value tends to the asymptotic
+value $-1-\epsilon$ of $e^u-1-\epsilon$.
+At the cusp put
+\[
+ v_\tau=-\frac1{1+\tau},\quad
+ m_\tau=G_{\tau,0}^{\circ2}(v_\tau),\quad
+ m_0=e^{e^{-1}-1}-1.
+\]
+Near $\tau=0$ there is a jointly holomorphic family of parabolic
+height germs $S_\tau(z)$, on a common neighbourhood of $(0,0)$, with
+\[
+ S_\tau(0)=m_\tau,\qquad
+ \phi^{\rm att}_\tau(S_\tau(z))
+   =\phi^{\rm att}_\tau(m_\tau)+z.
+\]
+On a smaller common height disc,
+$S_{1/(d-1)}-S_0=O(1/(d-1))$, also for every fixed height derivative.
+For integer degree this mark is exactly the affine image of
+$f_{c_d}^3(0)$. These are singular-value marked parabolic germs;
+their identification with a limit of the exterior Kneser families
+is an additional question.
+\end{proposition}
+\begin{proof}
+The derivative of $G_{d,\epsilon}$ is
+$(1+u/(d-1))^{d-1}$, proving its critical point and value.
+For the exponential limit, letting $u\to-\infty$ along the real
+axis gives the asserted asymptotic value.
+The limiting orbit from $v_0=-1$ is negative and strictly increasing
+to zero: $e^u-1>u$ and $e^u-1<0$ for real $u<0$.
+Some finite iterate therefore enters the common attracting petal
+of Theorem~\ref{thm:degree-fatou}. Finite orbit continuity places
+the nearby $v_\tau$ orbits in the same petal after the same number
+of steps. All these finite limiting orbit derivatives are $e^u\ne0$;
+they remain nonzero on parameter and physical neighbourhoods.
+The interpolation is holomorphic on these finitely many physical
+neighbourhoods for sufficiently small $|\tau|$, since
+$|\tau u|<1/2$ there.
+Pulling back the Fatou coordinate by those finite forward iterates
+gives a jointly holomorphic regular coordinate near $m_\tau$.
+Its derivative is a product of nonzero orbit derivatives and the
+nonzero petal derivative. The holomorphic inverse theorem gives
+$S_\tau$. Parameter holomorphy and Cauchy's estimates give the rate
+and derivative convergence on a smaller common disc.
+Finally $A_d^{-1}(0)=-(d-1)$ and the critical value is its first
+iterate; hence $m_\tau$ is its third iterate, exactly as claimed.
+\end{proof}
+
+\begin{corollary}[First response of the marked height germ]
+\label{cor:degree-response}
+Let $\phi_0=\phi^{\rm att}_0$ and
+$V(u)=\left.\partial_\tau\phi^{\rm att}_\tau(u)\right|_{\tau=0}$
+on the regular coordinate neighbourhoods just constructed. Put
+$\dot m=\left.\partial_\tau m_\tau\right|_0$ and
+$W(z)=\left.\partial_\tau S_\tau(z)\right|_0$. Then
+\[
+ W(z)=\frac{V(m_0)+\phi_0'(m_0)\dot m-V(S_0(z))}
+                  {\phi_0'(S_0(z))},\qquad
+ S_{1/(d-1)}(z)=S_0(z)+\frac{W(z)}{d-1}+O((d-1)^{-2}).
+\]
+Writing $y=e^{-1}-1$, the mark response is explicit:
+\[
+ \dot m=B(y)+e^y\left(1-\frac{3}{2e}\right).
+\]
+The formula for $W$ is unaffected by a parameter-dependent additive
+normalisation of the Fatou coordinate.
+\end{corollary}
+\begin{proof}
+Differentiate the defining Abel-coordinate identity for $S_\tau$;
+its nonzero physical derivative gives the displayed quotient.
+The analytic Taylor expansion in $\tau$ gives the second formula.
+Since $\dot v_0=1$, the derivative of the first marked iterate is
+$B(-1)+e^{-1}=1-3/(2e)$. Differentiating the second iterate gives
+$\dot m$. Adding a function of $\tau$ to $\phi_\tau$ adds the same
+constant to $V(m_0)$ and $V(S_0(z))$, which cancels.
+\end{proof}
+Thus the map limit extends to an intrinsic spectral limit, local
+horn moduli, and a regular singular-value marked parabolic height
+germ with a first-order degree response. Global marked cylinders,
+parameter-wide Kneser continuation and coupled near-parabolic limits
+still require their own geometric and uniform orbit estimates.
+
+\subsection{Classification and problems left by the theory}
+The results above support the following precise research problems.
+\begin{enumerate}
+\item \emph{Membership and maximal continuation domains.} For $w^d+c$,
+  $d\ge3$, construct an admissible marked atlas near the positive cusp,
+  then determine how far it extends. Identify which failures are
+  geometric, which are critical inverse-branch obstructions, and which
+  are only failures of a chosen chart. No whole-half-plane result for
+  these degrees is asserted here.
+\item \emph{Classification of unfoldings.} Fix the simple parabolic
+  formal type and its horn pair. Decide which deformations are
+  distinguished by the joint data $\mathcal R(p)$ and $j_{n,r}^\pm$,
+  whether the latter exist in a useful class, and whether additional
+  sector transition data are necessary. Proposition~\ref{prop:same-cusp-different-unfolding}
+  already distinguishes deformations with identical cusp germs.
+  The pointwise classification in
+  Proposition~\ref{prop:horn-invariants} does not answer this question.
+\item \emph{Several singular orbits.} Establish cylinder-entry
+  hypotheses for a family with several independently tracked singular
+  orbits. Determine which relative-mark functions and braid representations
+  are realisable and whether they contribute to global classification.
+\item \emph{Deformation stability.} Prove openness of admissibility in
+  a specified topology with specified domains.
+  Proposition~\ref{prop:finite-witness-stability} already gives explicit
+  stability inequalities for finite witnesses on a compact core,
+  but supplies neither the two infinite ends nor a noncompact tail.
+  In particular global lower-half-plane injectivity of a quadratic
+  must not be assumed stable under a higher-degree perturbation.
+\item \emph{Certified neutral numerical charts.} Approximate the marked
+  quotient itself, compare it on overlaps with nonneutral end charts,
+  and prove an error bound including uniformisation, inverse branches,
+  truncation and arithmetic. Establishing such a method would add a
+  convergence result that Theorem~\ref{thm:general-resonance} excludes
+  for an everywhere-Schr\"oder representation.
+\item \emph{Degree and cusp limits together.} Theorems
+  \ref{thm:degree-spectral} and~\ref{thm:degree-fatou} prove the local
+  spectral and parabolic-coordinate limits; Proposition~\ref{prop:degree-mark}
+  preserves the singular-value orbit mark. Determine uniform
+  near-parabolic transit estimates when $\tau\to0$ and $\epsilon\to0$
+  together, and compare the resulting sewn or exterior Kneser germs.
+  The finite-index orbit estimates used above do not control transit
+  times that diverge as the cusp is approached.
+\end{enumerate}
+The abstract continuation theorem, coordinate identities, spectral
+deformation invariant and separating example, polynomial fold
+calculation and resonance theorem are proved statements here.
+The reciprocal-degree interpolation, spectral expansion and marked
+parabolic germ limit are also proved; the horn convergence applies
+the stated existing compact-family Fatou-coordinate results.
+The global membership, realisation, deformation completeness and
+numerical convergence questions remain open in this framework.
+
+\begin{thebibliography}{9}
+\bibitem{AB} L. Ahlfors and L. Bers, \emph{Riemann's mapping theorem for variable
+metrics}, Ann. of Math. 72 (1960), 385--404.
+\url{https://www.cimat.mx/~mmoreno/teaching/fall10/AhlforsBers.pdf}.
+\bibitem{TK} H. Trappmann and D. Kouznetsov, \emph{Uniqueness of holomorphic
+Abel functions at a complex fixed point pair}, Aequationes Math. 81 (2011).
+\url{https://arxiv.org/abs/1006.3981}.
+\bibitem{BMS} A. Berretti, S. Marmi and D. Sauzin,
+\emph{Limit at resonances of linearizations of some complex analytic
+dynamical systems}, Ergodic Theory Dynam. Systems 20 (2000), 963--990.
+\url{https://homepage.sns.it/marmi/papers/bms.pdf}.
+\bibitem{Cheritat} A. Ch\'eritat, \emph{Near parabolic renormalization for
+unicritical holomorphic maps}, Arnold Math. J. 8 (2022), 169--270.
+\url{https://arxiv.org/abs/1404.4735}.
+\bibitem{DS} A. Dudko and D. Sauzin, \emph{The resurgent character of the
+Fatou coordinates of a simple parabolic germ}, C. R. Math. 352 (2014),
+255--261. \url{https://arxiv.org/abs/1307.8093}.
+\bibitem{local} The repository manuscript, \texttt{docs/paper-submission/main.tex},
+Section ``Continuation of Kneser's solution around the cusp''.
+The quadratic orbit, inverse charts, transport field, overlap comparison,
+and sewn branch are established above; exponential-family continuation
+theorems are not assumed.
+\end{thebibliography}
+\end{document}

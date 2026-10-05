@@ -1,0 +1,10 @@
+PASS exact q<1, eta+qR<R; distance<=eta/(1-q)
+PASS c0=1, fixed-root Krawczyk witness, positive geometry/log/unwrap margins
+PASS source hashes
+{
+  "q_upper_decimal_display": 0.05481513593099083,
+  "eta_upper_display": 4.335860898130069e-52,
+  "distance_upper_display": 4.5873152046301735e-52,
+  "radius": "1/1000000000000000000000000000000000000000000000000",
+  "scope": "local nonlinear finite-dimensional map"
+}

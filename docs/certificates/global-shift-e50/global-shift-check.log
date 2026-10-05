@@ -1,0 +1,4 @@
+PASS exact rational root and domain margins
+center approximation 38.579991885049324 9.171880058069966 radius 1e-17
+With exact gluing: F(c)=1, F(c-1)=2*pi*i; weak uniqueness is false.
+Real-symmetric/canonical uniqueness is not refuted.

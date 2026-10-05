@@ -1,0 +1,17 @@
+Fourier Jacobian cells 8 seconds 9.5
+Fourier Jacobian cells 16 seconds 19.1
+Fourier Jacobian cells 24 seconds 28.8
+Fourier Jacobian cells 32 seconds 38.7
+Fourier Jacobian cells 40 seconds 48.8
+Fourier Jacobian cells 48 seconds 58.7
+Fourier Jacobian cells 56 seconds 68.5
+Fourier Jacobian cells 64 seconds 78.2
+arc Jacobian cells 32 seconds 114.6
+arc Jacobian cells 64 seconds 147.9
+arc Jacobian cells 96 seconds 183.0
+arc Jacobian cells 128 seconds 219.5
+arc Jacobian cells 160 seconds 255.1
+arc Jacobian cells 192 seconds 289.4
+arc Jacobian cells 224 seconds 322.3
+arc Jacobian cells 256 seconds 353.3
+RESULT contraction True point q 0.14171071457687623 ball q 0.1417109375672284 low block 0.05474796794027384 consistency 0.06904850308440146 input tail 0.14171071457687623 seconds 357.8

@@ -1,0 +1,7 @@
+PASS rejected: wrong mode sign
+PASS rejected: wrong first mode
+PASS rejected: missing negative mode
+PASS rejected: zero Cauchy remainder
+PASS rejected: false reconstruction
+PASS rejected: false Kneser identity
+PASS 8 checks, including signed modes and unchanged legacy certificate

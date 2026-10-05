@@ -1,0 +1,255 @@
+% Section: general real saddle-node unfoldings.  \input from main.tex after Section~\ref{sec:char}.
+% Source of the audit: docs/general-statements-zh.md; numerics: docs/generality-check-zh.md,
+% docs/quad-kneser-zh.md.
+\section{General real saddle-node unfoldings}\label{sec:general}
+
+Sections~\ref{sec:transition}--\ref{sec:char} use the exponential only through a
+few constants.  This section states their results for a general real
+saddle-node unfolding, lists the changes in the proofs, and adds one exact
+invariance statement.  Tetration is the case $a_2=\tfrac12$, $\gamma=1$,
+$\rho=\tfrac13$ below.
+
+\subsection{Setting}
+Let $f_\mu(w)$ be a family with the following properties.
+\begin{enumerate}
+\item[(H1)] $f_\mu(w)$ is entire in $w$, holomorphic in $\mu$ near $\mu_0$, and
+  real for real $(\mu,w)$.
+\item[(H2)] $f_{\mu_0}(w^*)=w^*$, $f_{\mu_0}'(w^*)=1$ and
+  $a_2:=f_{\mu_0}''(w^*)/2>0$ (replace $w$ by $-w$ if necessary).
+\item[(H3)] $\gamma:=-\partial_\mu f_\mu(w^*)|_{\mu_0}>0$ (reverse $\mu$ if
+  necessary).  For $s:=\mu_0-\mu>0$ small there are two real fixed points
+  $L<L_2$ near $w^*$, $L$ attracting with multiplier $\lambda$ and $L_2$ repelling
+  with multiplier $\lambda_2$.
+\item[(H4)] The base point $w_0<w^*$ is real, and $f_{\mu_0}$ is increasing with
+  $f_{\mu_0}(w)>w$ on $[w_0,w^*)$.  Then for $s$ small, $w_0<L$ lies in the
+  immediate basin of $L$, and the Koenigs map satisfies $\sigma(w_0)<0$.
+\item[(H5)] $B_1\ne0$, where $B_n$ are the Fourier coefficients of the inverse upper
+  horn map of the germ at $s=0$ (used only where indicated).
+\end{enumerate}
+Write the germ as $g(u)=f_{\mu_0}(w^*+u)-w^*=u+a_2u^2+a_3u^3+\cdots$, with
+iterative residue $\rho=1-a_3/a_2^2$.  Its formal Abel function is
+$\alpha(u)=-1/(a_2u)+\rho\log(-u)+\sum_{k\ge1}d_ku^k$, and $\Phi_{\mathrm{att}}$,
+$\Phi_{\mathrm{rep}}$, $B_n$ are defined as in Section~\ref{sec:horn}.  The
+normalisation $F(0)=1$ becomes $F(0)=w_0$: $\Rr^{-1}(w_0)=0$,
+$u^*:=w_0-w^*$ and $a:=\Phi_{\mathrm{att}}(u^*)\in\mathbb R$.  The definitions of
+$S$, $T$, $t_n$, $\tau_n$, $h$, $\Lambda$, $\Kk^W$ and $\mathcal C(Y)$ are those of
+Sections~\ref{sec:transition} and~\ref{sec:char}, with $\mu$ in place of $b$.
+
+No global hypothesis enters.  All estimates take place in a fixed disc about
+$w^*$; (H1) is used only to make $S$ entire.
+
+\begin{proposition}[Scales]\label{prop:gen-scale}
+As $s\to0^+$,
+\[
+ |\log\lambda|,\ \log\lambda_2=2\sqrt{a_2\gamma s}\,\bigl(1+O(\sqrt s)\bigr),\qquad
+ \Lambda=\exp\Bigl(-\frac{2\pi^2}{\sqrt{a_2\gamma s}}\bigl(1+o(1)\bigr)\Bigr),
+\]
+and $p:=|\log\lambda|\log\lambda_2$ is holomorphic in $s$ with
+$p=4a_2\gamma s+O(s^2)$.  Moreover, with $A_1=1/\log\lambda$, $A_2=1/\log\lambda_2$
+and $u_1=L-w^*$, $u_2=L_2-w^*$,
+\[
+ A_1+A_2\to\rho,\qquad A_1(u_1-u_2)\to1/a_2,\qquad h_2-h\to2\pi\rho,
+\]
+where $h_2=2\pi/\log\lambda_2$.
+\end{proposition}
+
+\begin{proof}
+Write the Weierstrass preparation~\eqref{eq:weier} as
+$f(u)-u=(u^2-\sigma_1u+\sigma_2)k_s(u)$ with $k_0(0)=a_2$.  Then
+$\sigma_2=f_s(0)/a_2+O(s^2)=-\gamma s/a_2+O(s^2)$, so the discriminant is
+$D(s)=4\gamma s/a_2+O(s^2)$, and $\lambda_{1,2}=1\mp a_2\sqrt D+O(D)$.  The
+limits of $A_1+A_2$ and $A_1(u_1-u_2)$ are those of Lemma~\ref{lem:res}, with
+$1-k'(0)/k(0)^2=1-a_3/a_2^2$ and $1/k(0)=1/a_2$.  Finally
+$h_2-h=2\pi(A_1+A_2)$.  For tetration this gives $C_\eta$ of
+Proposition~\ref{prop:saddle} and $p=2s+\cdots$.
+\end{proof}
+
+\subsection{The theorems}
+
+\begin{theorem}[Confluence, general]\label{thm:gen-A}
+Under \textup{(H1)--(H4)}, $\tau_n(\mu)\to B_n\eee^{2\pi\ii na}$ as $\mu\to\mu_0^-$ for every
+$n\ge1$, with $\tau_n$ taken on the branch $\operatorname{Im}t_0=h/2$.  Under
+\textup{(H5)} also $t_n/t_1^n\to B_n/B_1^n$.
+\end{theorem}
+
+\begin{theorem}[Sewing solution, general]\label{thm:gen-B}
+Under \textup{(H1)--(H4)} there is $\mu_1<\mu_0$ such that for
+$\mu\in(\mu_1,\mu_0)$ the following hold.  The sewn solution $\Kk^W_\mu$,
+normalised by $\Kk^W_\mu(0)=w_0$, is the unique element of $\mathcal C_\mu(Y)$.  Its
+coefficients satisfy $|c_n/\Lambda^n-\tau_n(\mu)|\le C_n\Lambda$, with $C_n$ as in
+Theorem~\ref{thm:W2}(4) and constants $Y_B,Y_0,D,M$ that depend on the family.
+The family is holomorphic in $\mu$ near $(\mu_1,\mu_0)$, and for $\operatorname{Im}\mu>0$
+small it tends to $L$ and $L_2$ as $\operatorname{Im}z\to+\infty$ and $-\infty$,
+respectively.
+\end{theorem}
+
+\begin{theorem}[First and higher orders, general]\label{thm:gen-D}
+Under \textup{(H1)--(H4)}, and for $n$ with $B_n\ne0$,
+\[
+ \log\frac{\tau_n}{B_n\eee^{2\pi\ii na}}\sim\sum_{j\ge1}\kappa^{(n)}_jp^j,\qquad
+ \kappa^{(n)}_1=\frac{\delta t_n}{4a_2\gamma\,B_n}-\frac{2\pi\ii n\,\delta t_0}{4a_2\gamma},
+\]
+with $\delta t_m$ defined as in Theorem~\ref{thm:D} from the orbits of the germ $g$
+and of its reflected local inverse.  Each $\kappa^{(n)}_j$ is given by convergent
+parabolic series as in Theorem~\ref{thm:E}.
+\end{theorem}
+
+\begin{proof}[Proof of Theorems~\ref{thm:gen-A}--\ref{thm:gen-D}]
+The proofs of Sections~\ref{sec:transition}--\ref{sec:char} apply verbatim,
+with the following replacements.
+\begin{itemize}
+\item In Lemmas~\ref{lem:res}--\ref{lem:petal}, Theorem~\ref{thm:C} and
+  Lemma~\ref{lem:finite}, replace
+  $\alpha_2=-2/u+\tfrac13\log(-u)$ by $-1/(a_2u)+\rho\log(-u)$ and $-2/u$ by
+  $-1/(a_2u)$.  The limiting petal is $\{\operatorname{Re}(-1/(a_2u))>R\}$.
+\item In Theorem~\ref{thm:C}(2), the reflected inverse
+  $G_\mu(v)=-f_\mu^{-1}(-v)$ is the local inverse near $w^*$.  It is jointly
+  holomorphic, its germ is $v+a_2v^2+(2a_2^2-a_3)v^3+\cdots$, and its iterative
+  residue is $-\rho$.
+\item In Lemma~\ref{lem:realT}, $1<L$ is replaced by \textup{(H4)}: $S$ maps
+  $\mathbb R$ onto $(L,L_2)$, where $\sigma>0$, while $\sigma(w_0)<0$.
+\item In Lemma~\ref{lem:band}, the bound $\pi/3$ becomes $\pi|\rho|$ and
+  $h_2=h+2\pi/3+o(1)$ becomes $h_2=h+2\pi\rho+o(1)$.  Injectivity of $f_\mu$ on
+  $D_{r'}$ follows from $f'_{\mu_0}(w^*)=1$ after shrinking $r'$.
+\item In Proposition~\ref{prop:weld}, the singular set of $\Rr$ is the closed
+  set $\Sigma_\Rr$ of inverse-branch images of the singular values of $f$.
+\item In Lemma~\ref{lem:model}, $d_i=\tfrac i2u^{i-1}+\cdots$ becomes
+  $d_i=ia_2u^{i-1}+\cdots$, and $D(s)=8s+\cdots$ becomes $4\gamma s/a_2+\cdots$.
+  In Theorem~\ref{thm:D}, $p'(0)=2$ becomes $p'(0)=4a_2\gamma$
+  (Proposition~\ref{prop:gen-scale}).
+\item In Theorem~\ref{thm:W1}(2), $\lambda_{1,2}=1\mp a_2\sqrt{D(s)}+O(D)$ gives
+  $\partial_\mu\lambda_1>0>\partial_\mu\lambda_2$, hence
+  $\operatorname{Im}\mu>0\Rightarrow\arg\lambda_1>0>\arg\lambda_2$.
+\item Statements involving ratios or logarithms use \textup{(H5)} in place of
+  Proposition~\ref{prop:horn-nonzero}.  Corollary~\ref{cor:sewn-cusp-local}
+  needs, in addition, that $w_0$ is not precritical for $f_{\mu_0}$.
+\end{itemize}
+Everything else is literally unchanged.  In particular the welding identity,
+the Wiener-algebra contraction and the characterisation use only the two
+Koenigs charts and the relation $\sigma\circ\Rr(w)=\sigma(w_0)\lambda^w$.
+\end{proof}
+
+\begin{remark}[On \textup{(H5)}]\label{rem:gen-B1}
+The proof of Proposition~\ref{prop:horn-nonzero} gives $B_1\ne0$ whenever
+$f_{\mu_0}$ restricted to its immediate parabolic basin has exactly one singular
+value.  This covers $w^2+c$, whose basin contains the single critical point.
+For $v-\sin v+c$ the critical values $2\pi k+1$ are real and only $k=0$ lies in
+the basin, but the map is not of finite type, so applying the argument requires
+a check.  For $w+(w^2-\epsilon)\eee^w$ we only know $B_1\ne0$ numerically.
+\end{remark}
+
+\subsection{Independence of the base point}
+
+\begin{proposition}\label{prop:gen-base}
+Let $w_0$ and $w_0'$ both satisfy \textup{(H4)}, and mark with a prime the
+quantities computed from $w_0'$.  Then for every $\mu<\mu_0$ near $\mu_0$ and every
+$n\ge1$,
+\[
+ \tau_n'(\mu)=\tau_n(\mu)\,\eee^{2\pi\ii n\Delta(\mu)},\qquad
+ B_n\eee^{2\pi\ii na'}=B_n\eee^{2\pi\ii na}\,\eee^{2\pi\ii n\Delta_0},
+\]
+with $\Delta(\mu)=\Rr_\mu^{-1}(w_0')$ and $\Delta_0=\Phi_{\mathrm{att}}(u^{*\prime})-\Phi_{\mathrm{att}}(u^*)$
+both real.  Hence $|\tau_n(\mu)|$, $|c_n|$ and $|\hat c_n|$ do not depend on the
+base point, and neither does $\operatorname{Re}\kappa^{(n)}_j$ for any $j$.
+\end{proposition}
+
+\begin{proof}
+By \textup{(H4)}, $\sigma(w_0)$ and $\sigma(w_0')$ are negative, so
+$\Delta=\log(\sigma(w_0')/\sigma(w_0))/\log\lambda$ is real.  Then
+$\Rr'^{-1}=\Rr^{-1}-\Delta$ and $T'=T-\Delta$, so $t_n'=t_n$ for $n\ne0$ and
+$t_0'=t_0-\Delta$.  The branch condition $\operatorname{Im}t_0=h/2$ is preserved,
+and $\tau_n'=\tau_n\eee^{2\pi\ii n\Delta}$.  At $\mu_0$, $u^*$ and $u^{*\prime}$ lie
+on the real attracting axis, where $\Phi_{\mathrm{att}}$ is real.  The sewn
+solutions for the two base points differ by a real translation, which does not
+change $|c_n|$ (Remark~\ref{rem:invariance}).  Taking real parts of the logarithm of
+the first identity divided by the second proves the last assertion.
+\end{proof}
+
+\begin{corollary}\label{cor:gen-invariant}
+$|B_n|$ and the real parts $\operatorname{Re}\kappa^{(n)}_j$ are invariant under
+orientation-preserving real-analytic conjugacy of the unfolding near
+$(\mu_0,w^*)$ and under reparametrisation of $\mu$.
+\end{corollary}
+
+\begin{proof}
+A conjugacy $\phi_\mu$ transports Koenigs charts, $\tilde\Rr=\phi\circ\Rr$ and
+$\tilde S=\phi\circ S$.  So $\tilde T=T$ up to the normalising translations.  Take a
+base point inside the domain of $\phi$ and apply
+Proposition~\ref{prop:gen-base}.  The parameter $p$ depends only on the
+multipliers.
+\end{proof}
+
+\begin{remark}[Numerical illustration]\label{rem:gen-numerics}
+The script \texttt{generality\_check.py} implements the construction of this
+section for any family given by $f$ and its Taylor coefficients at the fixed
+points.  The table lists the values at $\lambda=0.97$, from runs over $\lambda=0.5,\dots,0.97$; the fourth column tends to $\operatorname{Re}\kappa^{(1)}$ as $p\to0$.
+\begin{center}\small
+\begin{tabular}{lllll}
+\toprule
+family & $\rho$ & $|B_1|$ & $\operatorname{Re}\log(\tau_1/B_1\eee^{2\pi\ii a})/p$ & $|\tau_1|/|B_1|-1$\\
+\midrule
+$b^w$ & $1/3$ & $0.0890584364122$ & $-0.0101990$ & $-9.4\cdot10^{-6}$\\
+$w^2+c$ & $1$ & $0.0597942361690$ & $-0.0150481$ & $-1.4\cdot10^{-5}$\\
+$v-\sin v+c$ & $1$ & $0.0723786416245$ & $-0.0142133$ & $-1.3\cdot10^{-5}$\\
+$w+(w^2-\epsilon)\eee^w$ & $0$ & $2744.09379131$ & $+1.08542$ & $+1.0\cdot10^{-3}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In each family $\tau_n$, $t_n/t_1^n$ and $\log(\tau_1/B_1\eee^{2\pi\ii a})/p$ converge at
+the rate $O(p)$.  The branch $\operatorname{Im}t_0=h/2$ holds to $10^{-31}$ or
+better, and the sewing iteration of Theorem~\ref{thm:W2} gives
+$\hat c_n=\tau_n(1+O(\Lambda))$.  For $w^2+c$ with the base points $w_0=0$, $0.2$ and
+$0.35$, the real part in the fourth column agrees to all ten digits shown at each $\lambda$, as
+Proposition~\ref{prop:gen-base} requires.  The imaginary part ranges from
+$-0.07$ to $116$.  The germs of $w^2+c$ and $v-\sin v+c$ have the same
+$\rho$ but different $|B_1|$ and $\operatorname{Re}\kappa^{(1)}$.
+\end{remark}
+
+\begin{remark}[Numerical evidence for the analogue of Theorem~\ref{mthm:F} for $w^2+c$]\label{rem:gen-quad}
+For $f_c(w)=w^2+c$ the parameter $c=1/4$ is the cusp of the main cardioid, which
+plays the role of the Shell--Thron region.  For real $c>1/4$ the two fixed points
+are complex conjugate and repelling, and the real axis escapes.  The
+two-fixed-point construction of Kneser type converges at the sampled
+parameters with the normalisation $F(0)=f_c^3(0)$, corresponding to the intended
+critical-point marking $F(-3)=0$ (script \texttt{quad\_kneser.py}).
+The separate proof document \texttt{docs/proofs/quadratic-continuation.tex}
+establishes its quadratic F and G using marked tilted domains, an explicit
+polynomial multiplier deformation with open-overlap comparison, and an
+independently replayed 4,013-box Arb exterior cover. Its conclusion concerns
+regular height germs with this normalisation; it does not imply convergence
+of the present numerical iteration. The following earlier observations
+provide numerical evidence only.
+\begin{itemize}
+\item Along the arc $c=\tfrac14+0.1\eee^{\ii\varphi}$ the sampled values are
+  consistent with continuation across the cardioid boundary.  Interpolation
+  through points on both sides of the
+  neutral band predicts held-out points to $2\cdot10^{-8}$, as accurately as
+  interpolation within one side.
+\item On vertical ladders $c=c_r+\ii y$, extrapolation towards $y=0$ supports
+  agreement with the sewn coefficient.  At $\lambda=0.1$ the extrapolated value gives
+  $(\hat c_1/\tau_1-1)/\Lambda=0.2272-0.1120\,\ii$, against $0.2279-0.1115\,\ii$
+  from the first-order formula at the end of Section~\ref{sec:W2}.  So the
+  data support agreement with $\Kk^W$ including its $O(\Lambda)$ correction;
+  they do not prove existence or identification of the boundary limit.  The ratio
+  $c_2/c_1^2$ agrees with $t_2/t_1^2$ to $4\cdot10^{-8}$.
+\end{itemize}
+For the analogue of Theorem~\ref{mthm:G} the numerics are only partial.  The
+construction converges at sampled points in a wedge to the lower right of the
+cusp.  In the multiplier coordinate $c=\mu/2-\mu^2/4$, at
+$\arg\mu=0.25\pi$ and $0.4\pi$, interpolation across the neutral band errs by
+$\le10^{-7}$ against a variation of order $10^{-1}$.  Further left the iteration
+does not converge, and above it converges only after the $\theta$ lines are
+raised in some tested cases.  These observations are consistent with local
+holomorphic continuation, but do not establish it. Moving the Taylor centre
+or fixing the constant Fourier mode of $\theta_{\mathrm{up}}$ may enlarge
+the regular numerical region; these changes remain untested. They cannot
+alone give direct coverage of the whole upper half-plane while retaining
+both Schr\"oder charts: at $c=1/4+i/2$, $\lambda_{\mathrm{up}}=i$, the
+fifth inverse-Schr\"oder coefficient requires $0=(3-5i)/2$.
+The separate quadratic proof document supplies the exact obstruction and
+a conditional local convergence theorem. A full numerical method must
+also replace the neutral-end representation.
+A pointwise algorithm that does not record paths does not by itself establish
+single-valued analytic continuation; parameter holomorphy and agreement of
+local branches must also be established.
+\end{remark}

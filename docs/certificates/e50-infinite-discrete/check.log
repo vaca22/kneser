@@ -1,0 +1,22 @@
+PASS infinite Taylor block bounds and self-mapping (fixed discrete map only)
+{
+  "a": 0.05481513593099083,
+  "b": 0.009472551421407089,
+  "c": 1.545375479024337e-36,
+  "d": 1.9521253723679871e-41,
+  "q": 0.05481513593099083,
+  "defect": 6.846764532320426e-39,
+  "output_tail": 6.846764532319993e-39,
+  "distance": 7.24383640978463e-39,
+  "passed": true
+}
+PASS exact q<1, eta+qR<R; distance<=eta/(1-q)
+PASS c0=1, fixed-root Krawczyk witness, positive geometry/log/unwrap margins
+PASS source hashes
+{
+  "q_upper_decimal_display": 0.05481513593099083,
+  "eta_upper_display": 4.335860898130069e-52,
+  "distance_upper_display": 4.5873152046301735e-52,
+  "radius": "1/1000000000000000000000000000000",
+  "scope": "finite low block of certified infinite discrete map"
+}

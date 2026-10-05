@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "arithmetic": "Exact fractions in Q(i)",
+  "scope": "Refutation of all-upper-halfplane convergence for the current Schroeder-based theta/Taylor scheme; not a convergence certificate.",
+  "resonance": {
+    "c": {
+      "real": "1/4",
+      "imag": "1/2"
+    },
+    "lambda": {
+      "real": "0",
+      "imag": "1"
+    },
+    "u2": {
+      "real": "-1/2",
+      "imag": "1/2"
+    },
+    "u3": {
+      "real": "-1/2",
+      "imag": "-1/2"
+    },
+    "u4": {
+      "real": "1/4",
+      "imag": "-5/4"
+    },
+    "order5_denominator": {
+      "real": "0",
+      "imag": "0"
+    },
+    "order5_numerator": {
+      "real": "3/2",
+      "imag": "-5/2"
+    }
+  },
+  "fixed_degree_example": {
+    "c": {
+      "real": "0",
+      "imag": "1"
+    },
+    "w3": {
+      "real": "0",
+      "imag": "-1"
+    },
+    "f_w3": {
+      "real": "-1",
+      "imag": "1"
+    }
+  },
+  "checks": {
+    "parameter_strictly_in_upper_halfplane": true,
+    "L_is_fixed_and_has_multiplier_i": true,
+    "u2_exact": true,
+    "u3_exact": true,
+    "u4_exact": true,
+    "order5_denominator_is_zero": true,
+    "order5_numerator_is_nonzero": true,
+    "at_c_i_w3_is_minus_i": true,
+    "at_c_i_w3_is_not_fixed": true
+  }
+}

@@ -1,0 +1,15 @@
+upper rows 10 seconds 37.0
+upper rows 20 seconds 72.8
+upper rows 30 seconds 109.8
+upper rows 40 seconds 146.7
+upper rows 50 seconds 183.3
+upper rows 60 seconds 220.0
+upper rows 70 seconds 257.0
+upper rows 80 seconds 294.1
+upper rows 90 seconds 330.7
+upper rows 100 seconds 367.2
+upper rows 110 seconds 404.0
+upper rows 120 seconds 441.5
+upper rows 130 seconds 480.4
+upper rows 140 seconds 517.6
+PASS upper geometry min imaginary 0.26440435461368084 max imaginary 1.4063171292193997 end error 0.002258081233825839 theta derivative 0.099248608222723

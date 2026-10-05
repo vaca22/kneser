@@ -1,0 +1,11 @@
+PASS rejects zero_complete_defect
+PASS rejects missing_output_tail
+PASS rejects missing_cauchy_cell
+PASS rejects false_continuous_contraction
+PASS rejects false_kneser_identification
+PASS rejects Fourier_depth
+PASS rejects Fourier_tail
+PASS nonperiodic continuous Fourier mode 0
+PASS nonperiodic continuous Fourier mode 1
+PASS nonperiodic continuous Fourier mode 3
+PASS left-grid DFT does not silently equal a nonperiodic integral

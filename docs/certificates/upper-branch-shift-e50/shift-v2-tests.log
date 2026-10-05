@@ -1,0 +1,7 @@
+PASS rejected: changed root center
+PASS rejected: zero parameter error
+PASS rejected: zero Fourier tail
+PASS rejected: changed Rouche margin
+PASS rejected: wrong inverse branch
+PASS rejected: false global shift
+PASS 7 checks

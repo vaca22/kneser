@@ -1,0 +1,10 @@
+integrated cells 8 seconds 15.2
+integrated cells 16 seconds 30.1
+integrated cells 24 seconds 44.8
+integrated cells 32 seconds 60.0
+integrated cells 40 seconds 82.4
+integrated cells 48 seconds 97.8
+integrated cells 56 seconds 116.9
+integrated cells 64 seconds 131.7
+PASS continuous coefficients 192 seconds 132.2
+max DFT difference 6.212571096730475e-51

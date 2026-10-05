@@ -1,0 +1,12 @@
+parameters BuildParams(digits=50, depth=370, dps=114, nt=150, idelta=0.1, n_modes=192, nf=404, n_circ=600, n_loops=42) dps 180 radius 1e-48 weight 11/20
+    (A) theta samples: 142s  max|theta| = 1.1062234950853658
+    (C) circle values: 355s  arc points 562, band 38 (both half-planes)
+    (D) Cauchy: 390s
+point eta 4.335860898130069e-52
+    (A) theta samples: 138s  max|theta| = 1.1062234950853658
+    (C) circle values: 340s  arc points 562, band 38 (both half-planes)
+    (D) Cauchy: 372s
+FLINT A/B factors 41.7 s
+FLINT CBA 75.6 s
+FLINT DT complete 100.4 s
+RESULT {'q': 0.05481513593099083, 'eta': 4.335860898130069e-52, 'distance': 4.5873152046301735e-52} passed True

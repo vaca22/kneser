@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+.DS_Store
+build_out/
+docs/_generated/
+
+# LaTeX build artifacts
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+
+# Lean formalisation: built and checked only on galic, not versioned here
+formal/
