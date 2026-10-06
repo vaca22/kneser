@@ -277,6 +277,22 @@ indexed in [docs/README-zh.md](docs/README-zh.md).
 
 Besides the library, `docs/` holds the research behind it:
 
+The standalone [Lean project](lean/README-zh.md) constructs the actual exponential
+family's two coordinates, common moving inverse, real anchor, global upper horn,
+and Koenigs-normalized growing transition. The same Fourier sewing has true
+integral coefficients whose Lambda-scaled logarithms admit coherent expansions
+to every finite order, with the explicit first correction given by absolutely
+convergent parabolic orbit series. Logarithmic modes require nonzero baseline
+coefficients. The actual geometric time atlas and regular physical inverse
+domains are constructed as well. A proved affine conjugacy restores the original
+base, normalization `K(0)=1`, exponential iteration equation, and identical
+Koenigs Fourier integrals in the same all-order theorem. The upper physical chart
+is glued to the entire repelling chart on the whole lower half-plane; the
+resulting two-patch function retains those same integral coefficients. Identity
+with independently defined classical
+Kneser uniformization and the manuscript's complete complex continuation remain
+outside the current audit; its full-paper completion flags stay false.
+
 - `docs/paper-submission/` — the preprint *Kneser's tetration continued around
   the cusp e^(1/e): separation from regular iteration and the inverse horn map
   of e^u−1* (LaTeX source and PDF).
