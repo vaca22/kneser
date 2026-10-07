@@ -299,7 +299,11 @@ outside the current audit; its full-paper completion flags stay false.
 - `docs/hyperoperation-analysis/` — *超运算分析学* (Hyperoperation Analysis),
   a Chinese book draft and research programme on hyperoperations continued in
   base, height and rank; start from [`BOOK.md`](docs/hyperoperation-analysis/BOOK.md).
-  `docs/theory-framework-zh.md` sets out the conceptual framework.
+  The theory's entry point is [`docs/theory-core-zh.md`](docs/theory-core-zh.md):
+  fractional iteration of real saddle-node unfoldings, with tetration as the
+  first example, one main theorem, and a variation formula for the
+  first-order coefficient ([`docs/kappa-variation-zh.md`](docs/kappa-variation-zh.md)).
+  `docs/theory-framework-zh.md` is the detailed archive of results.
 - `docs/independent/` — independent interval-arithmetic re-verification of the
   computer-assisted theorems.
 - `docs/certify_*.py`, `docs/certificates/` — the computer-assisted

@@ -1,5 +1,9 @@
 # 概念体系：迭代的双坐标理论（工作名）
 
+> **2026-10-07 起，理论的入口改为 [theory-core-zh.md](theory-core-zh.md)。** 新文以一般实鞍结开折为主角、
+> 统一了记号（本文 §11 列出的冲突已消除），并加入一阶项的变分公式（[kappa-variation-zh.md](kappa-variation-zh.md)）。
+> 本文保留为详细的结果档案，内容不再更新，Q3、Q11 的状态除外。
+
 2026-10-03。本文**不产生新结论**。它把仓库里分散在投稿论文、纲领文档和实验报告中的结果，
 整理成一套有定义、有依赖关系、有状态标注的概念体系，作为后续写综述和做可推广性检验的底稿。
 
@@ -387,7 +391,7 @@ graph TD
 |---|---|---|
 | **Q1** | `b → 1` 和 `b → 0` 时非整数高度的一致渐近 | 论文 §open (1) |
 | **Q2** | Shell–Thron 区内 Kneser 型解的全局唯一性定理（只用 `±i∞` 的极限不够） | 论文 §open (1) |
-| **Q3** | `κ⁽ⁿ⁾` 是否有闭式（比如用 `B_n`、`a` 和迭代留数表示）；`p` 展开的收敛半径与最优 Gevrey 阶 | 论文 §open (2) |
+| **Q3** | `κ⁽ⁿ⁾` 是否有闭式（比如用 `B_n`、`a` 和迭代留数表示）；`p` 展开的收敛半径与最优 Gevrey 阶。**前半已否定回答**：变分公式表明 `κ⁽ⁿ⁾` 依赖开折方向，不是芽数据的函数；剩下的是普适常数 `K_n(g)` 的闭式（新编号 C1） | 论文 §open (2)；[kappa-variation-zh.md](kappa-variation-zh.md) |
 | **Q4** | 给梯子计算值和外推的双不动点值配区间包络，把剩余的数值比较升级为 [证·机] | 论文 §open (3) |
 | **Q5** | 五级运算的分离 `D` 遵循什么尺度律（`Λ` 预言已否） | §5.1 |
 | **Q6** | `b_∞` 对解析阶梯的确切值，是否在 `[1.83976, 2]` 内 | §5.2 |
@@ -395,7 +399,7 @@ graph TD
 | **Q8** | 实轴上 tetration 的一个正面唯一性刻画（Bohr–Mollerup、Hardy 两条路已关） | §6 |
 | **Q9** | 混合底数李代数是否自由，交换子零点是否恰有两个 | §6 |
 | **Q10** | §7 的可推广性检验。数值上已成立（3 个新族）；证明审查已完成：定理 A、B、C、D、E 在假设 (H1)–(H5) 下对一般实鞍结开折成立，唯一依赖于族的输入是 `B₁ ≠ 0`。定理 F 在 quad 上数值成立（边界值 = K^W，含 O(Λ) 修正，[quad-kneser-zh.md](quad-kneser-zh.md)）；定理 G 只在尖点附近的楔形区域内得到数值支持（θ ≤ 0.4π 处全纯穿过心形区边界），其余区域构造不收敛；F、G 的证明没有移植。一般开折一节已写入论文（`paper-submission/sec-general.tex`） | [generality-check-zh.md](generality-check-zh.md)、[general-statements-zh.md](general-statements-zh.md)、[quad-kneser-zh.md](quad-kneser-zh.md) |
-| **Q11** | Re κ⁽ⁿ⁾_j 的闭式，以及它与 Mardešić–Roussarie–Rousseau 开折模的关系。**已证明它与基点无关，是开折的解析不变量**（命题 G） | [general-statements-zh.md](general-statements-zh.md) §2.7 |
+| **Q11** | Re κ⁽ⁿ⁾_j 的闭式，以及它与 Mardešić–Roussarie–Rousseau 开折模的关系。**已证明它与基点无关，是开折的解析不变量**（命题 G）。**2026-10-07 约化**：`Re κ⁽ⁿ⁾ = Re K_n(g) + ∂ log\|B_n\|/(4a₂γ)`，开折带来的一阶新信息只有芽的普适常数 `K_n(g)` [证·梗概]+[数] | [general-statements-zh.md](general-statements-zh.md) §2.7、[kappa-variation-zh.md](kappa-variation-zh.md) |
 
 Q10 是决定本方向定位的那个问题。数值部分已完成，见 [generality-check-zh.md](generality-check-zh.md)。
 

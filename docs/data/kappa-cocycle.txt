@@ -1,0 +1,4 @@
+check series vs value: 0.0
+n=1: Re kappa_tr(g~) = -2.87649562004096694  cocycle prediction -2.87649562004096697  diff 2.66e-17  (horn term 2.8662966)
+n=2: Re kappa_tr(g~) = -9.0188427415369728  cocycle prediction -9.01884274153699474  diff 2.19e-14  (horn term 8.9677862)
+n=3: Re kappa_tr(g~) = -22.2126830557336717  cocycle prediction -22.2126830558188575  diff 8.52e-11  (horn term 22.072639)

@@ -16,7 +16,7 @@ Let $f_\mu(w)$ be a family with the following properties.
   real for real $(\mu,w)$.
 \item[(H2)] $f_{\mu_0}(w^*)=w^*$, $f_{\mu_0}'(w^*)=1$ and
   $a_2:=f_{\mu_0}''(w^*)/2>0$ (replace $w$ by $-w$ if necessary).
-\item[(H3)] $\gamma:=-\partial_\mu f_\mu(w^*)|_{\mu_0}>0$ (reverse $\mu$ if
+\item[(H3)] $\gamma:=\partial_\mu f_\mu(w^*)|_{\mu_0}>0$ (reverse $\mu$ if
   necessary).  For $s:=\mu_0-\mu>0$ small there are two real fixed points
   $L<L_2$ near $w^*$, $L$ attracting with multiplier $\lambda$ and $L_2$ repelling
   with multiplier $\lambda_2$.
@@ -135,7 +135,7 @@ $f_{\mu_0}$ restricted to its immediate parabolic basin has exactly one singular
 value.  This covers $w^2+c$, whose basin contains the single critical point.
 For $v-\sin v+c$ the critical values $2\pi k+1$ are real and only $k=0$ lies in
 the basin, but the map is not of finite type, so applying the argument requires
-a check.  For $w+(w^2-\epsilon)\eee^w$ we only know $B_1\ne0$ numerically.
+a check.  For $w+(w^2-c)\eee^w$ we only know $B_1\ne0$ numerically.
 \end{remark}
 
 \subsection{Independence of the base point}
@@ -179,6 +179,250 @@ Proposition~\ref{prop:gen-base}.  The parameter $p$ depends only on the
 multipliers.
 \end{proof}
 
+\subsection{The first-order term as a derivative on the parabolic stratum}
+\label{sec:gen-variation}
+
+Theorem~\ref{thm:gen-D} gives $\kappa^{(n)}$ as a convergent series.  Here we
+identify it.  It is the one-sided derivative of a function that extends
+continuously to the parabolic maps, and on those maps the function is the horn
+coefficient.  So $\kappa^{(n)}$ splits into one number attached to the germ and
+the derivative of the horn map along the unfolding.
+
+Work in the coordinate $u=w-w^*$.  Let $\mathcal O_r$ be the Banach space of
+bounded holomorphic functions on $D_r=\{|u|<r\}$ with the supremum norm.  An
+unfolding in this subsection is a real-analytic curve
+$s\mapsto f_s\in\mathcal O_r$ with $f_0=g$ and the sign condition of
+\textup{(H3)}.  No global hypothesis such as \textup{(H1)} is needed: $\tau_n$
+denotes the invariant $t_n\eee^{-2\pi\ii nt_0}$ of the local transition
+$\mathcal A\circ(\mathcal S^\sharp)^{-1}$ on the gate line, which is all that
+Theorems~\ref{thm:reduction}--\ref{thm:E} use.  We write
+\[
+ f_s=g-sX+O(s^2),\qquad X\in\mathcal O_r,\qquad X(0)=\gamma>0 .
+\]
+Call $X$ the \emph{direction} of the unfolding.  The radius $r$ is fixed
+small enough that all compositions below ($f\circ g$, $\phi\circ g$ for
+$\phi\in\mathcal O_{2r}$) are defined on a neighbourhood of $\overline{D_{r/2}}$,
+where all estimates take place.  Let $\mathcal P$ be the set of
+$f\in\mathcal O_r$ near $g$ with a double fixed point in $D_{r/2}$ (the
+\emph{parabolic stratum}).  Near $g$, $\mathcal P$ is the zero set of the
+discriminant $D[f]=\sigma_1^2-4\sigma_2$ of the Weierstrass polynomial of
+$f-\mathrm{id}$.  Since $\sigma_1[g]=\sigma_2[g]=0$ and
+$\sigma_2[f]=f(0)/a_2+O(\|f-g\|^2)$, $D$ is a submersion at $g$.  Hence
+$\mathcal P$ is a complex-analytic hypersurface with tangent space
+\[
+ T_g\mathcal P=\{Y\in\mathcal O_r:\ Y(0)=0\},
+\]
+where a tangent vector $Y$ means the curve $g-tY+O(t^2)$.  Every
+$Y\in T_g\mathcal P$ is tangent to a holomorphic curve in $\mathcal P$, for instance
+$g-tY+c(t)$ with $c(t)=O(t^2)$ given by the implicit function theorem; for
+real $Y$ the curve is real.
+
+For real $f$ near $g$ with two real fixed points (attracting one on the left),
+put $\mathcal I_n[f]=\tau_n[f]$.  For $f\in\mathcal P$ put
+$\mathcal I_n[f]=B_n[f]\,\eee^{2\pi\ii na[f]}$, computed from the germ of $f$ at its
+double fixed point with the same base point $w_0$.  Both are the invariant
+$t_n\eee^{-2\pi\ii nt_0}$ of $T=\mathcal A[f]\circ\mathcal S^\sharp[f]^{-1}$ on
+the gate line, with $\mathcal A[f]$ normalised by $\mathcal A[f](u^*)=0$
+(Theorems~\ref{thm:reduction} and~\ref{thm:D}).  This normalisation matters:
+an additive constant on the attracting side changes $t_n\eee^{-2\pi\ii nt_0}$,
+while one on the repelling side does not.  By
+Theorem~\ref{thm:gen-A}, $\mathcal I_n$ is continuous at $g$ from the side of two
+real fixed points.
+
+\begin{lemma}\label{lem:gen-banach}
+Fix $N\ge3$.  After shrinking $r$, the coefficient $\nu[f]=A_1+A_2$ and the
+one-step error $F[f]=\Psi[f]\circ f-\Psi[f]-1=q[f]^N\Gamma[f]$ of
+Lemma~\ref{lem:model} are holomorphic functions of $f$ on a neighbourhood of
+$g$ in $\mathcal O_r$, with values in bounded holomorphic functions on
+$D_{r/2}$.  For each $\delta\in(0,r/2)$, the model time $\Psi[f]-\nu[f]\log u$
+is holomorphic in $f$ on a (smaller) neighbourhood of $g$, with values in
+bounded holomorphic functions on the annulus $\delta<|u|<r/2$.  The same
+holds for the reflected inverse $G[f](v)=-f^{-1}(-v)$.
+\end{lemma}
+
+\begin{proof}
+The proof of Lemma~\ref{lem:model} uses only Weierstrass preparation and
+division, the removability of the symmetric expressions $\Theta$, $\Theta'$
+across the diagonal, and the inversion of the triangular matrix $M(0)$.  Each
+of these steps depends holomorphically on a Banach parameter.  The inverse
+function theorem gives $G[f]$.
+\end{proof}
+
+\begin{proposition}\label{prop:gen-linear}
+There is a continuous complex-linear functional $\mathfrak L_n$ on $\mathcal O_r$ with
+the following two properties.
+\begin{enumerate}
+\item For every unfolding with direction $X$,
+  $\mathcal I_n[f_s]=\mathcal I_n[g]+s\,\mathfrak L_n(X)+O(s^{10/9})$ as
+  $s\to0^+$.
+\item For every holomorphic curve $t\mapsto g_t\in\mathcal P$ with $g_0=g$, the
+  function $t\mapsto\mathcal I_n[g_t]$ is holomorphic near $0$, with derivative
+  $\mathfrak L_n(-\partial_tg_t|_{t=0})$ at $0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Define $\mathfrak L_n(X)$ by the formula of Theorem~\ref{thm:D} for
+$\dot\tau_n$, where every derivative in $s$ is replaced by the derivative in the
+direction $-X$:
+\[
+ \dot{\mathcal A}(u)=d\Psi[g](-X)(u)
+ +\sum_{k\ge0}\Bigl[dF[g](-X)(u_k)+F[g]'(u_k)\,\dot u_k\Bigr],\qquad
+ \dot u_{k+1}=g'(u_k)\dot u_k-X(u_k),\ \dot u_0=0,
+\]
+on the compact set $K\subset P_R$ of Proposition~\ref{prop:diff}; at the base
+point and on the rest of the basin it is continued by
+$\dot{\mathcal A}=\dot{\mathcal A}\circ g^m+\mathcal A_0'\circ g^m\cdot\dot u_m$,
+as in Section~\ref{sec:first}.  Define $\dot{\mathcal S}^\sharp$ in the same way from
+$G$, with the constant $\Phi_{\mathrm{rep}}[g](p')$ of $\mathcal S^\sharp$ held
+fixed, and then $\delta T$, $\delta t_m$ and
+$\mathfrak L_n(X)=\eee^{-2\pi\ii nt_0}(\delta t_n-2\pi\ii n\,t_n\,\delta t_0)$ at $g$.  By
+Lemma~\ref{lem:gen-banach} every term is linear in $X$.  The bounds of
+Lemma~\ref{lem:derbounds} hold with $\|X\|$ as a factor, so the series converge
+and $\mathfrak L_n$ is continuous.
+
+(1) For a single unfolding, $\partial_s\Psi_s|_{s=0}=d\Psi[g](-X)$ and
+$\partial_\sigma F_\sigma|_{\sigma=0}=dF[g](-X)$ by the chain rule, so
+$\dot{\mathcal A}$ above is the derivative of Proposition~\ref{prop:diff}, and
+Theorem~\ref{thm:D} (in the form of Theorem~\ref{thm:gen-D}) is statement~(1).
+
+(2) Let $t\mapsto g_t\in\mathcal P$ be a holomorphic curve with $g_0=g$, with
+double fixed point $u_0(t)$.  The germ of $g_t$ at $u_0(t)$ has
+$a_2(t)\to a_2$, so the proof of Lemma~\ref{lem:finite} with $\sigma=0$, in the
+coordinate $-1/(a_2(t)(u-u_0(t)))$, gives the petal bounds for all $k$,
+uniformly for small complex $t$.  Hence
+$\mathcal A[g_t](u)=\Psi[g_t](u)+\sum_kF[g_t](g_t^ku)$ converges uniformly and
+is holomorphic in $t$.  By Weierstrass' theorem its $t$-derivative is the
+termwise derivative, which is the series for $\dot{\mathcal A}$ with $-X$
+replaced by $\partial_tg_t|_{t=0}$.  As at $s=0$ in
+Section~\ref{sec:first}, $\mathcal A[g_t]$ is $\Phi_{\mathrm{att}}[g_t]$ plus a
+constant; this constant is removed by the normalisation
+$\mathcal A[g_t](u^*)=0$, so that $\mathcal A[g_t]-\mathcal A[g_t](u^*)=\Phi_{\mathrm{att}}[g_t]-a[g_t]$.
+The repelling side is the same with $G$, and there additive constants do not
+affect $\mathcal I_n$.  The inversion and the Fourier integrals are holomorphic
+in $t$, so $\mathcal I_n[g_t]$ is holomorphic with derivative
+$\mathfrak L_n(-\partial_tg_t|_{t=0})$.
+\end{proof}
+
+\begin{theorem}[Variation formula]\label{thm:gen-variation}
+Assume $B_n\ne0$.  Put
+\[
+ \kappa^{(n)}_{\rm tr}(g)=\frac{\mathfrak L_n(1)}{4a_2\,\mathcal I_n[g]},\qquad
+ \mathcal D_n(g)[Y]=\frac{d}{dt}\Big|_{t=0}\log\mathcal I_n[g_t]\quad(Y\in T_g\mathcal P),
+\]
+where $g_t\in\mathcal P$ is any holomorphic curve with $g_0=g$ and
+$\partial_tg_t|_{t=0}=-Y$.  By Proposition~\ref{prop:gen-linear}(2),
+$\mathcal D_n(g)[Y]=\mathfrak L_n(Y)/\mathcal I_n[g]$, so $\mathcal D_n(g)$ is well defined
+and linear.
+Then for every unfolding of $g$ with direction $X$,
+\[
+ \kappa^{(n)}=\kappa^{(n)}_{\rm tr}(g)+\frac{\mathcal D_n(g)\bigl[X-X(0)\bigr]}{4a_2\,X(0)} .
+\]
+In particular $\kappa^{(n)}_{\rm tr}(g)$ is the first-order coefficient of the
+translation unfolding $g-s$, and
+\[
+ \operatorname{Re}\kappa^{(n)}=\operatorname{Re}\kappa^{(n)}_{\rm tr}(g)
+ +\frac{d\log|B_n|\,\bigl[X-X(0)\bigr]}{4a_2\,X(0)},
+\]
+where $d\log|B_n|[Y]=\frac{d}{dt}\log|B_n[g_t]|$ along real curves in $\mathcal P$.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:gen-scale}, $p=4a_2\gamma s+O(s^2)$ with
+$\gamma=X(0)$.  By Proposition~\ref{prop:gen-linear}(1) and $B_n\ne0$,
+$\kappa^{(n)}=\mathfrak L_n(X)/(4a_2\gamma\,\mathcal I_n[g])$.  Write
+$X=\gamma\cdot1+(X-\gamma)$.  Then $X-\gamma\in T_g\mathcal P$, and
+by definition $\mathfrak L_n(X-\gamma)=\mathcal I_n[g]\,\mathcal D_n(g)[X-\gamma]$.  By linearity,
+\[
+ \kappa^{(n)}=\frac{\gamma\,\mathfrak L_n(1)+\mathcal I_n[g]\,\mathcal D_n(g)[X-\gamma]}
+ {4a_2\gamma\,\mathcal I_n[g]} .
+\]
+For the real part, let $f\in\mathcal P$ be real.  Its double fixed point is
+real and the base point lies on the real attracting axis, so $a[f]$ is real
+and $|\mathcal I_n[f]|=|B_n[f]|$.  For real $X$, take a real curve $g_t$ in
+$\mathcal P$ tangent to $X-\gamma$.  Along it
+$\operatorname{Re}\log\mathcal I_n[g_t]=\log|B_n[g_t]|$, so
+$\operatorname{Re}\mathcal D_n(g)[X-\gamma]=d\log|B_n|\,[X-\gamma]$.
+\end{proof}
+
+\begin{corollary}\label{cor:gen-variation}
+\begin{enumerate}
+\item $\operatorname{Re}\kappa^{(n)}$ depends on $X$ only through its class
+  modulo the infinitesimal conjugacies $L\phi=\phi\circ g-g'\phi$, $\phi$ real.
+  Numerically, it is not a function of the germ alone
+  (Remark~\ref{rem:gen-variation}).
+\item For tetration the direction is $X=(1+u)\eee^u$, and $X-1=L(-2-u)$.
+  Hence $\operatorname{Re}\kappa^{(n)}=\operatorname{Re}\kappa^{(n)}_{\rm tr}(\eee^u-1)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(1) $L\phi(0)=0$, so $X\mapsto X+L\phi$ keeps $X(0)$ and adds $L\phi\in T_g\mathcal P$
+to $X-X(0)$.  The curve $(\mathrm{id}+t\phi)^{-1}\circ g\circ(\mathrm{id}+t\phi)$
+lies in $\mathcal P$ and equals $g-tL\phi+O(t^2)$, so its direction is $L\phi$.
+Along it $|B_n|$ is constant: the Fatou coordinates are transported by the
+real conjugacy, which changes their $\alpha$-normalisation by a real
+constant $C$, and $B_n\mapsto B_n\eee^{-2\pi\ii nC}$ preserves $|B_n|$.  So
+$d\log|B_n|\,[L\phi]=0$.
+(2) $L(-2-u)=-(\eee^u-1)-2+(2+u)\eee^u=(1+u)\eee^u-1$.  Apply~(1).
+\end{proof}
+
+\begin{remark}[The constant $\kappa^{(n)}_{\rm tr}$ is a cocycle]\label{rem:gen-cocycle}
+Let $\psi$ be real-analytic near $0$ with $\psi(0)=0$, $\psi'(0)=1$, and put
+$\tilde g=\psi^{-1}\circ g\circ\psi$.  Conjugating the translation unfolding
+$g-s$ by $\psi$ gives $\psi^{-1}\circ(g-s)\circ\psi=\tilde g-s\tilde X+O(s^2)$
+with $\tilde X=(1/\psi')\circ\tilde g$, and $\tilde X(0)=1$.  Take the base point
+in the domain of $\psi$; by Proposition~\ref{prop:gen-base} this does not affect
+real parts.  Corollary~\ref{cor:gen-invariant}
+and Theorem~\ref{thm:gen-variation} give
+\[
+ \operatorname{Re}\kappa^{(n)}_{\rm tr}(\tilde g)=\operatorname{Re}\kappa^{(n)}_{\rm tr}(g)
+ -\frac{d\log|B_n|(\tilde g)\,[\tilde X-1]}{4a_2} .
+\]
+So $\kappa^{(n)}_{\rm tr}$ is not an invariant of the germ: it depends on the
+choice of the transverse direction $1$, which is not preserved by changes of
+coordinates.  The invariant object is the affine function
+$X\mapsto\operatorname{Re}\kappa^{(n)}[g;X]$ on directions normalised by $X(0)=1$, and
+Theorem~\ref{thm:gen-variation} describes it completely: its linear part is
+$d\log|B_n|$ on the parabolic stratum, and its value on one transverse
+direction is $\operatorname{Re}\kappa^{(n)}_{\rm tr}$.
+\end{remark}
+
+\begin{remark}[Numerics]\label{rem:gen-variation}
+Two independent computations confirm Theorem~\ref{thm:gen-variation}.  The left
+side is the first-order coefficient of the unfolding $g-sX$, computed by the
+uniform model at $s=\pm10^{-15}$.  The right side uses $\kappa^{(n)}_{\rm tr}$ and
+the horn variation of the parabolic germs $g\mp\delta X_1$,
+$X_1=X-X(0)+\tfrac{X'(0)}{2a_2}(1-g')$, together with the base-point term.  In
+$45$-digit arithmetic (\texttt{kappa\_variation.py}) the two sides agree to
+$3\cdot10^{-17}$ for $n=1$, $2\cdot10^{-13}$ for $n=2$ and $3\cdot10^{-9}$ for $n=3$.
+The last column is $|{\rm left}-{\rm right}|$ for the complex identity.
+\begin{center}\small
+\begin{tabular}{lllll}
+\toprule
+germ & direction $X$ & $\operatorname{Re}\kappa^{(1)}_{\rm tr}$ & $\operatorname{Re}\kappa^{(1)}$ & difference ($n=1$)\\
+\midrule
+$\eee^u-1$ & $(1+u)\eee^u$ & $-0.0101990063458974$ & $-0.0101990063458974$ & $1.6\cdot10^{-17}$\\
+$\eee^u-1$ & $1+0.6u^2$ & $-0.0101990063458974$ & $39.5149228923293$ & $1.4\cdot10^{-17}$\\
+$\eee^u-1$ & $1+0.3u+0.5u^4$ & $-0.0101990063458974$ & $395.094296950776$ & $2.1\cdot10^{-17}$\\
+$u+u^2$ & $1+0.7u^2$ & $-0.0150441028391897$ & $-0.0150441028391897$ & $1.3\cdot10^{-20}$\\
+$u+u^2$ & $1+0.3u-0.4u^3$ & $-0.0150441028391897$ & $-0.0143510016842305$ & $1.1\cdot10^{-17}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For $u+u^2$, $u^2=-L(u)$, so the fourth row has no horn term.  The base point
+$u^*=-\tfrac12$ used for $u+u^2$ is its critical point, so
+$\Phi_{\mathrm{att}}'(u^*)=0$ and the base-point term vanishes there; the exp
+rows test it.  Under a change of coordinates $\psi(u)=u+0.3u^2$ of
+$\eee^u-1$ (\texttt{kappa\_cocycle.py}), $\operatorname{Re}\kappa^{(1)}_{\rm tr}$
+moves from $-0.0101990$ to $-2.8764956$, and the formula of
+Remark~\ref{rem:gen-cocycle} predicts the new value to $3\cdot10^{-17}$.  The horn
+variation itself is also evaluated by the regularised orbit series
+$\dot\Phi_{\mathrm{att}}(u)=\lim_K[\dot\alpha(u_K)-\sum_{k<K}\Phi_{\mathrm{att}}'(u_{k+1})X_1(u_k)]$
+and its repelling analogue, without finite differences in the germ; it agrees
+with the finite differences to $10^{-16}$ for $n=1$.
+\end{remark}
+
 \begin{remark}[Numerical illustration]\label{rem:gen-numerics}
 The script \texttt{generality\_check.py} implements the construction of this
 section for any family given by $f$ and its Taylor coefficients at the fixed
@@ -191,7 +435,7 @@ family & $\rho$ & $|B_1|$ & $\operatorname{Re}\log(\tau_1/B_1\eee^{2\pi\ii a})/p
 $b^w$ & $1/3$ & $0.0890584364122$ & $-0.0101990$ & $-9.4\cdot10^{-6}$\\
 $w^2+c$ & $1$ & $0.0597942361690$ & $-0.0150481$ & $-1.4\cdot10^{-5}$\\
 $v-\sin v+c$ & $1$ & $0.0723786416245$ & $-0.0142133$ & $-1.3\cdot10^{-5}$\\
-$w+(w^2-\epsilon)\eee^w$ & $0$ & $2744.09379131$ & $+1.08542$ & $+1.0\cdot10^{-3}$\\
+$w+(w^2-c)\eee^w$ & $0$ & $2744.09379131$ & $+1.08542$ & $+1.0\cdot10^{-3}$\\
 \bottomrule
 \end{tabular}
 \end{center}

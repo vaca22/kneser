@@ -11,12 +11,36 @@ horn、Koenigs 转移和 Fourier 缝合。缝合的真实积分系数除以实�
 具有同一乘子参数的任意阶展开；一阶系数由抛物轨道上的绝对收敛级数显式给出。
 
 审计统计与源码指纹以 [审计记录](audit/first-order-result.json) 为准。
-2026-10-06 的最终全工程检查通过：322 个模块、1984 条命名定理及引理；
+2026-10-07 的最终全工程检查通过：323 个模块、1994 条命名定理及引理；
 源码与配置指纹一致，9 个锁定依赖的跟踪文件均干净。
 `Kneser.lean` 导入全部模块，`check.py` 构建整个工程并逐条检查命名定理及引理的
 公理依赖。最终存在性入口从实际指数函数构造数据，不要求用户提供坐标存在性、
 级数收敛、逆图、Fourier 衰减或缝合误差。**对数和模式比值只在相应零参数
 系数非零时断言；本工程尚未认证论文的 `B₁≠0` 数值证书。**
+
+## 可读入口
+
+底层终点量化约三十个辅助对象，难以直接阅读。[Interface.lean](Kneser/Interface.lean)
+把同一个实际构造打包为结构 `Kneser.Interface.SewnTetrationFamily`：参数区间 `(0,s₀)`、
+底数 `b(s)=exp((1-s)/e)`、实不动点 `L₁<e<L₂` 与乘子 `λᵢ=log b·Lᵢ`、
+`p(s)=-log λ₁ log λ₂`（解析芽，`p(0)=0,p'(0)=2`）、两侧粘合函数 `K_s` 及其开放域、
+周期线积分 `τₙ(s)`、尺度 `Λ(s)=exp(4π²/log λ₁)`（在零点平坦）、规范 horn `G` 与基线 `Bₙ`、
+显式一阶系数 `κₙ=dₙ/(2tₙ)-πi n d₀` 和一致的任意阶展开。字段 `realized` 记录这些可读对象
+就是 `GluedResultData` 中的同一组对象，不另选。主定理：
+
+```lean
+theorem exists_sewn_tetration :
+    ∃ F : SewnTetrationFamily,
+      (∀ s ∈ Ioo 0 F.s₀, F.K s 0 = 1 ∧
+        ∀ z ∈ F.domain s, z + 1 ∈ F.domain s ∧ F.K s (z + 1) = (tetrationBase s : ℂ) ^ F.K s z) ∧
+      F.p 0 = 0 ∧ HasDerivAt F.p 2 0 ∧
+      ∀ n : ℕ, 1 ≤ n → F.B n ≠ 0 → ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ s : ℝ in 𝓝[>] 0,
+        ‖log (F.τ s n / (F.Λ s : ℂ) ^ n / F.B n) - F.κ n * F.p s‖ ≤ C * ‖F.p s‖ ^ 2
+```
+
+任意阶版本为 `exists_sewn_tetration_all_orders`，结构存在性为 `exists_sewnTetrationFamily`。
+模块文档同样写明未覆盖的内容：经典 Kneser 身份、完整复参数续接、`B₁≠0` 等数值证书；
+修正 `D` 的显式轨道级数未在接口中重述，只通过 `realized` 钉到 `physicalCorrection`。
 
 ## 主结果与核对入口
 

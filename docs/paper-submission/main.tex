@@ -86,9 +86,9 @@ Koenigs construction at $L$ yields the regular solution $\Rr_b$.  This is the
 solution usually meant in that range~\cite{KouznetsovTrappmann2010}.
 Paulsen~\cite{Paulsen2019} proposed continuing Kneser's two-fixed-point
 construction through the upper half of the Shell--Thron region.  If this
-base continuation $\kappa$ has a boundary value, denote it by
+base continuation $\mathcal K$ has a boundary value, denote it by
 \begin{equation}\label{eq:K}
-  \Kk_b=\lim_{y\downarrow0}\kappa_{b+\ii y}.
+  \Kk_b=\lim_{y\downarrow0}\mathcal K_{b+\ii y}.
 \end{equation}
 High-precision algorithms for the relevant pointwise constructions are
 developed in~\cite{Kouznetsov2009,KouznetsovTrappmann2010,KouznetsovTrappmann2012}.
@@ -142,26 +142,32 @@ solutions is $T_b=\Rr_b^{-1}\circ S_b$, where $S_b$ is the regular solution at
 the repelling point.  Write $T_b(z)-z=\sum t_n\eee^{2\pi\ii nz}$ and
 $\tau_n=t_n\eee^{-2\pi\ii nt_0}$ (Section~\ref{sec:transition}).
 
-\emph{Symbols with more than one use.}  A few letters are unavoidably
-overloaded; their meaning is fixed within each section.
+\emph{Conventions.}  The following symbols have one meaning throughout the
+paper.
 \begin{itemize}
-\item $\varepsilon$: $1-\lambda$ in Proposition~\ref{prop:saddle} and, as a complex
-  parameter, in Section~\ref{sec:cusp}; $|\log\lambda|$ in
-  Sections~\ref{sec:W2}--\ref{sec:char}.  The two agree to first order.
-\item $\tau$: the repelling Koenigs map (Section~\ref{sec:transition}); the
-  invariants $\tau_n$; and $T-\mathrm{id}-t_0$ in Theorem~\ref{thm:W2}.
-\item $a$: the Fatou coordinate $\Phi_{\mathrm{att}}(1/\eee-1)$ above; $a=\log b$
-  only inside Remark~\ref{rem:paulsen} and
-  Propositions~\ref{prop:exterior-real-parameter}
-  and~\ref{prop:backward-log-monodromy}.
-\item $h$: the period $2\pi/|\log\lambda|$; the horn map and its inverse are
-  written $h^{\pm1}$ only in Theorem~\ref{thm:reduction}, Section~\ref{sec:proofC}
-  and Section~\ref{sec:first}.
-\item $s$: $1-\eee\log b$ in Section~\ref{sec:first}; a shift $s(b)$ in
-  Theorems~\ref{thm:reduction} and~\ref{thm:C}; an interpolation parameter in Section~\ref{sec:cusp}.
-\item $\kappa$: the base-continued Kneser family $\kappa_b$; $\kappa_n=c_n/c_1^n$ and the
-  first-order coefficients $\kappa^{(n)}$ carry indices.
+\item $h=2\pi/|\log\lambda|$ and $h_2=2\pi/\log\lambda_2$: the periods of
+  $\Rr_b$ and $S_b$; $\Lambda=\eee^{-2\pi h}$.
+\item $\varepsilon=1-\lambda$, where $\lambda=\lambda_1$ is the attracting
+  multiplier; it is real in Sections~\ref{sec:setup}--\ref{sec:char} and a
+  complex parameter from Section~\ref{sec:cusp} on.
+\item $s=1-\eee\log b$, the unfolding parameter; $p=|\log\lambda|\log\lambda_2$.
+\item $a=\Phi_{\mathrm{att}}(1/\eee-1)$; we write $\mathcal L=\log b$ for the
+  logarithm of the base (continued along paths where stated).
+\item $\mathfrak h$: the horn map, $\mathfrak h^{-1}=\Phi_{\mathrm{att}}\circ\Phi_{\mathrm{rep}}^{-1}$.
+\item $\sigma$, $\sigma_{\rm rep}$: the Koenigs coordinates at the attracting and
+  repelling fixed points.
+\item $T=\Rr^{-1}\circ S$, its coefficients $t_n$, and the invariants
+  $\tau_n=t_n\eee^{-2\pi\ii nt_0}$; $T^\circ=T-\mathrm{id}-t_0$.
+\item $c_n$, $\hat c_n=c_n/\Lambda^n$, and the gauge-free ratios $\Xi_n=c_n/c_1^n$.
+\item $\kappa^{(n)}_j$: the coefficients of the $p$-expansion, $\kappa^{(n)}=\kappa^{(n)}_1$.
+\item $\mathcal K_b$: Kneser's solution continued in the base; $\Kk_b$ its
+  boundary value and $\Kk^W_b$ the sewing solution.
 \end{itemize}
+Indexed families are separate symbols: $a_2,a_3,\dots$ are Taylor
+coefficients, $s_*(b)$ is a normalising shift, and $\mathsf s_\theta$ is the
+seam map of Section~\ref{sec:far}.  Letters introduced inside a proof, and
+sans-serif letters such as $\mathsf r$, are local to the proof or subsection
+in which they are defined.
 
 \subsection*{Main results}
 
@@ -338,8 +344,8 @@ Section~\ref{sec:numerics} reports the numerics, and
 Section~\ref{sec:open} lists open problems.
 
 \begin{remark}[On the definition and uniqueness in~\cite{Paulsen2019}]\label{rem:paulsen}
-In~\cite{Paulsen2019}, $\kappa_b$ is defined by analytic continuation in $b$ of
-Kneser's solution $\kappa_b(z_0)$, $\operatorname{Re}z_0>-2$, from $(\eta,\infty)$
+In~\cite{Paulsen2019}, $\mathcal K_b$ is defined by analytic continuation in $b$ of
+Kneser's solution $\mathcal K_b(z_0)$, $\operatorname{Re}z_0>-2$, from $(\eta,\infty)$
 (Prop.~3 there).  That proposition asserts real-analytic dependence of
 Kneser's conformal uniformisation on the real base without a separate
 parameter-dependence proof; Proposition~\ref{prop:exterior-real-parameter}
@@ -353,7 +359,7 @@ $\psi_2^{-1}(\rho_2)$ from the limits at $\pm\ii\infty$.
 We impose their degree-one form explicitly in
 Definition~\ref{def:class}.  A fixed-point limit alone leaves an integer
 end label open: near an end one only gets
-$\sigma(F(z))=\eee^{\ell z}q^mh(q)$ with $q=\eee^{\pm2\pi\ii z}$, $h(0)\ne0$ and some
+$\sigma(F(z))=\eee^{\ell z}q^m\mathsf g(q)$ with $q=\eee^{\pm2\pi\ii z}$, $\mathsf g(0)\ne0$ and some
 integer $m\ge0$, and only $m=0$ is a time change $\mathrm{id}+(\text{bounded
 periodic})$.  The continuation across the Shell--Thron boundary is
 argued in~\cite[\S5]{Paulsen2019} by the continuity of a numerical scheme; it is
@@ -361,19 +367,19 @@ not proved there.
 
 The uniqueness statement~\cite[Prop.~2]{Paulsen2019} requires only
 analyticity on $\operatorname{Re}z>-2$, $F(0)=1$ and the two limits.  As stated it is false for
-every real $b>\eta$.  Let $K=K_b$ be Kneser's solution, $a=\log b>1/\eee$, and
+every real $b>\eta$.  Let $K=K_b$ be Kneser's solution, $\mathcal L=\log b>1/\eee$, and
 $u_n=K(n)\to\infty$.
 \begin{itemize}
 \item \emph{Large image discs.}  Choose $N$ with $au_{N+1}>1$, and $\delta>0$ with
-  $B(u_N,\delta)\subset K(B(N,\tfrac12))$ and $u_{N+1}(1-\eee^{-a\delta})>\delta$.  The inclusion
-  $E_b(B(t,\delta))\supset B(\eee^{at},\eee^{at}(1-\eee^{-a\delta}))$ (apply the principal logarithm and
+  $B(u_N,\delta)\subset K(B(N,\tfrac12))$ and $u_{N+1}(1-\eee^{-\mathcal L\delta})>\delta$.  The inclusion
+  $E_b(B(t,\delta))\supset B(\eee^{\mathcal Lt},\eee^{\mathcal Lt}(1-\eee^{-\mathcal L\delta}))$ (apply the principal logarithm and
   $|\log(1+v)|\le-\log(1-|v|)$) propagates these discs.  So $K(B(n+1,\tfrac12))$ contains a
-  disc about $u_{n+1}$ of radius $u_{n+1}(1-\eee^{-a\delta})\to\infty$.
-\item \emph{A shifted solution.}  For large $n$ and $k=\lceil a\exp(au_{n+1})/(2\pi)\rceil$, the point
-  $w_k=a^{-1}(\log(2\pi k/a)+\ii\pi/2)$ lies in that disc, and $E_b(w_k)=2\pi\ii k/a$,
+  disc about $u_{n+1}$ of radius $u_{n+1}(1-\eee^{-\mathcal L\delta})\to\infty$.
+\item \emph{A shifted solution.}  For large $n$ and $k=\lceil \mathcal L\exp(\mathcal Lu_{n+1})/(2\pi)\rceil$, the point
+  $w_k=\mathcal L^{-1}(\log(2\pi k/\mathcal L)+\ii\pi/2)$ lies in that disc, and $E_b(w_k)=2\pi\ii k/\mathcal L$,
   $E_b^2(w_k)=1$.  Choose $z_k\in B(n+1,\tfrac12)$ with $K(z_k)=w_k$ and put
   $F_k(z)=K(z+z_k+2)$.  Then $F_k$ is analytic on $\operatorname{Re}z>-2$, has $F_k(0)=1$ and the
-  same vertical limits as $K$, but $F_k(-1)=2\pi\ii k/a\ne0=K(-1)$.
+  same vertical limits as $K$, but $F_k(-1)=2\pi\ii k/\mathcal L\ne0=K(-1)$.
 \end{itemize}
 Since $k$ is unbounded, this gives infinitely many solutions.
 The gap in~\cite[Prop.~2]{Paulsen2019} is the last step of its proof,
@@ -423,7 +429,7 @@ $|\log\lambda|=\varepsilon+O(\varepsilon^2)$ and $\log\eta-\log b\sim(\eta-b)/\e
 
 \begin{remark}[Translation invariance]\label{rem:invariance}
 A simultaneous shift $\Kk(\cdot+\delta)$, $\Rr(\cdot+\delta)$ sends
-$c_n\mapsto c_n\eee^{2\pi\ii n\delta}$.  Thus $\kappa_n=c_n/c_1^n$, when
+$c_n\mapsto c_n\eee^{2\pi\ii n\delta}$.  Thus $\Xi_n=c_n/c_1^n$, when
 defined, is invariant under complex translations, while $|c_1|$ is invariant
 only under real ones.
 The normalisation $F(0)=1$ fixes the imaginary origin.  This is why
@@ -490,7 +496,7 @@ Computing both maps directly on horizontal lines gives
 \begin{equation}\label{eq:B12}
 \begin{gathered}
  |B_1|=0.089058436412213331563,\qquad |B_2|=0.012487384111564700811,\\
- \kappa_2^\infty:=\frac{B_2}{B_1^2}=-0.02532049309975755123+1.5742190652319516267\,\ii,\\
+ \Xi_2^\infty:=\frac{B_2}{B_1^2}=-0.02532049309975755123+1.5742190652319516267\,\ii,\\
  \frac{B_3}{B_1^3}=-2.254799124523803111-0.024408714296883171\,\ii .
 \end{gathered}
 \end{equation}
@@ -539,7 +545,7 @@ Since $B_1\ne0$, its formal invariants under tangent-to-identity conjugacy
 include $a_2=2\pi\ii B_1$ and the iterative residue
 $\rho=1-a_3/a_2^2$~\cite{BuffEpstein2002}.  One has
 \begin{equation}\label{eq:kapparho}
- \kappa_2^\infty=2\pi\ii\bigl(\tfrac12-\rho\bigr),\qquad
+ \Xi_2^\infty=2\pi\ii\bigl(\tfrac12-\rho\bigr),\qquad
  \rho=0.249455254258832-0.004029881638351\,\ii .
 \end{equation}
 When defined, the higher ratios $B_n/B_1^n$ are not formal invariants of $F$.  They are,
@@ -557,10 +563,10 @@ relative error of order $\Lambda$, by the transition map between the two
 two convergent Schr\"oder series in a fraction of a second, at any $b<\eta$.
 
 \subsection{The transition map}
-Let $\tau$ be the Koenigs coordinate at the repelling point $L_2$,
-$\tau(E(w))=\lambda_2\tau(w)$, $\tau'(L_2)=1$, and put
+Let $\sigma_{\rm rep}$ be the Koenigs coordinate at the repelling point $L_2$,
+$\sigma_{\rm rep}(E(w))=\lambda_2\sigma_{\rm rep}(w)$, $\sigma_{\rm rep}'(L_2)=1$, and put
 \[
- S(z)=\tau^{-1}\bigl(-\lambda_2^{\,z}\bigr),
+ S(z)=\sigma_{\rm rep}^{-1}\bigl(-\lambda_2^{\,z}\bigr),
 \]
 continued to an entire function by $S(z+1)=E(S(z))$.  It maps $\mathbb R$
 decreasingly onto the segment $(L,L_2)$ and has period $2\pi\ii/\log\lambda_2$.
@@ -666,7 +672,7 @@ for the sewing solution, by Theorem~\ref{thm:W2}(4),
  \hat c_n:=\frac{c_n}{\Lambda^n}=\tau_n(b)+O(\Lambda).
 \end{equation}
 Since $B_1\ne0$, also $c_1\ne0$ for $b$ sufficiently close to $\eta$ and
-$\kappa_n:=c_n/c_1^{\,n}=t_n/t_1^{\,n}+O(\Lambda)$ for each fixed $n$.
+$\Xi_n:=c_n/c_1^{\,n}=t_n/t_1^{\,n}+O(\Lambda)$ for each fixed $n$.
 \end{corollary}
 
 The identity $\eee^{-2\pi\ii n(t_0-\ii h)}=\Lambda^n\eee^{-2\pi\ii nt_0}$
@@ -734,7 +740,7 @@ fixed point.  Thus the chosen branch of
 $T_b=\Rr_b^{-1}\circ S_b$ is jointly holomorphic on a parameter disc times
 a narrow strip about $[0,1]$; the relation $T_b(w'+1)=T_b(w')+1$
 extends it to the whole strip.  The real circle map is orientation
-preserving: $\tau_b'(S_b(x))>0$ by inverse iteration to $L_2$,
+preserving: $\sigma_{{\rm rep},b}'(S_b(x))>0$ by inverse iteration to $L_2$,
 $\sigma_b'(S_b(x))>0$ by forward iteration to $L$, and hence
 $S_b'(x)<0$ and
 $(\Rr_b^{-1})'(S_b(x))=\sigma_b'(S_b(x))/
@@ -787,7 +793,7 @@ Remark~\ref{rem:paulsen}.  The base-continued Kneser family is identified with $
 Theorem~\ref{mthm:F}; the seam condition of Definition~\ref{def:class} is what
 selects the right root there.  Table~\ref{tab:tau} gives numerical evidence:
 $\tau_1$ and $t_2/t_1^2$ reproduce the ladder values of $\hat c_1$ and
-$\kappa_2$ --- moduli \emph{and} arguments --- to the precision of the
+$\Xi_2$ --- moduli \emph{and} arguments --- to the precision of the
 ladder extrapolation, e.g.\ eight digits at $b=1.10$.
 
 \begin{table}[htbp]
@@ -799,7 +805,7 @@ $\tau_1=t_1\eee^{-2\pi\ii t_0}$ and $t_2/t_1^2$ (script \texttt{transition\_map.
 \small\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lllll}
 \toprule
-$b$ & $\hat c_1$ (ladder) & $\tau_1$ & $\kappa_2$ (ladder) & $t_2/t_1^2$\\
+$b$ & $\hat c_1$ (ladder) & $\tau_1$ & $\Xi_2$ (ladder) & $t_2/t_1^2$\\
 \midrule
 $1.05$ & $0.0850235\,\eee^{1.534136\ii}$ & $0.0850226\,\eee^{1.534165\ii}$ & $1.374049\,\eee^{1.413420\ii}$ & $1.374336\,\eee^{1.413645\ii}$\\
 $1.10$ & $0.08642720\,\eee^{1.55109214\ii}$ & $0.08642720\,\eee^{1.55109214\ii}$ & $1.440851\,\eee^{1.477690\ii}$ & $1.440851\,\eee^{1.477690\ii}$\\
@@ -817,10 +823,10 @@ $b=\eta$ (real, since the orbit of $u=1/\eee-1$ stays on the negative axis).
 
 \begin{theorem}\label{thm:reduction}
 Assume the following confluence statement \textup{(C)}: there are constants
-$s(b)\in\mathbb C$ such that, as $b\to\eta^-$,
+$s_*(b)\in\mathbb C$ such that, as $b\to\eta^-$,
 \[
  \Rr_b^{-1}\bigl(\eee(1+u)\bigr)\to\Phi_{\mathrm{att}}(u)-a,\qquad
- S_b^{-1}\bigl(\eee(1+u)\bigr)+s(b)\to\Phi_{\mathrm{rep}}(u),
+ S_b^{-1}\bigl(\eee(1+u)\bigr)+s_*(b)\to\Phi_{\mathrm{rep}}(u),
 \]
 uniformly on compact subsets of the upper gate, with the branches continued as
 in Section~\ref{sec:horn}.  Then for every $n\ge1$
@@ -836,8 +842,8 @@ $\arg\hat c_1\to\arg B_1+2\pi a=1.5865330757\ldots\pmod{2\pi}$.
 \end{theorem}
 
 \begin{proof}
-Replace $S_b$ by $S_b(\cdot-s(b))$, which leaves $\tau_n$ unchanged.  By (C),
-$T_b\to\Phi_{\mathrm{att}}\circ\Phi_{\mathrm{rep}}^{-1}-a=h^{-1}-a$ uniformly
+Replace $S_b$ by $S_b(\cdot-s_*(b))$, which leaves $\tau_n$ unchanged.  By (C),
+$T_b\to\Phi_{\mathrm{att}}\circ\Phi_{\mathrm{rep}}^{-1}-a=\mathfrak h^{-1}-a$ uniformly
 on $[0,1]+\ii Y_g$ for fixed $Y_g$ in the gate, so the Fourier coefficients on
 that line converge: $t_n\to B_n$ ($n\ge1$) and $t_0\to-a$, the latter because
 $B_0=0$ in the $\alpha$ normalisation.  Hence
@@ -962,8 +968,8 @@ paths in the respective parabolic basins:
 \item $\Rr_b^{-1}(\eee(1+u))\to\Phi_{\mathrm{att}}(u)-a$ uniformly on compact
   subsets of the parabolic basin of $f_\eta$;
 \item for a fixed $p'$ in the gate (below), putting
-  $s(b)=\Phi_{\mathrm{rep}}(p')-\mathcal S_b(p')$,
-  $\mathcal S_b(u)+s(b)\to\Phi_{\mathrm{rep}}(u)$ uniformly on compact
+  $s_*(b)=\Phi_{\mathrm{rep}}(p')-\mathcal S_b(p')$,
+  $\mathcal S_b(u)+s_*(b)\to\Phi_{\mathrm{rep}}(u)$ uniformly on compact
   subsets of the repelling basin (backward orbits tending to $0$).  Here
   $\mathcal S_b$ is the real-normalised repelling time, i.e.\ the branch of
   $S_b^{-1}$ that is real on the segment $(u_1,u_2)$ and is continued through
@@ -1032,19 +1038,19 @@ no circularity.
 
 \emph{(a) Inversion on the gate line.}  Fix $Y_*\ge Y_B+6$ and the line
 $\ell=[0,1]+\ii Y_*$.  By Rouch\'e, the solution $v_b(z)$ of
-$\mathcal S_b(v)+s(b)=z$ near $\Phi_{\mathrm{rep}}^{-1}(z)$ exists and converges
-uniformly on $\ell$.  Moreover $S_b(z-s(b))=\eee(1+v_b(z))$, because $\mathcal S_b$
+$\mathcal S_b(v)+s_*(b)=z$ near $\Phi_{\mathrm{rep}}^{-1}(z)$ exists and converges
+uniformly on $\ell$.  Moreover $S_b(z-s_*(b))=\eee(1+v_b(z))$, because $\mathcal S_b$
 is a branch of $S_b^{-1}$.
 
 \emph{(b) The gate line lies in the strip of holomorphy of $T$.}  The points
 $v_b(z)$, $z\in\ell$, lie within $o(1)$ of the gate, hence in the band $\mathcal B_b(Y_B+3)$.
-By Lemma~\ref{lem:band}(ii) their $S$-times $z-s(b)$ satisfy
-$|\operatorname{Im}(z-s(b))|\le h/2-Y_B-3+\pi/3+C/Y_B+C\varepsilon<h/2-Y_B-2$.  So the
-shifted line $\ell-s(b)$ lies in the strip $\Sigma$ of Lemma~\ref{lem:band}(iii),
+By Lemma~\ref{lem:band}(ii) their $S$-times $z-s_*(b)$ satisfy
+$|\operatorname{Im}(z-s_*(b))|\le h/2-Y_B-3+\pi/3+C/Y_B+C\varepsilon<h/2-Y_B-2$.  So the
+shifted line $\ell-s_*(b)$ lies in the strip $\Sigma$ of Lemma~\ref{lem:band}(iii),
 where $T$ is holomorphic.  Therefore the Fourier coefficients of
-$\tilde T=T(\cdot-s)$ on $\ell$ are $t_n\eee^{-2\pi\ii ns}$ and
-$\tilde t_0=t_0-s$, with the $t_n$ those of $T$ on $\mathbb R$.  No prior
-knowledge of $\operatorname{Im}s$ is used.
+$\tilde T=T(\cdot-s_*)$ on $\ell$ are $t_n\eee^{-2\pi\ii ns_*}$ and
+$\tilde t_0=t_0-s_*$, with the $t_n$ those of $T$ on $\mathbb R$.  No prior
+knowledge of $\operatorname{Im}s_*$ is used.
 
 \emph{(c) The branch of $\Rr_b^{-1}$.}  Continue $\Rr_b^{-1}$ from $u^*$ along
 the negative axis to $f_\eta^{N_0}u^*$, where it is real.  Then go inside
@@ -1068,8 +1074,8 @@ $O(1/Y)$.  Hence $\Phi_{\mathrm{att}}\circ\Phi_{\mathrm{rep}}^{-1}(z)-z\to0$ as
 $\operatorname{Im}z\to+\infty$, so its constant Fourier mode vanishes:
 $B_0=0$.  Numerically $|B_0|<10^{-59}$.
 
-By (a)--(d) and Theorem~\ref{thm:C}, $\tilde T\to h^{-1}-a$ uniformly on
-$\ell$, where $h^{-1}$ denotes the inverse horn map (not the period $h$).
+By (a)--(d) and Theorem~\ref{thm:C}, $\tilde T\to \mathfrak h^{-1}-a$ uniformly on
+$\ell$, where $\mathfrak h^{-1}$ denotes the inverse horn map.
 So $\tilde t_n\to B_n$ and $\tilde t_0\to-a$, and
 $\tau_n=\tilde t_n\eee^{-2\pi\ii n\tilde t_0}$ gives:
 
@@ -1120,12 +1126,12 @@ is biholomorphic near $0$.  For real $s>0$ the roots $u_1<0<u_2$ are the fixed
 points of Section~\ref{sec:proofC}.  Put $t=\sqrt{D(s)}$.  Then
 $u_{1,2}=\tfrac12(\sigma_1\mp t)$ are holomorphic functions of $t$, interchanged by
 $t\mapsto-t$.  Since $f_s'(u_1)=1+(u_1-u_2)k_s(u_1)$, the residues are
-$A_1=a_s(u_1,u_2)$ and $A_2=a_s(u_2,u_1)$, where
+$A_1=A_s(u_1,u_2)$ and $A_2=A_s(u_2,u_1)$, where
 \[
- a_s(x,y)=\frac1{\log\bigl(1+(x-y)k_s(x)\bigr)}
- =\frac1{(x-y)k_s(x)}+\frac12+(x-y)\,h_s(x,y)
+ A_s(x,y)=\frac1{\log\bigl(1+(x-y)k_s(x)\bigr)}
+ =\frac1{(x-y)k_s(x)}+\frac12+(x-y)\,\mathsf q_s(x,y)
 \]
-with $h_s$ holomorphic.
+with $\mathsf q_s$ holomorphic.
 
 \begin{lemma}[Uniform model]\label{lem:model}
 Fix $N\ge1$.  After shrinking $s_0$ and $r$, there are holomorphic functions
@@ -1156,8 +1162,8 @@ Then:
 \end{lemma}
 
 \begin{proof}
-\emph{Removability.}  Let $\Theta(s,x,y,u)=a_s(x,y)\ell(y)+a_s(y,x)\ell(x)$,
-where $\ell$ is holomorphic in $(s,x,y,u)$.  By the expansion of $a_s$, its
+\emph{Removability.}  Let $\Theta(s,x,y,u)=A_s(x,y)\ell(y)+A_s(y,x)\ell(x)$,
+where $\ell$ is holomorphic in $(s,x,y,u)$.  By the expansion of $A_s$, its
 singular part is
 \[
  \frac{\ell(y)/k_s(x)-\ell(x)/k_s(y)}{x-y}.
@@ -1166,7 +1172,7 @@ The numerator vanishes on $x=y$, so $\Theta$ extends holomorphically across the
 diagonal.  Evaluate $\Theta$ at $(x,y)=(u_1,u_2)$.  The result is a
 holomorphic function of $t$, even in $t$, hence a holomorphic function of
 $t^2=D(s)$, hence of $s$.  The same holds for the other pairing
-$\Theta'(s,x,y,u)=a_s(x,y)\ell(x)+a_s(y,x)\ell(y)$, whose singular part
+$\Theta'(s,x,y,u)=A_s(x,y)\ell(x)+A_s(y,x)\ell(y)$, whose singular part
 $[\ell(x)/k_s(x)-\ell(y)/k_s(y)]/(x-y)$ is again removable and symmetric.
 These arguments apply to the following choices of $\ell$:
 \begin{itemize}
@@ -1223,7 +1229,7 @@ In particular $|u_k|\le2/(R+k/2)$.  For $\sigma=0$ this holds for all $k$.
 \end{lemma}
 
 \begin{proof}
-For $|u|\le r$ we have $-2/f_0(u)=-2/u+1+\epsilon(u)$ with $|\epsilon(u)|\le C_0|u|$,
+For $|u|\le r$ we have $-2/f_0(u)=-2/u+1+\mathsf e(u)$ with $|\mathsf e(u)|\le C_0|u|$,
 and $|f_0(u)|\ge|u|/2$.  Write $f_\sigma=f_0+\sigma g$ with $|g|\le G$.
 Suppose the claim holds up to $k<J$.  Then $|u_k|\le2/R\le r$ and
 $w:=\sigma g(u_k)/f_0(u_k)$ satisfies
@@ -1324,7 +1330,7 @@ $N\ge3$ every term is $O(s^{10/9})$.
 
 \begin{remark}
 Taking $J=s^{-2/(2N+3)}$ instead gives the error $O(s^{2-8/(2N+3)})$, so
-$O(s^{2-\epsilon})$ for any $\epsilon>0$ with $N$ large.  The proof needs $N\ge3$
+$O(s^{2-\delta})$ for any $\delta>0$ with $N$ large.  The proof needs $N\ge3$
 only because of the crude bound on the head ($N=2$ would give $s^{6/7}$).  The
 series converges for $N\ge2$.
 
@@ -1353,15 +1359,14 @@ Remark~\ref{rem:invariance} and~\eqref{eq:taun}, $\tau_n$ does not depend on the
 additive normalisation of the repelling coordinate.  We use
 $\mathcal S^\sharp_s=\mathcal S_s-\mathcal S_s(p')+\Phi_{\mathrm{rep}}(p')$.
 This differs from the real normalisation by the constant called
-$s(b)$ in Theorem~\ref{thm:C}(2), which we denote $s_*(b)$ here to avoid a clash
-with the parameter $s$, and it is right-differentiable with derivative
+$s_*(b)$ in Theorem~\ref{thm:C}(2), and it is right-differentiable with derivative
 $\dot{\mathcal S}^\sharp$.  On the attracting side,
 $\Rr_b^{-1}(\eee(1+u))=\mathcal A_s(u)-\mathcal A_s(u^*)$, with the branch fixed
 in item~(c) of Section~\ref{sec:proofC}.
 
 \begin{theorem}\label{thm:D}
 Let $\ell=[0,1]+\ii Y_*$ be the gate line of Section~\ref{sec:proofC}, and put
-$v(z)=\Phi_{\mathrm{rep}}^{-1}(z)$ and $\tilde T_0=h^{-1}-a$.  Define
+$v(z)=\Phi_{\mathrm{rep}}^{-1}(z)$ and $\tilde T_0=\mathfrak h^{-1}-a$.  Define
 \[
  \delta T(z)=\dot{\mathcal A}(v(z))-\dot{\mathcal A}(u^*)
  -\tilde T_0'(z)\,\dot{\mathcal S}^\sharp(v(z)),\qquad
@@ -1523,7 +1528,7 @@ Theorem~\ref{thm:D} from $O(p^{10/9})$ to $O(p^2)$.
 Theorem~\ref{thm:E} gives explicit asymptotic coefficients in the normalisation
 of $\tau_n$, but says nothing about summability.  The
 $\tfrac12$-summability of~\cite{ChristopherRousseau}, in their normalisation,
-suggests Gevrey-$2$ growth $|\kappa^{(n)}_j|\lesssim C^j(j!)^2$ in $p\propto\epsilon$
+suggests Gevrey-$2$ growth $|\kappa^{(n)}_j|\lesssim C^j(j!)^2$ in $p\propto\epsilon_{\rm CR}$
 (Gevrey-$1$ in $\sqrt p$).  This matches the scale $\Lambda=\exp(-C/\sqrt p)$ of the
 beyond-all-orders terms.
 The constants in our proof grow faster, because $N$ must grow like $m^2$.
@@ -1532,12 +1537,12 @@ The constants in our proof grow faster, because $N$ must grow like $m^2$.
 \begin{remark}[Relation to the literature]
 Christopher and Rousseau show that the unfolded modulus, in a particular
 normalisation, is $\tfrac12$-summable in the canonical parameter
-$\epsilon=(A_2-A_1)^{-2}$, with the Glutsyuk direction as the singular
+$\epsilon_{\rm CR}=(A_2-A_1)^{-2}$, with the Glutsyuk direction as the singular
 direction~\cite[Cor.~4.9]{ChristopherRousseau}.  One checks the exact identity
-$p=4\epsilon/(1-\nu^2\epsilon)$.  Their result gives the existence of an
+$p=4\epsilon_{\rm CR}/(1-\nu^2\epsilon_{\rm CR})$.  Their result gives the existence of an
 asymptotic expansion.  Marde\v{s}i\'c--Roussarie--Rousseau proved continuity
-at $\epsilon=0$ and conjectured $1$-summability in
-$\sqrt\epsilon$~\cite[\S11]{MRR2004}; this is the result
+at $\epsilon_{\rm CR}=0$ and conjectured $1$-summability in
+$\sqrt\epsilon_{\rm CR}$~\cite[\S11]{MRR2004}; this is the result
 of~\cite{ChristopherRousseau}, and Rib\'on proved multisummability of Fatou
 coordinates and \'Ecalle--Voronin invariants for unfoldings of any finite
 codimension~\cite{Ribon2010}.  These results give existence of the expansion
@@ -1553,9 +1558,9 @@ exists, but we have not found its first-order coefficients in the literature.
 The closest analogue is the splitting of separatrices of area-preserving maps
 near a saddle-centre bifurcation: Gelfreich and Br\"annstr\"om prove that the
 homoclinic invariant is $\eee^{-2\pi^2/\log\lambda}$ times an asymptotic series
-$\sum_k a_k\delta^{2k}$, with $a_0$ the Stokes constant of the parabolic
+$\sum_k \mathsf c_k\delta^{2k}$, with $\mathsf c_0$ the Stokes constant of the parabolic
 limit~\cite{GelfreichBrannstrom,GelfreichSauzin2001}, and Gelfreich and Sim\'o
-extract the higher $a_k$ numerically to high precision~\cite{GelfreichSimo2008}.
+extract the higher $\mathsf c_k$ numerically to high precision~\cite{GelfreichSimo2008}.
 That setting concerns one Fourier mode of a two-dimensional map, and its
 coefficients for $k\ge1$ are defined through auxiliary problems rather than
 convergent orbit sums.  Within a parabolic family (no splitting of the fixed
@@ -1604,7 +1609,7 @@ the sixth digit.
 
 \section{The sewing solution: decay estimate}\label{sec:W2}
 
-Throughout, $b<\eta$ is real and close to $\eta$, $\varepsilon=|\log\lambda|$,
+Throughout, $b<\eta$ is real and close to $\eta$,
 and $S$ has the real normalisation of Section~\ref{sec:transition}, so
 $T(z)-z=\sum t_n\eee^{2\pi\ii nz}$ with $\operatorname{Im}t_0=h/2$ and
 $t_{-n}=\overline{t_n}$ (Lemma~\ref{lem:realT}).
@@ -1622,7 +1627,7 @@ $Y_B$ such that for $Y\ge Y_B$ and all $b$ near $\eta$:
 \begin{enumerate}
 \item[(i)] every $u\in\mathcal B_b(Y)$ has its forward orbit in $D_{r'}$ tending
   to $u_1$ and its principal backward orbit in $D_{r'}$ tending to $u_2$, with
-  $\sum_{k\in\mathbb Z}|F_b(f_b^ku)|\le C/Y+C\varepsilon$;
+  $\sum_{k\in\mathbb Z}|F_b(f_b^ku)|\le C/Y+C|\log\lambda|$;
 \item[(ii)] the real-normalised times $\mathcal R_b=\Psi_b+\sum_{k\ge0}F_b\circ f_b^k+c_R$
   and $\mathcal S_b=\Psi_b-\sum_{k\ge1}F_b\circ f_b^{-k}+c_S$ are holomorphic and
   injective on $\mathcal B_b(Y)$.  They are branches of $\Rr_b^{-1}$ and
@@ -1630,7 +1635,7 @@ $Y_B$ such that for $Y\ge Y_B$ and all $b$ near $\eta$:
   item (c) above, and
   \[
    \bigl|\operatorname{Im}\mathcal S_b(u)-(\operatorname{Im}Z_b(u)-h/2)\bigr|
-   \le\tfrac\pi3+C/Y+C\varepsilon ;
+   \le\tfrac\pi3+C/Y+C|\log\lambda| ;
   \]
 \item[(iii)] $S_b$ maps the strip $\Sigma=\{|\operatorname{Im}w'|<h/2-Y-2\}$
   into $\mathcal B_b(Y)$ with $\mathcal S_b\circ S_b=\mathrm{id}$.  Consequently
@@ -1642,24 +1647,24 @@ $Y_B$ such that for $Y\ge Y_B$ and all $b$ near $\eta$:
 \end{lemma}
 
 \begin{proof}
-(i) Put $q=\eee^{Z/A_1}=(u-u_1)/(u-u_2)$ and $\zeta=Z/A_1=-\varepsilon Z$, so
-$\operatorname{Im}\zeta\in(-2\pi+\varepsilon Y,-\varepsilon Y)$ on the band.  On
+(i) Put $q=\eee^{Z/A_1}=(u-u_1)/(u-u_2)$ and $\zeta=Z/A_1=-|\log\lambda| Z$, so
+$\operatorname{Im}\zeta\in(-2\pi+|\log\lambda| Y,-|\log\lambda| Y)$ on the band.  On
 $-2\pi\le\operatorname{Im}\zeta\le0$ one has
 $|\eee^\zeta-1|\ge c\min(1,\delta(\zeta))\max(1,|\eee^\zeta|)$ with
 $\delta(\zeta)=\min(|\zeta|,|\zeta+2\pi\ii|)$ and an absolute $c>0$; the only
 zeros are $0$ and $-2\pi\ii$.  On the band
-$\delta(\zeta)=\varepsilon\min(|Z|,|Z-\ii h|)>\varepsilon Y$.  Since
-$u-u_2=(u_2-u_1)/(q-1)$ and $|u_2-u_1|/\varepsilon\to2$
+$\delta(\zeta)=|\log\lambda|\min(|Z|,|Z-\ii h|)>|\log\lambda| Y$.  Since
+$u-u_2=(u_2-u_1)/(q-1)$ and $|u_2-u_1|/|\log\lambda|\to2$
 (Lemma~\ref{lem:res}), this gives
 \begin{equation}\label{eq:bandsize}
- |u-u_2|\le C\bigl(\varepsilon+Y^{-1}\bigr),\qquad
+ |u-u_2|\le C\bigl(|\log\lambda|+Y^{-1}\bigr),\qquad
  |u-u_1||u-u_2|=\frac{|q|\,|u_2-u_1|^2}{|q-1|^2}\le
  \begin{cases}C\,\min(|Z|,|Z-\ii h|)^{-2},&\delta(\zeta)\le1,\\
- C\varepsilon^2\eee^{-\varepsilon|\operatorname{Re}Z|},&\delta(\zeta)>1,\end{cases}
+ C|\log\lambda|^2\eee^{-|\log\lambda|\,|\operatorname{Re}Z|},&\delta(\zeta)>1,\end{cases}
 \end{equation}
 using $|q|/\max(1,|q|)^2=\eee^{-|\operatorname{Re}\zeta|}$.  So
 $\mathcal B_b(Y)\subset D_{C/Y+|u_1|+|u_2|}\subset D_{r'/2}$ for $Y$ large.  By the
-proof of Lemma~\ref{lem:petal}, $Z\circ f-Z=1+O(|u|+\varepsilon)$, so
+proof of Lemma~\ref{lem:petal}, $Z\circ f-Z=1+O(|u|+|\log\lambda|)$, so
 $\operatorname{Re}Z$ increases by at least $\tfrac34$ per step while the orbit is
 in $D_{r'/2}$.
 
@@ -1667,12 +1672,12 @@ The imaginary part is controlled through
 $\Psi_b=Z_b+(A_1+A_2)\log(u-u_2)$, with step error
 $|F_b|\le M|u-u_1||u-u_2|$ (Lemma~\ref{lem:F}).  Summing~\eqref{eq:bandsize}
 along $\operatorname{Re}Z_k\ge\operatorname{Re}Z_0+\tfrac34k$ bounds
-$\sum_k|F_b(u_k)|$ by $C'/Y+C'\varepsilon$.  Points with
+$\sum_k|F_b(u_k)|$ by $C'/Y+C'|\log\lambda|$.  Points with
 $\delta(\zeta_k)\le1$ contribute $\sum_k(x_k^2+Y^2)^{-1}\le C/Y$, and the others
-$\varepsilon^2\sum\eee^{-\varepsilon|x_k|}\le C\varepsilon$.  Now
+$|\log\lambda|^2\sum\eee^{-|\log\lambda|\,|x_k|}\le C|\log\lambda|$.  Now
 $\operatorname{Im}Z-\operatorname{Im}\Psi=-(A_1+A_2)\arg(u-u_2)$ with
 $\arg(u-u_2)\in(0,2\pi)$ on the lens.  So $\operatorname{Im}Z$ drifts by at most
-$C'/Y+C'\varepsilon+\tfrac{2\pi}3+o(1)$ along the orbit, which is $<Y/2$ for
+$C'/Y+C'|\log\lambda|+\tfrac{2\pi}3+o(1)$ along the orbit, which is $<Y/2$ for
 $Y\ge Y_B\ge8$.  By induction the orbit stays in
 $\mathcal B_b(Y/2)\subset D_{r'/2}$, and $\operatorname{Re}Z_k\to+\infty$,
 i.e.\ $u_k\to u_1$.  The continued values of $Z$ along the orbit have
@@ -1681,7 +1686,7 @@ slit-plane branch.  The backward orbit is the forward orbit of the reflected
 inverse family $G_b(v)=-f_b^{-1}(-v)$, to which the same argument applies
 (its prepared form is checked in the proof of Theorem~\ref{thm:C}(2)).  Its
 period is $h_2=h+2\pi/3+o(1)$, so $\mathcal B_b(Y)$ is contained in the
-corresponding band of $G_b$ at height $Y(1+O(\varepsilon))-1$.  This is harmless
+corresponding band of $G_b$ at height $Y(1+O(|\log\lambda|))-1$.  This is harmless
 for $Y\ge Y_B$.
 
 (ii) As in the proof of Theorem~\ref{thm:C}(1), $\Psi_b(f^nu)-n\to A_1\log\sigma_b(u)+\mathrm{const}$
@@ -1694,7 +1699,7 @@ $\operatorname{Im}c_S$.  The displayed estimate then follows from
 $\operatorname{Im}\Psi=\operatorname{Im}Z+(A_1+A_2)\arg(u-u_2)$,
 $A_1+A_2\to\tfrac13$ and (i).  Injectivity: if $\mathcal S_b(u)=\mathcal S_b(u')$
 then the principal backward orbits satisfy
-$\tau_b(u_{-n})=\tau_b(u'_{-n})$ near $u_2$, where $\tau_b$ is injective, so
+$\sigma_{{\rm rep},b}(u_{-n})=\sigma_{{\rm rep},b}(u'_{-n})$ near $u_2$, where $\sigma_{{\rm rep},b}$ is injective, so
 $u_{-n}=u'_{-n}$.  Moreover $f_b$ is injective on $D_{r'}$ (its non-injectivity
 has period $2\pi\ii/\log b$ in $w$, far larger than the disc), so $u=u'$.  The
 same argument with $\sigma_b$ and forward orbits proves injectivity of
@@ -1725,7 +1730,7 @@ that for $b\in(b_1,\eta)$ and all $n\ne0$,
 Take $Y=Y_B+1$ in Lemma~\ref{lem:band}(iii), so that the estimate (ii) is
 available on the closure of the lens.  $\Sigma$ has half-width
 $h/2-Y_B-3=d+1$, so the lines $\operatorname{Im}w'=\pm d$ lie in $\Sigma$.  On them, by (iii) and (i),
-$T-\mathrm{id}-t_0=\sum_kF_b(f_b^kS_b)-\text{mean}$ has modulus at most $2(C/Y_B+C\varepsilon)$.  Let $M$ be the supremum of this over
+$T-\mathrm{id}-t_0=\sum_kF_b(f_b^kS_b)-\text{mean}$ has modulus at most $2(C/Y_B+C|\log\lambda|)$.  Let $M$ be the supremum of this over
 $b\in(b_1,\eta)$.  Cauchy's estimate on these lines gives the bound
 for $n>0$ and $n<0$.  This does not use Theorem~\ref{thm:C}.
 \end{proof}
@@ -1742,14 +1747,14 @@ $\|\eee^{g_1}-\eee^{g_2}\|_H\le\|g_1-g_2\|_H\,\eee^{\max\|g_j\|_H}$.
 \begin{theorem}[W2]\label{thm:W2}
 Let $M,d$ be as in Lemma~\ref{lem:modes}, $\rho=\tfrac14$, and choose $D\ge1$
 with $4\pi M\eee^{-2\pi D}\le\rho(1-\eee^{-2\pi D})^2$.  Put $H=d-D-\rho$ and
-$\tau=T-\mathrm{id}-t_0$.  Assume $H>1$, which holds for $b$ near $\eta$ since
-$d\sim\pi/\varepsilon$, and that $b$ is so close to $\eta$ that
+$T^\circ=T-\mathrm{id}-t_0$.  Assume $H>1$, which holds for $b$ near $\eta$ since
+$d\sim\pi/|\log\lambda|$, and that $b$ is so close to $\eta$ that
 $C_1\Lambda\eee^{4\pi(Y_0+D+1)}<\tfrac12$, where $C_1=4M+2\rho$.  Then:
 \begin{enumerate}
-\item The map $\mathcal T(Q)=-\Pi_{<0}[\tau\circ(\mathrm{id}+Q)]$ is a
+\item The map $\mathcal T(Q)=-\Pi_{<0}[T^\circ\circ(\mathrm{id}+Q)]$ is a
   contraction, with constant $\le\tfrac12$, of the ball
   $\{Q\in\Pi_{<0}\mathfrak A_H:\|Q\|_H\le\rho\}$ into itself.  Its fixed point
-  $Q^*$ and $P':=\Pi_{\ge0}[\tau\circ(\mathrm{id}+Q^*)]$ satisfy
+  $Q^*$ and $P':=\Pi_{\ge0}[T^\circ\circ(\mathrm{id}+Q^*)]$ satisfy
   \[
    T\circ(\mathrm{id}+Q^*)=\mathrm{id}+t_0+P'\qquad\text{on }|\operatorname{Im}z|<H.
   \]
@@ -1772,22 +1777,22 @@ $C_1\Lambda\eee^{4\pi(Y_0+D+1)}<\tfrac12$, where $C_1=4M+2\rho$.  Then:
 \end{theorem}
 
 \begin{proof}
-(1) Write $\tau\circ(\mathrm{id}+Q)=\sum_{m\ne0}t_m\eee^{2\pi\ii mz}\eee^{2\pi\ii mQ}$.
+(1) Write $T^\circ\circ(\mathrm{id}+Q)=\sum_{m\ne0}t_m\eee^{2\pi\ii mz}\eee^{2\pi\ii mQ}$.
 Then
 \[
- \|\tau\circ(\mathrm{id}+Q)\|_H\le\sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\rho)}
+ \|T^\circ\circ(\mathrm{id}+Q)\|_H\le\sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\rho)}
  \le2M\sum_{m\ge1}\eee^{-2\pi mD}\le\rho
 \]
 by Lemma~\ref{lem:modes} and the choice of $D$.  Similarly
 \[
- \|\tau\circ(\mathrm{id}+Q_1)-\tau\circ(\mathrm{id}+Q_2)\|_H\le
+ \|T^\circ\circ(\mathrm{id}+Q_1)-T^\circ\circ(\mathrm{id}+Q_2)\|_H\le
  \sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\rho)}2\pi|m|\,\|Q_1-Q_2\|_H
  \le\frac{4\pi M\eee^{-2\pi D}}{(1-\eee^{-2\pi D})^2}\|Q_1-Q_2\|_H ,
 \]
 which is at most $\tfrac12\|Q_1-Q_2\|_H$.  Since $|\operatorname{Im}(z+Q)|\le H+\rho<d$
 on the strip, the Fourier series of $T$ converges at $z+Q(z)$ and equals $T$
 there (Lemma~\ref{lem:band}).  The identity follows by splitting
-$\tau\circ(\mathrm{id}+Q^*)=P'+\Pi_{<0}[\ldots]=P'-Q^*$.
+$T^\circ\circ(\mathrm{id}+Q^*)=P'+\Pi_{<0}[\ldots]=P'-Q^*$.
 
 (2) The series of $Q^*$ has only negative modes and converges on
 $\operatorname{Im}z\le H$, so it converges on the whole lower half-plane
@@ -1857,7 +1862,7 @@ $n(Y_0+1+\rho)+2Y_0+2D+2.5\le(n+2)(Y_0+D+2)$.
 \begin{corollary}\label{cor:Kw}
 For the sewing solution, $\hat c_n(\Kk^W_b)\to B_n\eee^{2\pi\ii na}$ for every
 $n\ge1$ as $b\to\eta^-$.  Moreover,
-$\kappa_n(\Kk^W_b)\to B_n/B_1^n$ and
+$\Xi_n(\Kk^W_b)\to B_n/B_1^n$ and
 $\lim\arg\hat c_1=\arg B_1+2\pi a$.
 \end{corollary}
 
@@ -2156,10 +2161,10 @@ of Proposition~\ref{prop:weld}, and a proper-map argument identifies the
 continued solution with $\Kk^W_b$.
 
 \emph{Conventions for this section.}  Here $\varepsilon$ is the complex parameter
-$1-\lambda_1$ defined below; for real $b<\eta$ it differs from the quantity
-$|\log\lambda|$ called $\varepsilon$ in Sections~\ref{sec:W2}--\ref{sec:char} by $O(\varepsilon^2)$, and
+$1-\lambda_1$ defined below; for real $b<\eta$ it is the $\varepsilon$ of the
+earlier sections, and
 we use results of those sections only in the form stated there.  The letters
-$\alpha$ (a tilt angle), $\varsigma$ (a normal coordinate), $s\in[0,1]$ (an
+$\alpha$ (a tilt angle), $\varsigma$ (a normal coordinate), $\mathsf r\in[0,1]$ (an
 interpolation parameter), $H$, $X$, $M$, $q$ and $f$ have local meanings (in the subsection
 ``Consequences at the cusp'' $f=F_\eta^{\mathrm{att}}$).  $L_1$ denotes
 the fixed point with multiplier $1-\varepsilon$: it is the upper fixed point $L_+$ for
@@ -2353,7 +2358,7 @@ $f_\chi(\chi)=\chi+\Delta(\chi)$ be $f_\varepsilon$ in the coordinate $\chi$.
   is injective on every convex subset of $\mathcal G^{\rm c}$.
 \item $f_\chi(\ell)$ is the graph $\varsigma=g(t)$ of a real-analytic function with
   $\tfrac25|\varepsilon|\le g\le\tfrac65|\varepsilon|$ and $|g'|\le C|\varepsilon|^2$.
-\item $M(t,s)=\ii\pi+x_0+t\omega+s\Delta(\ii\pi+x_0+t\omega)$ is an
+\item $M(t,\mathsf r)=\ii\pi+x_0+t\omega+\mathsf r\Delta(\ii\pi+x_0+t\omega)$ is an
   orientation-preserving real-analytic diffeomorphism of $\mathbb R\times[0,1]$
   onto the closed strip $\hat H=\{0\le\varsigma\le g(t)\}$ between $\ell$ and $f_\chi(\ell)$.
 \item $\chi\mapsto u(\chi)$ is injective on $\hat H$.  Its image $H=H^\ell_\varepsilon$
@@ -2379,8 +2384,8 @@ therefore a real-analytic bijection of $\mathbb R$, and (1) and
 $|\partial_\chi\Delta|\le C|\varepsilon|^2$ bound $g$ and $g'$.
 
 (3) $\partial_tM=\omega(1+O(|\varepsilon|^2))$ and $\partial_sM=\Delta$, so the Jacobian is
-$\operatorname{Im}(\Delta\bar\omega)(1+O(|\varepsilon|^2))\ge\tfrac13|\varepsilon|>0$.  $M$ maps $s=0$ onto $\ell$ and
-$s=1$ onto $f_\chi(\ell)$ bijectively, each segment $t=\mathrm{const}$ to a segment
+$\operatorname{Im}(\Delta\bar\omega)(1+O(|\varepsilon|^2))\ge\tfrac13|\varepsilon|>0$.  $M$ maps $\mathsf r=0$ onto $\ell$ and
+$\mathsf r=1$ onto $f_\chi(\ell)$ bijectively, each segment $t=\mathrm{const}$ to a segment
 of length $\le2|\varepsilon|$ joining them, and is proper.  A proper local
 diffeomorphism that is a bijection on the boundary lines is a
 diffeomorphism onto the region between them.
@@ -2411,7 +2416,7 @@ Let $\ell$ be admissible for $\varepsilon\in\mathcal S^{\rm c}_{r_0}$.  In the c
 $\hat H_0$ be the straight strip between the line $A_1\ell$ and $A_1\ell+1$, and
 let $C_0=\hat H_0/(\zeta\sim\zeta+1)=\mathbb C/\mathbb Z$.  The map
 \[
- \mathcal H\bigl(A_1(\ii\pi+x_0+t\omega)+s\bigr)=A_1M(t,s),\qquad t\in\mathbb R,\ 0\le s\le1,
+ \mathcal H\bigl(A_1(\ii\pi+x_0+t\omega)+\mathsf r\bigr)=A_1M(t,\mathsf r),\qquad t\in\mathbb R,\ 0\le \mathsf r\le1,
 \]
 induces a quasiconformal homeomorphism $\mathcal H:C_0\to X$ with
 $|\mathcal H(\zeta)-\zeta|\le C|\varepsilon|$ on $\hat H_0$ and Beltrami coefficient
@@ -2434,16 +2439,16 @@ $|\upsilon_{\mathcal H}|\le C|\varepsilon|$.  Consequently:
 \begin{proof}
 $A_1\Delta=1+\vartheta_1$ with $|\vartheta_1|\le C|\varepsilon|$ on $\mathcal G^{\rm c}$
 (Lemma~\ref{lem:cusp-step}(2),(3)).  In the source coordinate
-$\zeta=A_1(\ii\pi+x_0+t\omega)+s$ one has $\mathcal H(\zeta)=\zeta+s\vartheta_1$, so
+$\zeta=A_1(\ii\pi+x_0+t\omega)+\mathsf r$ one has $\mathcal H(\zeta)=\zeta+\mathsf r\vartheta_1$, so
 $|\mathcal H(\zeta)-\zeta|\le C|\varepsilon|$.  The partial derivatives are
-$\partial_t\mathcal H=A_1\omega(1+O(|\varepsilon|^2))$ and $\partial_s\mathcal H=1+\vartheta_1$, against
+$\partial_t\mathcal H=A_1\omega(1+O(|\varepsilon|^2))$ and $\partial_{\mathsf r}\mathcal H=1+\vartheta_1$, against
 $A_1\omega$ and $1$ for the identity.  The unit vectors $A_1\omega/|A_1\omega|$ and $1$
 make an angle whose sine is
 $|\operatorname{Im}(\omega\overline{\operatorname{Log}\lambda_1})|/|\operatorname{Log}\lambda_1|\ge\tfrac12-C|\varepsilon|$, by
 $\operatorname{Log}\lambda_1=-\varepsilon(1+O(\varepsilon))$ and~\eqref{eq:admissible}.  So, in this basis,
 $D\mathcal H=I+O(|\varepsilon|)$ and $|\upsilon_{\mathcal H}|\le C|\varepsilon|$.  $\mathcal H$ is a homeomorphism
-of the strips by Lemma~\ref{lem:crescent}(3); it maps the edge $s=0$ to
-$A_1\ell$ and $s=1$ to $A_1f_\chi(\ell)$ with the same $t$, and hence respects the
+of the strips by Lemma~\ref{lem:crescent}(3); it maps the edge $\mathsf r=0$ to
+$A_1\ell$ and $\mathsf r=1$ to $A_1f_\chi(\ell)$ with the same $t$, and hence respects the
 identifications $\zeta\sim\zeta+1$ and $u\sim f_\varepsilon(u)$.  Across $k$ seams,
 $\mathcal H(\zeta+k)$ is represented on the continued branch by
 $A_1f_\chi^k(\mathcal H(\zeta)/A_1)$, and $A_1f_\chi^k(\chi)-A_1\chi-k=O(|k||\varepsilon|)$ for
@@ -2452,7 +2457,7 @@ $|k|\le3$ by Lemma~\ref{lem:cusp-step}(2).
 (1) $C_0\cong\mathbb C^*$.  Each end of $X$ is the image of an end of $C_0$, a
 punctured disc; quasiconformal maps preserve the infinite modulus of an
 annular end~\cite{LehtoVirtanen}, so each end of $X$ is a punctured disc and
-$X\cong\mathbb C^*$.  In $C_0$ the passage from the edge $s=0$ to $s=1$ adds $1$.
+$X\cong\mathbb C^*$.  In $C_0$ the passage from the edge $\mathsf r=0$ to $\mathsf r=1$ adds $1$.
 The $u_1$-end is $t\to-\infty$, where
 $\operatorname{Im}\zeta=t\operatorname{Im}(A_1\omega)+O(1)\to+\infty$ because
 $\operatorname{Im}(A_1\omega)=-\operatorname{Im}(\operatorname{Log}\lambda_1\bar\omega)/|\operatorname{Log}\lambda_1|^2<0$.  Since $\mathcal H$
@@ -2512,18 +2517,18 @@ By induction $\operatorname{Re}Z^*_n$ increases by at least $\tfrac12$ per step,
 $|Z|\ge|Z^*_{N_1}|-3\ge3/\rho_1$ on the $3$-neighbourhoods, so $|u|\le1.1\rho_1+C|\varepsilon|$
 there; this gives (1) and the last part of (3).  Multiplying by
 $1/A_1=-\varepsilon(1+O(\varepsilon))$, $\chi^*_n$ lies within $C|\varepsilon|\log(1/|\varepsilon|)+C|\varepsilon|/\rho_1$ of the
-ray $\{-\varepsilon\tau:\tau\ge0\}$ in the range of (1).
+ray $\{-\varepsilon r:r\ge0\}$ in the range of (1).
 
 The origin has $\varsigma(0)=-\pi\cos\alpha+x_0\sin\alpha\le-1.48$ and
 $|\varsigma(0)|\le\sqrt{\pi^2+1/4}$, and along the ray $\varsigma$ increases at rate
-$-\operatorname{Im}(\varepsilon\bar\omega)\ge|\varepsilon|/2$; so the ray meets $\ell$ at $\tau\le6.4/|\varepsilon|$.
+$-\operatorname{Im}(\varepsilon\bar\omega)\ge|\varepsilon|/2$; so the ray meets $\ell$ at $r\le6.4/|\varepsilon|$.
 Before that crossing the ray stays at distance $\ge2\pi\sin\tfrac{5\pi}{12}>6$ from
 $2\pi\ii k$, $k\le-1$, and in $\{\varsigma<0\}$, at distance $\ge1.48$ from $2\pi\ii k$,
 $k\ge1$.  With the smallness of the deviation this gives (3).  The normal
 component of each step is at least $|\varepsilon|(\tfrac12-C\rho_1-C|\varepsilon|)>0$, so
 $\varsigma(\chi^*_n)$ is strictly increasing, and $n_0$ exists with the stated bound.
 Then $-\tfrac65|\varepsilon|\le\varsigma(\chi^*_{n_0-1})<0$, so $\chi^*_{n_0-1}$ lies in the convex strip
-$\{|\varsigma|\le\tfrac14\}$, on which each $\mathrm{id}+s\Delta$, $0\le s\le1$, is injective.
+$\{|\varsigma|\le\tfrac14\}$, on which each $\mathrm{id}+\mathsf r\Delta$, $0\le \mathsf r\le1$, is injective.
 This isotopy carries $\ell$ to $f_\chi(\ell)$ and the side $\{\varsigma<0\}$ of $\ell$ into
 the corresponding side of $f_\chi(\ell)$; hence $\chi^*_{n_0}\in\hat H\setminus f_\chi(\ell)$.
 \end{proof}
@@ -2754,20 +2759,20 @@ jointly holomorphic.
 \end{proposition}
 
 \begin{proof}
-Write $a=\log b$ and choose the principal fixed-point pair $L_+(b)$ and
+Write $\mathcal L=\log b$ and choose the principal fixed-point pair $L_+(b)$ and
 $L_-(b)$, conjugate when $b>\eta$ and characterised there by
-$0<a\operatorname{Im}L_+<\pi$.  They are simple fixed
+$0<\mathcal L\operatorname{Im}L_+<\pi$.  They are simple fixed
 points and hence holomorphic in $b$ near $b_0$.  Set
 $u_b=(L_++L_-)/2$, $v_b=(L_+-L_-)/(2\ii)$, and
 $\gamma_b(t)=u_b+\ii v_b t$ for $-1\le t\le1$.
 At a real base, $u_b,v_b\in\mathbb R$, $v_b>0$, and
 \[
  E_b(\gamma_b(t))=r_b\eee^{\ii\theta_b t},\qquad
- r_b=\eee^{a u_b}=|L_+|,\quad
- \theta_b=a v_b\in(0,\pi).
+ r_b=\eee^{\mathcal L u_b}=|L_+|,\quad
+ \theta_b=\mathcal L v_b\in(0,\pi).
 \]
 Since $v_b=r_b\sin\theta_b$, the multipliers satisfy
-$|E_b'(L_\pm)|=a r_b=\theta_b/\sin\theta_b>1$.
+$|E_b'(L_\pm)|=\mathcal L r_b=\theta_b/\sin\theta_b>1$.
 The straight chord $\gamma_b$ and this circular arc meet only at
 $L_\pm$ and bound the initial region
 $H_b=\{\operatorname{Re}w\ge u_b,\ |w|\le r_b\}\setminus\{L_+,L_-\}$.
@@ -2911,13 +2916,13 @@ $\operatorname{Im}\chi\in(\pi-1,2\pi-0.7)$, so these orbits stay in $\mathcal G^
 Symmetrically, backward orbits of points of $M(\{t>-\pi\sqrt2+1\})$ move right,
 stay in $\mathcal G^{\rm c}$ and converge to $u_2$.  So Lemma~\ref{lem:cusp-abel} applies
 on both sets, and the attracting and repelling Koenigs coordinates $\sigma_1$ and
-$\tau$ of Section~\ref{sec:transition} are defined and nonzero along these orbits.
+$\sigma_{\rm rep}$ of Section~\ref{sec:transition} are defined and nonzero along these orbits.
 Let $r_+$ be the branch of $\Rr^{-1}=\log(\sigma_1/\sigma_1(u^*))/\log\lambda_1$ on
 $M(\{t<\pi\sqrt2-1\})$ continued from $p_c$, where $r_+(p_c)=n_0$ is real
 ($\sigma_1(u^*_{n_0})/\sigma_1(u^*)=\lambda_1^{n_0}>0$).  By Lemma~\ref{lem:cusp-abel},
 $\partial_\chi r_+=A_1+O(1)$ on convex subsets at distance $\ge\tfrac12+\tfrac1{10}$ from the holes.  For
 $\chi\in\ell$, $\sigma_1\circ f=\lambda_1\sigma_1$ gives $r_+(f_\chi(\chi))-r_+(\chi)\in1+\ii h\mathbb Z$ for the
-continuation along $s\mapsto M(t,s)$, a segment of length $O(\varepsilon)$ on which $r_+$
+continuation along $\mathsf r\mapsto M(t,\mathsf r)$, a segment of length $O(\varepsilon)$ on which $r_+$
 changes by $O(1)$, far less than $h$.  Hence $r_+\circ f_\chi=r_++1$ on $\ell$, and $r_+$
 descends to a holomorphic map $U\to\mathbb C/\mathbb Z$.
 
@@ -3008,7 +3013,7 @@ hence $F_\varepsilon=\Kk^W_b$ near $z=0$, and by the identity theorem on $W_0$.
 There are $r_5>0$ and an open set $\Omega\supset D^+\cup(\eta-r_5,\eta)\cup(\eta,\eta+r_5)$,
 where $D^+=\{b:|b-\eta|<r_5,\ \operatorname{Im}b>0\}$, with the following properties.
 \begin{enumerate}
-\item Kneser's real-normalised solution $\kappa_b$, $b\in(\eta,\eta+r_5)$, continues
+\item Kneser's real-normalised solution $\mathcal K_b$, $b\in(\eta,\eta+r_5)$, continues
   analytically in the base to a family on $\Omega$ that is jointly holomorphic on
   $\Omega\times W_0$, $W_0=\{z:\operatorname{dist}(z,[0,1])<\tfrac14\}$.  In particular it
   continues across the arc of the Shell--Thron boundary contained in $D^+$,
@@ -3018,9 +3023,9 @@ where $D^+=\{b:|b-\eta|<r_5,\ \operatorname{Im}b>0\}$, with the following proper
   Proposition~\ref{prop:weld-parameter}.  Continuing the family from a
   neighbourhood of $(\eta-r_5,\eta)$ inside $N_W$, on a $b$-dependent
   neighbourhood of $z=0$ contained in the regular domain of $\Kk^W_b$, one
-  obtains $\Kk^W$.  Hence for every $b\in(1,\eta)$, if $\kappa_{b+\ii y}$ is continued first
+  obtains $\Kk^W$.  Hence for every $b\in(1,\eta)$, if $\mathcal K_{b+\ii y}$ is continued first
   through $D^+$ and then inside $N_W\cap\{\operatorname{Im}b>0\}$, the limit
-  $\lim_{y\downarrow0}\kappa_{b+\ii y}$ exists near $z=0$ and equals $\Kk^W_b$; by the
+  $\lim_{y\downarrow0}\mathcal K_{b+\ii y}$ exists near $z=0$ and equals $\Kk^W_b$; by the
   functional equation and continuation in $z$ it equals $\Kk^W_b$ on its whole
   regular domain.
 \end{enumerate}
@@ -3031,8 +3036,8 @@ where $D^+=\{b:|b-\eta|<r_5,\ \operatorname{Im}b>0\}$, with the following proper
 biholomorphically onto an open set $\Omega$ that contains $D^+$ and the two real
 segments, for $r_5$ small.  By Proposition~\ref{prop:cusp-holo},
 $(b,z)\mapsto F_{\varepsilon(b)}(z)$ is jointly holomorphic on $\Omega\times W_0$.  By
-Proposition~\ref{prop:cusp-exterior} it equals $\kappa_b$ on $(\eta,\eta+r_5)$.  Since
-$\Omega$ is connected, it is the analytic continuation of $\kappa$ along every path
+Proposition~\ref{prop:cusp-exterior} it equals $\mathcal K_b$ on $(\eta,\eta+r_5)$.  Since
+$\Omega$ is connected, it is the analytic continuation of $\mathcal K$ along every path
 in $\Omega$.  The Shell--Thron boundary near $\eta$ consists of
 $b=\exp(\lambda\eee^{-\lambda})$ with $|\lambda|=1$.  Its arc in the upper half-plane is
 $\varepsilon=1-\eee^{\ii\phi}=-\ii\phi+O(\phi^2)$ with small $\phi>0$, since then
@@ -3059,7 +3064,7 @@ $F(z+1)=b^{F(z)}$, so they agree on the whole regular domain.
 
 \begin{corollary}[Separation limits for the continued Kneser family]\label{cor:conjecture}
 For the continuation of Kneser's solution in Theorem~\ref{thm:cusp},
-$\Kk_b=\lim_{y\downarrow0}\kappa_{b+\ii y}$ exists for $b\in(1,\eta)$ and equals $\Kk^W_b$.  Its
+$\Kk_b=\lim_{y\downarrow0}\mathcal K_{b+\ii y}$ exists for $b\in(1,\eta)$ and equals $\Kk^W_b$.  Its
 separation coefficients satisfy $c_n/\Lambda^n\to B_n\eee^{2\pi\ii na}$ for every $n\ge1$
 as $b\to\eta^-$.  In particular $|c_1|/\Lambda\to|B_1|=0.0890584\ldots$, with $B_1\ne0$.
 This confirms the limit suggested by the numerics of Section~\ref{sec:invariant}:
@@ -3149,63 +3154,63 @@ extended to $B_0$ by $\sigma_0=\lambda_0^{-n}\sigma_0\circ E_0^n$.  Since $E_0$ 
 points, $\sigma_0'\ne0$ on $B_0$.
 
 \begin{proposition}[Transport of the dynamics]\label{prop:global-transport}
-For $\lambda\in\mathbb H_\lambda$ put $s=\operatorname{Log}\lambda$, $s_0=\operatorname{Log}\lambda_0$ (so $\operatorname{Re}s,\operatorname{Re}s_0<0$),
+For $\lambda\in\mathbb H_\lambda$ put $\mathfrak s=\operatorname{Log}\lambda$, $\mathfrak s_0=\operatorname{Log}\lambda_0$ (so $\operatorname{Re}\mathfrak s,\operatorname{Re}\mathfrak s_0<0$),
 \[
- \mathsf b(\lambda)=\frac{s-s_0}{2\operatorname{Re}s_0},\qquad
- \mathsf c(\lambda)=\frac{\mathsf b}{1+\mathsf b}=\frac{s-s_0}{s+\overline{s_0}},\qquad
+ \mathsf b(\lambda)=\frac{\mathfrak s-\mathfrak s_0}{2\operatorname{Re}\mathfrak s_0},\qquad
+ \mathsf c(\lambda)=\frac{\mathsf b}{1+\mathsf b}=\frac{\mathfrak s-\mathfrak s_0}{\mathfrak s+\overline{\mathfrak s_0}},\qquad
  \phi_\lambda(\zeta)=\zeta|\zeta|^{2\mathsf b(\lambda)} .
 \]
 Then $|\mathsf c(\lambda)|<1$ on $\mathbb H_\lambda$.  Let $\nu_\lambda=\mathsf c(\lambda)\,\frac{\sigma_0}{\overline{\sigma_0}}\,\frac{\overline{\sigma_0'}}{\sigma_0'}$ on
-$B_0\setminus\sigma_0^{-1}(0)$ and $\nu_\lambda=0$ elsewhere, and let $h_\lambda$ be the
+$B_0\setminus\sigma_0^{-1}(0)$ and $\nu_\lambda=0$ elsewhere, and let $\mathcal Q_\lambda$ be the
 quasiconformal homeomorphism of $\hat{\mathbb C}$ with Beltrami coefficient $\nu_\lambda$
 fixing $0,1,\infty$.  Then:
 \begin{enumerate}
-\item $\lambda\mapsto h_\lambda(w)$ is holomorphic for each $w$, $h_{\lambda_0}=\mathrm{id}$, and
-  $h_\lambda\to\mathrm{id}$ locally uniformly on $\mathbb C$ as $\lambda\to\lambda_0$;
-\item $h_\lambda\circ E_0=E_\lambda\circ h_\lambda$, hence $h_\lambda(E_0^n(1))=E_\lambda^n(1)$ for all $n\ge0$;
-\item $h_\lambda(B_0)$ is the basin of $L_1(\lambda)=h_\lambda(L_1(\lambda_0))$, and
-  $\sigma_\lambda\circ h_\lambda=\mathsf k_\lambda\,\phi_\lambda\circ\sigma_0$ on $B_0$, with $\mathsf k_\lambda\ne0$ holomorphic in $\lambda$ and $\mathsf k_{\lambda_0}=1$;
-\item for $\lambda$ near $\lambda_0$, $h_\lambda$ maps the repelling fixed point $L_2(\lambda_0)$ of
+\item $\lambda\mapsto \mathcal Q_\lambda(w)$ is holomorphic for each $w$, $\mathcal Q_{\lambda_0}=\mathrm{id}$, and
+  $\mathcal Q_\lambda\to\mathrm{id}$ locally uniformly on $\mathbb C$ as $\lambda\to\lambda_0$;
+\item $\mathcal Q_\lambda\circ E_0=E_\lambda\circ \mathcal Q_\lambda$, hence $\mathcal Q_\lambda(E_0^n(1))=E_\lambda^n(1)$ for all $n\ge0$;
+\item $\mathcal Q_\lambda(B_0)$ is the basin of $L_1(\lambda)=\mathcal Q_\lambda(L_1(\lambda_0))$, and
+  $\sigma_\lambda\circ \mathcal Q_\lambda=\mathsf k_\lambda\,\phi_\lambda\circ\sigma_0$ on $B_0$, with $\mathsf k_\lambda\ne0$ holomorphic in $\lambda$ and $\mathsf k_{\lambda_0}=1$;
+\item for $\lambda$ near $\lambda_0$, $\mathcal Q_\lambda$ maps the repelling fixed point $L_2(\lambda_0)$ of
   Section~\ref{sec:cusp} to $L_2(\lambda)$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-$|s+\overline{s_0}|^2-|s-s_0|^2=4\operatorname{Re}s\operatorname{Re}s_0>0$, so $|\mathsf c|<1$, uniformly on compact
+$|\mathfrak s+\overline{\mathfrak s_0}|^2-|\mathfrak s-\mathfrak s_0|^2=4\operatorname{Re}\mathfrak s\operatorname{Re}\mathfrak s_0>0$, so $|\mathsf c|<1$, uniformly on compact
 sets.  In $L=\log\zeta$, $\phi_\lambda$ is the real-linear map $L\mapsto L+2\mathsf b\operatorname{Re}L$, with
-determinant $\operatorname{Re}s/\operatorname{Re}s_0>0$; it fixes $2\pi\ii$ and sends $s_0$ to $s$.  So $\phi_\lambda$ is a
+determinant $\operatorname{Re}\mathfrak s/\operatorname{Re}\mathfrak s_0>0$; it fixes $2\pi\ii$ and sends $\mathfrak s_0$ to $\mathfrak s$.  So $\phi_\lambda$ is a
 quasiconformal homeomorphism with $\phi_\lambda(\lambda_0\zeta)=\lambda\phi_\lambda(\zeta)$ and Beltrami
 coefficient $\mathsf c(\lambda)\zeta/\bar\zeta$; $\nu_\lambda$ is its pull-back by $\sigma_0$, hence
 $E_0$-invariant (the basin is completely invariant and $\sigma_0\circ E_0=\lambda_0\sigma_0$).
 Item (1) is the Ahlfors--Bers theorem~\cite[Thm.~11]{AhlforsBers1960}, since
 $\nu_\lambda$ depends holomorphically on $\lambda$ through the scalar $\mathsf c(\lambda)$, and
-continuity of normalised solutions in $\nu$.  The map $h_\lambda\circ E_0$ has Beltrami coefficient $E_0^*\nu_\lambda=\nu_\lambda$, so
-$G_\lambda=h_\lambda\circ E_0\circ h_\lambda^{-1}$ has vanishing dilatation and is holomorphic on $\mathbb C$
-by Weyl's lemma; it is a covering of $\mathbb C^*$ (it omits $h_\lambda(0)=0$), so
-$G_\lambda(w)=\eee^{A w+D}$, and $G_\lambda(0)=h_\lambda(1)=1$ gives $D\in2\pi\ii\mathbb Z$, which we drop.  Near $L_1(\lambda_0)$, $h_\lambda\circ\sigma_0^{-1}\circ\phi_\lambda^{-1}$ is conformal, so $G_\lambda$ is
-conformally conjugate to $\zeta\mapsto\lambda\zeta$ at $h_\lambda(L_1(\lambda_0))$: that point is a
+continuity of normalised solutions in $\nu$.  The map $\mathcal Q_\lambda\circ E_0$ has Beltrami coefficient $E_0^*\nu_\lambda=\nu_\lambda$, so
+$G_\lambda=\mathcal Q_\lambda\circ E_0\circ \mathcal Q_\lambda^{-1}$ has vanishing dilatation and is holomorphic on $\mathbb C$
+by Weyl's lemma; it is a covering of $\mathbb C^*$ (it omits $\mathcal Q_\lambda(0)=0$), so
+$G_\lambda(w)=\eee^{A w+D}$, and $G_\lambda(0)=\mathcal Q_\lambda(1)=1$ gives $D\in2\pi\ii\mathbb Z$, which we drop.  Near $L_1(\lambda_0)$, $\mathcal Q_\lambda\circ\sigma_0^{-1}\circ\phi_\lambda^{-1}$ is conformal, so $G_\lambda$ is
+conformally conjugate to $\zeta\mapsto\lambda\zeta$ at $\mathcal Q_\lambda(L_1(\lambda_0))$: that point is a
 fixed point of $\eee^{Aw}$ with multiplier $\lambda$, which forces it to be $\eee^\lambda$ and
 $A=\lambda\eee^{-\lambda}$.  So $G_\lambda=E_\lambda$, proving (2).  For (3), let $V=\sigma_0^{-1}(D_\varrho)$ be a small forward-invariant disc about
-$L_1(\lambda_0)$.  The map $\psi=\sigma_\lambda\circ h_\lambda\circ\sigma_0^{-1}\circ\phi_\lambda^{-1}$ is defined on
-$\phi_\lambda(D_\varrho)=D_{\varrho^{\operatorname{Re}s/\operatorname{Re}s_0}}$, conformal off $0$ (equal Beltrami
+$L_1(\lambda_0)$.  The map $\psi=\sigma_\lambda\circ \mathcal Q_\lambda\circ\sigma_0^{-1}\circ\phi_\lambda^{-1}$ is defined on
+$\phi_\lambda(D_\varrho)=D_{\varrho^{\operatorname{Re}\mathfrak s/\operatorname{Re}\mathfrak s_0}}$, conformal off $0$ (equal Beltrami
 coefficients) and continuous at $0$, hence conformal; it fixes $0$ and
 satisfies $\psi(\lambda\zeta)=\lambda\psi(\zeta)$.  Comparing Taylor coefficients ($\lambda^{n-1}\ne1$
 for $n\ge2$) gives $\psi(\zeta)=\mathsf k_\lambda\zeta$.  The identity extends to $B_0$ by
 $\sigma_\lambda=\lambda^{-n}\sigma_\lambda\circ E_\lambda^n$, and
-$\mathsf k_\lambda=\sigma_\lambda(h_\lambda(w))/\phi_\lambda(\sigma_0(w))$ is holomorphic in $\lambda$, because
+$\mathsf k_\lambda=\sigma_\lambda(\mathcal Q_\lambda(w))/\phi_\lambda(\sigma_0(w))$ is holomorphic in $\lambda$, because
 $\phi_\lambda(\zeta)=\zeta\exp(\mathsf b(\lambda)\log|\zeta|^2)$ is.  In particular, on $B_0$ near any point
 where $\sigma_\lambda$ is locally injective,
-$h_\lambda=\sigma_\lambda^{-1}\circ(\mathsf k_\lambda\phi_\lambda\circ\sigma_0)$ is jointly real-analytic in the space
+$\mathcal Q_\lambda=\sigma_\lambda^{-1}\circ(\mathsf k_\lambda\phi_\lambda\circ\sigma_0)$ is jointly real-analytic in the space
 variable, holomorphic in $\lambda$, with nonvanishing Jacobian.  For (4),
-$h_\lambda(L_2(\lambda_0))$ is a fixed point of $E_\lambda$ depending continuously on $\lambda$ and equal
+$\mathcal Q_\lambda(L_2(\lambda_0))$ is a fixed point of $E_\lambda$ depending continuously on $\lambda$ and equal
 to $L_2(\lambda_0)$ at $\lambda_0$; fixed points are isolated.
 \end{proof}
 
 Let $H_0\subset\mathbb C$ be the tilted region of Lemma~\ref{lem:crescent} for $E_0$
 and an admissible line $\ell$, written in $w=\eee(1+u)$, and $p_0=E_0^{n_0}(1)$ its
 marked point; choose $\ell$ with $p_0$ in the interior.  For $\lambda\in\mathbb H_\lambda$ let
-$X^{\rm tr}_\lambda$ be $h_\lambda(H_0)$ with its edges $h_\lambda(\gamma)$ and
-$h_\lambda(E_0(\gamma))=E_\lambda(h_\lambda(\gamma))$ identified by $E_\lambda$, and $p_\lambda=h_\lambda(p_0)=E_\lambda^{n_0}(1)$.
+$X^{\rm tr}_\lambda$ be $\mathcal Q_\lambda(H_0)$ with its edges $\mathcal Q_\lambda(\gamma)$ and
+$\mathcal Q_\lambda(E_0(\gamma))=E_\lambda(\mathcal Q_\lambda(\gamma))$ identified by $E_\lambda$, and $p_\lambda=\mathcal Q_\lambda(p_0)=E_\lambda^{n_0}(1)$.
 
 \begin{proposition}[The transported family]\label{prop:global-family}
 $X^{\rm tr}_\lambda$ is biholomorphic to $\mathbb C^*$, its ends at $L_{1,2}$.  Let $z$ be
@@ -3218,7 +3223,7 @@ $\mathbb H_\lambda\times\{0\}$ and single-valued there.
 \end{proposition}
 
 \begin{proof}
-$h_\lambda$ induces a quasiconformal homeomorphism $J_\lambda:X_0\to X^{\rm tr}_\lambda$,
+$\mathcal Q_\lambda$ induces a quasiconformal homeomorphism $J_\lambda:X_0\to X^{\rm tr}_\lambda$,
 because it conjugates the edge identifications; each end of $X^{\rm tr}_\lambda$ is
 the image of a punctured-disc end of $X_0\cong\mathbb C^*$
 (Lemma~\ref{lem:crescent-quotient}), hence a punctured disc.  Near the seam
@@ -3230,12 +3235,12 @@ $\nu$ with $|\nu|\le1$.  Let $\mathcal W_\lambda$ be the normalised solution; by
 it is holomorphic in $\lambda$ at each point, and $Z_\lambda=\mathcal W_\lambda\circ Z_0\circ J_\lambda^{-1}$ is the
 uniformisation of $X^{\rm tr}_\lambda$ normalised at the ends and $p_\lambda$.  Near $p_0$ the
 coefficient $\nu_\lambda$ is real-analytic in $w$, because $\sigma_0(p_0)\ne0$.  The
-$\partial_{\bar\lambda}$-cancellation of Proposition~\ref{prop:cusp-holo}, with $h_\lambda$ in place
+$\partial_{\bar\lambda}$-cancellation of Proposition~\ref{prop:cusp-holo}, with $\mathcal Q_\lambda$ in place
 of $\mathcal J_\varepsilon$, shows that $(\lambda,w)\mapsto Z_\lambda(w)$ is jointly holomorphic near
 $(\lambda,p_\lambda)$.  The inverse function theorem and the local inverse of $E_\lambda^{n_0}$,
 which is determined by the value $1$ at $p_\lambda$ and depends holomorphically on
 $\lambda$, give the germ.  The $C^1$-dependence needed in the cancellation is
-explicit here: near $p_0$, $h_\lambda$ is given by the formula at the end of the
+explicit here: near $p_0$, $\mathcal Q_\lambda$ is given by the formula at the end of the
 proof of Proposition~\ref{prop:global-transport}, and $\mathcal W_\lambda$ is $C^1$ in
 $(\lambda,\xi)$ by interior Schauder estimates~\cite[Ch.~V]{AhlforsLectures}.  All
 objects are defined by a single formula for every $\lambda\in\mathbb H_\lambda$, so the family
@@ -3244,50 +3249,50 @@ is single-valued.
 
 \begin{lemma}[The lifted motion near the ends]\label{lem:global-ends}
 For $\lambda$ near $\lambda_0$ let $\chi_\lambda=\log\frac{u-u_1(\lambda)}{u-u_2(\lambda)}$ be the coordinate of
-Section~\ref{sec:cusp} for $E_\lambda$, and let $\tilde h_\lambda$ be the lift of $h_\lambda$ to these
+Section~\ref{sec:cusp} for $E_\lambda$, and let $\tilde{\mathcal Q}_\lambda$ be the lift of $\mathcal Q_\lambda$ to these
 coordinates (defined off the holes, commuting with $\chi\mapsto\chi+2\pi\ii$, continuous
-in $\lambda$ and equal to the identity at $\lambda_0$).  The lift satisfies $\tilde h_\lambda\circ f_{\chi,\lambda_0}=f_{\chi,\lambda}\circ\tilde h_\lambda$ exactly (no deck shift),
-and $\tilde h_\lambda\to\mathrm{id}$ uniformly on compact subsets of $\mathcal G^{\rm c}$.  Moreover,
+in $\lambda$ and equal to the identity at $\lambda_0$).  The lift satisfies $\tilde{\mathcal Q}_\lambda\circ f_{\chi,\lambda_0}=f_{\chi,\lambda}\circ\tilde{\mathcal Q}_\lambda$ exactly (no deck shift),
+and $\tilde{\mathcal Q}_\lambda\to\mathrm{id}$ uniformly on compact subsets of $\mathcal G^{\rm c}$.  Moreover,
 for every $\delta>0$ there are $T$ and a neighbourhood $U_\delta$ of $\lambda_0$ such that
-for $\lambda\in U_\delta$ there are real-linear maps $A^\pm_\lambda$ and constants $a^\pm_\lambda$ with
-$\|A^\pm_\lambda-I\|+|a^\pm_\lambda|\le\delta$ and
+for $\lambda\in U_\delta$ there are real-linear maps $A^\pm_\lambda$ and constants $\vartheta^\pm_\lambda$ with
+$\|A^\pm_\lambda-I\|+|\vartheta^\pm_\lambda|\le\delta$ and
 \[
- |\tilde h_\lambda(\chi)-A^+_\lambda\chi-a^+_\lambda|\le\delta\quad(\operatorname{Re}\chi\le-T),\qquad
- |\tilde h_\lambda(\chi)-A^-_\lambda\chi-a^-_\lambda|\le\delta\quad(\operatorname{Re}\chi\ge T).
+ |\tilde{\mathcal Q}_\lambda(\chi)-A^+_\lambda\chi-\vartheta^+_\lambda|\le\delta\quad(\operatorname{Re}\chi\le-T),\qquad
+ |\tilde{\mathcal Q}_\lambda(\chi)-A^-_\lambda\chi-\vartheta^-_\lambda|\le\delta\quad(\operatorname{Re}\chi\ge T).
 \]
-The same holds for $\tilde h_\lambda^{-1}$.
+The same holds for $\tilde{\mathcal Q}_\lambda^{-1}$.
 \end{lemma}
 
 \begin{proof}
 This is a statement for $\lambda$ near $\lambda_0$, where $u_{1,2}(\lambda)$ and $\chi_\lambda$ are defined.
-$h_\lambda$ maps $u_1(\lambda_0),u_2(\lambda_0),\infty$ to $u_1(\lambda),u_2(\lambda),\infty$
+$\mathcal Q_\lambda$ maps $u_1(\lambda_0),u_2(\lambda_0),\infty$ to $u_1(\lambda),u_2(\lambda),\infty$
 (Proposition~\ref{prop:global-transport}(3),(4)), so in the cross-ratio
 $q=(u-u_1)/(u-u_2)$ it is an orientation-preserving homeomorphism of
 $\mathbb C^*\setminus\{1\}$ fixing $0,\infty$.  Such a map acts trivially on the winding
 number about $0$, so it lifts to $\mathbb C\setminus2\pi\ii\mathbb Z$ commuting with $2\pi\ii$; joint
-continuity of $(\lambda,w)\mapsto h_\lambda(w)$ (the $\lambda$-lemma) lets us choose the lift
-continuously with $\tilde h_{\lambda_0}=\mathrm{id}$, and gives local uniform convergence.  The
-lifted conjugacy $\tilde h_\lambda\circ f_{\chi,\lambda_0}=f_{\chi,\lambda}\circ\tilde h_\lambda+2\pi\ii k$ holds with an
+continuity of $(\lambda,w)\mapsto \mathcal Q_\lambda(w)$ (the $\lambda$-lemma) lets us choose the lift
+continuously with $\tilde{\mathcal Q}_{\lambda_0}=\mathrm{id}$, and gives local uniform convergence.  The
+lifted conjugacy $\tilde{\mathcal Q}_\lambda\circ f_{\chi,\lambda_0}=f_{\chi,\lambda}\circ\tilde{\mathcal Q}_\lambda+2\pi\ii k$ holds with an
 integer $k$ that is continuous in $(\lambda,\chi)$ and $0$ at $\lambda_0$, hence $k=0$.
 
 Attracting end.  In $L=\log\sigma_0$ and $L'=\log\sigma_\lambda$,
-Proposition~\ref{prop:global-transport}(3) says that $h_\lambda$ is the affine map
+Proposition~\ref{prop:global-transport}(3) says that $\mathcal Q_\lambda$ is the affine map
 $L'=L+2\mathsf b\operatorname{Re}L+\log \mathsf k_\lambda$.  Near $u_1$, $\sigma_\lambda$ and $q$ are both local coordinates
 vanishing at $u_1$, so $\chi_\lambda=L'+\psi_\lambda(\eee^{L'})$ with $\psi_\lambda$ holomorphic near $0$ and
 continuous in $\lambda$; likewise for $\lambda_0$.  Composing, with $A^+_\lambda=I+2\mathsf b\operatorname{Re}$ and
-$a^+_\lambda=\log\mathsf k_\lambda+\psi_\lambda(0)-A^+_\lambda\psi_{\lambda_0}(0)$, the remainder
-$\tilde h_\lambda(\chi)-A^+_\lambda\chi-a^+_\lambda$ equals
+$\vartheta^+_\lambda=\log\mathsf k_\lambda+\psi_\lambda(0)-A^+_\lambda\psi_{\lambda_0}(0)$, the remainder
+$\tilde{\mathcal Q}_\lambda(\chi)-A^+_\lambda\chi-\vartheta^+_\lambda$ equals
 $[\psi_\lambda(\eee^{L'})-\psi_\lambda(0)]-A^+_\lambda[\psi_{\lambda_0}(\eee^{L})-\psi_{\lambda_0}(0)]$.  Since
-$|\eee^{L'}|\le C|\eee^{L}|^{\operatorname{Re}s/\operatorname{Re}s_0}$ and $\operatorname{Re}s/\operatorname{Re}s_0\ge\tfrac12$ near $\lambda_0$, it is
+$|\eee^{L'}|\le C|\eee^{L}|^{\operatorname{Re}\mathfrak s/\operatorname{Re}\mathfrak s_0}$ and $\operatorname{Re}\mathfrak s/\operatorname{Re}\mathfrak s_0\ge\tfrac12$ near $\lambda_0$, it is
 at most $C\eee^{-T/2}$ on $\operatorname{Re}\chi\le-T$, uniformly for $\lambda$ near $\lambda_0$.  Choose $T$ with
-$C\eee^{-T/2}\le\delta$, and then $U_\delta$ so that $\|A^+_\lambda-I\|+|a^+_\lambda|\le\delta$.
+$C\eee^{-T/2}\le\delta$, and then $U_\delta$ so that $\|A^+_\lambda-I\|+|\vartheta^+_\lambda|\le\delta$.
 
-Repelling end.  Let $M=\log\tau_0$ and $M'=\log\tau_\lambda$ be logarithms of the
+Repelling end.  Let $M=\log\sigma_{{\rm rep},0}$ and $M'=\log\sigma_{{\rm rep},\lambda}$ be logarithms of the
 repelling Koenigs coordinates at $L_2$, in which $E_0,E_\lambda$ are the
-translations by $m_0=\log\mu_0$, $m_\lambda=\log\mu_\lambda$, $\operatorname{Re}m>0$.  For $\lambda$ near $\lambda_0$, $h_\lambda$
+translations by $m_0=\log\mu_0$, $m_\lambda=\log\mu_\lambda$, $\operatorname{Re}m>0$.  For $\lambda$ near $\lambda_0$, $\mathcal Q_\lambda$
 maps a linearising disc of $E_0$ into one of $E_\lambda$, and its lift $G_\lambda$ to
 $\{\operatorname{Re}M<-R\}$ satisfies $G_\lambda(M-m_0)=G_\lambda(M)-m_\lambda$ and
-$G_\lambda(M+2\pi\ii)=G_\lambda(M)+2\pi\ii$ (the first because $h_\lambda$ conjugates the local
+$G_\lambda(M+2\pi\ii)=G_\lambda(M)+2\pi\ii$ (the first because $\mathcal Q_\lambda$ conjugates the local
 inverse branches at $L_2$, with the integer fixed by continuity from $\lambda_0$; the
 second by degree).  Let
 $A'_\lambda$ be the real-linear map with $A'_\lambda m_0=m_\lambda$, $A'_\lambda(2\pi\ii)=2\pi\ii$.  Then
@@ -3317,15 +3322,15 @@ Lemma~\ref{lem:global-ends} with $\delta=1/2000$, and $T'\ge(T+1)/0.6$, so that 
 implies $|\operatorname{Re}\chi|\ge T$ on the strips; for fixed $\lambda_0$ this is a genuine
 neighbourhood, although its size may be small compared with $\operatorname{Re}\varepsilon_0$.  Work in the $\chi$-plane of $E_\lambda$, where $E_\lambda$ is $f_\chi=\mathrm{id}+\Delta$ and the
 tilted strip is $\hat H_\lambda$ between $\ell$ and $f_\chi(\ell)$, and put
-$\hat T_\lambda=\tilde h_\lambda(\hat H_0)$, the transported strip, bounded by $\Gamma=\tilde h_\lambda(\ell)$
+$\hat T_\lambda=\tilde{\mathcal Q}_\lambda(\hat H_0)$, the transported strip, bounded by $\Gamma=\tilde{\mathcal Q}_\lambda(\ell)$
 and $f_\chi(\Gamma)$.  Let $\varsigma,t$ be the coordinates of Section~\ref{sec:cusp}
 relative to $\ell$, and $\mathsf W_\rho=\{|\varsigma|\le\rho(1+|t|)\}$.
 
 \emph{Step 1: $\hat T_\lambda\subset \mathsf W_{1/100}\cap\mathcal G^{\rm c}$ for $\lambda\in U$, after shrinking $U$.}
 $\hat H_0$ lies in $\{|\varsigma|\le\tfrac65|\varepsilon_0|\}$.  On $\{|t|\le T'\}$ this is compact and
-$\tilde h_\lambda\to\mathrm{id}$ uniformly.  For $|t|\ge T'$ (so $|\operatorname{Re}\chi|\ge T$),
+$\tilde{\mathcal Q}_\lambda\to\mathrm{id}$ uniformly.  For $|t|\ge T'$ (so $|\operatorname{Re}\chi|\ge T$),
 Lemma~\ref{lem:global-ends} gives
-$|\tilde h_\lambda(\chi)-\chi|\le\|A^\pm_\lambda-I\|\,|\chi|+|a^\pm_\lambda|+\delta$, and
+$|\tilde{\mathcal Q}_\lambda(\chi)-\chi|\le\|A^\pm_\lambda-I\|\,|\chi|+|\vartheta^\pm_\lambda|+\delta$, and
 $|\chi|<|t|+4\le5(1+|t|)$ on $\hat H_0$; with $\delta=1/2000$ the displacement is at most
 $6\delta(1+|t|)=0.003(1+|t|)$ (also on $|t|\le T'$, after shrinking $U$).  The parameter
 $t$ of the image point differs from that of the source by at most this amount.
@@ -3334,7 +3339,7 @@ $|\varsigma|\le0.005+\tfrac{0.003}{0.997}(1+|t|)<0.0082(1+|t|)\le\tfrac1{100}(1+
 holes is at least
 $\max(1.48,0.6|t|-0.5)-0.003(1+|t|)\ge\tfrac1{20}(1+|t|)+\tfrac12+0.2$, so that the orbit
 discs of Step~2, of radius $(1+|t|)/20$, stay in $\mathcal G^{\rm c}$.  Symmetrically,
-$\tilde h_\lambda^{-1}(\hat H_\lambda)\subset \mathsf W_{1/100}$ in the $\chi$-plane of $E_0$.
+$\tilde{\mathcal Q}_\lambda^{-1}(\hat H_\lambda)\subset \mathsf W_{1/100}$ in the $\chi$-plane of $E_0$.
 
 \emph{Step 2: orbit correspondence.}  Let $P\in\hat T_\lambda$ with parameter $t$.  As in
 the proof of Lemma~\ref{lem:change-line}, each application of $f_\chi^{\pm1}$ changes
@@ -3351,7 +3356,7 @@ two values are identified, and satisfies $n(f_\chi(P))=n(P)-1$ for $P\in\Gamma$,
 matching the identification of the edges of $\hat T_\lambda$.  It therefore induces a
 holomorphic map $\Theta:X^{\rm tr}_\lambda\to X^\ell_{1-\lambda}$.  For the inverse, apply the same
 construction in the $\chi$-plane of $E_0$ to the strips $\hat H_0$ and
-$\tilde h_\lambda^{-1}(\hat H_\lambda)\subset\mathsf W_{1/100}\cap\mathcal G^{\rm c}$ (Step~1), and conjugate back by $\tilde h_\lambda$:
+$\tilde{\mathcal Q}_\lambda^{-1}(\hat H_\lambda)\subset\mathsf W_{1/100}\cap\mathcal G^{\rm c}$ (Step~1), and conjugate back by $\tilde{\mathcal Q}_\lambda$:
 this gives a map $\Theta'$ from $X^\ell_{1-\lambda}$ to $X^{\rm tr}_\lambda$, locally a fixed iterate of
 $E_\lambda$.  Both $\Theta'\circ\Theta$ and $\Theta\circ\Theta'$ send each point to a point of its own
 orbit in the same half-open strip, so they are the identity.
@@ -3359,7 +3364,7 @@ Since orbit segments have length at most $(1+|t|)/20$ in $\chi$, $\Theta$ preser
 ends ($\operatorname{Re}\chi\to\mp\infty$).
 
 \emph{Step 3: marked points.}  By Proposition~\ref{prop:global-transport}(2) and
-continuity of the lift, $\tilde h_\lambda$ maps the continued base orbit $\chi^*_n(\lambda_0)$ of
+continuity of the lift, $\tilde{\mathcal Q}_\lambda$ maps the continued base orbit $\chi^*_n(\lambda_0)$ of
 Lemma~\ref{lem:cusp-base} to $\chi^*_n(\lambda)$.  So $p_\lambda$ is represented by
 $\chi^*_{n_0}(\lambda)$, which lies in $\hat H_\lambda\setminus f_\chi(\ell)$ because $n_0$ is the first crossing for
 all $\lambda\in U$.  Hence $n(p_\lambda)=0$ and $\Theta(p_\lambda)$ is the marked point.
@@ -3419,11 +3424,11 @@ of this interval.
 \begin{proof}
 Fix $x\in(-1,0)$ and choose a simply connected neighbourhood $V$ of $x$
 in $\{0<|\lambda|<1\}$ which meets $\mathbb H_\lambda$.  Continue the branch
-$s=\operatorname{Log}\lambda$ from $V\cap\mathbb H_\lambda$ to $V$.  The proof of
+$\mathfrak s=\operatorname{Log}\lambda$ from $V\cap\mathbb H_\lambda$ to $V$.  The proof of
 Proposition~\ref{prop:global-transport} uses only
-$\operatorname{Re}s=\log|\lambda|<0$ to obtain
+$\operatorname{Re}\mathfrak s=\log|\lambda|<0$ to obtain
 $|\mathsf c(\lambda)|<1$.  Thus its Beltrami coefficient, normalised
-solution $h_\lambda$, and all four conclusions hold on $V$ by exactly the
+solution $\mathcal Q_\lambda$, and all four conclusions hold on $V$ by exactly the
 same formulas.  The marked quotient and its uniformisation in
 Proposition~\ref{prop:global-family} consequently give a jointly
 holomorphic family of germs on $V\times\{z:|z|<\delta\}$ for some
@@ -3437,14 +3442,14 @@ to the base coordinate.
 \end{proof}
 
 \begin{remark}[The punctured interior]\label{rem:stcover}
-The same argument works globally in $s$.  Every object in
+The same argument works globally in $\mathfrak s$.  Every object in
 Propositions~\ref{prop:global-transport} and~\ref{prop:global-family} is given by one
-formula in $s=\log\lambda$, and only $\operatorname{Re}s<0$ and $|\eee^s|<1$ are used.  So $s\mapsto F^{\rm tr}_s$ is
-holomorphic and single-valued on the whole half-plane $\{\operatorname{Re}s<0\}$.  This half-plane is
-the universal cover of the punctured interior $\mathcal{ST}^\circ\setminus\{1\}$ via $s\mapsto\exp g(\eee^s)$.
+formula in $\mathfrak s=\log\lambda$, and only $\operatorname{Re}\mathfrak s<0$ and $|\eee^{\mathfrak s}|<1$ are used.  So $\mathfrak s\mapsto F^{\rm tr}_{\mathfrak s}$ is
+holomorphic and single-valued on the whole half-plane $\{\operatorname{Re}\mathfrak s<0\}$.  This half-plane is
+the universal cover of the punctured interior $\mathcal{ST}^\circ\setminus\{1\}$ via $\mathfrak s\mapsto\exp g(\eee^{\mathfrak s})$.
 Hence the continuation of Kneser's family continues along every path in
 $\mathcal{ST}^\circ\setminus\{1\}$, and $b=1$ is its only possible singularity in the interior.  A loop
-about $b=1$ acts by $s\mapsto s+2\pi\ii$.  Whether this monodromy is trivial is open.
+about $b=1$ acts by $\mathfrak s\mapsto \mathfrak s+2\pi\ii$.  Whether this monodromy is trivial is open.
 Numerically, the normalised modes $|c_1|/\Lambda$ of the boundary values $\Kk^W_b$ stay
 near $0.08$ as $b\downarrow1$ ($0.0816$ at $b=1.01$), while $\Lambda\to1$.  So near $b=1$ the
 separation from regular iteration is of order one.
@@ -3452,7 +3457,7 @@ separation from regular iteration is of order one.
 
 \begin{remark}[Relation to Paulsen's family]\label{rem:global-paulsen}
 Theorem~\ref{thm:global} removes the restriction to paths near the real axis
-in Theorem~\ref{thm:cusp}: starting from $\kappa_b$ on $(\eta,\eta+r_5)$ and entering
+in Theorem~\ref{thm:cusp}: starting from $\mathcal K_b$ on $(\eta,\eta+r_5)$ and entering
 $\mathcal U^+$ inside $\Omega$, every further path in $\mathcal U^+$ gives $\Kk^W$ on all of
 $(1,\eta)$.  The family of~\cite{Paulsen2019} may enter $\mathcal U^+$ through a boundary
 arc far from $\eta$.  It coincides with ours if its germ at one base in $\mathcal U^+$
@@ -3476,14 +3481,14 @@ Section~\ref{sec:cusp}.
 \emph{Notation.}  For complex $\theta$ with $0<\operatorname{Re}\theta<\pi$ put
 \[
  \mu(\theta)=\theta\cot\theta,\quad \lambda_\pm=\mu\pm\ii\theta,\quad
- r=\eee^{\mu},\quad a(\theta)=\frac{\theta\eee^{-\mu}}{\sin\theta},\quad
- b(\theta)=\eee^{a(\theta)} .
+ r=\eee^{\mu},\quad \mathcal L(\theta)=\frac{\theta\eee^{-\mu}}{\sin\theta},\quad
+ b(\theta)=\eee^{\mathcal L(\theta)} .
 \]
-We write $E_\theta(w)=\eee^{a(\theta)w}$; this is $E_{b(\theta)}$ with the logarithm of the base
+We write $E_\theta(w)=\eee^{\mathcal L(\theta)w}$; this is $E_{b(\theta)}$ with the logarithm of the base
 continued along paths in $\theta$, and it is the map that enters the analytic
 continuation of $F(z+1)=b^{F(z)}$ in the base.  $L_\pm=r\eee^{\pm\ii\theta}$ are fixed points
-of $E_\theta$ with multipliers $aL_\pm=\lambda_\pm$, and $a=\lambda_+\eee^{-\lambda_+}$.  So if
-$\lambda_+\in\mathbb H_\lambda$, then $a=\operatorname{Log}b$ is principal ($|\operatorname{Im}a|<\pi$) and $b(\theta)=b(\lambda_+(\theta))\in\mathcal U^+$
+of $E_\theta$ with multipliers $\mathcal L\,L_\pm=\lambda_\pm$, and $\mathcal L=\lambda_+\eee^{-\lambda_+}$.  So if
+$\lambda_+\in\mathbb H_\lambda$, then $\mathcal L=\operatorname{Log}b$ is principal ($|\operatorname{Im}\mathcal L|<\pi$) and $b(\theta)=b(\lambda_+(\theta))\in\mathcal U^+$
 in the notation of Lemma~\ref{lem:global-param}.  For real $\theta\in(0,\pi)$, $b(\theta)>\eta$ is real, $L_\pm$ is the
 conjugate pair of Proposition~\ref{prop:exterior-real-parameter} with $\theta_b=\theta$, and
 $|\lambda_+|=\theta/\sin\theta>1$.  The affine coordinate
@@ -3491,13 +3496,13 @@ $|\lambda_+|=\theta/\sin\theta>1$.  The affine coordinate
  \zeta(w)=\frac{w/r-\cos\theta}{\ii\sin\theta}
 \]
 sends $L_\pm$ to $\pm1$ and the chord $\gamma_\theta=[L_-,L_+]$ to $[-1,1]$, and a direct
-computation ($a w=\mu+\ii\theta\zeta$) gives
+computation ($\mathcal L w=\mu+\ii\theta\zeta$) gives
 \[
- \zeta(E_\theta(w))=s_\theta(\zeta(w)),\qquad s_\theta(\zeta)=\frac{\eee^{\ii\theta\zeta}-\cos\theta}{\ii\sin\theta} .
+ \zeta(E_\theta(w))=\mathsf s_\theta(\zeta(w)),\qquad \mathsf s_\theta(\zeta)=\frac{\eee^{\ii\theta\zeta}-\cos\theta}{\ii\sin\theta} .
 \]
-$s_\theta$ is entire, $s_\theta(\pm1)=\pm1$ and $s_\theta'(\pm1)=\lambda_\pm$, so
-$g_\theta(t)=(s_\theta(t)-t)/(1-t^2)$ is entire in $t$.  Since $s_\theta(\zeta_1)=s_\theta(\zeta_2)$ only if
-$\theta(\zeta_1-\zeta_2)\in2\pi\mathbb Z$, $s_\theta$ is injective on every set of diameter
+$\mathsf s_\theta$ is entire, $\mathsf s_\theta(\pm1)=\pm1$ and $\mathsf s_\theta'(\pm1)=\lambda_\pm$, so
+$g_\theta(t)=(\mathsf s_\theta(t)-t)/(1-t^2)$ is entire in $t$.  Since $\mathsf s_\theta(\zeta_1)=\mathsf s_\theta(\zeta_2)$ only if
+$\theta(\zeta_1-\zeta_2)\in2\pi\mathbb Z$, $\mathsf s_\theta$ is injective on every set of diameter
 $<2\pi/|\theta|$.
 
 \emph{The parameter region.}  Let $P_0=\tfrac1{10}$, $P_1=\tfrac{11}5$, let $V(p)=\tfrac14$ for $p\le\tfrac85$
@@ -3512,10 +3517,10 @@ $\{p+\ii q:0\le q\le Q(p)\}$.
 \begin{lemma}[Certified inequalities]\label{lem:far-cert}
 For $\theta=p+\ii q\in\Theta$ and $-1\le t\le1$:
 \begin{enumerate}
-\item $\operatorname{Im}g_\theta(t)<0$ and $\operatorname{Im}\bigl(\overline{s_\theta'(t)}\,g_\theta(t)\bigr)<0$;
-\item $\partial_q|\lambda_+(p+\ii q)|^2<0$, $|\lambda_+|<1$ on the top edge $q=Q(p)$, and $a'(\theta)\ne0$;
+\item $\operatorname{Im}g_\theta(t)<0$ and $\operatorname{Im}\bigl(\overline{\mathsf s_\theta'(t)}\,g_\theta(t)\bigr)<0$;
+\item $\partial_q|\lambda_+(p+\ii q)|^2<0$, $|\lambda_+|<1$ on the top edge $q=Q(p)$, and $\mathcal L'(\theta)\ne0$;
 \item on $\Theta_{\rm C}$, $\operatorname{Re}\cot\theta>0$;
-\item for $\operatorname{Re}\theta\le P_2=\tfrac{19}{10}$, $|\operatorname{Im}a(\theta)|<\pi$.
+\item for $\operatorname{Re}\theta\le P_2=\tfrac{19}{10}$, $|\operatorname{Im}\mathcal L(\theta)|<\pi$.
 \end{enumerate}
 \end{lemma}
 
@@ -3529,8 +3534,8 @@ once, at $q=q_{\rm c}(p)$, and
 \[
  \Theta^+=\{\theta\in\Theta:|\lambda_+(\theta)|<1\}=\{p+\ii q\in\Theta:q>q_{\rm c}(p)\}
 \]
-is connected, with $a$ principal and $b(\Theta^+)\subset\mathcal U^+$.  (Below $q_{\rm c}$ the
-logarithm $a$ need not be principal: for $p$ near $P_1$, $\operatorname{Im}a$ exceeds $\pi$ on the
+is connected, with $\mathcal L$ principal and $b(\Theta^+)\subset\mathcal U^+$.  (Below $q_{\rm c}$ the
+logarithm $\mathcal L$ need not be principal: for $p$ near $P_1$, $\operatorname{Im}\mathcal L$ exceeds $\pi$ on the
 fibre.  By (4) this does not happen for $p\le P_2$.)  The boundary
 point $\beta(p)=b(p+\ii q_{\rm c}(p))$ has $\lambda_+=\eee^{\ii\alpha(p)}$ with $\alpha$ continuous,
 $\alpha(p)\to0$ as $p\to0$ and $\alpha(P_1)=\alpha_1=0.9353\ldots\pi$; so $\beta$ runs through the whole
@@ -3539,14 +3544,14 @@ upper boundary arc $\{\exp(\eee^{\ii\alpha}\eee^{-\eee^{\ii\alpha}}):0<\alpha\le
 \begin{lemma}[The crescent]\label{lem:far-crescent}
 Let $\theta$ lie in a sufficiently small open neighbourhood $\Theta'$ of $\Theta\setminus\{0\}$.
 \begin{enumerate}
-\item $A_\theta=s_\theta([-1,1])$ is a simple arc from $-1$ to $1$, in the open lower
+\item $A_\theta=\mathsf s_\theta([-1,1])$ is a simple arc from $-1$ to $1$, in the open lower
   half-plane except for its ends.  Let $H_\theta$ be the closed Jordan region bounded
   by $[-1,1]\cup A_\theta$.
-\item $N_\theta(t,\sigma)=t+\sigma(s_\theta(t)-t)$ is a real-analytic diffeomorphism of
-  $(-1,1)\times[0,1]$ onto $H_\theta\setminus\{\pm1\}$, with $N(t,0)=t$ and $N(t,1)=s_\theta(t)$.
-\item $s_\theta$ maps a neighbourhood of $[-1,1]$ biholomorphically onto a neighbourhood
+\item $N_\theta(t,\sigma)=t+\sigma(\mathsf s_\theta(t)-t)$ is a real-analytic diffeomorphism of
+  $(-1,1)\times[0,1]$ onto $H_\theta\setminus\{\pm1\}$, with $N(t,0)=t$ and $N(t,1)=\mathsf s_\theta(t)$.
+\item $\mathsf s_\theta$ maps a neighbourhood of $[-1,1]$ biholomorphically onto a neighbourhood
   of $A_\theta$, and the upper side of $[-1,1]$ to the side of $A_\theta$ facing $H_\theta$.
-\item Let $X_\theta$ be $H_\theta\setminus\{\pm1\}$ with $t\in(-1,1)$ glued to $s_\theta(t)$.  In the
+\item Let $X_\theta$ be $H_\theta\setminus\{\pm1\}$ with $t\in(-1,1)$ glued to $\mathsf s_\theta(t)$.  In the
   coordinates $x=\log\frac{1-t}{1+t}$ and $\chi=\log\frac{\zeta-1}{\zeta+1}$ the map
   $\Phi_\theta(x+\ii\sigma)=\chi(N_\theta(t,\sigma))$ induces a quasiconformal homeomorphism from
   $C_0=\mathbb C/\ii\mathbb Z$ onto $X_\theta$.  Its Beltrami coefficient is holomorphic in $\theta$ at
@@ -3559,15 +3564,15 @@ Let $\theta$ lie in a sufficiently small open neighbourhood $\Theta'$ of $\Theta
 All conditions below are strict inequalities that hold on $\Theta$ by
 Lemma~\ref{lem:far-cert}, uniformly on compact parts, so they persist on a
 neighbourhood.  $|\theta|<2.45$ there (also on the rectangle used in
-Theorem~\ref{thm:last-arc}), so $s_\theta$ is injective on every set of diameter
+Theorem~\ref{thm:last-arc}), so $\mathsf s_\theta$ is injective on every set of diameter
 $<2\pi/2.45$, in particular on the disc of radius $1.28$.
 
-(1) $\operatorname{Im}s_\theta(t)=(1-t^2)\operatorname{Im}g_\theta(t)<0$ for $|t|<1$, and $s_\theta$ is injective on $[-1,1]$.
+(1) $\operatorname{Im}\mathsf s_\theta(t)=(1-t^2)\operatorname{Im}g_\theta(t)<0$ for $|t|<1$, and $\mathsf s_\theta$ is injective on $[-1,1]$.
 
-(2) $\partial_tN=(1-\sigma)+\sigma s'$ and $\partial_\sigma N=(1-t^2)g$, so the Jacobian is
+(2) $\partial_tN=(1-\sigma)+\sigma \mathsf s'$ and $\partial_\sigma N=(1-t^2)g$, so the Jacobian is
 \[
  \operatorname{Im}\bigl(\overline{\partial_tN}\,\partial_\sigma N\bigr)
- =(1-t^2)\bigl[(1-\sigma)\operatorname{Im}g+\sigma\operatorname{Im}(\bar s'g)\bigr]<0
+ =(1-t^2)\bigl[(1-\sigma)\operatorname{Im}g+\sigma\operatorname{Im}(\bar{\mathsf s}'g)\bigr]<0
 \]
 for $|t|<1$.  $N$ is continuous on the square $[-1,1]\times[0,1]$ and maps its boundary
 once around the Jordan curve $\partial H_\theta$, the vertical sides to the points $\pm1$.
@@ -3576,10 +3581,10 @@ their number is the winding number of $\partial H_\theta$ about $\zeta_0$, namel
 $H_\theta$ and $0$ outside.  An interior point cannot map to $\partial H_\theta$, since its image
 would have nearby points outside $H_\theta$ with preimages.
 
-(3) $s_\theta'\ne0$, and $s_\theta$ is injective near $[-1,1]$.  At $t\in(-1,1)$ the image of
-the upward direction is $\ii s'(t)$, and the direction from $A_\theta$ into $H_\theta$ is
+(3) $\mathsf s_\theta'\ne0$, and $\mathsf s_\theta$ is injective near $[-1,1]$.  At $t\in(-1,1)$ the image of
+the upward direction is $\ii \mathsf s'(t)$, and the direction from $A_\theta$ into $H_\theta$ is
 $-\partial_\sigma N(t,1)=-(1-t^2)g(t)$.  Both lie on the same side of the tangent
-$s'(t)$, because $\operatorname{Im}(\overline{s'}\,\ii s')=|s'|^2>0$ and $\operatorname{Im}(\overline{s'}(-g))>0$.
+$\mathsf s'(t)$, because $\operatorname{Im}(\overline{\mathsf s'}\,\ii \mathsf s')=|\mathsf s'|^2>0$ and $\operatorname{Im}(\overline{\mathsf s'}(-g))>0$.
 
 (4) Near $t=1$ write $N-1=(t-1)m$ with $m=1-\sigma(1+t)g(t)$.  For $t<1$, $m\ne0$ by (2);
 at $t=1$, $m=1+\sigma(\lambda_+-1)$, whose imaginary part is $\sigma\operatorname{Im}\lambda_+>0$ for $\sigma>0$.  Hence
@@ -3593,7 +3598,7 @@ $D\Phi_\theta$ is continuous and nonsingular on $[-\infty,\infty]\times[0,1]$, w
 orientation.  Its Beltrami coefficient
 $(\partial_x\Phi+\ii\partial_\sigma\Phi)/(\partial_x\Phi-\ii\partial_\sigma\Phi)$ is continuous there and in $\theta$, of modulus
 $<1$, and holomorphic in $\theta$ because $\Phi_\theta(x+\ii\sigma)$ is.  $\Phi(x)=\chi(t)$ and
-$\Phi(x+\ii)=\chi(s_\theta(t))$, so $\Phi$ respects the two identifications.  The rest is as in
+$\Phi(x+\ii)=\chi(\mathsf s_\theta(t))$, so $\Phi$ respects the two identifications.  The rest is as in
 Lemma~\ref{lem:crescent-quotient}(1).
 \end{proof}
 
@@ -3615,7 +3620,7 @@ Appendix~\ref{app:collar}.
 \begin{lemma}[The marked point on $\Theta$]\label{lem:far-mark}
 The entry index exists for every $\theta\in\Theta$, and $\theta\mapsto\mathsf m_\theta$ is a holomorphic section
 of the family $X_\theta$ near $\Theta$: near each $\theta_0$ it is represented by a fixed iterate
-$\zeta_n(\theta)$, either in the interior of $H_\theta$ or in the seam chart given by $s_\theta$.
+$\zeta_n(\theta)$, either in the interior of $H_\theta$ or in the seam chart given by $\mathsf s_\theta$.
 \end{lemma}
 
 \begin{proof}
@@ -3624,7 +3629,7 @@ parameter boxes and the entry is certified box by box (Appendix~\ref{app:collar}
 
 Near $\theta_0$: if $\zeta_n(\theta_0)$ is in the interior of $H$, $n_\theta=n$ nearby.  If $\zeta_n(\theta_0)\in(-1,1)$,
 then $n_\theta\in\{n,n+1\}$ nearby, according to the side of the chord, and $\zeta_n$ and
-$\zeta_{n+1}=s_\theta(\zeta_n)$ are the same point of $X_\theta$ in the seam chart.  The conditions
+$\zeta_{n+1}=\mathsf s_\theta(\zeta_n)$ are the same point of $X_\theta$ in the seam chart.  The conditions
 $\operatorname{Im}\zeta_m>0$, $m<n$, are open.  So $\mathsf m_\theta$ is locally the class of the single holomorphic
 function $\zeta_n(\theta)$.
 \end{proof}
@@ -3638,7 +3643,7 @@ $\tilde F(z+1)=E_\theta(\tilde F(z))$ as in Lemma~\ref{lem:crescent-quotient}(1)
  F^{\rm far}_\theta(z)=G_\theta\bigl(\tilde F_\theta(z+n_\theta)\bigr),
 \]
 where $G_\theta$ is the branch of $E_\theta^{-n_\theta}$ along the orbit $w_{n_\theta}\mapsto\dots\mapsto w_0=1$ (for
-$n_\theta=-1$, $G_\theta=E_\theta$).  Then $F^{\rm far}_\theta(0)=1$, and $F(z+1)=\eee^{a(\theta)F(z)}$ holds as an identity
+$n_\theta=-1$, $G_\theta=E_\theta$).  Then $F^{\rm far}_\theta(0)=1$, and $F(z+1)=\eee^{\mathcal L(\theta)F(z)}$ holds as an identity
 of germs, with the corresponding branches along $w_{n_\theta+1}\mapsto\dots\mapsto w_1$.
 \end{definition}
 
@@ -3660,7 +3665,7 @@ the uniform continuity in Lemma~\ref{lem:far-crescent}(4), is bounded by $\tfrac
 for $\theta$ near $\theta_0$.  Ahlfors--Bers and the $\partial_{\bar\theta}$-cancellation give a
 uniformisation $Z_\theta$ that is jointly holomorphic in $(\theta,\zeta)$ in the interior of
 $H_\theta$.  Near a point $\zeta_0$ of the chord, which does not move with $\theta$ in these
-coordinates, $Z_\theta$ is given by $Z_\theta$ below the chord and by $Z_\theta\circ s_\theta$ above it.  Both
+coordinates, $Z_\theta$ is given by $Z_\theta$ below the chord and by $Z_\theta\circ \mathsf s_\theta$ above it.  Both
 are continuous up to the chord, and they agree there.  So $\theta\mapsto Z_\theta(\zeta)$ is a locally
 uniform limit of holomorphic functions for each $\zeta$, and $Z_\theta(\zeta)$ is holomorphic in
 $\zeta$ by Morera's theorem.  Hartogs' theorem then gives joint holomorphy near the
@@ -3670,7 +3675,7 @@ logarithms along an orbit that avoids $0$, holomorphic in $\theta$.
 \end{proof}
 
 \begin{proposition}[The real slice]\label{prop:far-real}
-For real $\theta\in(0,P_1]$, $F^{\rm far}_\theta$ is Kneser's real-normalised solution $\kappa_{b(\theta)}$
+For real $\theta\in(0,P_1]$, $F^{\rm far}_\theta$ is Kneser's real-normalised solution $\mathcal K_{b(\theta)}$
 near $z=0$.
 \end{proposition}
 
@@ -3689,16 +3694,16 @@ agree, and the branches $G_\theta$ are the real logarithms.
 \end{proof}
 
 \begin{theorem}[Crossing the upper boundary away from the cusp]\label{thm:far}
-Let $p\in(0,P_1]$, and continue Kneser's real-normalised solution $\kappa_b$ at
+Let $p\in(0,P_1]$, and continue Kneser's real-normalised solution $\mathcal K_b$ at
 $b=b(p)>\eta$ analytically in the base along $q\mapsto b(p+\ii q)$, $0\le q\le Q(p)$, with
-$\log b=a(p+\ii q)$ continued along the path.
+$\log b=\mathcal L(p+\ii q)$ continued along the path.
 \begin{enumerate}
 \item The continuation exists along the whole path and is holomorphic in a
   neighbourhood of it.  The multiplier $\lambda_+$ of the continued fixed point crosses
   the unit circle once, at $q=q_{\rm c}(p)$, where $b=\beta(p)$ lies on the upper
   Shell--Thron boundary arc; near $\beta(p)$ the continuation is a holomorphic family
   on a full neighbourhood of $\beta(p)$.
-\item For $q>q_{\rm c}(p)$ the base lies in $\mathcal U^+$, $a=\operatorname{Log}b$, and the continuation
+\item For $q>q_{\rm c}(p)$ the base lies in $\mathcal U^+$, $\mathcal L=\operatorname{Log}b$, and the continuation
   equals $F^{\rm tr}_{b(p+\ii q)}$, the family of Theorem~\ref{thm:global}.
 \end{enumerate}
 In particular, along these paths Kneser's family crosses every point of the upper
@@ -3711,16 +3716,16 @@ $|\operatorname{Im}\log b|<\pi$.
 
 \begin{proof}
 By Proposition~\ref{prop:far-holo} and Lemma~\ref{lem:far-cert}(2), $b$ is locally
-biholomorphic on a neighbourhood $\Theta'$ of $\Theta\setminus\{0\}$ (as is $a$), and $F^{\rm far}$ is a
-holomorphic family of germs there.  By Proposition~\ref{prop:far-real} it equals $\kappa$ on
+biholomorphic on a neighbourhood $\Theta'$ of $\Theta\setminus\{0\}$ (as is $\mathcal L$), and $F^{\rm far}$ is a
+holomorphic family of germs there.  By Proposition~\ref{prop:far-real} it equals $\mathcal K$ on
 the real segment.  So along every path in $\Theta'$ starting on that segment it is the
-analytic continuation of $\kappa$ in the base, with the logarithm $a$ continued along
+analytic continuation of $\mathcal K$ in the base, with the logarithm $\mathcal L$ continued along
 the path.
 
-Next, $a(\theta)=\eee^{-1}(1+\theta^2/2+O(\theta^4))$, so $b'(\theta)=b\,a'(\theta)$ has positive real part for
-small $p$ on $\Theta_{\rm C}$, and there $a$ is principal.  Hence $\operatorname{Im}b(p+\ii q)=\int_0^q\operatorname{Re}b'(p+\ii q')\,dq'>0$ for $q>0$, and for $p$
+Next, $\mathcal L(\theta)=\eee^{-1}(1+\theta^2/2+O(\theta^4))$, so $b'(\theta)=b\,\mathcal L'(\theta)$ has positive real part for
+small $p$ on $\Theta_{\rm C}$, and there $\mathcal L$ is principal.  Hence $\operatorname{Im}b(p+\ii q)=\int_0^q\operatorname{Re}b'(p+\ii q')\,dq'>0$ for $q>0$, and for $p$
 small the vertical fibre is carried into $D^+\cup(\eta,\eta+r_5)\subset\Omega$.  By
-Theorem~\ref{thm:cusp}(1) the continuation of $\kappa$ along it agrees with the family
+Theorem~\ref{thm:cusp}(1) the continuation of $\mathcal K$ along it agrees with the family
 on $\Omega$.  By Theorem~\ref{thm:global} that family equals $F^{\rm tr}$ on $\Omega\cap\mathcal U^+$.  So
 $F^{\rm far}=F^{\rm tr}\circ b$ on a nonempty open subset of the connected set $\Theta^+$ (interior), and
 hence on all of it, by the identity theorem.  The remaining assertions are the
@@ -3760,7 +3765,7 @@ Take $N$ to be the union of the discs, shrunk so that $N\setminus\overline{\math
 band along the arc.  For $p$ small the vertical path of Theorem~\ref{thm:far}
 runs from the real exterior ray to this band outside $\overline{\mathcal U^+}$, on the principal
 sheet.  Moving along the band then reaches the outer side of every $\beta(\alpha)$,
-and $|\operatorname{Im}a|<\pi$ near the arc because $|a|\le\eee$ there.
+and $|\operatorname{Im}\mathcal L|<\pi$ near the arc because $|\mathcal L|\le\eee$ there.
 \end{proof}
 
 \begin{proof}
@@ -3770,7 +3775,7 @@ Lemma~\ref{lem:far-cert}(1) on $(-1,1)$ on a complex neighbourhood, and $w_{-1}=
 crescent, so the entry index is $-1$.  Lemma~\ref{lem:far-crescent} and
 Proposition~\ref{prop:far-holo} apply on a complex parameter neighbourhood
 of every $\alpha<\pi$.  Also $\lambda_+'\ne0$ and
-$a'=\eee^{-\lambda_+}(1-\lambda_+)\lambda_+'\ne0$, so $b=\eee^a$ is a valid
+$\mathcal L'=\eee^{-\lambda_+}(1-\lambda_+)\lambda_+'\ne0$, so $b=\eee^{\mathcal L}$ is a valid
 local parameter.  These neighbourhoods carry one holomorphic family of
 marked crescent quotients: the inverse branch is unique on $R$, and their
 constructions agree on overlaps.
@@ -3786,8 +3791,8 @@ from the real exterior ray into $\mathcal U^+$, then follow a path in
 $\mathcal U^+$ to the inner side of $\beta(\alpha)$ and use the local
 crescent family to cross the boundary.  The first segment is on the principal
 sheet by Lemma~\ref{lem:far-cert}(4).  On $\mathcal U^+$ the logarithm is
-$a=\lambda\eee^{-\lambda}=\operatorname{Log}b$; at the target boundary
-$|a|\le\eee<\pi$, so the last short segment is principal as well.
+$\mathcal L=\lambda\eee^{-\lambda}=\operatorname{Log}b$; at the target boundary
+$|\mathcal L|\le\eee<\pi$, so the last short segment is principal as well.
 This gives the asserted principal-sheet path and completes the proof.
 \end{proof}
 
@@ -3813,7 +3818,7 @@ Write $\overline{\mathcal{ST}}$ for the closed Shell--Thron region, $g(\lambda)=
  \mathcal E^+=\mathbb H\setminus\overline{\mathcal{ST}},\qquad
  \mathbb H=\mathcal E^+\cup\{\beta(\alpha):0<\alpha<\pi\}\cup\mathcal U^+ .
 \]
-On $\mathbb H$ we use the principal logarithm $a=\operatorname{Log}b$, $0<\operatorname{Im}a<\pi$.
+On $\mathbb H$ we use the principal logarithm $\mathcal L=\operatorname{Log}b$, $0<\operatorname{Im}\mathcal L<\pi$.
 
 \begin{lemma}[The exterior parameter]\label{lem:upper-param}
 $\mathcal E^+$ is simply connected.  The fixed point $L_+$ of $E_b$ continued from
@@ -3829,11 +3834,11 @@ domain $\Lambda$, with inverse $\lambda\mapsto\exp g(\lambda)$, and
 $K=\overline{\mathcal{ST}}\cap\overline{\mathbb H}$ is a closed topological disc: it is bounded by the Jordan arc
 $\beta$ and the segment $[\eee^{-\eee},\eta]$.  The complement of $\mathcal E^+$ in the Riemann sphere,
 $(\hat{\mathbb C}\setminus\mathbb H)\cup K$, is connected, so $\mathcal E^+$ is simply connected.  A fixed point of $E_b$ is multiple only if its multiplier is
-$1$, i.e.\ $a=1/\eee$, which does not occur for $0<\operatorname{Im}a<\pi$.  So $L_+$ continues without
-monodromy.  $L_+=\eee^\lambda$ and $a=g(\lambda)$
+$1$, i.e.\ $\mathcal L=1/\eee$, which does not occur for $0<\operatorname{Im}\mathcal L<\pi$.  So $L_+$ continues without
+monodromy.  $L_+=\eee^\lambda$ and $\mathcal L=g(\lambda)$
 (Lemma~\ref{lem:param}), so $b=\exp g(\lambda)$ and $\lambda$ is injective.  All fixed points of $E_b$,
-$b\in\mathcal E^+$, are repelling, so $|\lambda|>1$ and $g(\lambda)=a\notin g(\overline{\mathbb D})$.  If $\operatorname{Im}\lambda=0$ then $a$
-is real; if $\operatorname{Im}\lambda=\pi$ then $\operatorname{Im}a=-\pi\eee^{-\operatorname{Re}\lambda}<0$.  Neither happens on $\mathcal E^+$, and
+$b\in\mathcal E^+$, are repelling, so $|\lambda|>1$ and $g(\lambda)=\mathcal L\notin g(\overline{\mathbb D})$.  If $\operatorname{Im}\lambda=0$ then $\mathcal L$
+is real; if $\operatorname{Im}\lambda=\pi$ then $\operatorname{Im}\mathcal L=-\pi\eee^{-\operatorname{Re}\lambda}<0$.  Neither happens on $\mathcal E^+$, and
 near the real ray $\lambda=\theta\cot\theta+\ii\theta$ with small $\theta>0$; by connectedness
 $0<\operatorname{Im}\lambda<\pi$.
 \end{proof}
@@ -3853,9 +3858,9 @@ Proposition~\ref{prop:far-holo} hold on $\Theta''$.
 \end{lemma}
 
 \begin{proof}
-Those proofs use only these properties and the injectivity of $s_\theta$ on a
+Those proofs use only these properties and the injectivity of $\mathsf s_\theta$ on a
 neighbourhood of $[-1,1]$.  The injectivity follows from $|\theta|<\pi$:
-$s_\theta(\zeta_1)=s_\theta(\zeta_2)$ forces $\theta(\zeta_1-\zeta_2)\in2\pi\mathbb Z$, and $|2\pi/\theta|>2$.  The bound $|\theta|<2.45$ in
+$\mathsf s_\theta(\zeta_1)=\mathsf s_\theta(\zeta_2)$ forces $\theta(\zeta_1-\zeta_2)\in2\pi\mathbb Z$, and $|2\pi/\theta|>2$.  The bound $|\theta|<2.45$ in
 Lemma~\ref{lem:far-crescent} was used only for this.  At the ends, $\operatorname{Im}\lambda_\pm$ play the
 roles of $\operatorname{Im}g(\pm1)$ in part~(4).
 \end{proof}
@@ -3877,7 +3882,7 @@ local roots, which agree on all overlaps, define one continuous branch.
 \end{proof}
 
 \begin{theorem}[Kneser's tetration on the upper half-plane]\label{thm:upper}
-Kneser's real-normalised solution $\kappa_b$, $b>\eta$, continues analytically along
+Kneser's real-normalised solution $\mathcal K_b$, $b>\eta$, continues analytically along
 every path in $\mathbb H=\{\operatorname{Im}b>0\}$, with the principal logarithm.  The result is a
 single-valued family of germs at $z=0$, jointly holomorphic in $(b,z)$.  It is
 given on $\mathcal E^+$ by the straight-chord construction with the marked point of
@@ -3893,7 +3898,7 @@ By Proposition~\ref{prop:upper-cert} and Lemma~\ref{lem:far-scope}
 with $\theta(\lambda)$ and the first-entry mark gives a holomorphic family on $\Lambda$, hence on
 $\mathcal E^+$.  Near the image of the real ray it is Kneser's solution, by
 Proposition~\ref{prop:far-real}, since there $\theta$ is real.  Since $\mathcal E^+$ is connected,
-the family is the analytic continuation of $\kappa$ along every path in $\mathcal E^+$.  Here the
+the family is the analytic continuation of $\mathcal K$ along every path in $\mathcal E^+$.  Here the
 image $\Gamma$ of the real ray lies in $\partial\Lambda$.  The certified cells straddle it,
 $\theta(\lambda)$ extends holomorphically across $\Gamma$, it is real there by the anchor
 in~(I), and Proposition~\ref{prop:far-real} applies.  Shrink the neighbourhood $N$
@@ -3902,9 +3907,9 @@ that corollary, near the open arc this continuation extends
 holomorphically across the arc and equals $F^{\rm tr}$ on the inner side; $F^{\rm tr}$ is
 single-valued on $\mathcal U^+$ by Theorem~\ref{thm:global}.  The three pieces agree on
 their overlaps, so they define one holomorphic family on $\mathbb H$.  Since $\mathbb H$ is
-simply connected, analytic continuation of $\kappa$ along any path in $\mathbb H$ gives it.
+simply connected, analytic continuation of $\mathcal K$ along any path in $\mathbb H$ gives it.
 The boundary values on $(1,\eta)$ are those of Theorem~\ref{thm:global}.  For the lower
-half-plane use $\overline{\kappa_{\bar b}(\bar z)}=\kappa_b(z)$.
+half-plane use $\overline{\mathcal K_{\bar b}(\bar z)}=\mathcal K_b(z)$.
 \end{proof}
 
 \begin{corollary}[Paulsen's family]\label{cor:paulsen}
@@ -3921,7 +3926,7 @@ Corollary~\ref{cor:conjecture} hold for it.
 At $b=\eee^{-\eee}$ the fixed point $L_+$ has multiplier $\lambda_+=-1$.  In
 Theorem~\ref{thm:last-arc} the straight crescent seemed to degenerate there, because
 $f_1(1)=-\tfrac12\operatorname{Im}\lambda_+\to0$.  The crescent itself does not degenerate: its angle at
-$L_+$ is $\arg\lambda_+\to\pi$.  What degenerates is the interpolation $t+\sigma(s_\theta(t)-t)$,
+$L_+$ is $\arg\lambda_+\to\pi$.  What degenerates is the interpolation $t+\sigma(\mathsf s_\theta(t)-t)$,
 whose factor $1+\sigma(\lambda_+-1)$ vanishes at $\sigma=\tfrac12$.  In the coordinate of the pair of
 fixed points the end is harmless, and the crescent can be continued through
 $\lambda_+=-1$ and across the real axis.
@@ -3932,7 +3937,7 @@ image arc is $\Gamma(x)=x+\ii\pi+\varphi(x)$, where, with the entire function $S
  \varphi(t)=\ii\theta+\log S\bigl(\tfrac{\ii\theta(t-1)}2\bigr)-\log S\bigl(\tfrac{\ii\theta(t+1)}2\bigr),
 \]
 with principal logarithms where $\operatorname{Re}S>0$.  Then $\eee^{\varphi(1)}=\lambda_+$ and $\eee^{-\varphi(-1)}=\lambda_-$, and under (b)
-below $\varphi(\pm1)$ are the logarithms with imaginary part in $(0,2\pi)$.  This follows from $s_\theta(t)\mp1=\eee^{\pm\ii\theta}(\eee^{\ii\theta(t\mp1)}-1)/(\ii\sin\theta)$.  We write
+below $\varphi(\pm1)$ are the logarithms with imaginary part in $(0,2\pi)$.  This follows from $\mathsf s_\theta(t)\mp1=\eee^{\pm\ii\theta}(\eee^{\ii\theta(t\mp1)}-1)/(\ii\sin\theta)$.  We write
 $\varphi_x=d\varphi/dx=-\tfrac12(1-t^2)\,d\varphi/dt$, which is regular at $t=\pm1$.  The mark has the
 closed form $\chi(\zeta(0))=\log\frac{\ii\cot\theta-1}{\ii\cot\theta+1}=2\ii\theta$ (mod $2\pi\ii$).
 
@@ -3947,8 +3952,8 @@ Let $\Theta''$ be an open set of $\theta$ on which, for $-1\le t\le1$:
 \item[(e)] the point $2\ii\theta$ ($=\chi(\zeta(0))$, $\zeta(0)=\ii\cot\theta$), which must have imaginary part in
   $(\pi,3\pi)$, lies in the strip between $\operatorname{Im}\chi=\pi$ and $\Gamma$.
 \end{enumerate}
-Then the region $H_\theta$ between the chord and $s_\theta([-1,1])$ is a Jordan region, and
-$s_\theta$ maps the outer side of the chord to the inner side of the arc.
+Then the region $H_\theta$ between the chord and $\mathsf s_\theta([-1,1])$ is a Jordan region, and
+$\mathsf s_\theta$ maps the outer side of the chord to the inner side of the arc.
 $M(x,\sigma)=x+\ii\pi+\sigma\varphi(x)$ is a flat model of the quotient with the properties of
 Lemma~\ref{lem:far-crescent}(4) (with $M$ in place of $N_\theta$), $w_{-1}=0$ lies in $H_\theta$ (entry
 index $-1$), and Definition~\ref{def:far-solution} and Proposition~\ref{prop:far-holo}
@@ -3970,8 +3975,8 @@ both ends.  This holds also for $\lambda_+=-1$, where $\operatorname{Im}\log\lam
 strip is therefore quasiconformally $\mathbb C/\ii\mathbb Z$, with punctures at both ends, and
 $M$ is holomorphic in $\theta$ at fixed $(x,\sigma)$.
 
-The seam map $s_\theta$ is injective near $[-1,1]$ because $|\theta|<\pi$.  In the coordinate
-$\chi$ the map $s_\theta$ sends the outward normal $-\ii$ of the chord to $-\ii(1+\varphi_x)$.  The
+The seam map $\mathsf s_\theta$ is injective near $[-1,1]$ because $|\theta|<\pi$.  In the coordinate
+$\chi$ the map $\mathsf s_\theta$ sends the outward normal $-\ii$ of the chord to $-\ii(1+\varphi_x)$.  The
 direction from $\Gamma$ into the strip is $-\varphi=-\partial_\sigma M$.  By (c) both have
 $\operatorname{Im}(\overline{(1+\varphi_x)}\,v)<0$, so they lie on the same side of $\Gamma$: the outer side of the
 chord goes to the inner side of the arc.  By (e), $w_{-1}=0$ lies in the crescent.  Since $-1$
@@ -4048,20 +4053,20 @@ Proposition~\ref{prop:weld-parameter} covers $(1,\eta)$ by the
 identification in the proof of Theorem~\ref{thm:global}.  We construct
 the extension on $(0,\eee^{-\eee})$.
 
-Write $b=\eee^{-a}$, $a>\eee$, and let $p<q$ be the real two-cycle of
-$E_b(w)=\eee^{-aw}$.  Its multiplier $m=a^2pq$ has the parametrisation
+Write $b=\eee^{-\mathcal M}$, $\mathcal M>\eee$, and let $p<q$ be the real two-cycle of
+$E_b(w)=\eee^{-\mathcal Mw}$.  Its multiplier $m=\mathcal M^2pq$ has the parametrisation
 \[
- ap=u(\coth u-1),\qquad aq=u(\coth u+1),\qquad
- a=\frac{u}{\sinh u}\eee^{u\coth u},\qquad
+ \mathcal Mp=u(\coth u-1),\qquad \mathcal Mq=u(\coth u+1),\qquad
+ \mathcal M=\frac{u}{\sinh u}\eee^{u\coth u},\qquad
  m=\left(\frac{u}{\sinh u}\right)^2,\quad u>0.
 \]
-Indeed $aq/ap=\eee^{2u}$ and $aq-ap=2u$, which give
-$p=\eee^{-aq}$ and $q=\eee^{-ap}$.  Moreover
+Indeed $\mathcal Mq/\mathcal Mp=\eee^{2u}$ and $\mathcal Mq-\mathcal Mp=2u$, which give
+$p=\eee^{-\mathcal Mq}$ and $q=\eee^{-\mathcal Mp}$.  Moreover
 \[
- \frac{d\log a}{du}=\frac1u-\frac{u}{\sinh^2u}>0,
+ \frac{d\log \mathcal M}{du}=\frac1u-\frac{u}{\sinh^2u}>0,
  \qquad \frac{d\log m}{du}=2\left(\frac1u-\coth u\right)<0.
 \]
-Thus $a$ increases from $\eee$ to $+\infty$, while $m$ decreases from
+Thus $\mathcal M$ increases from $\eee$ to $+\infty$, while $m$ decreases from
 $1$ to $0$.  In particular $m$ is a real-analytic coordinate on the
 whole interval $(0,\eee^{-\eee})$, with nonzero derivative.
 
@@ -4084,22 +4089,22 @@ real on $(0,1)$ and set
 and $\nu_m=0$ elsewhere.  Since $\operatorname{Re}\operatorname{Log}m<0$,
 $|c(m)|<1$.  The relation $\sigma_q\circ E_{b_*}=E_{b_*}'(p)\sigma_p$
 on $B_p$, and its counterpart on $B_q$, show that $\nu_m$ is
-$E_{b_*}$-invariant.  The normalised solution $h_m$ fixing $0,1,\infty$
+$E_{b_*}$-invariant.  The normalised solution $\mathcal Q_m$ fixing $0,1,\infty$
 therefore conjugates $E_{b_*}$ to an entire universal cover of
 $\mathbb C^*$ taking $0$ to $1$, hence to $E_{b(m)}$ for a holomorphic
-$b(m)=h_m(b_*)$.  The radial-stretch calculation of
+$b(m)=\mathcal Q_m(b_*)$.  The radial-stretch calculation of
 Proposition~\ref{prop:global-transport}, applied to $E_{b_*}^2$,
 shows that the transported two-cycle has multiplier $m$.
 For real $m\in(0,1)$ the coefficient is conjugation-symmetric, so
-$h_m$ preserves the real axis in order.  In particular
-$h_m(p),h_m(q)\in(0,1)$ are a distinct real two-cycle and $b(m)>0$.
+$\mathcal Q_m$ preserves the real axis in order.  In particular
+$\mathcal Q_m(p),\mathcal Q_m(q)\in(0,1)$ are a distinct real two-cycle and $b(m)>0$.
 The parametrisation above
-then gives $b(m)=\exp(-a(u(m)))\in(0,\eee^{-\eee})$ and
+then gives $b(m)=\exp(-\mathcal M(u(m)))\in(0,\eee^{-\eee})$ and
 $b'(m)\ne0$.
 
 Let $H_*$ be the marked straight crescent at $b_*$ from
 Theorem~\ref{thm:endpoint}; its mark is $w_{-1}=0$.
-The quotients of $h_m(H_*)$, with the edges identified by $E_{b(m)}$,
+The quotients of $\mathcal Q_m(H_*)$, with the edges identified by $E_{b(m)}$,
 are quasiconformally equivalent to the twice-punctured quotient of $H_*$.
 They have the transported fixed-point ends and the same mark $0$.
 The Beltrami coefficient descends to the quotient as $c(m)$ times a
@@ -4119,7 +4124,7 @@ identical.  On a compact part away from the fixed-point ends, their
 edges are close and the orbit-selection argument of
 Lemma~\ref{lem:change-line} gives a conformal map of quotients by
 locally fixed iterates of $E_{b(m)}$.  At either end, use a repelling
-linearising coordinate and its logarithm.  A lift of $h_m$ commutes
+linearising coordinate and its logarithm.  A lift of $\mathcal Q_m$ commutes
 with the deck translation $2\pi\ii$ and conjugates translation by
 $\log\lambda_j(b_*)$ to translation by $\log\lambda_j(b(m))$.
 Consequently it is a real-linear map, tending to the identity as
@@ -4293,17 +4298,17 @@ disc.  This contradicts the lower bound if $F=\Kk^W$ there.
 
 \begin{proposition}[Logarithmic monodromy at the first backward singularity]
 \label{prop:backward-log-monodromy}
-Let $U$ be a simply connected parameter disc on which $a(b)=\log b\ne0$.
+Let $U$ be a simply connected parameter disc on which $\mathcal L(b)=\log b\ne0$.
 Suppose $F_b(z)$ is jointly holomorphic near $U\times\{-1\}$,
 $F_b(-1)=0$, and $F_b'(-1)\ne0$.  Locally in $(b,t)$ write
 $F_b(-1+t)=t\,u_b(t)$ with $u_b(0)\ne0$.  On any simply connected
 sector $0<|t|<r$, all holomorphic backward branches satisfying
-$\exp(a(b)G_b(-2+t))=F_b(-1+t)$ have the form
+$\exp(\mathcal L(b)G_b(-2+t))=F_b(-1+t)$ have the form
 \[
- G_b(-2+t)=\frac{\operatorname{Log}t+\log u_b(t)+2\pi\ii k}{a(b)},
+ G_b(-2+t)=\frac{\operatorname{Log}t+\log u_b(t)+2\pi\ii k}{\mathcal L(b)},
  \qquad k\in\mathbb Z.
 \]
-Continuation once around $t=0$ adds $2\pi\ii/a(b)$.  Hence no
+Continuation once around $t=0$ adds $2\pi\ii/\mathcal L(b)$.  Hence no
 single-valued holomorphic or meromorphic backward branch satisfying
 the equation exists on a full punctured disc about $z=-2$.
 For every real $b\in(1,\eta)$, the sewn solution $\Kk_b^W$ has a
@@ -4318,7 +4323,7 @@ Two logarithms of $t u_b(t)$ on a connected sector differ by a constant
 multiple of $2\pi\ii$, giving the formula.  A turn about $t=0$ changes
 $\operatorname{Log}t$ by $2\pi\ii$.  If a single-valued backward branch existed on
 the punctured disc, integrating the logarithmic derivative of
-$\exp(aG)=t u$ around a small circle would give both $0$ and $2\pi\ii$.
+$\exp(\mathcal L G)=t u$ around a small circle would give both $0$ and $2\pi\ii$.
 A meromorphic branch has no pole away from the centre, since its
 exponential would have an essential singularity there; it is therefore
 subject to the same contradiction.
@@ -4329,7 +4334,7 @@ conformal, with $w(-1)=-1$.  For real $b$,
 $\Rr_b'(0)=\sigma(1)\log\lambda/\sigma'(1)\ne0$, since $\sigma(1)\ne0$ and
 $\sigma'>0$ on $(-\infty,L)$ (forward iteration), and differentiating the functional
 equation at $z=-1$ gives
-$\Rr_b'(-1)=\Rr_b'(0)/a(b)\ne0$.  Thus
+$\Rr_b'(-1)=\Rr_b'(0)/\mathcal L(b)\ne0$.  Thus
 $(\Kk_b^W)'(-1)=\Rr_b'(-1)w'(-1)\ne0$.
 Proposition~\ref{prop:weld-parameter} preserves this simple zero on
 a sufficiently small complex parameter disc about each real base.
@@ -4598,7 +4603,7 @@ as in Definition~\ref{def:class}.  Table~\ref{tab:fatou} shows the result.  At
 the three bases where the band is not too narrow, the sewing solution agrees
 with the independent value \emph{to the full working precision of $40$ digits}.
 That is $27$ to $35$ orders of magnitude below the size of the separation
-$|\kappa-\Rr|$ itself.  At $1+\ii$ the band is narrowest and the agreement
+$|\mathcal K-\Rr|$ itself.  At $1+\ii$ the band is narrowest and the agreement
 ($2\cdot10^{-25}$) is limited by the number of samples.  The neighbouring roots
 $c_{\pm1}$ reproduce $\Rr$ instead, and miss by the full separation.  The
 $\theta$-mapping builder used for the ladders does not converge at $0.8+0.4\ii$,
@@ -4607,12 +4612,12 @@ whereas the sewing iteration converges in a few dozen steps.
 \begin{table}[htbp]
 \centering
 \caption{Sewing solution versus the independent \texttt{fatou.gp} values of
-$\kappa_b(\tfrac12)$ (working precision $40$ digits).}
+$\mathcal K_b(\tfrac12)$ (working precision $40$ digits).}
 \label{tab:fatou}
 \small\setlength{\tabcolsep}{5pt}
 \begin{tabular}{lllll}
 \toprule
-$b$ & $|\Lambda|$ & $|\kappa_b(\tfrac12)-\Rr_b(\tfrac12)|$ & $|\Kk^W_b(\tfrac12)-\kappa_b(\tfrac12)|$ & $|\hat c_1|$\\
+$b$ & $|\Lambda|$ & $|\mathcal K_b(\tfrac12)-\Rr_b(\tfrac12)|$ & $|\Kk^W_b(\tfrac12)-\mathcal K_b(\tfrac12)|$ & $|\hat c_1|$\\
 \midrule
 $1.2+0.1\ii$ & \num{1.91e-11} & \num{6.91e-13} & \num{4.6e-40} & $0.0869956$\\
 $1.3+0.2\ii$ & \num{2.92e-11} & \num{1.81e-12} & \num{8.3e-41} & $0.0876095$\\
@@ -4723,15 +4728,15 @@ $|\lambda_+|^2-1$ on its top edge is divided by $p$; this makes them analytic at
 On $\Theta_{\rm K}$ each strip of width $(P_1-P_0)/440$ is certified up to the larger
 value of $V$ at its ends.  The top-edge test is made at the smaller value;
 this suffices because $|\lambda_+|$ decreases in $q$.  They are evaluated through the entire series
-$g_\theta=-\ii\theta\,(\theta/\sin\theta)\,h$,
-$h=-\sum_{n\ge2}\ii^n\theta^{n-2}P_n(t)/n!$ with $P_n(t)=(t^n-t^{n\bmod2})/(t^2-1)$,
+$g_\theta=-\ii\theta\,(\theta/\sin\theta)\,\mathsf h$,
+$\mathsf h=-\sum_{n\ge2}\ii^n\theta^{n-2}P_n(t)/n!$ with $P_n(t)=(t^n-t^{n\bmod2})/(t^2-1)$,
 $|P_n|\le n/2$ on $[-1,1]$, and the Bernoulli series of $\mu$, each with an explicit tail
 bound.  For $p\to0$ the limits are $\operatorname{Im}g/p\to-\tfrac12$ and
-$\operatorname{Im}(\bar s'g)/p\to-\tfrac12$.
+$\operatorname{Im}(\bar{\mathsf s}'g)/p\to-\tfrac12$.
 
 \emph{Proof of Lemma~\ref{lem:far-cone}.}  $w_{-1}=0$ lies above the chord: $\zeta(0)=\ii\cot\theta$, and Lemma~\ref{lem:far-cert}(3) applies.  Put
 $q_n=(\zeta_n-1)/(\zeta_n+1)$, so that $\zeta_n=(1+q_n)/(1-q_n)$ and $\operatorname{Im}\zeta_n=2\operatorname{Im}q_n/|1-q_n|^2$.
-From $s_\theta$,
+From $\mathsf s_\theta$,
 \[
  q_{n+1}=\frac{\eee^{\ii\theta\zeta_n}-\eee^{\ii\theta}}{\eee^{\ii\theta\zeta_n}-\eee^{-\ii\theta}}
  =\eee^{\ii\theta}\frac{\sin(\theta(\zeta_n-1)/2)}{\sin(\theta(\zeta_n+1)/2)}
@@ -4744,7 +4749,7 @@ $K_2=(1+x)/(3(1-x)^2)$ and $x=(9/20)^2/\pi^2$.
 
 A series enclosure gives $\chi_0=\log q_0$ with $3p<y_0=\operatorname{Im}\chi_0<3.3p$ on the whole cone.
 Put $\chi_{n+1}=\chi_n+\ii\theta+\log T(v_n-\ii\theta)-\log T(v_n)$ and $y_n=\operatorname{Im}\chi_n$.  The segment
-$v_n-\tau\ii\theta=\ii\theta(1/(1-q_n)-\tau)$, $0\le\tau\le1$, has modulus at most $|\theta|(1+1/|1-q_n|)$.
+$v_n-r\ii\theta=\ii\theta(1/(1-q_n)-r)$, $0\le r\le1$, has modulus at most $|\theta|(1+1/|1-q_n|)$.
 Now $|1-q|\ge\sin y$ if $0<y\le\pi/2$ and $|1-q|\ge1$ if $\pi/2\le y\le3\pi/2$, whatever $\operatorname{Re}\chi$ is.  So
 while $3p\le y_n\le\pi+1.2p$ the modulus is at most $1.005p(1+1/\sin3p)<\tfrac9{20}$, and the
 correction term has modulus at most $K|\theta|^2(1+1/\sin 3p)<0.16p$.  Hence
@@ -4758,7 +4763,7 @@ map $E_\theta$ in the coordinate $\chi$.  On $S$ one has $|1-q|\ge1$ and $|\zeta
 $f'-1=[(\log T)'(v-\ii\theta)-(\log T)'(v)]\,vq/(1-q)$ has modulus at most $2K_2|\theta|^2<\tfrac1{10}$.  So
 $\operatorname{Im}f$ increases along $S$, from $y_{n_*}>\pi$ to less than $\pi+1.16p$.  Thus $f(S)$ is a
 curve in the open lower $\zeta$-half-plane.  It ends at the point of $A_\theta$ that is the image of
-$x_{n_*-1}+\ii\pi$, and it meets $A_\theta$ nowhere else, since $s_\theta$ is injective on the unit
+$x_{n_*-1}+\ii\pi$, and it meets $A_\theta$ nowhere else, since $\mathsf s_\theta$ is injective on the unit
 disc.  $S$ approaches the chord from above, so by Lemma~\ref{lem:far-crescent}(3) $f(S)$
 leaves $A_\theta$ into $H_\theta$.  Hence $f(S)$ minus its end lies in the interior of $H_\theta$, and so does
 $\zeta_{n_*}$.  The constants are checked at $p=P_0$ in \texttt{certify\_far\_collar.py}.  The
@@ -4773,18 +4778,18 @@ Krawczyk test proves $\zeta_n=N_\theta(t,\sigma)$ with $|t|<1$, $0<\sigma<1$; so
 $H_\theta$, by Lemma~\ref{lem:far-crescent}(2).  Or $\zeta_{n'}$ ($n'=n$ or $n-1$) lies in a rectangle
 $D=[\mathsf a,\mathsf b]\times[-\rho,\rho]$ with $-1<\mathsf a<\mathsf b<1$, $\rho\le\tfrac14$, for which Krawczyk tests prove the
 following: every point of $D\cap\{\operatorname{Im}\le0\}$ is $N_\theta(t,\sigma)$ with $|t|<1$, $\sigma<1$; and
-every point of $s_\theta(D\cap\{\operatorname{Im}\ge0\})$ is $N_\theta(t,\sigma)$ with $|t|<1$, $\sigma>0$, the root being
+every point of $\mathsf s_\theta(D\cap\{\operatorname{Im}\ge0\})$ is $N_\theta(t,\sigma)$ with $|t|<1$, $\sigma>0$, the root being
 unique in a Krawczyk box that contains the known roots $(t,1)$, $t\in[\mathsf a,\mathsf b]$, of
 the real edge.  In the
 first case $\sigma\ge0$ is automatic, since $\operatorname{Im}N(t,\sigma)=\sigma(1-t^2)\operatorname{Im}g>0$ for $\sigma<0$.  In the
 second case the root is $(t,1)$ on the real edge, by uniqueness; off the real
-axis $\sigma\ne1$, since $\sigma=1$ would put a point of $s_\theta(D)$ on $A_\theta$ and contradict
+axis $\sigma\ne1$, since $\sigma=1$ would put a point of $\mathsf s_\theta(D)$ on $A_\theta$ and contradict
 injectivity.  Since $D\cap\{\operatorname{Im}>0\}$ is connected and, by
 Lemma~\ref{lem:far-crescent}(3), $\sigma<1$ just above the real axis, $\sigma<1$ there.  Hence $\zeta_{n'}\in H_\theta$ if it is not above the chord, and
 $\zeta_{n'+1}\in H_\theta\setminus A_\theta$ otherwise.  All $33\,027$ boxes pass (about six minutes on a laptop).
 
 \subsection{The last boundary arc}\label{app:lastarc}
-\emph{Theorem~\ref{thm:last-arc}.}  We use the chord and the coordinate $s_\theta$ of Section~\ref{sec:far}.
+\emph{Theorem~\ref{thm:last-arc}.}  We use the chord and the coordinate $\mathsf s_\theta$ of Section~\ref{sec:far}.
 The interval certificate \texttt{certify\_last\_boundary\_arc.py} validates
 a simple root
 \[
@@ -4802,7 +4807,7 @@ interval $0.9999\pi\le\alpha\le\pi$.
 
 For $-1\le t\le1$ set
 $f_1=\operatorname{Im}g_\theta(t)$ and
-$f_2=\operatorname{Im}(\overline{s_\theta'(t)}g_\theta(t))$.
+$f_2=\operatorname{Im}(\overline{\mathsf s_\theta'(t)}g_\theta(t))$.
 The certificate proves $f_1,f_2<0$ on $[-1,19/20]$ and
 $\partial_t f_1,\partial_t f_2>0$ on $[19/20,1]$ along this branch.
 The first part uses $79$ parameter boxes up to $0.9999\pi$ and a fixed
@@ -4825,10 +4830,10 @@ tracking is needed.
 The certificate consists of four
 parts (\texttt{certify\_upper\_halfplane.py}):
 \begin{enumerate}
-\item[(T)] \emph{Tails}, $\operatorname{Re}\lambda\le-12$.  With $\kappa=1/\lambda$ and $\theta=\pi-\delta$, $D=\delta/\kappa$ is the
-  fixed point of the contraction $D=-(\pi-\kappa D)\,\ell(2\ii\kappa(\pi-\kappa D))$,
+\item[(T)] \emph{Tails}, $\operatorname{Re}\lambda\le-12$.  With $\mathsf w=1/\lambda$ and $\theta=\pi-\delta$, $D=\delta/\mathsf w$ is the
+  fixed point of the contraction $D=-(\pi-\mathsf w D)\,\ell(2\ii\mathsf w(\pi-\mathsf w D))$,
   $\ell(z)=-\log(1-z)/z$.  After multiplication by $1/|\lambda|$ all quantities are
-  analytic at $\kappa=0$.  $F$ is a contraction on the fixed convex set
+  analytic at $\mathsf w=0$.  $F$ is a contraction on the fixed convex set
   $|\operatorname{Re}D+\pi|,|\operatorname{Im}D|\le\tfrac32$, so $D$ is unique there.  The quantities are checked on boxes in $(1/|\operatorname{Re}\lambda|,\operatorname{Im}\lambda)$ that
   include the limit.  The mark is $w_{-1}=0$: $\zeta(0)=\ii\cot\theta=N_\theta(t,\sigma)$ with $(t,\sigma)$
   near $(0,\tfrac12)$, by a scaled Krawczyk test.  There are $6230$ boxes.
@@ -4844,7 +4849,7 @@ parts (\texttt{certify\_upper\_halfplane.py}):
   of $\partial_tf$ near $t=\pm1$.  This handles the degenerate edge $\operatorname{Im}\lambda\to0$
   ($b\to(0,\eee^{-\eee})$).  The mark is checked as in Lemma~\ref{lem:far-mark}.  A box
   whose $\theta$-box lies in $\Theta$ or in its complex conjugate needs no new check.
-  Indeed $s_{\bar\theta}(t)=-\overline{s_\theta(-t)}$ and $\zeta_{\bar\theta}(\bar w)=-\overline{\zeta_\theta(w)}$, so the
+  Indeed $\mathsf s_{\bar\theta}(t)=-\overline{\mathsf s_\theta(-t)}$ and $\zeta_{\bar\theta}(\bar w)=-\overline{\zeta_\theta(w)}$, so the
   crescent, the inequalities (with $t\mapsto-t$) and the entry index of $\bar\theta$ are those of
   $\theta$ reflected in the imaginary axis.
 \item[(P)] \emph{Cusp}, $|\lambda-1|<0.08$.  Write $\lambda_+(\theta)=1+\ii\theta+\theta^2D(\theta^2)$ with $|D|\le0.34$ for

@@ -215,6 +215,7 @@ import Kneser.HolomorphicInjectiveInverse
 import Kneser.HorizontalStripInverse
 import Kneser.HornCoefficient
 import Kneser.HornGaugeExpansion
+import Kneser.Interface
 import Kneser.InverseKoenigsEntry
 import Kneser.InverseKoenigsRealGeometry
 import Kneser.InverseLensKoenigsIdentification

@@ -407,6 +407,10 @@ def audit_modules(root, name, modules):
         "actual_two_patch_original_function_and_true_integral_all_orders_closed":
             "Kneser.GluedOriginalResult.exists_actual_glued_original_result"
             in declarations,
+        "readable_interface_bundles_same_glued_family":
+            "Kneser.Interface.exists_sewnTetrationFamily" in declarations and
+            "Kneser.Interface.exists_sewn_tetration" in declarations and
+            "Kneser.Interface.exists_sewn_tetration_all_orders" in declarations,
         "higher_order_semantic_scope":
             "One genuine real-anchor transition and one common centered repelling inverse "
             "carry all finite-order integer expansions, periodic continuation, actual "

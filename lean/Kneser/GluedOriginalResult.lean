@@ -92,8 +92,7 @@ theorem glued_original_period_line (A B : ℂ → ℂ)
     unfold gluedOriginalCoefficient originalCoefficient
     apply intervalIntegral.integral_congr
     intro x hx
-    have hx' : x∈Icc (0:ℝ) 1 := by
-      simpa only [Set.uIcc_of_le (by norm_num : (0:ℝ)≤1)] using hx
+    have hx' : x∈Icc (0:ℝ) 1 := by rwa [Set.uIcc_of_le zero_le_one] at hx
     dsimp only
     rw [hb.upper_eq _ (hl.actual_domain x hx')]
 
@@ -124,20 +123,12 @@ structure GluedResultData (U H A B : ℂ → ℂ) (K : ℂ → ℂ → ℂ) (F :
   actual_coefficients : ∀ᶠs : ℝ in 𝓝[>] 0, ∀n : ℤ,
     gluedOriginalCoefficient A B e Γ Y P₀ s (W s) (S s) (J s) n=
       gateFourierCoefficient n 0 (actualSewnCoordinate A B e Γ Y P₀ s (W s))
-  actual_multiplier_parameter : ∀ᶠs : ℝ in 𝓝[>] 0,
-    p s=(-Real.log (Kneser.PositiveKoenigsOrbit.multiplier s (W s).left)*
-      Real.log (Kneser.PositiveKoenigsOrbit.multiplier s (W s).right):ℝ)
   canonical_baseline : ∀n : ℕ, 1≤n →
     normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n 0=
       gateFourierCoefficient n (imageCenter Rₛ Yg).im G*
         exp (Kneser.fourierFrequency n*globalAttracting Rₛ normalizationAnchor)
   coefficients : ∀n : ℕ, 1≤n → gateFourierCoefficient n (imageCenter Rₛ Yg).im G≠0 →
     ∃a : ℕ → ℂ, a 0=0 ∧ a 1=physicalKappa U H A B e Γ N M Yg V n ∧
-      Tendsto (normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n)
-        (𝓝[>] 0) (𝓝 (localHorn (actualTransition U H A B e Γ N M Yg V) n 0)) ∧
-      (∀ᶠs : ℝ in 𝓝[>] 0,
-        normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n s/
-          normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n 0∈slitPlane) ∧
       ∀m : ℕ, ParameterExpansion
         (fun s => log (normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n s/
           normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n 0)) p a m
@@ -164,43 +155,26 @@ theorem glued_result_of_physical_coefficients
     intro n
     simp only [normalizedGluedCoefficient,normalizedOriginalCoefficient,
       (glued_original_period_line A B e Γ Y P₀ s (W s) (S s) (J s) hs hl).2 n]
-  refine ⟨S,hd,hS.mono (fun s hs => glued_base_fiber_of_data A B e Γ Y P₀ s (W s) (S s) hs),?_,?_,?_,?_,?_,?_⟩
+  refine ⟨S,hd,hS.mono (fun s hs => glued_base_fiber_of_data A B e Γ Y P₀ s (W s) (S s) hs),?_,?_,?_,?_,?_⟩
   · filter_upwards [hS,hd.actual_line] with s hs hl
     exact (glued_original_period_line A B e Γ Y P₀ s (W s) (S s) (J s) hs hl).1
   · filter_upwards [hS,hd.actual_line] with s hs hl
     intro n
     exact ((glued_original_period_line A B e Γ Y P₀ s (W s) (S s) (J s) hs hl).2 n).trans
       ((original_period_line_of_data A B e Γ Y P₀ s (W s) (J s) hl).2 n)
-  · exact Kneser.MainResult.actual_sewn_multiplier_parameter U H A B K F e Γ
-      R Rₛ Y₁ Y₀ Mh Ch Yg Y η Mg P₀ N M M₀ Vold V p r G W hd.all_orders
   · intro n hn
     rw [normalized_glued_zero]
     exact original_canonical_baseline U H A B K F e Γ
       R Rₛ Y₁ Y₀ Mh Ch Yg Y η Mg P₀ N M M₀ Vold V p r G W J hd n hn
   · intro n hn hBn
-    have hB := (Kneser.MainResult.actual_nonzero_mode_iff_canonical U H A B K F e Γ
-      R Rₛ Y₁ Y₀ Mh Ch Yg Y η Mg P₀ N M M₀ Vold V p r G W hd.all_orders n hn).mpr hBn
-    obtain ⟨a,ha0,ha1,ht,hslit,hall⟩ := hd.coefficients n hn hB
-    let f := normalizedGluedCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W S J n
-    let g := normalizedPhysicalCoefficient A B e Γ (actualTransition U H A B e Γ N M Yg V) Y P₀ W J n
-    have hfg : f=ᶠ[𝓝[>] 0]g := by
-      filter_upwards [heq] with s hs
-      exact (hs n).trans (congrFun (normalized_original_eq_physical A B e Γ _ Y P₀ W J n) s)
-    have hfg0 : f 0=g 0 := by
-      exact (normalized_glued_zero A B e Γ _ Y P₀ W S J n).trans
-        (congrFun (normalized_original_eq_physical A B e Γ _ Y P₀ W J n) 0)
-    refine ⟨a,ha0,ha1,ht.congr' hfg.symm,?_,?_⟩
-    · filter_upwards [hfg,hslit] with s hs hslit
-      change f s/f 0∈slitPlane
-      rw [hs,hfg0]
-      exact hslit
-    · intro m
-      change ParameterExpansion (fun s => log (f s/f 0)) p a m
-      exact parameterExpansion_of_eventuallyEq (fun s => log (f s/f 0))
-        (fun s => log (g s/g 0)) p a m (by rw [hfg0])
-          (hfg.mono (fun s hs => by
-            change log (f s/f 0)=log (g s/g 0)
-            rw [hs,hfg0])) (hall m)
+    obtain ⟨a,ha0,ha1,hall⟩ := original_all_orders U H A B K F e Γ
+      R Rₛ Y₁ Y₀ Mh Ch Yg Y η Mg P₀ N M M₀ Vold V p r G W J hd n hn hBn
+    refine ⟨a,ha0,ha1,?_⟩
+    intro m
+    apply parameterExpansion_of_eventuallyEq _ _ p a m ?_ ?_ (hall m)
+    · simp only [normalized_glued_zero]
+    · filter_upwards [heq] with s hs
+      simp only [hs n,normalized_glued_zero]
   · intro n hn hBn
     obtain ⟨C,hC,hb⟩ := original_first_order U H A B K F e Γ
       R Rₛ Y₁ Y₀ Mh Ch Yg Y η Mg P₀ N M M₀ Vold V p r G W J hd n hn hBn
