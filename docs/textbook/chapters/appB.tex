@@ -1,0 +1,47 @@
+\chapter{记号表}\label{app:notation}
+
+本书中下列记号有唯一的含义。只在一个证明内部使用的字母，在引入处说明，不列入本表。
+
+\begin{center}
+\small
+\begin{tabular}{p{0.2\textwidth}p{0.55\textwidth}p{0.15\textwidth}}
+\toprule
+记号 & 含义 & 首次出现\\
+\midrule
+$f_s$, $s$ & 实鞍结开折及其参数；$s>0$ 一侧有两个实不动点 & \cref{def:unfolding}\\
+$g$ & 抛物芽 $g(u)=u+a_2u^2+a_3u^3+\cdots$，$a_2>0$ & \cref{def:unfolding}\\
+$a_2,a_3,\dots$ & 芽的 Taylor 系数 & \cref{def:formal-abel}\\
+$\rho$ & 迭代留数 $1-a_3/a_2^2$ & \cref{def:formal-abel}\\
+$X$, $\gamma$ & 开折方向（$f_s=g-sX+O(s^2)$），横截性 $\gamma=X(0)>0$ & \cref{def:unfolding}\\
+$w^*$, $u$ & 鞍结点与仿射坐标 $w=w^*+c\,u$（$c>0$；tetration 取 $w=\ee(1+u)$） & \cref{def:unfolding}\\
+$w_0$, $\ustar$ & 基点与它的 $u$ 坐标 $\ustar=(w_0-w^*)/c$ & \cref{def:unfolding}\\
+$u_1<u_2$ & 吸引、排斥不动点 & \cref{def:unfolding}\\
+$\lambda_1,\lambda_2$ & 对应乘子，$0<\lambda_1<1<\lambda_2$ & \cref{prop:scales}\\
+$A_1,A_2$ & 留数 $1/\log\lambda_j$ & \cref{lem:residues}\\
+$p$ & 内蕴参数 $-\log\lambda_1\log\lambda_2$ & \cref{prop:scales}\\
+$h$, $h_2$ & 周期 $2\pi/|\log\lambda_1|$，$2\pi/\log\lambda_2$ & \cref{prop:regular-periodic}\\
+$\Lam$ & 强迫尺度 $\exp(4\pi^2/\log\lambda_1)=\ee^{-2\pi h}$ & \cref{prop:scales}\\
+$\sigma$, $\sigma_{\mathrm{rep}}$ & 吸引、排斥 Koenigs 坐标 & \cref{thm:koenigs}\\
+$R$, $S$ & 吸引、排斥正则解，$R^{-1}(w_0)=0$ & \cref{def:regular-solution}\\
+$T$, $t_n$ & 转移映射 $R^{-1}\circ S$ 及其 Fourier 系数 & \cref{def:transition}\\
+$\tau_n$ & 不变量 $t_n\ee^{-2\pi\ii nt_0}$ & \cref{def:transition}\\
+$T^\circ$ & $T-\id-t_0$ & \cref{def:transition}\\
+$\Ksew$ & 缝合解 & \cref{thm:sewing}\\
+$c_n$, $\hat c_n$, $\Xi_n$ & 分离系数，$c_n/\Lam^n$，$c_n/c_1^n$ & \cref{thm:welding}\\
+$\alpha$ & 形式 Abel 函数 & \cref{def:formal-abel}\\
+$\Phiatt$, $\Phirep$ & 吸引、排斥 Fatou 坐标 & \cref{thm:fatou-coordinates}\\
+$\horn$, $\horn^{-1}$ & horn 映射与逆 horn 映射 & \cref{def:horn}\\
+$B_n$ & 逆 horn 映射的 Fourier 系数 & \cref{def:horn}\\
+$a$ & 基点的 Fatou 值 $\Phiatt(\ustar)$ & \cref{def:horn}\\
+$\kappa^{(n)}_j$, $\kappa^{(n)}$ & $\log(\tau_n/B_n\ee^{2\pi\ii na})$ 的展开系数，$\kappa^{(n)}=\kappa^{(n)}_1$ & \cref{thm:all-orders}\\
+$\ktr^{(n)}$ & 平移开折 $g-s$ 的一阶系数 & \cref{thm:variation}\\
+$\Lop$ & 同调算子 $\Lop\phi=\phi\circ g-g'\phi$ & \cref{thm:variation}\\
+$\Pstr$ & 抛物层：有二重不动点的映射 & \cref{thm:variation}\\
+$\Ocal_r$ & $D_r$ 上有界全纯函数的 Banach 空间 & \cref{thm:variation}\\
+$\Lfun_n$, $\Ifun_n$, $\Dfun_n$ & 线性泛函、不变量、抛物层上的对数微分 & \cref{thm:variation}\\
+$\eta$ & $\ee^{1/\ee}$ & \cref{ch:intro}\\
+$\Kkn_b$ & tetration 的 Kneser 解（底数延拓族） & \cref{ch:examples}\\
+$\varepsilon$ & 仅第~\ref{ch:examples} 章：尖点附近的复参数 $1-\lambda_1$ & \cref{thm:cusp}\\
+\bottomrule
+\end{tabular}
+\end{center}

@@ -149,8 +149,9 @@ $n\ge1$,
  B_n\eee^{2\pi\ii na'}=B_n\eee^{2\pi\ii na}\,\eee^{2\pi\ii n\Delta_0},
 \]
 with $\Delta(\mu)=\Rr_\mu^{-1}(w_0')$ and $\Delta_0=\Phi_{\mathrm{att}}(u^{*\prime})-\Phi_{\mathrm{att}}(u^*)$
-both real.  Hence $|\tau_n(\mu)|$, $|c_n|$ and $|\hat c_n|$ do not depend on the
-base point, and neither does $\operatorname{Re}\kappa^{(n)}_j$ for any $j$.
+both real.  Hence $|\tau_n(\mu)|$ does not depend on the base point, and
+neither does $\operatorname{Re}\kappa^{(n)}_j$ for any $j$.  The moduli $|c_n|$
+and $|\hat c_n|$ of the sewn solution change only at relative order $O(n\Lambda)$.
 \end{proposition}
 
 \begin{proof}
@@ -159,10 +160,14 @@ $\Delta=\log(\sigma(w_0')/\sigma(w_0))/\log\lambda$ is real.  Then
 $\Rr'^{-1}=\Rr^{-1}-\Delta$ and $T'=T-\Delta$, so $t_n'=t_n$ for $n\ne0$ and
 $t_0'=t_0-\Delta$.  The branch condition $\operatorname{Im}t_0=h/2$ is preserved,
 and $\tau_n'=\tau_n\eee^{2\pi\ii n\Delta}$.  At $\mu_0$, $u^*$ and $u^{*\prime}$ lie
-on the real attracting axis, where $\Phi_{\mathrm{att}}$ is real.  The sewn
-solutions for the two base points differ by a real translation, which does not
-change $|c_n|$ (Remark~\ref{rem:invariance}).  Taking real parts of the logarithm of
-the first identity divided by the second proves the last assertion.
+on the real attracting axis, where $\Phi_{\mathrm{att}}$ is real.  Taking real
+parts of the logarithm of the first identity divided by the second gives the
+statement on $\operatorname{Re}\kappa^{(n)}_j$.  For the sewn solutions, the
+normalisation $\Kk^W(0)=w_0'$ gives $\Kk^W[w_0']=\Kk^W[w_0](\cdot+\delta)$ with
+$\delta+P(\delta)=\Delta$.  Since $\Kk^W$ is not real on the real axis,
+$\operatorname{Im}\delta=-\operatorname{Im}P(\delta)=O(\Lambda)$ is in general not zero,
+so by Remark~\ref{rem:invariance} $c_n$ is multiplied by
+$\eee^{2\pi\ii n\delta}=\eee^{2\pi\ii n\operatorname{Re}\delta}(1+O(n\Lambda))$.
 \end{proof}
 
 \begin{corollary}\label{cor:gen-invariant}

@@ -1,0 +1,416 @@
+% 附录 A：复分析工具
+\chapter{复分析工具}\label{app:tools}
+
+本附录收集正文反复使用的复分析工具。它们都是经典的。
+凡是证明短而标准的，给出完整证明；其余给出精确陈述和出处，并说明正文在哪里用到。
+读者可以先跳过本附录，在正文引用时再回来查阅。
+
+\begin{goals}
+\item Banach 空间中的全纯映射：G-全纯加局部有界蕴含全纯；$L^\infty$ 值映射的全纯性。
+\item Weierstrass 预备定理与除法定理，参数可以取在 Banach 空间中（\cref{thm:weierstrass-prep}）。
+\item 辐角原理、Rouché 定理、Hurwitz 定理、带参数的反函数，以及区间证书中使用的 Krawczyk 判据。
+\item 柱面上的 Fourier 级数，周期梯形公式的混叠误差界。
+\item 单叶性判据（Noshiro--Warschawski、Koebe）。
+\item 拟共形映射与带参数的可测 Riemann 映射定理（\cref{thm:ahlfors-bers}）；全纯族的局部平凡性。
+\end{goals}
+
+记号：$D_r=\{|u|<r\}$，$D(a,r)=\{|u-a|<r\}$。$E,F$ 表示复 Banach 空间，$\Ocal_r$ 是 $D_r$ 上有界全纯函数在上确界范数下构成的 Banach 空间。
+
+% ======================================================================
+\section{Banach 空间中的全纯映射}\label{appA:sec:banach}
+
+第 9 章把芽 $f$ 本身看成 Banach 空间 $\Ocal_r$ 中的点，第 10 章把 Beltrami 系数看成 $L^\infty$ 中的点。
+这两处都需要「对无穷维参数全纯」的概念。
+
+\begin{definition}\label{appA:def:holomorphic}
+设 $U\subset E$ 是开集，$f:U\to F$。
+\begin{enumerate}
+\item 称 $f$ \textbf{全纯}（holomorphic），若它在每点 $a\in U$ 复 Fréchet 可微：存在有界复线性映射 $Df(a):E\to F$，使 $\|f(a+h)-f(a)-Df(a)h\|=o(\|h\|)$。
+\item 称 $f$ \textbf{G-全纯}（Gâteaux holomorphic），若对每个 $a\in U$、$b\in E$，单复变量函数 $\lambda\mapsto f(a+\lambda b)$ 在 $0$ 的某个邻域中全纯。
+\item 称 $f$ \textbf{局部有界}，若每点有一个邻域，$f$ 在其上有界。
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[{\cite{Mujica1986}}]\label{appA:thm:G-hol}
+设 $U\subset E$ 开，$f:U\to F$ G-全纯且局部有界。则 $f$ 全纯。进一步，若 $\|f\|\le M$ 于球 $B(a,r)\subset U$，则在 $B(a,r/2)$ 上
+\begin{equation}\label{appA:eq:taylor}
+  f(a+h)=\sum_{m\ge0}P_m(h),\qquad P_m(h)=\frac1{2\pi\ii}\oint_{|\lambda|=1}\frac{f(a+\lambda h)}{\lambda^{m+1}}\,\dd\lambda,\qquad \|P_m(h)\|\le M\Bigl(\frac{\|h\|}{r}\Bigr)^m ,
+\end{equation}
+级数在 $B(a,r/2)$ 上一致收敛，每个 $P_m$ 是连续的 $m$ 次齐次多项式。
+\end{theorem}
+
+\begin{proof}
+固定 $h$，$\|h\|<r$。函数 $\phi(\lambda)=f(a+\lambda h)$ 在 $|\lambda|<r/\|h\|$ 上全纯（G-全纯性在每点给出局部全纯，连通性给出整个圆盘上的全纯），
+并以 $M$ 为界。所以它的 Taylor 级数 $\phi(\lambda)=\sum_m\lambda^mP_m(h)$ 在 $|\lambda|\le1$ 上收敛，Cauchy 估计给出 $\|P_m(h)\|\le M(\|h\|/r)^m$。
+在 $\lambda=1$ 处取值即得~\eqref{appA:eq:taylor}。$P_m(\mu h)=\mu^mP_m(h)$ 由积分的变量替换得到。
+
+$P_m$ 是多项式：对有限个向量 $h_1,\dots,h_k$，$(\lambda_1,\dots,\lambda_k)\mapsto f(a+\sum\lambda_jh_j)$ 在 $0$ 附近对每个变量分别全纯且有界，
+由 Osgood 引理（有界的分别全纯函数是联合全纯的）它联合全纯；比较 Taylor 系数可知 $P_m(\sum\lambda_jh_j)$ 是 $\lambda$ 的 $m$ 次齐次多项式。
+由极化公式，$P_m$ 来自一个对称 $m$ 重线性映射，它在单位球上有界（由上面的估计），所以连续。
+
+级数在 $\|h\|\le r/2$ 上被 $\sum M2^{-m}$ 控制，一致收敛。于是 $f$ 在 $B(a,r/2)$ 上连续，$Df(a)=P_1$，并且
+$\|f(a+h)-f(a)-P_1(h)\|\le\sum_{m\ge2}M(\|h\|/r)^m=O(\|h\|^2)$。在 $B(a,r/2)$ 中每一点重复这个论证，得到 $f$ 全纯。
+\end{proof}
+
+推论：全纯映射的复合、和、积是全纯的；在局部一致收敛下全纯映射的极限是全纯的（由~\eqref{appA:eq:taylor} 中的 Cauchy 积分）；
+一族在 $\Ocal_r$ 中的全纯曲线 $t\mapsto f_t$ 给出 $(t,u)\mapsto f_t(u)$ 的联合全纯函数，反之亦然（若 $f_t(u)$ 在 $|t|<\delta$、$u\in D_r$ 上联合全纯且有界，
+则 $t\mapsto f_t\in\Ocal_{r'}$ 对 $r'<r$ 是全纯的）。
+
+\begin{proposition}[$L^\infty$ 值映射]\label{appA:prop:Linfty}
+设 $\Omega\subset\C$ 可测，$V\subset\C^k$ 开，$\nu:V\times\Omega\to\C$ 使得对几乎每个 $x\in\Omega$，$t\mapsto\nu(t,x)$ 在 $V$ 上全纯，
+对每个 $t$，$x\mapsto\nu(t,x)$ 可测，且 $|\nu|\le M$。则 $t\mapsto\nu(t,\cdot)$ 是 $V\to L^\infty(\Omega)$ 的全纯映射。
+\end{proposition}
+
+\begin{proof}
+由 \cref{appA:thm:G-hol}，只需对 $k=1$ 证明，并且只需在一个圆盘 $\overline{D(t_0,2r)}\subset V$ 上证明可微。对 $|\delta|<r$，由 Cauchy 公式，
+对几乎每个 $x$，
+\[
+  \nu(t_0+\delta,x)-\nu(t_0,x)-\delta\,\partial_t\nu(t_0,x)
+  =\frac{\delta^2}{2\pi\ii}\oint_{|\zeta-t_0|=2r}\frac{\nu(\zeta,x)\,\dd\zeta}{(\zeta-t_0)^2(\zeta-t_0-\delta)} ,
+\]
+其模不超过 $M|\delta|^2/r^2$，与 $x$ 无关。$\partial_t\nu(t_0,\cdot)$ 作为可测函数的差商极限是可测的，并以 $M/(2r)$ 为界。
+所以 $\nu$ 在 $t_0$ 处按 $L^\infty$ 范数复可微。
+\end{proof}
+
+这个命题正是第 10 章倾斜区域的全纯依赖（\cite[命题~10.9]{KneserPaper}）中「逐点全纯且一致有界的 Beltrami 系数是 $L^\infty$ 值全纯映射」一步。
+
+\begin{theorem}[Banach 空间中的隐函数定理]\label{appA:thm:implicit}
+设 $U\subset E\times\C$ 开，$\Phi:U\to\C$ 全纯，$\Phi(x_0,y_0)=0$，$\partial_y\Phi(x_0,y_0)\neq0$。则存在 $x_0$ 的邻域 $U_0$ 与唯一的全纯映射
+$y:U_0\to\C$，$y(x_0)=y_0$，$\Phi(x,y(x))=0$，并且在 $(x_0,y_0)$ 附近 $\Phi$ 的零点恰是这个图像。
+\end{theorem}
+
+\begin{proof}
+因为 $y_0$ 是 $\Phi(x_0,\cdot)$ 的单零点，可取 $\rho>0$ 使 $\Phi(x_0,\cdot)$ 在 $\overline{D(y_0,\rho)}$ 中只有零点 $y_0$。对每个 $x$，$\Phi(x,\cdot)$ 在 $D(y_0,\rho)$ 的邻域上全纯；由 $\Phi$ 的连续性与圆周的紧性，当 $x$ 靠近 $x_0$ 时，它在 $|y-y_0|=\rho$ 上与 $\Phi(x_0,\cdot)$ 的差小于 $\min_{|y-y_0|=\rho}|\Phi(x_0,y)|$。
+由 Rouché 定理（\cref{appA:thm:rouche}）它在 $D(y_0,\rho)$ 中恰有一个零点 $y(x)$，并且
+\[
+  y(x)=\frac1{2\pi\ii}\oint_{|\zeta-y_0|=\rho}\frac{\zeta\,\partial_y\Phi(x,\zeta)}{\Phi(x,\zeta)}\,\dd\zeta .
+\]
+被积函数对 $x$ 全纯且局部有界，所以 $y$ 是 G-全纯且局部有界的，由 \cref{appA:thm:G-hol} 全纯。
+\end{proof}
+
+第 9 章用这个定理说明抛物层 $\Pstr$ 是 $\Ocal_r$ 中的复解析超曲面：判别式 $D[f]=\sigma_1^2-4\sigma_2$ 在 $g$ 处是淹没。
+
+% ======================================================================
+\section{Weierstrass 预备定理与除法定理}\label{appA:sec:weierstrass}
+
+\begin{theorem}[Weierstrass 预备定理与除法定理，带参数]\label{thm:weierstrass-prep}
+设 $P$ 是复 Banach 空间 $E$ 中的开集（特别地可以是 $\C^k$ 中的开集），$p_0\in P$，$f:P\times D_r\to\C$ 全纯且有界。
+设 $f(p_0,\cdot)$ 在 $\overline{D_\rho}$（$0<\rho<r$）中恰有 $d$ 个零点（计重数），都在 $D_\rho$ 内部。则存在 $p_0$ 的邻域 $U\subset P$，使得：
+\begin{enumerate}
+\item \emph{预备。}对 $p\in U$，
+  \[
+    f(p,u)=q_p(u)\,k(p,u),\qquad q_p(u)=u^d-\sigma_1(p)u^{d-1}+\sigma_2(p)u^{d-2}-\cdots+(-1)^d\sigma_d(p),
+  \]
+  其中 $\sigma_j(p)$ 是 $f(p,\cdot)$ 在 $D_\rho$ 中的 $d$ 个零点的第 $j$ 个初等对称函数，$\sigma_j:U\to\C$ 全纯，$q_p$ 的零点恰是 $f(p,\cdot)$ 在 $D_\rho$ 中的零点（计重数），$k$ 在 $U\times D_\rho$ 上全纯且无零点。
+\item \emph{除法。}对每个在 $U\times D_\rho$ 上全纯且有界的 $h$，存在唯一的分解
+  \[
+    h(p,u)=Q(p,u)\,q_p(u)+R(p,u),\qquad R(p,u)=\sum_{j=0}^{d-1}R_j(p)u^j ,
+  \]
+  其中 $Q$ 在 $U\times D_{\rho'}$（任意 $\rho'<\rho$）上全纯，$R_j:U\to\C$ 全纯。
+\end{enumerate}
+若 $f$ 在实参数处对实 $u$ 取实值，则 $\sigma_j$、$k$、$Q$、$R_j$ 在实参数处也是实的。
+\end{theorem}
+
+正文用到 $d=2$ 的情形：\cref{ch:first-order} 的一致模型（$f_s(u)-u=(u^2-\sigma_1u+\sigma_2)k_s(u)$），第 9 章的抛物层，第 10 章的尖点参数。
+这时 $q=u^2-\sigma_1u+\sigma_2$，$\sigma_1$ 是两个不动点之和，$\sigma_2$ 是两者之积。
+
+\begin{proof}
+\emph{零点个数不变。}令 $m=\min_{|u|=\rho}|f(p_0,u)|>0$。由连续性，存在 $p_0$ 的邻域 $U$，使 $p\in U$ 时 $|f(p,u)-f(p_0,u)|<m$ 于 $|u|=\rho$。
+由 Rouché 定理，$f(p,\cdot)$ 在 $D_\rho$ 中恰有 $d$ 个零点 $u_1(p),\dots,u_d(p)$（计重数），在圆周上无零点。
+
+\emph{幂和全纯。}对 $k\ge0$ 令
+\[
+  s_k(p)=\sum_{i=1}^du_i(p)^k=\frac1{2\pi\ii}\oint_{|u|=\rho}u^k\,\frac{\partial_uf(p,u)}{f(p,u)}\,\dd u .
+\]
+被积函数对 $p$ 全纯，并在 $U\times\{|u|=\rho\}$ 上有界（缩小 $U$ 后 $|f|\ge m/2$），所以 $s_k$ 是 G-全纯且局部有界的，由 \cref{appA:thm:G-hol} 全纯。
+初等对称函数 $\sigma_j$ 由 Newton 恒等式 $j\sigma_j=\sum_{i=1}^j(-1)^{i-1}\sigma_{j-i}s_i$（$\sigma_0=1$）表为 $s_1,\dots,s_d$ 的多项式，所以全纯。于是 $q_p(u)=\prod_i(u-u_i(p))$ 的系数全纯。
+
+\emph{商全纯。}对 $|u|<\rho$ 令
+\[
+  k(p,u)=\frac1{2\pi\ii}\oint_{|\zeta|=\rho}\frac{f(p,\zeta)}{q_p(\zeta)(\zeta-u)}\,\dd\zeta .
+\]
+它对 $(p,u)$ 全纯（同上理由）。对固定的 $p$，$f(p,\cdot)/q_p$ 在 $D_\rho$ 中的奇点可去（$q_p$ 的零点都是 $f(p,\cdot)$ 的同重零点），所以由 Cauchy 公式 $k=f/q_p$，且 $k$ 无零点。
+
+\emph{除法。}令
+\[
+  Q(p,u)=\frac1{2\pi\ii}\oint_{|\zeta|=\rho''}\frac{h(p,\zeta)}{q_p(\zeta)(\zeta-u)}\,\dd\zeta,\qquad
+  R(p,u)=\frac1{2\pi\ii}\oint_{|\zeta|=\rho''}\frac{h(p,\zeta)}{q_p(\zeta)}\,\frac{q_p(\zeta)-q_p(u)}{\zeta-u}\,\dd\zeta ,
+\]
+其中 $\rho'<\rho''<\rho$，$U$ 缩小到使 $q_p$ 的零点在 $D_{\rho'}$ 中。由 Cauchy 公式 $Qq_p+R=h$。$(q_p(\zeta)-q_p(u))/(\zeta-u)$ 是 $u$ 的 $d-1$ 次多项式，系数是 $\zeta$ 与 $\sigma_j(p)$ 的多项式，所以 $R$ 是 $u$ 的次数小于 $d$ 的多项式，系数对 $p$ 全纯。
+唯一性：若 $Qq_p+R=0$，$\deg R<d$，则 $R$ 在 $q_p$ 的每个零点处按重数为零，所以 $q_p\mid R$，从而 $R=0$，$Q=0$。
+
+\emph{实性。}若 $f$ 在实参数处实，则 $\overline{f(p,\bar u)}=f(p,u)$，零点集关于实轴对称，$s_k$ 实，从而 $\sigma_j$ 实；其余同理。
+\end{proof}
+
+\begin{remark}\label{appA:rem:weierstrass-refs}
+有限维参数的情形是多复变的标准结果；上面的证明对 Banach 空间参数逐字成立，只额外用到 \cref{appA:thm:G-hol}（Banach 空间全纯映射的一般理论见 \cite{Mujica1986}）。
+第 9 章的引理（论文引理 9.8）断言一致模型的各个组成部分对 $f\in\Ocal_r$ 全纯，其中「Weierstrass 预备与除法对 Banach 参数全纯」一步就是本定理。
+\end{remark}
+
+% ======================================================================
+\section{辐角原理、Rouché、Hurwitz 与反函数}\label{appA:sec:rouche}
+
+\begin{theorem}[Rouché]\label{appA:thm:rouche}
+设 $f,g$ 在 $\overline{D(a,\rho)}$ 的邻域上全纯，且在 $|u-a|=\rho$ 上 $|f-g|<|f|$。则 $f$ 与 $g$ 在 $D(a,\rho)$ 中的零点个数（计重数）相同。
+\end{theorem}
+
+\begin{proof}
+对 $0\le t\le1$，$f+t(g-f)$ 在圆周上无零点，所以零点个数 $\frac1{2\pi\ii}\oint\frac{(f+t(g-f))'}{f+t(g-f)}$ 是 $t$ 的连续整值函数。
+\end{proof}
+
+\begin{theorem}[Hurwitz]\label{appA:thm:hurwitz}
+设区域 $G$ 上的全纯函数列 $f_n$ 局部一致收敛于 $f$。
+(1) 若 $f$ 不恒为零，$\overline{D(a,\rho)}\subset G$，且 $f$ 在 $|u-a|=\rho$ 上无零点，则 $n$ 充分大时 $f_n$ 与 $f$ 在 $D(a,\rho)$ 中零点个数相同。
+(2) 若每个 $f_n$ 单射，则 $f$ 单射或为常数。
+\end{theorem}
+
+\begin{proof}
+(1) 由 \cref{appA:thm:rouche}，取 $n$ 使 $|f_n-f|<\min_{|u-a|=\rho}|f|$。(2) 若 $f(a)=f(b)$，$a\neq b$，$f$ 非常数，则 $f-f(a)$ 在 $a$、$b$ 的两个不相交小圆盘中都有零点，由 (1)，$n$ 大时 $f_n-f_n(a)$ 在两个圆盘中都有零点，与单射矛盾。
+\end{proof}
+
+\begin{proposition}[带参数的反函数]\label{appA:prop:inverse}
+设 $P$ 是 Banach 空间中的开集，$f:P\times\overline{D(a,\rho)}\to\C$ 全纯（在一个邻域上），且对每个 $p$，$f(p,\cdot)$ 在 $\overline{D(a,\rho)}$ 上单射。
+令 $\Omega_p=f(p,D(a,\rho))$。则逆映射
+\[
+  f^{-1}(p,w)=\frac1{2\pi\ii}\oint_{|\zeta-a|=\rho}\frac{\zeta\,\partial_\zeta f(p,\zeta)}{f(p,\zeta)-w}\,\dd\zeta
+\]
+在 $\{(p,w):w\in\Omega_p\}$ 上联合全纯，并且这个集合是开的。
+\end{proposition}
+
+\begin{proof}
+由辐角原理，$w\in\Omega_p$ 时 $f(p,\cdot)-w$ 在圆盘中恰有一个零点，留数定理给出所写公式。$w$ 远离 $f(p,\partial D)$ 是一个开条件，被积函数在其上全纯有界，由 \cref{appA:thm:G-hol} 联合全纯。
+\end{proof}
+
+正文中「由 Rouché」的地方都是下面这种用法：若 $|F(z)-z|\le\epsilon$ 于 $D(z_0,R)$，$\epsilon<R/2$，则对 $|w-z_0|<R/2$，$F(z)=w$ 在 $D(z_0,R)$ 中恰有一个解
+（取 $f=z-w$，$g=F-w$，在圆周上 $|f|\ge R/2>\epsilon\ge|f-g|$）。
+
+\begin{proposition}[Krawczyk 判据~\cite{Krawczyk1969}；{\cite[第~5~章]{Neumaier1990}}]\label{appA:prop:krawczyk}
+设 $f:\R^n\to\R^n$ 在闭盒 $B$ 的邻域上 $C^1$，$m$ 是 $B$ 的中心，$Y$ 是 $n\times n$ 矩阵，$f'(B)$ 是一个包含 $\{f'(x):x\in B\}$ 的区间矩阵。令
+\[
+  K=m-Yf(m)+\bigl(I-Yf'(B)\bigr)(B-m) .
+\]
+若 $K\subset\operatorname{int}B$，则 $f$ 在 $B$ 中恰有一个零点，并且 $Y$ 可逆。
+\end{proposition}
+
+\begin{proof}[证明梗概]
+令 $N(x)=x-Yf(x)$。由中值定理，$N(x)-N(m)=(I-YJ)(x-m)$，其中 $J$ 的每一行是 $f'$ 在 $m$ 与 $x$ 之间某点处的对应行，属于 $f'(B)$。所以 $N(B)\subset K\subset\operatorname{int}B$，
+由 Brouwer 不动点定理 $N$ 在 $B$ 中有不动点。$K\subset\operatorname{int}B$ 还推出区间矩阵 $I-Yf'(B)$ 的绝对值矩阵按 $B$ 的半宽加权的范数小于 $1$，
+于是 $Y$ 与 $f'(B)$ 中每个矩阵都可逆，不动点是 $f$ 的零点，且 $N$ 是该范数下的压缩，零点唯一。
+\end{proof}
+
+复变量的 Krawczyk 检验把 $\C^n$ 看成 $\R^{2n}$。第 10 章所述的区间证书（论文附录 A）对每个参数盒用这个判据证明根的存在唯一；
+相邻盒的根用它们包络的凸包上的唯一性对接。
+
+% ======================================================================
+\section{柱面上的 Fourier 级数与梯形公式}\label{appA:sec:fourier}
+
+转移映射 $T-\id$、逆 horn 映射 $\horn^{-1}-\id$、分离函数 $P$ 都是 1-周期全纯函数，即柱面 $\C/\Z$ 的一个带上的全纯函数。
+
+\begin{proposition}[Fourier 级数]\label{appA:prop:fourier}
+设 $\varphi$ 在带 $\{a<\Ima z<b\}$ 上全纯，$\varphi(z+1)=\varphi(z)$。则
+\[
+  \varphi(z)=\sum_{n\in\Z}\hat\varphi_n\,\ee^{2\pi\ii nz},\qquad \hat\varphi_n=\int_0^1\varphi(x+\ii y)\,\ee^{-2\pi\ii n(x+\ii y)}\,\dd x ,
+\]
+积分与 $y\in(a,b)$ 无关，级数在每个闭子带上绝对一致收敛。若 $|\varphi|\le M$ 于 $|\Ima z-y_0|\le\delta$，则
+\begin{equation}\label{appA:eq:fourier-bound}
+  |\hat\varphi_n|\le M\,\ee^{2\pi ny_0}\,\ee^{-2\pi|n|\delta} .
+\end{equation}
+特别地，若 $\varphi$ 在上半带 $\Ima z>a$ 上有界，则 $n<0$ 的系数为零，$\varphi(z)\to\hat\varphi_0$（$\Ima z\to+\infty$）。
+\end{proposition}
+
+\begin{proof}
+$\zeta=\ee^{2\pi\ii z}$ 把带映成圆环 $\ee^{-2\pi b}<|\zeta|<\ee^{-2\pi a}$，$\varphi$ 下降为圆环上的全纯函数；所写的是它的 Laurent 级数。
+积分与 $y$ 无关是 Cauchy 定理（被积函数 1-周期，两条竖边的贡献抵消）。对 $y=y_0\pm\delta$ 估计积分即得~\eqref{appA:eq:fourier-bound}。
+最后一句：令 $y\to+\infty$。
+\end{proof}
+
+\begin{proposition}[周期梯形公式的混叠误差]\label{appA:prop:trapezoid}
+在 \cref{appA:prop:fourier} 的条件下（$|\varphi|\le M$ 于 $|\Ima z-y_0|\le\delta$），对 $N\ge1$ 令 $z_j=j/N+\ii y_0$，
+\[
+  \tilde\varphi_n=\ee^{2\pi ny_0}\cdot\frac1N\sum_{j=0}^{N-1}\varphi(z_j)\,\ee^{-2\pi\ii nj/N} .
+\]
+则 $\tilde\varphi_n=\sum_{k\in\Z}\hat\varphi_{n+kN}\ee^{-2\pi kNy_0}$，并且对 $|n|<N$，
+\begin{equation}\label{appA:eq:alias}
+  |\tilde\varphi_n-\hat\varphi_n|\le2M\,\ee^{2\pi ny_0}\,\ee^{2\pi|n|\delta}\,\frac{\ee^{-2\pi N\delta}}{1-\ee^{-2\pi N\delta}} .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+代入 Fourier 级数并交换求和：$\frac1N\sum_j\ee^{2\pi\ii(m-n)j/N}$ 当 $N\mid m-n$ 时为 $1$，否则为 $0$。于是
+$\tilde\varphi_n=\ee^{2\pi ny_0}\sum_k\hat\varphi_{n+kN}\ee^{-2\pi(n+kN)y_0}$，即所写的混叠公式。
+由~\eqref{appA:eq:fourier-bound}，$|\hat\varphi_{n+kN}\ee^{-2\pi kNy_0}|\le M\ee^{2\pi ny_0}\ee^{-2\pi|n+kN|\delta}$。对 $k\ge1$ 与 $k\le-1$ 分别求和：
+\[
+  \sum_{k\ge1}\bigl(\ee^{-2\pi(kN+n)\delta}+\ee^{-2\pi(kN-n)\delta}\bigr)=(\ee^{-2\pi n\delta}+\ee^{2\pi n\delta})\frac{\ee^{-2\pi N\delta}}{1-\ee^{-2\pi N\delta}}\le2\ee^{2\pi|n|\delta}\frac{\ee^{-2\pi N\delta}}{1-\ee^{-2\pi N\delta}} .\qedhere
+\]
+\end{proof}
+
+\begin{example}[逆 horn 映射系数的混叠界]\label{appA:ex:alias}
+论文附录 A.5 对 $g(u)=\ee^u-1$ 证明 $D=\horn^{-1}-\id$ 在 $1.9\le\Ima z\le2.1$ 上满足 $|D|<1$，并在 $z_j=j/128+2\ii$ 处用区间算术计算 $D(z_j)$。
+于是 $M=1$，$y_0=2$，$\delta=\tfrac1{10}$，$N=128$，\eqref{appA:eq:alias} 给出
+\begin{center}\small
+\begin{tabular}{llll}
+\toprule
+& $n=1$ & $n=2$ & $n=3$\\
+\midrule
+$N=128$ & $1.27\cdot10^{-29}$ & $6.82\cdot10^{-24}$ & $3.67\cdot10^{-18}$\\
+$N=64$ & $3.69\cdot10^{-12}$ & $1.99\cdot10^{-6}$ & $1.07$\\
+\bottomrule
+\end{tabular}
+\end{center}
+（脚本 \texttt{figures/figA\_alias\_bound.py}）。$N=128$ 时混叠界远小于 \cref{prop:B1-nonzero} 之后所列区间的宽度；$N=64$ 时 $n=3$ 的界已大于 $|B_3|\approx1.6\cdot10^{-3}$ 本身。
+因子 $\ee^{2\pi ny_0}$ 来自在高度 $y_0$ 处采样：为了让 $D$ 有界，必须到上方去取样，代价是高阶系数被放大。
+\end{example}
+
+% ======================================================================
+\section{单叶性判据}\label{appA:sec:univalence}
+
+\begin{proposition}[Noshiro--Warschawski]\label{appA:prop:NW}
+设 $G\subset\C$ 是凸区域，$f$ 在 $G$ 上全纯，且存在 $\theta\in\R$ 使 $\Rea(\ee^{\ii\theta}f')>0$ 于 $G$。则 $f$ 在 $G$ 上单射。
+\end{proposition}
+
+\begin{proof}
+对 $z_1\neq z_2\in G$，$f(z_2)-f(z_1)=(z_2-z_1)\int_0^1f'(z_1+t(z_2-z_1))\,\dd t$。积分乘以 $\ee^{\ii\theta}$ 后实部为正，所以不为零。
+\end{proof}
+
+\begin{corollary}\label{appA:cor:near-id}
+(1) 若 $G$ 凸且 $|f'-1|<1$ 于 $G$，则 $f$ 在 $G$ 上单射。
+(2) 若 $f$ 在 $D(a,R)$ 上全纯，$|f(z)-z|\le\epsilon$，则 $|f'-1|\le\epsilon/(R-r)$ 于 $D(a,r)$；所以 $\epsilon<R-r$ 时 $f$ 在 $D(a,r)$ 上单射。
+(3) 若 $T$ 在带 $\Sigma=\{|\Ima z|<d\}$ 上全纯，$T-\id$ 是 1-周期的，且 $|T'-1|<1$，则 $T$ 在 $\Sigma$ 上单射，并诱导柱面 $\Sigma/\Z$ 上的单射。
+\end{corollary}
+
+\begin{proof}
+(1) 取 $\theta=0$。(2) 是 Cauchy 估计。(3) 带是凸的，由 (1) 得单射；在柱面上，若 $T(z_1)=T(z_2)+k$（$k\in\Z$），则由 $T(z+1)=T(z)+1$ 得 $T(z_1)=T(z_2+k)$，于是 $z_1=z_2+k$。
+\end{proof}
+
+第 6 章的刻画定理（\cref{thm:characterization}；论文定理 8.2 的证明）用 (3) 说明转移映射 $T$ 在带 $\Sigma_q$ 上单叶并接近平移；论文附录 A.2、A.4 用 \cref{appA:prop:NW}
+说明 $\theta\mapsto\lambda_+(\theta)$ 在给定矩形上单射（在那里验证 $\Rea(\lambda_+'(\theta)/\lambda_+'(\theta_*))>0$）。
+
+\begin{theorem}[Koebe 四分之一定理与偏差定理；{\cite[第~I.1~节]{CarlesonGamelin1993}}]\label{appA:thm:koebe}
+设 $f$ 在 $\D$ 上单叶，$f(0)=0$，$f'(0)=1$。则 $f(\D)\supset D_{1/4}$，并且对 $|z|=r<1$，
+\[
+  \frac{1-r}{(1+r)^3}\le|f'(z)|\le\frac{1+r}{(1-r)^3},\qquad \frac{r}{(1+r)^2}\le|f(z)|\le\frac{r}{(1-r)^2}.
+\]
+\end{theorem}
+
+Koebe 定理在本书中只用于定性的控制：单叶函数在小圆盘上的像含一个可控半径的圆盘，从而反函数的定义域有一致的下界。
+
+% ======================================================================
+\section{拟共形映射与可测 Riemann 映射定理}\label{appA:sec:qc}
+
+\begin{definition}\label{appA:def:qc}
+设 $G\subset\hat\C$ 是区域，$K\ge1$。保向同胚 $\phi:G\to\phi(G)$ 称为 \textbf{$K$-拟共形}（$K$-quasiconformal），
+若它在局部 $W^{1,2}_{\mathrm{loc}}$ 中，且几乎处处 $|\partial_{\bar z}\phi|\le k|\partial_z\phi|$，$k=(K-1)/(K+1)$。
+函数 $\mu_\phi=\partial_{\bar z}\phi/\partial_z\phi\in L^\infty$ 称为它的 \textbf{Beltrami 系数}，$\|\mu_\phi\|_\infty\le k<1$。
+\end{definition}
+
+基本事实（\cite[第~I~章]{AhlforsLectures}，\cite[第~IV~章]{LehtoVirtanen}）：
+\begin{enumerate}
+\item $\mu=0$ 几乎处处的拟共形映射是共形的（Weyl 引理）。
+\item 若 $\phi,\psi$ 拟共形，则 $\psi\circ\phi^{-1}$ 共形当且仅当 $\mu_\phi=\mu_\psi$ 几乎处处。
+\item $K$-拟共形映射使圆环的模至多变为原来的 $K$ 倍或 $1/K$ 倍。特别地，穿孔圆盘（模为无穷的圆环端）的像仍是穿孔圆盘的共形等价物，不会变成真圆环。
+\item 在 $\hat\C$ 上固定 $0,1,\infty$ 的 $K$-拟共形映射构成一个正规族，在每个紧集上一致有界，并且一致 Hölder 连续（\cite[第~II~章]{LehtoVirtanen}）。
+\end{enumerate}
+
+(3) 是 \cref{ch:examples} 中倾斜区域的商 $\Sigma^\ell_\varepsilon\cong\C^*$ 的关键：
+平坦模型 $\C/\Z$ 的两端是穿孔圆盘，拟共形映射把它们送到穿孔圆盘，所以中性乘子不构成障碍。
+
+\begin{theorem}[带参数的可测 Riemann 映射定理；Ahlfors--Bers]\label{thm:ahlfors-bers}
+\leavevmode
+\begin{enumerate}
+\item 对每个 $\mu\in L^\infty(\C)$，$\|\mu\|_\infty<1$，存在唯一的拟共形同胚 $\phi^\mu:\hat\C\to\hat\C$，固定 $0,1,\infty$，几乎处处满足 Beltrami 方程
+  $\partial_{\bar z}\phi^\mu=\mu\,\partial_z\phi^\mu$。
+\item 若 $\mu_n\to\mu$ 几乎处处且 $\|\mu_n\|_\infty\le k<1$，则 $\phi^{\mu_n}\to\phi^\mu$ 在 $\hat\C$ 上一致（球面度量）。
+\item 设 $V$ 是 $\C^k$（或复 Banach 空间）中的开集，$t\mapsto\mu_t$ 是 $V\to L^\infty(\C)$ 的全纯映射，$\|\mu_t\|_\infty\le k<1$。则对每个 $z\in\hat\C$，$t\mapsto\phi^{\mu_t}(z)$ 全纯。
+\item 若 $\mu$ 在开集 $G$ 上属于 $C^{m,\alpha}$（$m\ge0$，$0<\alpha<1$）或实解析，则 $\phi^\mu$ 在 $G$ 上属于 $C^{m+1,\alpha}$ 或实解析（内部 Schauder 估计）。
+  若 $\mu_t$ 还对 $t$ 全纯，并且它对 $t$ 的差商在 $G$ 上局部一致地有界于 $C^{0,\alpha}$，则把内部估计用于差商可知 $(t,z)\mapsto\phi^{\mu_t}(z)$ 在 $G$ 上是 $C^1$ 的。
+\end{enumerate}
+\end{theorem}
+
+\paragraph{出处。}(1)(2) 见 \cite[第~V~章]{AhlforsLectures} 与 \cite{LehtoVirtanen}；(3) 是 \cite[定理~11]{AhlforsBers1960}，亦见 \cite[第~V~章]{AhlforsLectures}；
+(4) 的正则性见 \cite[第~V~章]{AhlforsLectures}。我们不证明这个定理：它的证明需要 Beurling 变换的 $L^p$ 理论（Calderón--Zygmund），
+超出本书范围；正文只把它作为黑箱使用。
+注意 (3) 的假设是 $\mu_t$ 作为 $L^\infty$ 值映射全纯；\cref{appA:prop:Linfty} 说明逐点全纯且一致有界就足够了。
+
+\paragraph{正文中的用法。}
+\begin{itemize}
+\item 第 10 章（\cite[引理~10.4]{KneserPaper}）：平坦模型的 Beltrami 系数是 $O(|\varepsilon|)$；对 $\mathsf t\mu$（$|\mathsf t|<1/(2\|\mu\|_\infty)$）用 (3) 与 Schwarz 引理，
+  得到单值化与恒等映射相差 $O(|\varepsilon|)$。
+\item 第 10 章（\cite[命题~10.9]{KneserPaper}）：倾斜区域之间的映射 $\mathcal J_\varepsilon$ 的 Beltrami 系数对 $\varepsilon$ 逐点全纯；由 (3) 与 (4) 加上一个 $\partial_{\bar\varepsilon}$ 抵消论证，
+  得到单值化对 $(\varepsilon,\chi)$ 联合全纯。
+\item 第 10 章（\cite[命题~10.18]{KneserPaper}）：动力学的拟共形输运，Beltrami 系数 $\nu_\lambda=\mathsf c(\lambda)\nu$ 对 $\lambda$ 全纯。
+\end{itemize}
+
+\begin{proposition}[一个标准的估计]\label{appA:prop:qc-near-id}
+设 $\mu\in L^\infty(\C)$，$\|\mu\|_\infty\le\epsilon\le\tfrac14$，$A\subset\C$ 紧。则在 $A$ 上 $|\phi^\mu(z)-z|\le C_A\epsilon$，$C_A$ 只依赖 $A$。
+\end{proposition}
+
+\begin{proof}
+对 $|\mathsf t|<R=1/(2\epsilon)$ 令 $\Phi(\mathsf t)=\phi^{\mathsf t\mu}(z)-z$。由 \cref{thm:ahlfors-bers}(3)，$\Phi$ 全纯；$\Phi(0)=0$；
+$\|\mathsf t\mu\|_\infty\le\tfrac12$，所以由上面的基本事实 (4)，$|\Phi|\le M_A$ 于 $A$，$M_A$ 只依赖 $A$。由 Schwarz 引理 $|\Phi(1)|\le M_A/R=2M_A\epsilon$。
+\end{proof}
+
+\subsection{全纯族的局部平凡性}
+
+\begin{theorem}[Fischer--Grauert~\cite{FischerGrauert1965}]\label{appA:thm:fischer-grauert}
+设 $\pi:\mathcal X\to\Delta$ 是复流形之间的真全纯淹没，每根纤维都双全纯于同一个紧复流形 $X_0$。则 $\pi$ 局部平凡：
+每点 $t_0\in\Delta$ 有邻域 $\Delta'$，使 $\pi^{-1}(\Delta')\cong\Delta'\times X_0$ 为纤维保持的双全纯映射。
+\end{theorem}
+
+对亏格零的情形（纤维都是 $\hat\C$），若还有三个互不相交的全纯截面，则局部平凡化之后再逐纤维作三点 Möbius 归一化，得到唯一的纤维坐标把它们送到 $0,1,\infty$，并且这个坐标对参数全纯。
+第 6 章的缝合族对底数的全纯依赖（论文命题 3.5）和第 10 章 Kneser 解对实底数的解析性（论文命题 10.11）都用这个方式：
+两端用 Koenigs 坐标填成两个截面，基点给出第三个截面。中性参数处两端没有全纯的穿孔坐标，这时改用 \cref{thm:ahlfors-bers}。
+
+% ======================================================================
+\notes
+
+\paragraph{出处。}Banach 空间中的全纯映射见 Mujica~\cite{Mujica1986}，其中包括 G-全纯加局部有界蕴含全纯；本附录 \cref{appA:thm:G-hol} 的证明是那里论证的直接特化，
+Banach 参数的 Weierstrass 预备定理则是有限维证明加上这一定理。Rouché、Hurwitz、Noshiro--Warschawski、Fourier 级数是单复变的标准内容。Koebe 定理见~\cite[第~I~章]{CarlesonGamelin1993}，亦见~\cite{Milnor2006}。
+拟共形映射的基本理论见 Ahlfors~\cite{AhlforsLectures} 与 Lehto--Virtanen~\cite{LehtoVirtanen}，参数依赖定理是 Ahlfors 与 Bers~\cite{AhlforsBers1960} 的结果。
+局部平凡性见 Fischer 与 Grauert~\cite{FischerGrauert1965}。Krawczyk 判据见 Krawczyk~\cite{Krawczyk1969}，完整的证明见 Neumaier~\cite{Neumaier1990}；本附录给出的是一个梗概。
+
+\paragraph{与论文的对应。}论文中「Weierstrass preparation」（式 (eq:weier)，引理 9.8）、「Rouché」（定理 6.3、8.2，附录 A.3）、
+「Noshiro--Warschawski」（定理 6.3、8.2，附录 A.2、A.4）、「Ahlfors--Bers」（引理 10.4，命题 10.9、10.18、10.19）、
+「trapezoid alias bound」（附录 A.5）、「Fischer--Grauert」（命题 3.5、10.11）分别对应本附录的 \cref{thm:weierstrass-prep}、\cref{appA:thm:rouche}、
+\cref{appA:prop:NW}、\cref{thm:ahlfors-bers}、\cref{appA:prop:trapezoid}、\cref{appA:thm:fischer-grauert}。
+
+\exercises
+
+\begin{exercise}\label{appA:ex:not-continuous}
+(1) 设 $E$ 是无穷维 Banach 空间，$\ell:E\to\C$ 是不连续的线性泛函（由 Zorn 引理存在）。证明 $\ell$ 是 G-全纯的，但不全纯。
+由此说明 \cref{appA:thm:G-hol} 中「局部有界」不能去掉。
+(2) 说明在 $E=\C^n$ 时 G-全纯本身就蕴含全纯。
+\end{exercise}
+\begin{hint}
+(2) 用 Hartogs 关于分别全纯函数的定理。
+\end{hint}
+
+\begin{exercise}\label{appA:ex:weierstrass-d2}
+设 $f_s(u)-u=(u^2-\sigma_1(s)u+\sigma_2(s))k_s(u)$，$k_0(0)=a_2>0$，$f_s(0)=-\gamma s+O(s^2)$，$f_s'(0)=1+O(s)$。
+证明 $\sigma_2=-\gamma s/a_2+O(s^2)$，$\sigma_1=O(s)$，判别式 $D(s)=\sigma_1^2-4\sigma_2=4\gamma s/a_2+O(s^2)$，并由此推出两个不动点 $u_{1,2}=\tfrac12(\sigma_1\mp\sqrt{D})$。
+\end{exercise}
+
+\begin{exercise}\label{appA:ex:hurwitz-family}
+设 $f_t(z)$ 对 $(t,z)\in D_1\times D_1$ 联合全纯，每个 $f_t$ 单射。证明 $(t,w)\mapsto f_t^{-1}(w)$ 在 $\{(t,w):w\in f_t(D_{1/2})\}$ 上联合全纯，并用 \cref{appA:thm:hurwitz} 说明对单射性的假设在 $t\to t_0$ 的极限下是稳定的。
+\end{exercise}
+
+\begin{exercise}\label{appA:ex:alias-sharp}
+在 \cref{appA:prop:trapezoid} 中取 $\varphi(z)=\ee^{2\pi\ii mz}$。验证混叠公式，并说明误差界~\eqref{appA:eq:alias} 在什么意义下是最优的。
+若改在 $y_0$ 与 $y_0+2\delta$ 之间的两条线上取样并平均，能否改进 $\ee^{2\pi ny_0}$ 的放大？
+\end{exercise}
+
+\begin{exercise}\label{appA:ex:NW-strip}
+设 $T(z)=z+t_0+\sum_{n\ne0}t_n\ee^{2\pi\ii nz}$ 在 $|\Ima z|\le d$ 上满足 $\sum_{n\ne0}2\pi|n||t_n|\ee^{2\pi|n|d}\le\rho<1$。
+证明 $T$ 在带 $|\Ima z|<d$ 上单射，且 $|T(z)-z-t_0|\le\rho/(2\pi)$。
+\end{exercise}
+
+\begin{exercise}\label{appA:ex:modulus}
+证明：若 $\phi$ 是从穿孔圆盘 $D_1\setminus\{0\}$ 到 $\C$ 中某个环形区域 $A$ 的拟共形同胚，并把 $0$ 附近的端送到 $A$ 的一个边界分支，则这个边界分支是一个点。
+由此说明为什么 \cref{ch:examples} 中倾斜区域的商的两端是穿孔圆盘。
+\end{exercise}
+\begin{hint}
+用模的拟不变性：$\{r<|z|<1\}$ 的模 $\frac1{2\pi}\log\frac1r\to\infty$。
+\end{hint}
+
+\begin{exercise}\label{appA:ex:krawczyk-1d}
+在一维情形 $f:\R\to\R$ 中，设 $B=[m-r,m+r]$，$Y=1/f'(m)$，$|1-Yf'(x)|\le q<1$ 于 $B$，且 $|Yf(m)|\le(1-q)r$。证明 $f$ 在 $B$ 中恰有一个零点，并说明这与 \cref{appA:prop:krawczyk} 的关系。
+\end{exercise}

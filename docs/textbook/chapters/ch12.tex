@@ -1,0 +1,358 @@
+% 第 12 章：开放问题
+\providecommand{\STreg}{\mathcal{ST}}          % Shell--Thron 区（与第 10 章同义）
+\providecommand{\Ftr}{F^{\mathrm{tr}}}         % 输运族（与第 10 章同义）
+\providecommand{\Uup}{\mathcal U^{+}}          % 上半 Shell--Thron 区（与第 10 章同义）
+
+\chapter{开放问题}\label{ch:open}
+
+本章列出理论中尚未解决的问题。每个问题给出四项内容：精确陈述；已知的结果及其状态；难点所在；一个建议的第一步。
+建议的第一步只是建议，不是已知可行的方案。
+
+问题分三组。第一组（C1、C3、C4、C5）属于一般实鞍结开折的核心理论；
+第二组（T1--T3）只关于 tetration；第三组（A1--A5）是层数方向与高度方向，
+它们与核心理论之间目前**没有定理联系**，只有类比，放在这里是因为它们可以用核心理论的语言来提问。
+原编号中的 C2（变分公式的完整证明）已经解决：第 9 章的 \cref{thm:variation} 用抛物层上的导数论证证明了它。
+
+状态标记沿用前文：「已证」「证·机」「推导」（不严格的推导）「数值」「猜想」「否」（已被证伪）。
+
+\begin{goals}
+\item C1：一阶系数 $\ktr^{(n)}$ 的「闭式」问题不是良定的；良定的问题是仿射泛函 $X\mapsto\Rea\kappa^{(n)}[g;X]$ 在开折模空间中的内蕴描述。
+\item C3：\cref{thm:cusp} 与 \cref{thm:upper-half-plane} 对一般开折在什么整体条件下成立。
+\item C4、C5：$p$ 展开的 Gevrey 阶；$v-\sin v+c$ 的 $B_1\neq0$。
+\item T1--T3：tetration 在 $b\to0,1$ 处的渐近、Shell--Thron 区内的整体唯一性、剩余数值的区间化。
+\item A1--A5：层数方向（超运算）与高度方向（唯一性刻画）各自已知什么，以及与核心理论之间缺少哪一条定理。
+\end{goals}
+
+\begin{center}\small
+\begin{tabular}{llll}
+\toprule
+编号 & 问题 & 类别 & 来源\\
+\midrule
+C1 & $X\mapsto\Rea\kappa^{(n)}[g;X]$ 的内蕴描述 & 核心 & \cref{thm:variation}、\cref{rem:cocycle}\\
+C3 & 整体延拓 F、G 对一般开折的移植 & 核心/整体 & \cref{ch:examples}\\
+C4 & $p$ 展开的收敛半径与最优 Gevrey 阶 & 核心 & \cref{thm:all-orders}\\
+C5 & $v-\sin v+c$ 的 $B_1\neq0$ & 核心/族 & \cref{prop:B1-nonzero}\\
+T1 & $b\to0,1$ 时非整数高度的一致渐近；$b=1$ 处的单值性 & tetration & \cite[第~12~节]{KneserPaper}\\
+T2 & Shell--Thron 区内 Kneser 型解的整体唯一性 & tetration & 同上\\
+T3 & 阶梯数值与外推值的区间包络 & tetration & 同上\\
+A1--A3 & 五级尺度律；$b_\infty$；热带极限 & 层数 & theory-core §6.1\\
+A4--A5 & 实轴上的正面唯一性；混合底数李代数 & 高度 & theory-core §6.2\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{核心理论的问题}\label{ch12:sec:core}
+
+\subsection{C1：一阶系数的内蕴描述}\label{ch12:sec:C1}
+
+\paragraph{背景。}第 8 章给出展开 $\log(\tau_n/B_n\ee^{2\pi\ii na})\sim\sum_{j\ge1}\kappa^{(n)}_jp^j$，
+第 9 章的变分公式（\cref{thm:variation}）把一阶系数分解为
+\begin{equation}\label{ch12:eq:variation}
+  \kappa^{(n)}[g;X]=\ktr^{(n)}(g)+\frac{\Dfun_n(g)[X-X(0)]}{4a_2X(0)} .
+\end{equation}
+最初的问题（论文第 12 节问题 2 的前半）是：$\kappa^{(n)}$ 是否有闭式，例如用 $B_n$、$a$ 与迭代留数 $\rho$ 表示。
+
+\paragraph{原问题为什么不是良定的。}由~\eqref{ch12:eq:variation}，$\kappa^{(n)}$ 依赖开折方向 $X$，不是芽 $g$ 的函数：
+同一个芽 $\ee^u-1$，方向 $X=1+0.6u^2$ 与 $X=1+0.3u+0.5u^4$ 分别给出 $\Rea\kappa^{(1)}=39.51\ldots$ 与 $395.09\ldots$，
+而 $X=(1+u)\ee^u$ 给出 $-0.0101990\ldots$（数值，\texttt{kappa\_variation.py}）。退一步问「$\ktr^{(n)}(g)$ 是否有闭式」也不对：
+\cref{rem:cocycle} 表明，在坐标变换 $\psi$（$\psi(0)=0$，$\psi'(0)=1$）下，
+\[
+  \Rea\ktr^{(n)}(\psi^{-1}\circ g\circ\psi)=\Rea\ktr^{(n)}(g)-\frac{d\log|B_n|(\tilde g)\,[\tilde X-1]}{4a_2},\qquad
+  \tilde X=(1/\psi')\circ\tilde g,
+\]
+所以 $\ktr^{(n)}$ 依赖「横截方向 $1$」的选取，而这个选取在坐标变换下不保持。它是一个坐标上闭链（cocycle），不是芽的不变量。
+例如 $\psi(u)=u+0.3u^2$ 把 $\ee^u-1$ 的 $\Rea\ktr^{(1)}$ 从 $-0.0101990$ 移到 $-2.8764956$，上式的预测误差为 $3\cdot10^{-17}$（数值，\texttt{kappa\_cocycle.py}）。
+
+\paragraph{问题 C1（良定的形式）。}设 $g$ 是满足 $a_2>0$ 的实抛物芽。在方向集合 $\{X\in\Ocal_r:X(0)=1,\ X\text{ 实}\}$ 上考虑仿射泛函
+\[
+  \mathcal K_n:X\longmapsto\Rea\kappa^{(n)}[g;X].
+\]
+由 \cref{cor:invariance}，$\Rea\kappa^{(n)}$ 是开折在局部实解析共轭与参数重选下的不变量，所以 $\mathcal K_n$ 下降为开折模空间
+（例如 Christopher--Rousseau 的标准形~\cite{ChristopherRousseau}，或 Mardešić--Roussarie--Rousseau 的模~\cite{MRR2004}）上的函数。
+\emph{求这个函数的内蕴描述}：用开折的解析模（规范参数、形式不变量 $\nu(\epsilon)$、展开的 Écalle--Voronin 模）表示 $\mathcal K_n$，
+特别是表示它在一条横截于抛物层的方向上的值。
+
+\paragraph{已知。}
+\begin{itemize}
+\item $\mathcal K_n$ 的线性部分完全已知：它是抛物层上的 $d\log|B_n|$ 除以 $4a_2$（\cref{thm:variation}；已证）。
+\item $\mathcal K_n$ 在无穷小共轭 $\Lop\varphi$ 方向上为常数（\cref{cor:variation}；已证）。$\operatorname{coker}\Lop$ 的形式部分是 $\operatorname{span}\{1,u^3\}$，
+  恰好对应两个形式不变量（开折参数与 $\rho$）；其余是 Écalle--Voronin 模的切空间（理论文档；推导）。
+\item 变分公式经两种独立计算核对到 $3\cdot10^{-17}$（$n=1$）、$2\cdot10^{-13}$（$n=2$）、$3\cdot10^{-9}$（$n=3$）（数值，论文注 9.13）。
+\item 值本身：$\Rea\ktr^{(1)}(\ee^u-1)=-0.0101990063458974$，$\Rea\ktr^{(1)}(u+u^2)=-0.0150441028391897$（数值）。
+\end{itemize}
+
+\paragraph{难点。}仿射泛函的「常数项」需要一个典范的横截方向。抛物芽没有这样的方向：坐标变换把 $1$ 变成 $(1/\psi')\circ\tilde g$。
+开折模空间提供了一个候选（标准形的参数方向），但标准形本身只在形式上或在一个依赖规范的意义下唯一。
+此外，$\tau_n$ 与 Christopher--Rousseau 的展开模采用不同的规范化（论文注 5.10 给出 $p=4\epsilon_{\mathrm{CR}}/(1-\nu^2\epsilon_{\mathrm{CR}})$），
+两者的一阶系数之间的换算尚未写出。
+
+\paragraph{建议的第一步。}(1) 写出 $\tau_n$ 与 Christopher--Rousseau 展开模在 Glutsyuk 方向上的精确换算，把 $\mathcal K_n$ 表示为展开模对 $\epsilon_{\mathrm{CR}}$ 的一阶导数。
+(2) 对形式标准形 $u\mapsto\exp\bigl((u^2-\epsilon)/(1+\nu(\epsilon)u)\,\partial_u\bigr)$ 的时间 1 映射，取其参数方向作为横截方向，计算对应的 $\Rea\kappa^{(1)}$，
+看它是否只依赖芽的 Écalle--Voronin 模。这一计算可以直接用 \texttt{kappa\_variation.py} 做数值实验。
+
+\subsection{C3：整体延拓对一般开折的移植}\label{ch12:sec:C3}
+
+\paragraph{问题 C3。}设 $f_\mu$ 是满足 (H1)--(H4) 的实鞍结开折，在 $\mu>\mu_0$ 一侧 $w^*$ 附近有一对复共轭不动点，
+并且有一个实的 Kneser 型解（由两个不动点之间的初始区域与一条实轨道标记构造）。
+\begin{enumerate}
+\item[(F)] 在什么条件下，这个解沿参数经上半圆盘绕过 $\mu_0$ 延拓，跨过中性弧，并且在 $\mu<\mu_0$ 一侧的边界值是缝合解 $\Ksew_\mu$？
+\item[(G)] 在什么整体条件下，延拓在整个上半参数平面上单值？
+\end{enumerate}
+
+\paragraph{已知。}
+\begin{itemize}
+\item tetration：(F) 已证（\cref{thm:cusp}）；(G) 证·机（\cref{thm:upper-half-plane}）。
+\item $w^2+c$：(F)、(G) 的类比在单独的证明稿中证明（作者标为已证 + 证·机；证明稿未经同行评审，见 \cref{ch:examples}）。
+  该证明用了二次族特有的结构：精确直月牙、临界点标记、主心形区的显式多项式输运。
+\item 证明稿还给出一个抽象的「带标记柱面延拓判据」：若参数域有一个开覆盖，每块上有一族全纯的接缝商（纤维双全纯于 $\C^*$、两端有序）、
+  一个沿指定的非临界逆分支链传到固定轨道点的标记、以及在重叠处保持两端与标记的同构，则得到单值全纯的高度芽族（已证）。
+  所以 (F)、(G) 化归为验证这个判据的几何假设。
+\item $v-\sin v+c$、$w+(w^2-c)\ee^w$：未检验。$w^2+c$ 上原有的 $\theta$ 迭代算法在尖点附近一个楔形中的采样点上收敛（数值）；由于单位根乘子处的共振，
+  它不可能在整个上半平面收敛（已证，见 \cref{ch:examples} 中的共振例）。
+\end{itemize}
+
+\paragraph{难点。}\cref{thm:cusp} 证明的第 1--6 步只用到尖点附近的估计，原则上对任何开折成立；
+真正的整体输入有两个。第一，外端：需要在尖点外侧有一个已知的 Kneser 型构造，并且它对实参数解析（对 tetration 见 \cite[命题~10.11]{KneserPaper}）。
+一般的族在外侧未必有一对把实轴「夹住」的共轭不动点，实轨道也未必穿过弦。第二，(G) 需要在远离尖点处控制初始区域的几何，
+tetration 用了区间证书，二次族用了精确几何；对一般的整函数族，奇异值的个数和位置都可能破坏单一标记。
+证明稿列出的未解决问题包括：$w^d+c$（$d\ge3$）在正尖点附近是否属于可容许类，以及多个奇异轨道时标记如何选取。
+
+\paragraph{建议的第一步。}先证明一个「局部 F」：对满足 (H1)--(H4) 的开折，假设外侧有一个对实参数解析、在尖点附近由
+倾斜区域 $\alpha=0$ 给出的 Kneser 型解，证明 \cref{thm:cusp} 的 (1)(2)。这只需把 \cite[第~10.1--10.8~节]{KneserPaper} 的常数
+$\tfrac12,\tfrac13,-2/u$ 换成 $a_2,\rho,-1/(a_2u)$。然后在 $w^3+c$ 上检验外侧构造是否存在。
+
+\subsection{C4：收敛半径与 Gevrey 阶}\label{ch12:sec:C4}
+
+\paragraph{问题 C4。}\cref{thm:all-orders} 给出渐近展开 $\log(\tau_n/B_n\ee^{2\pi\ii na})\sim\sum_{j\ge1}\kappa^{(n)}_jp^j$。
+这个级数的收敛半径是多少？若发散，它是哪一阶的 Gevrey 级数，在哪些方向上可求和？
+
+\paragraph{已知。}
+\begin{itemize}
+\item Christopher 与 Rousseau 证明了展开模在其规范化下对规范参数 $\epsilon_{\mathrm{CR}}=(A_2-A_1)^{-2}$ 是 $\tfrac12$-可求和的，
+  Glutsyuk 方向是奇异方向~\cite[推论~4.9]{ChristopherRousseau}；Ribón 证明了任意有限余维开折的 Fatou 坐标与 Écalle--Voronin 不变量的多重可求和性~\cite{Ribon2010}。
+  这两个结果给出展开的存在，但不给出系数，而且规范化与本书不同。恒等式 $p=4\epsilon_{\mathrm{CR}}/(1-\nu^2\epsilon_{\mathrm{CR}})$ 联系两种参数（论文注 5.10）。
+\item 论文注 5.9 据此提示（未证明）Gevrey-2 增长 $|\kappa^{(n)}_j|\lesssim C^j(j!)^2$（即关于 $\sqrt p$ 为 Gevrey-1），这与超越所有阶的项的尺度 $\Lam=\exp(-C/\sqrt p)$ 相符（推导）。
+\item 本书的展开是在 Glutsyuk 方向（两个实不动点）上取的，恰是上述结果中的奇异方向。
+\item 数值上 $\kappa^{(1)}_1$、$\kappa^{(1)}_2$ 已知到多位（见 \cref{ch:examples} 的常数表）；更高阶系数没有可靠的数值。
+\end{itemize}
+
+\paragraph{难点。}在奇异方向上，可求和性结果只说明展开是 Gevrey 的，并不排除收敛；要判断收敛必须控制系数的增长。
+第 8 章的系数由正则化的轨道级数给出，第 $j$ 阶需要阶数 $N\ge j^2+j+1$ 的一致模型（论文命题 5.7），所以直接估计会随 $j$ 迅速变差。
+
+\paragraph{建议的第一步。}(1) 把 Christopher--Rousseau 的 $\tfrac12$-可求和性搬到 $\tau_n$ 的规范化中，得到 $\kappa^{(n)}_j$ 的 Gevrey 上界 $|\kappa^{(n)}_j|\le CK^jj!^{s}$ 的某个 $s$。
+(2) 对平移开折 $u+u^2-s$（它的 Fatou 坐标有最多的显式结构）高精度计算 $\kappa^{(1)}_j$，$j\le10$，用比值检验判断增长。
+
+\subsection{C5：$v-\sin v+c$ 的 $B_1\neq0$}\label{ch12:sec:C5}
+
+\paragraph{问题 C5。}证明芽 $g(u)=u+1-\cos u$（$v-\sin v+c$ 在 $c=1$ 处）的逆上 horn 映射的第一个系数 $B_1\neq0$。
+
+\paragraph{已知。}\cref{prop:B1-nonzero} 的证明对「限制在直接抛物吸引域 $A$ 上恰有一个奇异值」的映射成立，用的是 Chéritat 的单奇值类及其抛物重整化定理~\cite{Cheritat2022}。
+在 $v$ 坐标中（$v=u+\tfrac\pi2$，$f(v)=v-\sin v+1$），临界点 $2\pi k$ 都是实的，临界值是 $2\pi k+1$；抛物点 $\tfrac\pi2$ 的直接吸引域 $A$ 满足 $A\cap\R=(-\tfrac{3\pi}2,\tfrac\pi2)$，只含 $k=0$ 那一个临界点；但它有无穷多个临界值，不是 Epstein 意义下的有限型映射。
+数值上 $|B_1|=0.072378641624503$（数值）。状态：推导。
+
+\paragraph{难点。}Chéritat 的框架与 Epstein 的有限型论证都假设奇异值集合有限（或至少映射属于特定的类）。需要核查：
+$f|_A$ 的奇异值集合是否确实只有一个点；这个限制映射是否落入 Chéritat 定理的假设；以及 horn 映射的奇异值是否只来自这一条奇异轨道。
+
+\paragraph{建议的第一步。}证明 $f|_A:A\to A$ 是一个只有一个临界值的分歧覆盖（这要求证明 $A$ 不含其他临界点，且 $f|_A$ 没有渐近值），
+然后检查 Chéritat 的引理 87 与定理 9 在这个情形下的每个假设。或者，绕开一般理论，直接给 $|B_1|$ 一个区间包络
+（仿照论文附录 A.5 对 $\ee^u-1$ 的证书），这只需要把 $\alpha$ 的前若干项换成该芽的值。后一条路给出的是证·机。
+
+% ======================================================================
+\section{tetration 的问题}\label{ch12:sec:tetration}
+
+\subsection{T1：$b\to1$ 与 $b\to0$ 时的渐近}\label{ch12:sec:T1}
+
+\paragraph{问题 T1。}设 $\Kkn_b$ 是 \cref{thm:upper-half-plane} 的上半平面族。
+(1) 当 $b\to1$ 与 $b\to0$ 时，求 $\Kkn_b(z)$ 对非整数高度 $z$ 的一致渐近。
+(2) 绕 $b=1$ 的单值性是否平凡？即沿 $\STreg^\circ\setminus\{1\}$ 中绕 $1$ 一周的路径延拓，是否回到原来的族？
+
+\paragraph{已知。}
+\begin{itemize}
+\item 上半平面族跨过 $(0,\eta)\setminus\{1\}$ 的每一点（\cref{thm:upper-half-plane}(4)；已证 + 证·机）；
+  $b=0$ 与 $b=1$ 不可能是可去奇点（\cite[命题~10.46]{KneserPaper}；已证）。
+\item 输运族在乘子的对数 $\mathfrak s=\Log\lambda$ 的整个左半平面上单值全纯，左半平面是 $\STreg^\circ\setminus\{1\}$ 的万有覆盖，
+  绕 $b=1$ 一周作用为 $\mathfrak s\mapsto\mathfrak s+2\pi\ii$（\cite[注~10.24]{KneserPaper}；已证）。这个作用是否平凡未知。
+\item 数值上，边界值 $\Ksew_b$ 的 $|c_1|/\Lam$ 在 $b\downarrow1$ 时保持在 $0.08$ 附近（$b=1.01$ 时为 $0.0816$），而 $\Lam\to1$：
+  在 $b=1$ 附近，与正则迭代的分离是 $O(1)$ 的（数值）。
+\item Paulsen~\cite{Paulsen2026} 研究了 $b\to1$ 时若干选定非整数高度的行为。
+\end{itemize}
+
+\paragraph{难点。}$b\to1$ 时吸引乘子 $\lambda\to0$，$\Lam=\exp(4\pi^2/\log\lambda)\to1$，第 6 章的缝合估计失去小参数；
+Koenigs 坐标退化为 Böttcher 型的超吸引坐标，整个双坐标图景需要换一种渐近尺度。$b\to0$ 时则是二周期轨道的乘子 $m\to0$。
+
+\paragraph{建议的第一步。}在 $\mathfrak s$ 平面中研究 $\Rea\mathfrak s\to-\infty$ 的极限：把 \cite[第~10.9~节]{KneserPaper} 的输运族写成 $\mathfrak s$ 的函数，
+求 $\Ftr_{\mathfrak s}(z)$ 在 $\Rea\mathfrak s\to-\infty$ 时的主项。单值性问题等价于比较 $\Ftr_{\mathfrak s}$ 与 $\Ftr_{\mathfrak s+2\pi\ii}$；
+先在数值上比较两者在 $z=\tfrac12$ 处的值。
+
+\subsection{T2：Shell--Thron 区内的整体唯一性}\label{ch12:sec:T2}
+
+\paragraph{问题 T2。}给出一个自然的条件类，使得对每个 $b\in\STreg^\circ$（或至少 $b\in\Uup$），Kneser 型解是该类中满足
+$F(z+1)=b^{F(z)}$、$F(0)=1$ 的唯一解。
+
+\paragraph{已知。}
+\begin{itemize}
+\item 在 $(b_1,\eta)$ 上，缝口高度条件（\cref{def:class}）确定 $\Ksew_b$（\cref{thm:characterization}；已证）。
+\item 只用 $\pm\ii\infty$ 处的极限不够：在端点附近一般只有 $\sigma(F(z))=\ee^{\ell z}q^m\mathsf g(q)$（$q=\ee^{\pm2\pi\ii z}$，整数 $m\ge0$），只有 $m=0$ 是
+  $\id$ 加有界周期函数的时间变换；并且有形如 $R\circ(z+2\pi\ii mz/\log\lambda+\cdots)$ 的解（论文注 1.2 与第 12 节；已证）。
+\item Paulsen 的唯一性命题按原陈述对每个实 $b>\eta$ 都不成立（\cite[注~1.2]{KneserPaper}；已证）。
+\end{itemize}
+
+\paragraph{难点。}\cref{thm:characterization} 的证明用到 $b$ 靠近 $\eta$ 时的定量估计（转移映射接近平移、缝口在 $-h/2$ 处）。
+在远离尖点处这些估计不再成立，而且中性弧附近（乘子在单位圆上）一侧的 Koenigs 坐标不存在。
+
+\paragraph{建议的第一步。}把缝口高度条件改写为一个不依赖 Koenigs 坐标的拓扑条件：商柱面的两端与标记点的组合数据
+（类似 \cref{thm:upper-half-plane} 的证明中的「进入指标」）。先在 $\Uup$ 内部证明这个条件确定 $\Ftr$。
+
+\subsection{T3：剩余数值比较的区间化}\label{ch12:sec:T3}
+
+\paragraph{问题 T3。}给阶梯计算的值和外推得到的双不动点值配上区间包络，把论文第 11 节的数值比较（例如 $b=1.1$ 处 8 位、$b=\sqrt2$ 处与 Paulsen 的 9 位）升级为证·机。
+
+\paragraph{已知。}$a$、$|B_1|,|B_2|,|B_3|$ 与两个 horn 比值已有区间包络（论文附录 A.5）；整体延拓的几何已有证书（附录 A.1--A.4）。
+阶梯值（从复底数 $b+\ii y$ 外推到 $y=0$）与 $\Ksew_b$ 的 Wiener 代数迭代值没有包络。
+
+\paragraph{难点。}外推本身不是一个可验证的过程。阶梯数据需要换成一个有误差界的直接计算：例如用 \cref{thm:sewing} 的压缩映射在
+加权 Wiener 代数中的显式常数给出 $\Ksew_b$ 的包络。
+
+\paragraph{建议的第一步。}在一个 $b$（例如 $b=1.4$）处，把 \cref{thm:sewing} 的 Wiener 代数迭代用 Arb 实现，并把截断误差用定理中的显式常数界住；
+这直接给出 $\hat c_1$ 的包络，从而把 $\hat c_1$ 与 $\tau_1$ 的比较变成证·机。
+
+% ======================================================================
+\section{应用方向}\label{ch12:sec:applications}
+
+这一节的两个方向与核心理论之间只有类比。每个方向先列出已知的结果，再说明「要变成理论的一部分，缺的是哪一条定理」。
+
+\subsection{层数方向：超运算}\label{ch12:sec:rank}
+
+记 $S_\ell(z)=b[\ell]z$ 为第 $\ell$ 级超运算，$S_\ell(0)=1$，$S_\ell(z+1)=S_{\ell-1}(S_\ell(z))$；$S_4$ 是 tetration。
+第 $\ell$ 级的构造需要 $S_{\ell-1}$ 的不动点，所以每一级都重演第 4 级的问题：
+实不动点处有 Koenigs（正则）构造，复共轭不动点对处有 Kneser 型（$\theta$）构造。
+记 $\mathcal C_\ell$ 为第 $\ell$ 级的「塔」收敛的底数集合，$b_c(\ell)=\sup\mathcal C_\ell$；$b_c(4)=\eta$。
+
+\paragraph{A1：五级的尺度律。}五级的两种构造给出（数值，两组独立参数吻合 6 位）
+\[
+  \ee[5]\tfrac12\ \text{（正则）}=1.63232474043606\ldots,\qquad
+  \ee[5]\tfrac12\ \text{（Kneser 型）}=1.63235385715702\ldots,
+\]
+差 $D(\tfrac12)=2.9117\cdot10^{-5}$。立项时按 \cref{thm:sewing} 类比预言 $D\sim\Lam$，结果差了 4.7 个数量级（否）。
+现在的说法是「$\Lam$ 是比值的尺度，不是幅度的尺度」，证据只有两个底数。
+\emph{问题}：五级的分离 $D$ 遵循什么尺度律？
+\emph{难点}：五级的「芽」不是一个显式的整函数，而是 $S_4$ 本身，其整体性质（奇点、增长）只部分已知；第 4 级的证明用到的指数函数的整体几何在这里没有对应物。
+\emph{第一步}：在第 5 级上数值计算转移映射 $T$ 的 $\tau_1$，检验焊接恒等式（\cref{thm:welding}）是否仍把 $D$ 与 $\tau_1\Lam$ 联系起来；若不能，找出哪一步失效。
+
+\paragraph{A2：临界底数与 $b_\infty$。}已知（已证）：对任何每级在 $[1,\infty)$ 上递增的阶梯，$\mathcal C_\ell\subset\mathcal C_{\ell+1}$，且 $\mathcal C_\ell\cap[2,\infty)=\emptyset$；
+所以 $b_c(\ell)$ 单调不减、$\le2$，收敛到某个 $b_\infty\le2$。数值：
+\[
+\begin{gathered}
+  b_c(5)=1.63532449671528,\qquad b_c(6)=1.73735592515169,\\
+  b_c(7)=1.79912060,\qquad b_c(8)=1.83976 .
+\end{gathered}
+\]
+$b_c(5)$ 唯一确定（$S_4(x)=x$ 且 $S_4'(x)=1$ 的二重不动点）；$b_c(6)$ 起依赖于选哪个五级运算：非唯一性会逐层传染。
+$b_\infty$ 不普适：不同种子的阶梯停在不同的值（例如 $1.7305$、$1.8215$），其余趋于 $2$（数值）；普适的 $b_\infty=2$ 已撤回（否）。
+一个模型阶梯（速率律闭式对数）的 $b_\infty=2$（已证）。
+\emph{问题}：解析阶梯的 $b_\infty$ 是多少？是否在 $[1.83976,2]$ 中取到 $2$？
+\emph{难点}：「不越过 $1+z$」不是判据；能用的是一个包络命题：若某一级在 $[1,1/(2-b)]$ 上满足线性包络，则下一级塔收敛。
+解析阶梯在 $b_c(8)$ 以上还没有一级被验证满足这个包络。
+\emph{第一步}：对第 8、9 级在 $b\in(1.84,2)$ 上数值检验包络条件，确定首次满足的级数。
+
+\paragraph{A3：热带极限。}对 $1<b<\eta$ 的正则阶梯（Nixon 的有界解析链~\cite{Nixon2022}），记 $p_\ell$ 为 $S_{\ell-1}$ 的吸引不动点、$\lambda_\ell$ 为其乘子、$L_\ell=|\log\lambda_\ell|$。已知：
+\begin{itemize}
+\item 极限是折线：$S_\ell(z)\to F_b(z)=\min(1+z,b)$，固定紧区间上 $\|S_\ell-F_b\|=(\log2)/L_\ell\,(1+o(1))$（推导 + 数值）；
+\item 有限级是这条折线的 log-sum-exp 光滑化 $-L_\ell^{-1}\log(\ee^{-L_\ell(1+z)}+\ee^{-L_\ell b})$，温度 $1/L_\ell\to0$（数值 + 推导）；
+\item 速率律 $\ell\,\lambda_\ell^{b-1}\to(2-b)/(b-1)$，转折点缺口 $g_\ell=b-S_\ell(b-1)\sim(b-1)\log2/\log\ell$（推导 + 数值）；
+\item 在凹性条件下 $F_b$ 是满足不动点方程的最大凹不动点，并且「极限是 $F_b$」等价于一个数 $g_\ell\to0$（已证）；
+\item $\eta$ 以上（$b=1.5,1.6$）得到同一个极限：$\eta$ 只是第 4 级的临界点，不是层数极限的临界点（数值）。
+\end{itemize}
+\emph{问题}：严格证明 $g_\ell\to0$。
+\emph{难点}：收敛是对数慢的；阶梯与闭式对数之间的距离 $|S-\Phi|$ 只有数值界。
+\emph{第一步}：在 Koenigs 圆盘内证明阶梯与速率律闭式对数之间的距离被一个可求和的量控制。
+
+\paragraph{要变成理论的一部分，缺的是什么。}一条把第 $\ell$ 级的分离与第 $\ell-1$ 级的转移不变量联系起来的定理。
+\cref{thm:welding} 在每一级上都形式地成立（它只用两个 Koenigs 坐标），但 A1 的反例说明，尺度律不能照搬：
+第 $\ell-1$ 级的「芽」不是固定的整函数，汇流定理（\cref{thm:confluence}）的假设 (H1) 在高层不再直接可用。
+
+\subsection{高度方向：「分数次」指哪个解}\label{ch12:sec:height}
+
+这一方向的问题是唯一性刻画：用什么自然条件把 Kneser 解从所有解中挑出来。
+
+\paragraph{已知。}
+\begin{center}\small
+\begin{tabular}{p{4.6cm}p{6.4cm}l}
+\toprule
+候选刻画 & 结论 & 状态\\
+\midrule
+Bohr--Mollerup 型（共同右半直线上各阶导数非负） & 规范化的实解析 tetration 不可能满足 & 已证；路线关闭\\
+Hardy 域 & 在 $G'>0$ 下任何光滑解都生成 Hardy 域；小正弦扰动给出非唯一性 & 已证；路线关闭\\
+$\pm\ii\infty$ 处的极限 & 不足以确定解，需要额外的整数端标签 $m=0$ & 已证（\cite[注~1.2]{KneserPaper}）\\
+初始区域 / $\theta$ 算子 & 以 $b=\ee$ 为例，$\theta$ 算子的不动点就是经典 Kneser 解，误差 $<2.878\cdot10^{-30}$ & 证·机\\
+缝口高度条件 & 在 $(b_1,\eta)$ 上确定 $\Ksew_b$ & 已证（\cref{thm:characterization}）\\
+\bottomrule
+\end{tabular}
+\end{center}
+流的结构：存在生成元 $V$ 使半指数是自治方程 $x'=V(x)$ 的 $\tfrac12$ 时刻映射；$V$ 凸等价于 $\operatorname{sexp}'$ 对数凸（证·机）；$V$ 不可加（已证）。
+取两个底数 $b\neq c>\eta$，它们的标准 Kneser 生成元生成一个无穷维实李代数（已证）。
+
+\paragraph{A4：实轴上的正面唯一性（原 Q8）。}\emph{问题}：给出一个只涉及实轴（或实轴附近）性质的条件，使 Kneser 解是满足它的唯一实解析 tetration。
+\emph{难点}：两条最自然的路（Bohr--Mollerup 型凸性、Hardy 域）都已被证明不可行。缝口高度条件是复的，并且只在 $b<\eta$ 一侧有意义。
+\emph{第一步}：研究 $V$ 的凸性（等价于 $\operatorname{sexp}'$ 对数凸）是否在 $C^\omega$ 解中刻画 Kneser 解；已有的证·机结果给出 Kneser 解满足它，缺的是反方向。
+
+\paragraph{A5：混合底数李代数（原 Q9）。}\emph{问题}：两个底数的 Kneser 生成元生成的李代数是否自由？交换子 $[V_b,V_c]$ 的零点是否恰有两个？
+状态：交换子的零点结构只有数值观察，「恰有两个零点」是猜想。
+\emph{第一步}：在 $b,c$ 都接近 $\eta$ 时用第 8 章的展开把 $V_b$ 写成 $p$ 的级数，计算交换子的首项。
+
+\paragraph{要变成理论的一部分，缺的是什么。}一个在实轴上刻画 Kneser 解的正面定理。目前核心理论在这一方向唯一的正面结果是缝口高度条件，
+它刻画的是 $b<\eta$ 一侧的缝合解，而不是 $b>\eta$ 一侧的 Kneser 解本身；两者通过 \cref{thm:cusp} 的延拓相联系。
+
+% ======================================================================
+\notes
+
+{\sloppy
+问题的编号与理论文档 \texttt{docs/theory-core-zh.md} 第 7 节一致；旧编号（Q1--Q11）见 \texttt{docs/theory-framework-zh.md} 第 10 节，
+对应关系是：C1 ← Q3 前半与 Q11，C3 ← Q10 剩余部分，C4 ← Q3 后半，T1--T2 ← Q1--Q2，T3 ← Q4，A1--A5 ← Q5--Q9。
+论文的开放问题一节~\cite[第~12~节]{KneserPaper} 列出 T1、T2、C1（原形式）、C4 与 T3。
+C1 的重新表述来自论文注 9.12（本书 \cref{rem:cocycle}）。C3 的抽象判据与 $w^d+c$ 的问题来自证明稿
+\texttt{docs/proofs/quadratic-continuation.tex} 的最后一节。层数方向的数据见 \texttt{docs/hyperoperation-program-zh.md}
+与 \texttt{docs/rank-tropical-limit-zh.md}；高度方向的负面结果见 \texttt{docs/theory-framework-zh.md} 第 6 节及其引用的文档。
+关于开折的可求和性，见 \cite{MRR2004,ChristopherRousseau,Ribon2010}；关于 Écalle--Voronin 不变量的收敛级数表示，见 \cite{DudkoSauzin2014}；
+关于分离子分裂中类似的渐近级数及其系数的数值提取，见 \cite{GelfreichBrannstrom,GelfreichSimo2008}。
+\par}
+
+\exercises
+
+\begin{exercise}\label{ch12:ex:cocycle}
+用 \cref{thm:variation} 推出 \cref{rem:cocycle} 中的上闭链公式。验证当 $\psi$ 是实伸缩 $u\mapsto cu$ 时右边的修正项为零，并解释原因。
+\end{exercise}
+\begin{hint}
+伸缩下 $\psi'(0)=c\neq1$，\cref{rem:cocycle} 的假设不成立，应直接用 \cref{thm:variation} 中 $X-X(0)$ 的形式：$\tilde X=(1/\psi')\circ\tilde g=1/c$ 是常数，所以 $\tilde X-\tilde X(0)=0$。
+\end{hint}
+
+\begin{exercise}\label{ch12:ex:coker}
+设 $g(u)=u+a_2u^2+a_3u^3+\cdots$，$a_2\neq0$。在形式幂级数空间中考虑 $\Lop\varphi=\varphi\circ g-g'\varphi$。
+证明 $1$ 与 $u^3$ 张成 $\Lop$ 的像的一个补空间。
+\end{exercise}
+\begin{hint}
+$\Lop u^k=(k-2)a_2u^{k+1}+\cdots$。$k=2$ 时首项消失，而 $\Lop1$ 与 $\Lop u$ 的首项分别是 $u$ 与 $u^2$ 的倍数；
+说明没有 $\Lop\varphi$ 以 $u^3$ 为首项。
+\end{hint}
+
+\begin{exercise}\label{ch12:ex:obstruction-01}
+第 10 章（\cite[命题~10.46]{KneserPaper}）说明 $b=1$ 不可去。证明更强的陈述：不存在在 $b=1$ 的去心圆盘与 $W$ 之积上联合全纯、且当 $b\to1$ 时在 $W$ 上局部一致有界的归一化族。
+\end{exercise}
+\begin{hint}
+用 Riemann 可去奇点定理把问题化归为 \cite[命题~10.46]{KneserPaper}。
+\end{hint}
+
+\begin{exercise}\label{ch12:ex:rank-bound}
+设 $b\ge2$，并设阶梯的每一级 $S_\ell$ 在 $[1,\infty)$ 上递增。用整数超运算 $2[\ell]n$ 从下方估计，证明每一级「塔」$S_{\ell-1}^{\circ n}(1)$ 都发散。由此推出 $b_c(\ell)\le2$。
+\end{exercise}
+
+\begin{exercise}\label{ch12:ex:tropical}
+令 $\Sigma_L(z)=-L^{-1}\log(\ee^{-L(1+z)}+\ee^{-Lb})$。证明 $\Sigma_L\le F_b=\min(1+z,b)$，$\|\Sigma_L-F_b\|_\infty=(\log2)/L$，只在 $z=b-1$ 处取到，
+并且 $\Sigma_L$ 关于 $L$ 递增。
+\end{exercise}
+
+\begin{exercise}\label{ch12:ex:gevrey}
+（研究性）设一个形式级数 $\sum\kappa_jp^j$ 在方向 $\arg p=\phi$ 上 $\tfrac12$-可求和（参数为 $\epsilon$，$p=4\epsilon/(1-\nu^2\epsilon)$）。
+推出系数增长的上界，并说明它与本书展开中的系数 $\kappa^{(n)}_j$ 的关系需要哪些额外的规范化换算。
+\end{exercise}

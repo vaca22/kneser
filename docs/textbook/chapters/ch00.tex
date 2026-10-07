@@ -1,0 +1,50 @@
+\chapter*{前言}\label{ch:preface}
+\addcontentsline{toc}{chapter}{前言}
+
+本书讲一个问题和一套回答。问题是：一个解析映射的「分数次迭代」应当是什么？
+最有名的例子是半指数函数，即满足 $f(f(x))=\ee^x$ 的实解析函数 $f$，
+以及与之等价的问题：$\ee\uparrow\uparrow\tfrac12$ 应当等于多少。
+
+回答的核心是一句话：
+\begin{quote}
+分数次迭代不是一个函数，而是一种把两个不动点处的局部坐标缝合起来的方式。
+\end{quote}
+两个经典坐标（吸引不动点处的 Koenigs 坐标与排斥不动点处的 Koenigs 坐标）之间有一个
+\textbf{转移映射}。所有缝法之间的差别都记录在它的 Fourier 系数里。当两个不动点在
+一次鞍结分岔中合并时，这个转移映射收敛到抛物芽的逆 horn 映射；它偏离极限的一阶项，
+是 horn 不变量沿开折方向的导数。本书把这些陈述逐一写成定理并给出证明。
+
+\section*{读者与先修}
+
+本书写给学过一学期复分析（Cauchy 定理、Riemann 映射定理、正规族）的研究生。
+复动力系统的知识不作要求：第~\ref{ch:koenigs}、\ref{ch:fatou} 章从头讲双曲与抛物不动点。
+拟共形映射、Weierstrass 预备定理和 Banach 空间上的全纯函数等工具集中在附录~\ref{app:tools}，
+用到时再查即可。
+
+\section*{本书的结构}
+
+\begin{itemize}[leftmargin=2em]
+\item 第~\ref{ch:intro} 章提出问题，并预告主定理。
+\item 第~\ref{ch:koenigs}、\ref{ch:fatou} 章是经典部分：Koenigs 线性化、Fatou 坐标、horn 映射。
+\item 第~\ref{ch:unfolding}--\ref{ch:variation} 章是理论本体，全部在\textbf{一般实鞍结开折}的设定下展开：
+  开折与尺度（第~\ref{ch:unfolding} 章）、转移映射与焊接恒等式（第~\ref{ch:transition} 章）、
+  缝合解与刻画（第~\ref{ch:sewing} 章）、汇流定理（第~\ref{ch:confluence} 章）、
+  一阶项与全阶展开（第~\ref{ch:first-order} 章）、变分公式（第~\ref{ch:variation} 章）。
+\item 第~\ref{ch:examples} 章讲例子，其中 tetration 是整体结果做得最完整的一个；
+  第~\ref{ch:numerics} 章说明书中每一个数是怎样算出来的、可靠到什么程度；
+  第~\ref{ch:open} 章列出开放问题。
+\end{itemize}
+初读时可以按 1 → 2 → 3 → 4 → 5 → 7 的顺序读到汇流定理，再回头读第 6 章的缝合解。
+
+\section*{证明的标准}
+
+经典结果给出完整证明，或给出精确出处。本理论的结果（第 4--9 章）给出完整证明；
+它们来自作者的论文 \cite{KneserPaper}，在那里对指数族写出，本书改写成一般开折的形式。
+tetration 的整体延拓（第~\ref{ch:examples} 章的两条定理）证明很长，并依赖区间算术证书，
+本书只讲证明的结构和关键想法，细节以论文为准。
+书中的数值都注明了来源脚本；凡是只有数值证据的陈述，都明确写出「数值」。
+
+\section*{致谢与复现}
+
+本书的全部脚本、数据、区间证书和 Lean 形式化都在同一个代码仓库里。
+第~\ref{ch:numerics} 章给出了从书中的数到脚本的对照表。

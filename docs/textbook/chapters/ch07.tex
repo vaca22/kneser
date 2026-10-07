@@ -1,0 +1,834 @@
+% 第 7 章 汇流定理
+% 来源：docs/paper-submission/main.tex §"Reduction to confluence"（Theorem reduction）、
+%       §"Proof of Theorem A: confluence"（Lemma res、Lemma F、Lemma petal、Theorem C、(a)--(d)）、
+%       §W2 的 Lemma band；一般化改写见 sec-general.tex 与 docs/general-statements-zh.md §2.2。
+% 数值：figures/fig8_deficit.py（调用 docs/generality_check.py），论文 Table eta。
+\providecommand{\cfR}{\mathcal R}     % 带上的吸引时间（R^{-1} 的分支）
+\providecommand{\cfS}{\mathcal S}     % 带上的排斥时间（S^{-1} 的分支）
+\providecommand{\cfB}{\mathcal B}     % 带
+\providecommand{\cfG}{\mathcal G}     % 闸门
+\providecommand{\cfU}{\mathcal U}     % 双缝平面
+\providecommand{\Arg}{\operatorname{Arg}}
+
+\chapter{汇流定理}\label{ch:confluence}
+
+第~\ref{ch:transition} 章把分数次迭代的全部信息压缩进了一个周期函数：转移映射
+$T_s=R_s^{-1}\circ S_s$ 和它的规范化 Fourier 系数 $\tau_n(s)=t_n\ee^{-2\pi\ii nt_0}$。
+第~\ref{ch:sewing} 章又说明缝合解的分离系数 $\hat c_n$ 与 $\tau_n$ 只差 $O(\Lam)$。
+这些量都是在 $s>0$、两个实不动点同时存在时定义的。本章回答：当 $s\to0^+$、两个不动点合并成抛物点时，
+$\tau_n(s)$ 趋于什么。
+
+答案是芽 $g$ 的逆 horn 映射的 Fourier 系数，乘上一个由基点决定的相位：
+\[
+ \tau_n(s)\longrightarrow B_n\,\ee^{2\pi\ii na},\qquad a=\Phiatt(\ustar).
+\]
+这是\textbf{汇流}（confluence）现象：两个双曲不动点的 Koenigs 坐标，在一个合适的``闸门''上，
+收敛到抛物不动点的两个 Fatou 坐标。证明分两步。第一步（\cref{thm:reduction}）是纯形式的：
+只要两个坐标在闸门上收敛，并且分支选得对，$\tau_n$ 就收敛。第二步是分析的：
+用模型时间 $\Psi_s$ 把 Koenigs 坐标写成绝对收敛的轨道级数，并证明级数的尾部关于 $s$ 一致地小。
+难点不在收敛本身，而在分支：$R_s^{-1}$ 的虚周期 $h\to\infty$，必须确认闸门上取的分支恰好是
+$\Ima t_0=h/2$ 的那一支。
+
+\begin{goals}
+\item 化归定理：Koenigs 坐标在闸门上收敛到 Fatou 坐标 $\Rightarrow$ $\tau_n\to B_n\ee^{2\pi\ii na}$。极限是\emph{逆} horn 映射。
+\item 上闸门的估计，以及 $B_0=0$：逆 horn 映射没有常数项，这使 $t_0\to-a$。
+\item 一致花瓣（\cref{lem:petal}）与带（\cref{ch7:lem:band}）：轨道级数的尾部关于 $s$ 一致地小。
+\item 分支的记账：从基点出发、在 $u_1$ 上方绕过去，$\Ima R_s^{-1}$ 恰好增加 $h/2$。
+\item 汇流定理（\cref{thm:confluence}）及其推论：$t_n/t_1^n\to B_n/B_1^n$，$\hat c_n\to B_n\ee^{2\pi\ii na}$。
+\end{goals}
+
+% ======================================================================
+\section{设定与回忆}\label{ch7:sec:setup}
+
+本章始终假设 (H1)--(H4)（\cref{def:unfolding}）；(H5) 只在推论中使用。
+$u$ 是以 $w^*$ 为中心的仿射坐标 $w=w^*+cu$（$c>0$；一般取 $c=1$，tetration 取 $w=\ee(1+u)$，芽为 $\ee^u-1$），
+对 $u$ 坐标下的映射沿用同一个字母 $f_s$，并把 $w$ 平面与 $u$ 平面通过这个仿射变换等同。
+例如``$S_s(z)\in(u_1,u_2)$''指 $S_s(z)-w^*\in(u_1,u_2)$。$H:=\{\Ima u>0\}$ 表示上半平面。
+$C,C',M,\dots$ 表示只依赖于开折（以及后面固定的 $R$、$Y_B$）而不依赖于 $s$ 的常数，
+每次出现可以不同。
+
+\subsection{两个不动点}
+回忆第~\ref{ch:unfolding} 章的结论。由 Weierstrass 预备定理（\cref{thm:weierstrass-prep}），
+存在 $r>0$、$s_1>0$，使得在 $|s|<s_1$、$|u|<r$ 上
+\begin{equation}\label{ch7:eq:prep}
+ f_s(u)-u=q_s(u)\,k_s(u),\qquad q_s(u)=u^2-\beta_1(s)u+\beta_2(s),
+\end{equation}
+其中 $\beta_1,\beta_2$ 全纯、实对实、在 $0$ 处为零，$k$ 联合全纯、无零点、实对实，
+$k_0(u)=a_2+a_3u+O(u^2)$。缩小 $r,s_1$ 后可以假设
+$\tfrac12a_2\le|k_s(u)|\le2a_2$、$|f_s'(u)-1|\le\frac14$，从而 $f_s$ 在 $D_r$ 上单叶。
+判别式 $D(s)=\beta_1^2-4\beta_2=4\gamma s/a_2+O(s^2)$。对 $s>0$ 小，$f_s$ 在 $D_r$ 中恰有两个不动点
+$u_1<u_2$，$u_2-u_1=\sqrt{D(s)}$，$|u_j|\le C\sqrt s$；乘子
+$0<\lambda_1=f_s'(u_1)<1<\lambda_2=f_s'(u_2)$。记
+\[
+ A_j=\frac1{\log\lambda_j},\qquad \nu_s:=A_1+A_2,\qquad h=\frac{2\pi}{|\log\lambda_1|},\qquad h_2=\frac{2\pi}{\log\lambda_2},
+\]
+于是 $A_1=-h/(2\pi)<0<A_2$。由 \cref{prop:scales,lem:residues}，当 $s\to0^+$ 时
+\begin{equation}\label{ch7:eq:scales}
+\begin{gathered}
+ |\log\lambda_j|=2\sqrt{a_2\gamma s}\,(1+O(\sqrt s)),\qquad h_2-h=2\pi\nu_s,\\
+ \nu_s=\rho+O(s),\qquad A_1(u_1-u_2)=\frac1{a_2}+O(\sqrt s).
+\end{gathered}
+\end{equation}
+特别地 $h\to\infty$，$h_2/h\to1$。
+
+第~\ref{ch:unfolding} 章还证明了实动力学的下述事实（它们是 (H4) 的全部用处）：
+$f_s$ 把 $(u_1,u_2)$ 映入自身，其中的轨道递减地趋于 $u_1$；$f_s$ 把 $[\ustar,u_1)$ 映入自身，
+其中的轨道递增地趋于 $u_1$；吸引 Koenigs 坐标 $\sigma_s$（$\sigma_s\circ f_s=\lambda_1\sigma_s$，$\sigma_s'(u_1)=1$）
+在 $[\ustar,u_1)$ 上为负，在 $(u_1,u_2)$ 上为正。
+
+\subsection{正则解与转移映射}
+按第~\ref{ch:koenigs}、\ref{ch:transition} 章，吸引正则解 $R_s$ 满足 $\sigma_s(R_s(z))=\sigma_s(\ustar)\lambda_1^z$，
+因而 $R_s(0)=\ustar$（即 $w_0$）。我们称一个区域上的全纯函数 $\mathcal R$ 为 \textbf{$R_s^{-1}$ 的分支}，
+如果在该区域上 $\sigma_s(u)=\sigma_s(\ustar)\lambda_1^{\mathcal R(u)}$。两个分支（在连通区域上）相差 $\ii kh$，$k\in\Z$。
+排斥正则解 $S_s$ 是整函数，满足 $S_s(z+1)=f_s(S_s(z))$，把 $\R$ 递减地映到 $(u_1,u_2)$ 上，
+并且对某个实数 $c_s\ne0$，当 $\Rea z\to-\infty$ 时 $\sigma_{\mathrm{rep},s}(S_s(z))=c_s\lambda_2^z$。
+
+转移映射 $T_s=R_s^{-1}\circ S_s$（\cref{def:transition}）满足 $T_s(z+1)=T_s(z)+1$。由 \cref{lem:realT}，
+对实数 $x$ 有 $\Ima T_s(x)\equiv h/2\pmod h$；我们总取 $\Ima T_s(x)=h/2$ 的分支，于是
+\[
+ T_s(z)-z=\sum_{n\in\Z}t_n\ee^{2\pi\ii nz},\qquad \Ima t_0=\frac h2,\qquad \tau_n(s):=t_n\ee^{-2\pi\ii nt_0}.
+\]
+把 $S_s$ 换成 $S_s(\cdot+\delta)$（$\delta\in\C$）使 $t_0\mapsto t_0+\delta$、$t_n\mapsto t_n\ee^{2\pi\ii n\delta}$，
+所以 $\tau_n=t_n\ee^{-2\pi\ii nt_0}$ 不变（另见第~\ref{ch:transition}~章关于规范化的注）。把 $R_s^{-1}$ 的分支换成 $R_s^{-1}+\ii kh$ 则使 $\tau_n$ 乘上
+$\ee^{2\pi nkh}=\Lam^{-nk}$。所以\emph{分支的选取不是小事}：$\tau_n$ 的极限只对 $\Ima t_0=h/2$ 这一支成立。
+
+\subsection{抛物芽}
+回忆第~\ref{ch:fatou} 章。记 $\zeta(u):=-\frac1{a_2u}$，并回忆形式 Abel 函数 $\alpha$（\cref{def:formal-abel}）的截断
+\[
+ \alpha_N(u)=-\frac1{a_2u}+\rho\log(-u)+\sum_{k=1}^Nd_ku^k,\qquad\text{特别地}\quad \alpha_0(u)=-\frac1{a_2u}+\rho\log(-u).
+\]
+按 \cref{thm:fatou-coordinates}，Fatou 坐标是
+\[
+ \Phiatt(u)=\lim_{n\to\infty}\bigl[\alpha_N(g^nu)-n\bigr],\qquad
+ \Phirep(u)=\lim_{n\to\infty}\bigl[\alpha_N(g^{-n}u)+n\bigr],
+\]
+对数沿轨道连续延拓（第~\ref{ch:fatou} 章：吸引侧用主值 $\Log(-u)$；排斥侧所用的分支在上半平面与主值 $\Log(-u)$ 相同）。
+由于 $\alpha_N-\alpha_0=O(u)$ 沿轨道趋于零，极限与 $N\ge0$ 无关；以下总取 $N=0$，即用 $\alpha_0$。逆 horn 映射是
+$\horn^{-1}=\Phiatt\circ\Phirep^{-1}$（\cref{def:horn}），在 $\Ima z$ 充分大处定义，与 $z\mapsto z+1$ 交换。
+基点的 Fatou 值 $a=\Phiatt(\ustar)$ 是实数，因为 $\ustar$ 的轨道沿负实轴单调趋于 $0$，$\log(-u)$ 在那里取实值
+（这也是 \cref{thm:fatou-coordinates} 中实对称性的特例）。
+
+\subsection{模型时间与一步误差}
+第~\ref{ch:unfolding} 章引入了模型时间与一步误差：
+\[
+\begin{gathered}
+ \Psi_s(u)=A_1\log(u-u_1)+A_2\log(u-u_2),\\
+ F_s(u)=A_1\Log\bigl(1+(u-u_2)k_s(u)\bigr)+A_2\Log\bigl(1+(u-u_1)k_s(u)\bigr)-1 .
+\end{gathered}
+\]
+因为 $(f_s(u)-u_1)/(u-u_1)=1+(u-u_2)k_s(u)$、$(f_s(u)-u_2)/(u-u_2)=1+(u-u_1)k_s(u)$，
+$F_s$ 就是 $\Psi_s\circ f_s-\Psi_s-1$（对数取主值增量）。我们要用它的下列性质：
+存在 $r'\in(0,r)$、$M>0$，使得对小的 $s>0$，
+\begin{enumerate}[label=(\textup{M\arabic*}),leftmargin=3em]
+\item\label{ch7:M1} $F_s$ 在 $D_{r'}$ 上单值全纯，$F_s(u_1)=F_s(u_2)=0$，且 $|F_s(u)|\le M|u-u_1||u-u_2|$；
+\item\label{ch7:M2} $F_s\to F_0:=\alpha_0\circ g-\alpha_0-1$ 在 $D_{r'}$ 上一致，$|F_0(u)|\le M|u|^2$；
+\item\label{ch7:M3} 若 $U$ 是单连通区域，$0\notin\overline U$，$K\subset U$ 紧，则沿 $U$ 中同一道路延拓对数时，
+  $\Psi_s(u)-\Psi_s(u')\to\alpha_0(u)-\alpha_0(u')$ 在 $K\times K$ 上一致。
+\end{enumerate}
+\ref{ch7:M1}--\ref{ch7:M3} 分别是第~\ref{ch:unfolding} 章的一步误差引理与模型时间极限引理。
+缩小 $r'$，还可以设 $f_s$ 与其局部逆 $f_s^{-1}$ 在 $D_{r'}$ 上都有定义且单叶。
+
+\begin{remark}\label{ch7:rem:real-H}
+$f_s$ 是实的、在 $D_{r'}$ 上单叶，且在实轴上 $f_s'>0$。所以 $f_s^{-1}(\R)\cap D_{r'}=\R\cap D_{r'}$，
+而 $f_s(D_{r'}\cap H)$ 连通、不与实轴相交、并含有 $H$ 中的点。因此
+$f_s(D_{r'}\cap H)\subset H$。同理 $f_s^{-1}$ 也保持 $H$。
+\end{remark}
+
+\subsection{反射逆}
+第~\ref{ch:unfolding} 章定义了反射逆 $\check f_s(v):=-f_s^{-1}(-v)$。它对 $(s,v)$ 联合全纯、实对实，
+是同类型的开折：$\check f_0$ 的芽为 $v+a_2v^2+(2a_2^2-a_3)v^3+\cdots$，迭代留数为 $-\rho$，
+横截性常数仍为 $\gamma$；$\check f_s$ 的吸引不动点是 $-u_2$（乘子 $1/\lambda_2$），排斥不动点是 $-u_1$（乘子 $1/\lambda_1$）。
+因此 $\check A_1=1/\log(1/\lambda_2)=-A_2$，$\check A_2=-A_1$，$\check h=h_2$。
+用 $\check{\ }$ 标记对 $\check f_s$ 算出的量。直接计算给出
+\begin{equation}\label{ch7:eq:reflect-F}
+ \check\Psi_s(-u)=-\Psi_s(u)+\text{常数},\qquad \check F_s(-u)=F_s\bigl(f_s^{-1}(u)\bigr).
+\end{equation}
+第二式：$\check F_s(-u)=\check\Psi_s(\check f_s(-u))-\check\Psi_s(-u)-1=-\Psi_s(f_s^{-1}u)+\Psi_s(u)-1=F_s(f_s^{-1}u)$，
+其中常数相消，而两边都是 $D_{r'}$ 上单值全纯的函数（对数的分支由 $\Log$ 的定义唯一确定，可在实轴上核对）。
+所以 $f_s$ 的\emph{后向}轨道问题，就是 $\check f_s$ 的\emph{前向}轨道问题。
+
+% ======================================================================
+\section{上闸门与 $B_0=0$}\label{ch7:sec:gate}
+
+逆 horn 映射在``上闸门''定义：那里 $u$ 很靠近 $0$、在上半平面，前向轨道与后向轨道都趋于 $0$。
+本节给出这个区域上的定量估计。记
+\[
+ H_Y:=\{u:\ \Ima\zeta(u)>Y\}=\Bigl\{u:\ \Bigl|u-\frac{\ii}{2a_2Y}\Bigr|<\frac1{2a_2Y}\Bigr\}\subset H .
+\]
+由 $g(u)=u(1+uk_0(u))$ 有
+\begin{equation}\label{ch7:eq:zeta-step}
+ \zeta(g(u))=\zeta(u)+1+\mathsf e(u),\qquad |\mathsf e(u)|\le C_0|u|\qquad(u\in D_{r'}),
+\end{equation}
+因为 $\zeta(g(u))-\zeta(u)=\frac{g(u)-u}{a_2ug(u)}=\frac{k_0(u)}{a_2(1+uk_0(u))}=1+O(u)$。
+另外，对 $u\in H$ 有 $-u=1/(a_2\zeta)$，$a_2\zeta\in H$，所以按主值
+\begin{equation}\label{ch7:eq:alpha2-zeta}
+ \alpha_0(u)=\zeta(u)-\rho\Log(a_2\zeta(u)),\qquad
+ \Ima\alpha_0(u)=\Ima\zeta(u)-\rho\Arg\zeta(u),\quad \Arg\zeta\in(0,\pi).
+\end{equation}
+
+\begin{lemma}[上闸门]\label{ch7:lem:gate}
+存在 $Y_g>0$ 与 $C>0$，使得对 $Y\ge Y_g$：
+\begin{enumerate}
+\item 对 $u\in H_Y$ 和所有 $k\in\Z$（$k<0$ 时用局部逆），$g^k(u)\in H_{Y/2}$，
+  $\Rea\zeta(g^{k+1}u)\ge\Rea\zeta(g^ku)+\frac34$，并且 $\sum_{k\in\Z}|g^ku|^2\le C/Y$；
+\item 在 $H_Y$ 上，按主值 $\Log(-u)$，
+  \[
+   \Phiatt=\alpha_0+\sum_{k\ge0}F_0\circ g^k,\qquad \Phirep=\alpha_0-\sum_{k\ge1}F_0\circ g^{-k},\qquad
+   |\Phiatt-\alpha_0|+|\Phirep-\alpha_0|\le\frac CY ;
+  \]
+\item 若 $\Ima z\ge Y+\pi|\rho|+2$ 且 $|\Rea z|\le\Ima z$，则 $H_Y$ 中恰有一点 $u$ 使 $\Phirep(u)=z$；它就是 $\Phirep^{-1}(z)$，并且
+  $\Ima\zeta(u)\ge\Ima z-\pi|\rho|-1$；
+\item $\horn^{-1}$ 在 $\Ima z\ge Y_g+\pi|\rho|+2$ 上有定义，且 $|\horn^{-1}(z)-z|\le C/(\Ima z-\pi|\rho|-2)$。因此
+  $\horn^{-1}(z)-z$ 的 Fourier 展开只含正频率：
+  \[
+   \horn^{-1}(z)=z+\sum_{n\ge1}B_n\ee^{2\pi\ii nz},\qquad\text{特别地 }B_0=0 .
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 取 $Y_g$ 使 $u\in H_{Y_g/2}$ 时 $|u|\le 2/(a_2Y_g)<r'$ 且 $C_0|u|\le\frac14$。设 $u_0\in H_Y$，
+$u_j=g^ju_0$，$\zeta_j=\zeta(u_j)$，并设 $u_0,\dots,u_k\in H_{Y/2}$。由 \eqref{ch7:eq:zeta-step}，
+$\Rea\zeta_{j+1}\ge\Rea\zeta_j+\frac34$（$j\le k$），且 $\Ima\zeta_{k+1}\ge\Ima\zeta_k-\frac14>0$，所以 $u_{k+1}\in H$。
+对 $v,g(v)\in H$，$-v$ 与 $-g(v)$ 都在下半平面，$g(v)/v$ 接近 $1$，故
+$\Log(-g(v))-\Log(-v)=\Log(g(v)/v)$，从而 $\alpha_0(g(v))-\alpha_0(v)-1=F_0(v)$（主值）。于是
+\[
+ \alpha_0(u_{k+1})-\alpha_0(u_0)-(k+1)=\sum_{j\le k}F_0(u_j),\qquad
+ \sum_{j\le k}|F_0(u_j)|\le M\sum_j|u_j|^2=\frac M{a_2^2}\sum_j\frac1{|\zeta_j|^2}.
+\]
+因为 $|\zeta_j|^2\ge(\Rea\zeta_j)^2+Y^2/4$，而 $\Rea\zeta_j$ 以至少 $\frac34$ 的步长递增，
+\[
+ \sum_j\frac1{|\zeta_j|^2}\le\frac{8}{Y^2}+\frac43\int_{-\infty}^\infty\frac{\dd x}{x^2+Y^2/4}=\frac8{Y^2}+\frac{8\pi}{3Y}\le\frac{C_1}{Y}.
+\]
+由 \eqref{ch7:eq:alpha2-zeta}，$\Ima\zeta_{k+1}\ge\Ima\zeta_0-\pi|\rho|-MC_1/(a_2^2Y)>Y/2$，只要 $Y_g$ 足够大。
+归纳得 $u_k\in H_{Y/2}$ 对所有 $k\ge0$ 成立，并得到前向部分的和的估计。后向轨道用 $g^{-1}$：
+由 \eqref{ch7:eq:zeta-step}，$\zeta(g^{-1}v)=\zeta(v)-1+O(|v|)$，同样的论证适用。
+
+(2) 由 (1) 的计算，$\alpha_0(g^nu)-n=\alpha_0(u)+\sum_{k<n}F_0(g^ku)$，其中沿轨道连续延拓的对数就是主值
+（轨道留在 $H$ 中）。令 $n\to\infty$ 得 $\Phiatt$ 的公式；$\Phirep$ 同理。估计由 (1) 和 $|F_0|\le M|u|^2$ 得到。
+
+(3) 在坐标 $\zeta$ 下，$H_Y$ 是半平面 $\{\Ima\zeta>Y\}$。令 $G(\zeta):=\Phirep(-1/(a_2\zeta))$。由 (2) 与 \eqref{ch7:eq:alpha2-zeta}，
+$G(\zeta)=\zeta-\rho\Log(a_2\zeta)+E(\zeta)$，$|E|\le C/Y$。令 $\zeta_*:=z+\rho\Log(a_2z)$，则
+$\Ima\zeta_*\ge\Ima z-\pi|\rho|\ge Y+2$。在圆周 $|\zeta-\zeta_*|=1$ 上，
+\[
+ G(\zeta)-z-(\zeta-\zeta_*)=\rho\bigl[\Log(a_2z)-\Log(a_2\zeta)\bigr]+E(\zeta),
+\]
+连接 $z$ 与 $\zeta$ 的线段上各点的虚部至少为 $t:=\Ima z-\pi|\rho|-1$，而
+$|\zeta-z|\le1+|\rho|\bigl(\log(2a_2\Ima z)+\pi\bigr)$（用到 $|z|\le2\Ima z$），所以右边的模不超过
+$|\rho|\bigl(1+|\rho|(\log(2a_2\Ima z)+\pi)\bigr)/t+C/Y$。由于 $\log(\Ima z)/(\Ima z-\pi|\rho|-1)\to0$，取 $Y_g$ 足够大即可使它小于 $1$。由 Rouché 定理，$G-z$ 在圆盘 $|\zeta-\zeta_*|<1$ 内恰有一个零点。若另有 $u'\in H_Y$ 使
+$\Phirep(u')=z$，则由 (1)，$g^{-k}u$ 与 $g^{-k}u'$ 当 $k$ 大时都落在排斥花瓣中，且 $\Phirep$ 值相同；
+$\Phirep$ 在排斥花瓣上单叶（\cref{thm:fatou-coordinates}），$g^{-k}$ 单射，故 $u=u'$。
+同一论证说明 $u=g^k\bigl(\Phirep^{-1}(z-k)\bigr)=\Phirep^{-1}(z)$。最后
+$\Ima\zeta(u)\ge\Ima\zeta_*-1\ge\Ima z-\pi|\rho|-1$。
+
+(4) 由 (3)，对 $0\le\Rea z\le1$、$\Ima z\ge Y_g+\pi|\rho|+2$，$\Phirep^{-1}(z)\in H_{Y_g}$，$\horn^{-1}(z)=\Phiatt(\Phirep^{-1}(z))$ 有定义；
+由 $\Phirep^{-1}(z+1)=g(\Phirep^{-1}(z))$ 与 $\Phiatt\circ g=\Phiatt+1$，它与 $z\mapsto z+1$ 交换，因而在整个半平面上有定义。
+取 $Y=\Ima z-\pi|\rho|-2\ge Y_g$，$u=\Phirep^{-1}(z)\in H_Y$（$0\le\Rea z\le1$）。由 (2)，
+$\horn^{-1}(z)-z=\Phiatt(u)-\Phirep(u)=\sum_{k\in\Z}F_0(g^ku)$，其模不超过 $M\sum_k|g^ku|^2\le C/Y$。
+函数 $\horn^{-1}(z)-z$ 是 $1$-周期的，在 $\Ima z>Y_g+\pi|\rho|+2$ 上全纯且有界。它的第 $n$ 个 Fourier 系数
+$b_n=\int_0^1(\horn^{-1}(z)-z)\ee^{-2\pi\ii nz}\dd x$（$z=x+\ii y$）与 $y$ 无关，且
+$|b_n|\le\sup_{\Ima z=y}|\horn^{-1}(z)-z|\cdot\ee^{2\pi ny}$。对 $n\le0$，令 $y\to\infty$ 得 $b_n=0$。
+\end{proof}
+
+\begin{remark}\label{ch7:rem:B0}
+$B_0=0$ 是 $\alpha$ 归一化的直接后果：两个 Fatou 坐标都用同一个 $\alpha_0$（同一个主值对数）归一化，
+它们的差在 $\Ima z\to+\infty$ 时趋于零。若改用另一种归一化（例如令 $\Phiatt$ 在某点取零），
+$B_0$ 一般不为零，而极限 $\tau_n\to B_n\ee^{2\pi\ii na}$ 中的相位会相应改变。
+\cite{KneserPaper} 对 tetration 数值上得到 $|B_0|<10^{-59}$。
+\end{remark}
+
+\begin{definition}[闸门]\label{ch7:def:gate}
+设 $Y_*\ge Y_g+\pi|\rho|+3$。记矩形 $Q(Y_*)=\{Y_*-1\le\Ima z\le Y_*+2,\ -2\le\Rea z\le3\}$，
+\textbf{闸门}（gate）$\cfG(Y_*):=\Phirep^{-1}(Q(Y_*))$，\textbf{闸门线} $\ell:=[0,1]+\ii Y_*$。
+\end{definition}
+
+由 \cref{ch7:lem:gate}(3)，$\cfG(Y_*)$ 是 $H_{Y_*-\pi|\rho|-2}$ 中的紧集，$\Phirep$ 在它上面单叶，
+$\Phirep^{-1}(\ell)$ 落在它的内部。由 (2) 与 \eqref{ch7:eq:alpha2-zeta}，在闸门上
+\begin{equation}\label{ch7:eq:gate-height}
+ Y_*-\pi|\rho|-2\le\Ima\zeta(u)\le Y_*+\pi|\rho|+3 .
+\end{equation}
+闸门是两个抛物吸引域（前向与后向）的公共紧子集，但它\emph{不}在任何一个花瓣里：
+在闸门上 $\Rea\zeta$ 有界。
+
+% ======================================================================
+\section{化归到汇流}\label{ch7:sec:reduction}
+
+\begin{theorem}[化归到汇流]\label{thm:reduction}
+设 (H1)--(H4) 成立，$Y_*\ge Y_g+\pi|\rho|+3$，$\cfG=\cfG(Y_*)$，$\ell=[0,1]+\ii Y_*$。
+假设对每个充分小的 $s>0$，存在
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item 一个数 $y_s>0$，使转移映射 $T_s$（取 $\Ima t_0=h/2$ 的分支）在水平带
+  $\Sigma_s=\{|\Ima w'|<y_s\}$ 上全纯；
+\item $\cfG$ 的一个邻域上的全纯函数 $\cfR_s$、$\cfS_s$，满足 $\cfS_s(\cfG)\subset\Sigma_s$ 和
+  $T_s\circ\cfS_s=\cfR_s$；
+\item 复数 $s_*(s)$，使得当 $s\to0^+$ 时，在 $\cfG$ 上一致地
+  \[
+   \cfR_s\longrightarrow\Phiatt-a,\qquad \cfS_s+s_*(s)\longrightarrow\Phirep .
+  \]
+\end{enumerate}
+则对每个 $n\ge1$，当 $s\to0^+$ 时
+\[
+ \tau_n(s)\longrightarrow B_n\,\ee^{2\pi\ii na}.
+\]
+\end{theorem}
+
+条件 (b) 的意思是：$\cfS_s$ 是 $S_s^{-1}$ 的一个分支，$\cfR_s$ 是 $R_s^{-1}$ 的\emph{对应}分支
+（因为 $T_s=R_s^{-1}\circ S_s$）。它把``Koenigs 坐标收敛到 Fatou 坐标''与``$T_s$ 的哪一支''捆在一起。
+
+\begin{proof}
+\emph{第一步：反演。} 由于 $\Phirep^{-1}(\ell)$ 是 $\cfG$ 内部的紧集，$\Phirep$ 在 $\cfG$ 上单叶，存在 $\delta>0$，使得对每个
+$z\in\ell$，闭圆盘 $\overline D(\Phirep^{-1}(z),\delta)\subset\cfG$，并且
+\[
+ m:=\min\bigl\{|\Phirep(u)-z|:\ z\in\ell,\ |u-\Phirep^{-1}(z)|=\delta\bigr\}>0 .
+\]
+当 $s$ 小时，$\sup_{\cfG}|\cfS_s+s_*-\Phirep|<m$。由 Rouché 定理，对每个 $z\in\ell$，
+方程 $\cfS_s(v)+s_*=z$ 在 $D(\Phirep^{-1}(z),\delta)$ 中恰有一个解 $v_s(z)$。同样的论证对任意小的 $\delta'\le\delta$ 成立，
+所以 $v_s(z)\to\Phirep^{-1}(z)$ 在 $\ell$ 上一致。
+
+\emph{第二步：$T_s$ 在平移的闸门线上。} 对 $z\in\ell$，$z-s_*=\cfS_s(v_s(z))\in\cfS_s(\cfG)\subset\Sigma_s$。
+所以水平线 $\ell-s_*$ 落在 $\Sigma_s$ 中，并且由 (b)，
+\[
+ \tilde T_s(z):=T_s(z-s_*)=T_s\bigl(\cfS_s(v_s(z))\bigr)=\cfR_s(v_s(z)).
+\]
+由 (c) 与 $\Phiatt$ 在 $\cfG$ 上的一致连续性，$\tilde T_s(z)\to\Phiatt(\Phirep^{-1}(z))-a=\horn^{-1}(z)-a$ 在 $\ell$ 上一致。
+
+\emph{第三步：Fourier 系数。} $T_s(w')-w'$ 在 $\Sigma_s$ 上全纯且 $1$-周期，所以它在任一水平线 $[0,1]+\ii y$
+（$|y|<y_s$）上的 Fourier 系数与 $y$ 无关，都等于 $t_n$；又由周期性，线段的起点可以任取。
+令 $\tilde t_n:=\int_\ell(\tilde T_s(z)-z)\ee^{-2\pi\ii nz}\dd z$。代换 $w'=z-s_*$ 得
+\[
+ \tilde t_n=t_n\ee^{-2\pi\ii ns_*}\quad(n\ne0),\qquad \tilde t_0=t_0-s_* ,
+\]
+因此
+\[
+ \tilde t_n\ee^{-2\pi\ii n\tilde t_0}=t_n\ee^{-2\pi\ii ns_*}\ee^{-2\pi\ii n(t_0-s_*)}=\tau_n(s).
+\]
+由第二步的一致收敛，$\tilde t_n\to\int_\ell(\horn^{-1}(z)-a-z)\ee^{-2\pi\ii nz}\dd z$。由 \cref{ch7:lem:gate}(4)，
+这个极限对 $n\ge1$ 是 $B_n$，对 $n=0$ 是 $B_0-a=-a$。所以
+$\tau_n=\tilde t_n\ee^{-2\pi\ii n\tilde t_0}\to B_n\ee^{2\pi\ii na}$。
+\end{proof}
+
+\begin{remark}[极限是逆 horn 映射]\label{ch7:rem:inverse}
+$T_s=R_s^{-1}\circ S_s$ 先用排斥坐标、再用吸引坐标，所以它的极限是 $\Phiatt\circ\Phirep^{-1}=\horn^{-1}$，
+而不是 horn 映射 $\horn=\Phirep\circ\Phiatt^{-1}$。两者的 Fourier 系数只在一阶上互为相反数（第~\ref{ch:fatou} 章），
+从二阶起就不同。$-a$ 的出现是因为 $R_s^{-1}$ 以基点为零点，而 $\Phiatt$ 以 $\alpha$ 归一化。
+\end{remark}
+
+\begin{remark}[还需要证明什么]\label{ch7:rem:what-remains}
+\cref{thm:reduction} 把汇流归结为三件事：(a) $T_s$ 在一条足够宽的带上全纯；
+(b) 闸门上的两个函数是 $S_s^{-1}$ 与 $R_s^{-1}$ 的\emph{正确}分支，并且闸门在 $S_s$ 时间里落在这条带内；
+(c) 它们收敛。(c) 是熟悉的汇流现象（\cite{Glutsyuk2001}）。(a)、(b) 是定量的：带的半宽约为 $h/2$，
+闸门在 $S_s$ 时间里的虚部约为 $h/2-Y_*$，两者之差只有 $O(1)$。下面几节依次处理 (c)、(a)、(b)。
+\end{remark}
+
+% ======================================================================
+\section{一致花瓣}\label{ch7:sec:petal}
+
+\subsection{双缝平面上的坐标 $Z_s$}
+对 $s>0$ 小，令
+\[
+ \cfU_s:=\C\setminus\bigl((-\infty,u_1]\cup[u_2,\infty)\bigr),\qquad
+ Z_s(u):=A_1\log\frac{u-u_1}{u-u_2},
+\]
+其中对数取虚部在 $(-2\pi,0)$ 中的分支。Möbius 变换 $\varpi(u):=\frac{u-u_1}{u-u_2}$ 把 $\cfU_s$ 一一地映到
+$\C\setminus[0,\infty)$（两条射线连同 $\infty$ 映到 $[0,\infty]$），所以
+\begin{equation}\label{ch7:eq:Zstrip}
+ Z_s:\ \cfU_s\longrightarrow\{0<\Ima Z<h\}\quad\text{是双全纯映射}.
+\end{equation}
+线段 $(u_1,u_2)$ 对应 $\Ima Z=h/2$；$\cfU_s\cap H$ 对应 $0<\Ima Z<h/2$。
+在 $\cfU_s$ 上取 $\log(u-u_1)$ 的辐角在 $(-\pi,\pi)$ 中、$\log(u-u_2)$ 的辐角在 $(0,2\pi)$ 中，则
+（逐一核对上半平面、下半平面与线段三种情形）
+\begin{equation}\label{ch7:eq:Psi-branch}
+ \Psi_s=Z_s+\nu_s\log(u-u_2)\qquad\text{在 }\cfU_s\text{ 上单值全纯}.
+\end{equation}
+以后 $\Psi_s$ 总指这个分支。$\Rea Z_s=A_1\log|(u-u_1)/(u-u_2)|$ 在 $\C\setminus\{u_1,u_2\}$ 上有定义；令
+\[
+ \Omega_{R,s}:=\{u:\ \Rea Z_s(u)>R\},
+\]
+它是以 $u_1$ 为``中心''的 Apollonius 圆盘（含 $u_1$，不含 $u_2$）。
+
+\begin{lemma}[一步]\label{ch7:lem:Zstep}
+对 $u\in D_{r'}$，$\frac{\varpi(f_s(u))}{\varpi(u)}=\frac{1+(u-u_2)k_s(u)}{1+(u-u_1)k_s(u)}$，并且
+\[
+ A_1\Log\frac{\varpi(f_s(u))}{\varpi(u)}=1+O\bigl(|u|+\sqrt s\bigr)
+\]
+在 $D_{r'}$ 上一致。若 $u,f_s(u)\in\cfU_s$ 且右边的虚部偏差小于 $\min(\Ima Z_s(u),h-\Ima Z_s(u))$，则
+$Z_s(f_s(u))=Z_s(u)+A_1\Log\frac{\varpi(f_s(u))}{\varpi(u)}$。
+\end{lemma}
+
+\begin{proof}
+第一式由 $\frac{f_s(u)-u_j}{u-u_j}=1+(u-u_{3-j})k_s(u)$ 得到。记 $d=u_1-u_2$，则
+$\frac{\varpi(f_s u)}{\varpi(u)}=1+\varepsilon$，$\varepsilon=\frac{dk_s(u)}{1+(u-u_1)k_s(u)}=O(\sqrt s)$。
+由 $\frac1{\log(1+x)}=\frac1x+\frac12+O(x)$，$A_1d=\frac1{k_s(u_1)}+O(\sqrt s)$，所以
+\[
+ A_1\Log(1+\varepsilon)=A_1\varepsilon+O(|A_1||\varepsilon|^2)=\frac{k_s(u)}{k_s(u_1)\bigl(1+(u-u_1)k_s(u)\bigr)}+O(\sqrt s)=1+O(|u|+\sqrt s).
+\]
+最后一句：$w:=Z_s(u)+A_1\Log(1+\varepsilon)$ 的虚部在 $(0,h)$ 中，所以 $Z_s^{-1}(w)\in\cfU_s$ 有定义，且
+$\varpi(Z_s^{-1}(w))=\ee^{w/A_1}=\varpi(u)(1+\varepsilon)=\varpi(f_s(u))$。Möbius 变换是单射，故 $Z_s^{-1}(w)=f_s(u)$。
+\end{proof}
+
+\subsection{一致花瓣}
+
+\begin{lemma}[一致花瓣]\label{lem:petal}
+存在 $R_0$、$C_1$ 与 $s_4>0$，使得对 $R\ge R_0$、$s\in(0,s_4]$：
+\begin{enumerate}
+\item $\Omega_{R,s}\subset D(u_1,\sqrt{C_1}/R)\subset D_{r'/2}$；
+\item $f_s(\Omega_{R,s})\subset\Omega_{R,s}$，并且 $\Rea Z_s(f_s^ku)\ge\Rea Z_s(u)+\frac34k$（$u\in\Omega_{R,s}$，$k\ge0$）；
+\item 对 $u\in\Omega_{R,s}$、$k\ge0$，
+  \[
+   |f_s^ku-u_1|\,|f_s^ku-u_2|\le\frac{C_1}{(R+\frac34k)^2},\qquad
+   \sum_{k\ge K}|f_s^ku-u_1|\,|f_s^ku-u_2|\le\frac{2C_1}{R+\frac34K};
+  \]
+\item 当 $s\to0^+$ 时，$\Rea Z_s\to\Rea\zeta$ 在 $\C\setminus\{0\}$ 的紧子集上一致。因此 $\Omega_{R,s}$ 在紧集意义下收敛到抛物花瓣
+  $P_R:=\{\Rea\zeta>R\}=\{\Rea(-1/(a_2u))>R\}$：花瓣的紧子集最终落在 $\Omega_{R,s}$ 中，
+  $\overline{P_R}$ 之外的紧集最终与 $\Omega_{R,s}$ 不交。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+先证一个与位置无关的估计。设 $u\notin\{u_1,u_2\}$，$\varpi=\varpi(u)$，
+$\theta:=|\log\lambda_1|\Rea Z_s(u)$，则 $|\varpi|=\ee^{-\theta}$。由 $u-u_2=\frac{u_2-u_1}{\varpi-1}$、$u-u_1=\varpi(u-u_2)$，
+\begin{equation}\label{ch7:eq:apollonius}
+ |u-u_1||u-u_2|=\frac{|\varpi|\,|u_2-u_1|^2}{|1-\varpi|^2}.
+\end{equation}
+若 $\theta>0$，则 $|1-\varpi|\ge1-\ee^{-\theta}\ge\frac{\theta}{1+\theta}$，所以
+\[
+ |u-u_1||u-u_2|\le\Bigl(\frac{|u_2-u_1|}{|\log\lambda_1|}\Bigr)^2\frac{(1+\theta)^2\ee^{-\theta}}{(\Rea Z_s(u))^2}
+ \le\frac{C_1}{(\Rea Z_s(u))^2},
+\]
+因为 $|u_2-u_1|/|\log\lambda_1|=|A_1(u_1-u_2)|\to1/a_2$（\eqref{ch7:eq:scales}），$(1+\theta)^2\ee^{-\theta}\le4$。
+
+(1) 在 $\Omega_{R,s}$ 上 $|\varpi|<1$，即 $|u-u_1|<|u-u_2|$，所以 $|u-u_1|^2\le C_1/R^2$。再取 $R_0$ 大、$s$ 小，
+使 $\sqrt{C_1}/R_0+|u_1|<r'/2$。
+
+(2) 由 \cref{ch7:lem:Zstep}，在 $D(u_1,\sqrt{C_1}/R)$ 上
+$\Rea Z_s(f_su)-\Rea Z_s(u)=\Rea A_1\Log\frac{\varpi(f_su)}{\varpi(u)}\ge\frac34$（$R_0$ 大、$s$ 小）。
+注意 $\Rea Z_s$ 单值，这里不涉及分支。归纳即得。
+
+(3) 第一式由上面的估计和 (2)。对 $k\ge K$ 求和，$\sum_{k\ge K}(R+\frac34k)^{-2}\le(R+\frac34K)^{-2}+\frac43(R+\frac34K)^{-1}\le2/(R+\frac34K)$（当 $R\ge2$）。
+
+(4) 对 $|u|\ge\delta$、$|u_j|\le\delta/4$，$\frac{u-u_1}{u-u_2}=1+\frac{u_2-u_1}{u-u_2}$，
+$\Rea Z_s(u)=A_1\log\bigl|1+\frac{u_2-u_1}{u-u_2}\bigr|=\Rea\frac{A_1(u_2-u_1)}{u-u_2}+O(\sqrt s)\to\Rea\frac{-1}{a_2u}$。
+紧集的论断由一致收敛和 $P_R$ 是开集推出。
+\end{proof}
+
+对 tetration，$a_2=\frac12$，极限花瓣是 $\{\Rea(-2/u)>R\}$，与 \cite[引理~4.3]{KneserPaper} 相同。
+
+% ======================================================================
+\section{带}\label{ch7:sec:band}
+
+花瓣 $\Omega_{R,s}$ 只覆盖 $\Rea Z_s$ 很大的点，而闸门上 $\Rea\zeta$ 有界。连接两者的是``带''。
+记 $c_\rho:=\pi|\rho|+1$。对 $Y>0$ 令
+\[
+ \cfB_s(Y):=\{u\in\cfU_s:\ Y<\Ima Z_s(u)<h-Y\}.
+\]
+由 \eqref{ch7:eq:Zstrip}，它是一个以 $u_1,u_2$ 为两角、以两条过 $u_1,u_2$ 的圆弧为边界的透镜形区域，
+在 $Z_s$ 坐标下是一条水平带，所以单连通。线段 $(u_1,u_2)$ 在其中。
+
+\begin{lemma}[带]\label{ch7:lem:band}
+存在 $Y_B\ge 8c_\rho$、$C_B$ 与 $s_5>0$，使得对 $s\in(0,s_5]$ 与 $Y\ge Y_B$ 下列各条成立。
+\begin{enumerate}
+\item \emph{轨道.} $\cfB_s(Y)\subset D(u_2,C_B(|\log\lambda_1|+1/Y))\subset D_{r'/2}$。对 $u\in\cfB_s(Y)$：
+  前向轨道 $f_s^ku$（$k\ge0$）留在 $\cfB_s(Y/2)$ 中并趋于 $u_1$；后向轨道 $f_s^{-k}u$（$k\ge1$，局部逆）
+  留在 $\cfB_s(Y/8)$ 中并趋于 $u_2$；对所有 $k\in\Z$，$\Rea Z_s(f_s^{k+1}u)\ge\Rea Z_s(f_s^ku)+\frac12$，并且对 $K\ge0$
+  \begin{equation}\label{ch7:eq:band-sum}
+   \sum_{|k|\ge K}\bigl|q_s(f_s^ku)\bigr|\le C_B\Bigl[\frac1{Y+(K/2-|\Rea Z_s(u)|)_+}+|\log\lambda_1|\Bigr].
+  \end{equation}
+\item \emph{两个时间.} 级数
+  \[
+   \cfR_s:=\Psi_s+\sum_{k\ge0}F_s\circ f_s^k+c_R,\qquad
+   \cfS_s:=\Psi_s-\sum_{k\ge1}F_s\circ f_s^{-k}+c_S
+  \]
+  在 $\cfB_s(Y)$ 上局部一致收敛，定义全纯函数。可以唯一地选取常数 $c_R,c_S$，使得：
+  $\cfR_s$ 是 $R_s^{-1}$ 的分支，且在 $(u_1,u_2)$ 上 $\Ima\cfR_s=h/2$；$\cfS_s=S_s^{-1}$ 在 $(u_1,u_2)$ 上成立
+  （右边指 $S_s|_\R$ 的反函数）。此时 $S_s\circ\cfS_s=\id$ 在 $\cfB_s(Y)$ 上成立，并且
+  \begin{equation}\label{ch7:eq:ImS}
+   \bigl|\Ima\cfS_s(u)-\bigl(\Ima Z_s(u)-h/2\bigr)\bigr|\le\pi|\rho|+\tfrac12\qquad(u\in\cfB_s(Y)).
+  \end{equation}
+\item \emph{带与条.} 设 $Y\ge Y_B+1$，$\Sigma_s(Y):=\{w':\ |\Ima w'|<h/2-Y-c_\rho\}$。则 $S_s(\Sigma_s(Y))\subset\cfB_s(Y)$，
+  $\cfS_s\circ S_s=\id$ 在 $\Sigma_s(Y)$ 上成立，转移映射 $T_s$（$\Ima t_0=h/2$ 的分支）在 $\Sigma_s(Y)$ 上全纯，且
+  \[
+   T_s=\cfR_s\circ S_s,\qquad T_s(w')-w'=(c_R-c_S)+\sum_{k\in\Z}F_s\bigl(f_s^k(S_s(w'))\bigr)\qquad(w'\in\Sigma_s(Y)).
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\emph{(i) 尺寸.} 记 $\xi=Z_s/A_1=\log\varpi$，于是 $\Ima\xi=-|\log\lambda_1|\Ima Z_s\in(-2\pi,0)$，在 $\cfB_s(Y)$ 上
+$\Ima\xi\in(-2\pi+|\log\lambda_1|Y,-|\log\lambda_1|Y)$。函数 $\ee^\xi-1$ 在闭带 $-2\pi\le\Ima\xi\le0$ 中只有单零点 $0$、$-2\pi\ii$，
+而 $\Rea\xi\ge1$ 时 $|\ee^\xi-1|\ge(1-\ee^{-1})|\ee^\xi|$，$\Rea\xi\le-1$ 时 $|\ee^\xi-1|\ge1-\ee^{-1}$。所以存在绝对常数 $c_0>0$ 使
+\[
+ |\ee^\xi-1|\ge c_0\min(1,\delta(\xi))\max(1,|\ee^\xi|),\qquad \delta(\xi):=\min(|\xi|,|\xi+2\pi\ii|).
+\]
+在 $\cfB_s(Y)$ 上 $\delta(\xi)=|\log\lambda_1|\min(|Z_s|,|Z_s-\ii h|)>|\log\lambda_1|Y$。由 $u-u_2=\frac{u_2-u_1}{\varpi-1}$ 与
+$|u_2-u_1|\le C|\log\lambda_1|$ 得 $|u-u_2|\le C(|\log\lambda_1|+1/Y)$，$|u-u_1|$ 同理。由 \eqref{ch7:eq:apollonius} 与
+$|\varpi|/\max(1,|\varpi|)^2=\ee^{-|\Rea\xi|}$，记 $x=\Rea Z_s(u)$、$y'=\min(\Ima Z_s,h-\Ima Z_s)$：
+\begin{equation}\label{ch7:eq:bandsize}
+ |u-u_1||u-u_2|\le\frac{|u_2-u_1|^2\ee^{-|\Rea\xi|}}{c_0^2\min(1,\delta)^2}
+ \le C\Bigl[\frac1{x^2+y'^2}+|\log\lambda_1|^2\ee^{-|\log\lambda_1||x|}\Bigr]
+\end{equation}
+（$\delta\le1$ 时用 $|u_2-u_1|^2/(|\log\lambda_1|^2\min(|Z_s|,|Z_s-\ii h|)^2)$，$\delta>1$ 时用第二项）。
+
+\emph{前向轨道.} 由尺寸估计和 \cref{ch7:lem:Zstep}，取 $Y_B$ 大、$s$ 小，可使对 $u\in\cfB_s(Y/2)$（$Y\ge Y_B$）有
+$|Z_s(f_su)-Z_s(u)-1|\le\frac14$，从而 $f_s(\cfB_s(Y/2))\subset\cfB_s(Y/2-\frac14)\subset\cfU_s$。
+在 $\cfB_s(Y/2)$ 上考虑 $E(u):=\Psi_s(f_su)-\Psi_s(u)-1-F_s(u)$。两个对数的分支差都是 $2\pi\ii$ 的整数倍，所以
+$E$ 取值于可数集 $\{2\pi\ii(m_1A_1+m_2A_2)\}$；$E$ 连续，$\cfB_s(Y/2)$ 连通，故 $E$ 为常数；在线段上一切都是实的，
+$E=0$。所以
+\begin{equation}\label{ch7:eq:Psi-step}
+ \Psi_s(f_su)=\Psi_s(u)+1+F_s(u)\qquad(u\in\cfB_s(Y/2)).
+\end{equation}
+设 $u_0\in\cfB_s(Y)$，$u_j=f_s^ju_0$，$Z_j=Z_s(u_j)$，并设 $u_0,\dots,u_k\in\cfB_s(Y/2)$。则 $\Rea Z_{j+1}\ge\Rea Z_j+\frac34$。
+由 \eqref{ch7:eq:Psi-branch}、\eqref{ch7:eq:Psi-step}，
+\[
+ \Ima Z_{k+1}-\Ima Z_0=\sum_{j\le k}\Ima F_s(u_j)-\nu_s\bigl[\arg(u_{k+1}-u_2)-\arg(u_0-u_2)\bigr].
+\]
+辐角差的绝对值小于 $2\pi$，$|\nu_s|\le|\rho|+\frac1{2\pi}$。由 \ref{ch7:M1} 与 \eqref{ch7:eq:bandsize}，并利用 $\Rea Z_j$ 以至少 $\frac34$ 的步长递增，
+\[
+ \sum_j|F_s(u_j)|\le MC\sum_j\Bigl[\frac1{(\Rea Z_j)^2+Y^2/4}+|\log\lambda_1|^2\ee^{-|\log\lambda_1||\Rea Z_j|}\Bigr]
+ \le C'\Bigl(\frac1Y+|\log\lambda_1|\Bigr).
+\]
+所以 $|\Ima Z_{k+1}-\Ima Z_0|\le C'/Y+C'|\log\lambda_1|+2\pi|\rho|+1<Y/2$（$Y_B\ge8c_\rho$ 且足够大，$s$ 小）。
+于是 $u_{k+1}\in\cfB_s(Y/2)$。归纳得整条前向轨道留在 $\cfB_s(Y/2)$ 中，$\Rea Z_k\to+\infty$，即 $u_k\to u_1$。
+
+\emph{后向轨道.} 对反射逆 $\check f_s$ 作同样的事。$\check Z_s(v)=\check A_1\log\frac{v+u_2}{v+u_1}$，
+比较模与虚部（在线段上 $\Ima Z_s=h/2$、$\Ima\check Z_s=h_2/2$）得
+\[
+ \check Z_s(-u)=-\frac{h_2}{h}Z_s(u)+\ii h_2,\qquad\text{所以}\quad -\cfB_s(Y)=\check\cfB_s\Bigl(\frac{h_2}hY\Bigr).
+\]
+$s$ 小时 $\frac23\le h_2/h\le\frac32$，所以 $-\cfB_s(Y)\subset\check\cfB_s(Y/2)$。对 $\check f_s$ 应用前向轨道的结论（$Y_B$ 对 $\check f_s$ 也取得足够大；
+它的迭代留数为 $-\rho$，$c_\rho$ 不变），得到 $\check f_s^k(-u)=-f_s^{-k}u$ 留在 $\check\cfB_s(Y/4)=-\cfB_s(\frac h{h_2}\frac Y4)\subset-\cfB_s(Y/6)$ 中，
+趋于 $-u_2$。$\Rea\check Z_s$ 每步至少增加 $\frac34$，即 $\Rea Z_s$ 每后退一步至少减少 $\frac34\cdot\frac h{h_2}\ge\frac12$。
+
+\emph{求和.} 对 $|k|\ge K$，由单调性 $|\Rea Z_s(f_s^ku)|\ge(K/2-|\Rea Z_s(u)|)_+$，且相邻两项的 $\Rea Z_s$ 至少相差 $\frac12$。
+把 \eqref{ch7:eq:bandsize}（轨道上的点都在 $\cfB_s(Y/8)$ 中，故 $y'\ge Y/8$）对这样的点求和，
+即得 \eqref{ch7:eq:band-sum}。
+
+\emph{(ii)} 由 (i) 与 \ref{ch7:M1}，两个级数在 $\cfB_s(Y)$ 上一致收敛。由 \eqref{ch7:eq:Psi-step}，
+\[
+ \Psi_s(u)+\sum_{k\ge0}F_s(f_s^ku)=\lim_{n\to\infty}\bigl[\Psi_s(f_s^nu)-n\bigr].
+\]
+当 $n\to\infty$，$f_s^nu\to u_1$ 且 $f_s^nu-u_1=\sigma_s(f_s^nu)(1+o(1))=\lambda_1^n\sigma_s(u)(1+o(1))$，
+而 $A_2\log(f_s^nu-u_2)\to A_2\log(u_1-u_2)$（$\log(u-u_2)$ 在 $u_1$ 处连续）。由 $A_1\log\lambda_1=1$，
+\[
+ \exp\Bigl(\frac{\cfR_s(u)-c_R-A_2\log(u_1-u_2)}{A_1}\Bigr)=\sigma_s(u).
+\]
+所以 $\lambda_1^{\cfR_s(u)}=\sigma_s(u)\cdot\kappa_R$，$\kappa_R=\ee^{(c_R+A_2\log(u_1-u_2))/A_1}$。取 $c_R$ 使 $\kappa_R=1/\sigma_s(\ustar)$，
+$\cfR_s$ 就成为 $R_s^{-1}$ 的分支；这样的 $c_R$ 在模 $\ii h$ 意义下唯一。在线段上 $\sigma_s>0$、$\sigma_s(\ustar)<0$，
+所以 $\Ima\cfR_s\in h/2+h\Z$，再取定使 $\Ima\cfR_s=h/2$ 的那一个。
+
+同理，沿后向轨道 $\Psi_s(f_s^{-n}u)+n\to\cfS_s(u)-c_S$，且 $\exp((\cfS_s-c_S-A_1\log(u_2-u_1))/A_2)=\sigma_{\mathrm{rep},s}$，
+所以 $\cfS_s$ 与 $A_2\log\sigma_{\mathrm{rep},s}$ 只差常数。在线段上 $S_s^{-1}=A_2\log(\sigma_{\mathrm{rep},s}/c_s)$ 是实解析的、
+也是 $A_2\log\sigma_{\mathrm{rep},s}$ 加常数，所以可以（唯一地）取 $c_S$ 使 $\cfS_s=S_s^{-1}$ 在线段上成立。
+$S_s\circ\cfS_s$ 在连通的 $\cfB_s(Y)$ 上全纯，在线段上等于恒等，故处处等于恒等。
+
+估计 \eqref{ch7:eq:ImS}：由 \eqref{ch7:eq:Psi-branch}，$\Ima\cfS_s=\Ima Z_s+\nu_s\arg(u-u_2)-\Ima\sum_{k\ge1}F_s(f_s^{-k}u)+\Ima c_S$。
+在线段上左边为零，$\Ima Z_s=h/2$，$\arg(u-u_2)=\pi$，级数为实数，所以 $\Ima c_S=-h/2-\nu_s\pi$，从而
+\[
+ \Ima\cfS_s(u)-\bigl(\Ima Z_s(u)-h/2\bigr)=\nu_s\bigl(\arg(u-u_2)-\pi\bigr)-\Ima\sum_{k\ge1}F_s(f_s^{-k}u).
+\]
+辐角在 $(0,2\pi)$ 中，所以第一项的模不超过 $\pi|\nu_s|\le\pi|\rho|+\frac14$（$s$ 小）；由 (i)，第二项的模不超过
+$MC_B(1/Y+|\log\lambda_1|)\le\frac14$（$Y_B$ 大、$s$ 小）。
+
+\emph{(iii)} 固定 $x\in\R$。$S_s(x)\in(u_1,u_2)\subset\cfB_s(Y)$，且 $\cfS_s(S_s(x))=x$。令
+$O=\{w'\in\Sigma_s(Y):S_s(w')\in\cfB_s(Y)\}$（开集），$O_0$ 为它含 $\R$ 的连通分支。$\cfS_s\circ S_s-\id$ 在 $O_0$ 上全纯、在 $\R$ 上为零，
+故在 $O_0$ 上恒为零。设竖直线段 $\{x+\ii y:0\le y<y^*\}\subset O$ 而 $S_s(x+\ii y^*)\notin\cfB_s(Y)$，$y^*<h/2-Y-c_\rho$。
+则 $S_s(x+\ii y^*)\in\partial\cfB_s(Y)$。它不能是角点 $u_1$ 或 $u_2$：在带中 $u\to u_j$ 时
+$\Rea\Psi_s(u)=A_1\log|u-u_1|+A_2\log|u-u_2|+O(1)\to\pm\infty$，级数有界，所以 $|\cfS_s(u)|\to\infty$，
+而 $\cfS_s(S_s(x+\ii y))=x+\ii y$ 有界。它也不能在边界弧上：$\cfS_s$ 在 $\cfB_s(Y-\frac12)\supset\overline{\cfB_s(Y)}\setminus\{u_1,u_2\}$ 上连续，
+由连续性 $\cfS_s(S_s(x+\ii y^*))=x+\ii y^*$；但弧上 $|\Ima Z_s-h/2|=h/2-Y$，由 \eqref{ch7:eq:ImS}，
+$|\Ima\cfS_s|\ge h/2-Y-\pi|\rho|-\frac12>h/2-Y-c_\rho>y^*$，矛盾。所以整条竖直线段在 $O$ 中；负的 $y$ 同理。
+于是 $\Sigma_s(Y)\subset O_0$，$S_s(\Sigma_s(Y))\subset\cfB_s(Y)$，$\cfS_s\circ S_s=\id$ 在 $\Sigma_s(Y)$ 上成立。
+
+最后，$\cfR_s\circ S_s$ 在 $\Sigma_s(Y)$ 上全纯，在 $\R$ 上是 $R_s^{-1}\circ S_s$ 取 $\Ima=h/2$ 的分支，即 $T_s$（\cref{lem:realT}）。
+所以 $T_s$ 延拓到 $\Sigma_s(Y)$ 上且等于 $\cfR_s\circ S_s$。由 $\cfS_s(S_s(w'))=w'$，
+$T_s(w')-w'=\cfR_s(u)-\cfS_s(u)$（$u=S_s(w')$），这就是所写的双向级数。
+\end{proof}
+
+\begin{remark}[与 \cite{KneserPaper} 的差别]\label{ch7:rem:margin}
+\cite[引理~6.1]{KneserPaper} 对 tetration 取条的半宽为 $h/2-Y-2$，(ii) 中的常数为 $\pi/3$。
+那里的 (iii) 需要 $\pi/3+o(1)<2$，成立；但论文第~4~节 (b) 中的不等式
+$h/2-Y_B-3+\pi/3+C/Y_B<h/2-Y_B-2$ 要求 $\pi/3<1$，不成立。这只是边距的记账：把闸门放得更高一些即可。
+对一般的 $\rho$，(ii) 中的常数是 $\pi|\rho|$，可以任意大，所以这里把条的半宽取为 $h/2-Y-c_\rho$，并在
+\cref{thm:confluence} 中要求 $Y_*\ge Y_B+3c_\rho+3$。
+\end{remark}
+
+% ======================================================================
+\section{汇流定理}\label{ch7:sec:confluence}
+
+\subsection{分支的记账}
+现在把带上的吸引时间 $\cfR_s$ 与基点联系起来。固定 $R\ge R_0$。取整数 $N_0$ 使 $x_0^0:=g^{N_0}(\ustar)\in P_{R+1}$
+（$\ustar$ 的轨道沿负实轴趋于 $0$，$\Rea\zeta(x)=-1/(a_2x)\to+\infty$）。对小的 $s>0$，令 $x_0(s):=f_s^{N_0}(\ustar)$；
+由连续性 $x_0(s)\to x_0^0$，由 \cref{lem:petal}(4)，$x_0(s)\in\Omega_{R,s}$。由实动力学，$\ustar<x_0(s)<u_1$。
+令
+\[
+ W_s:=\cfB_s(Y_B)\cup\bigl(\Omega_{R,s}\cap H\bigr).
+\]
+在 $Z_s$ 坐标下它是带 $\{Y_B<\Ima Z<h-Y_B\}$ 与半带 $\{\Rea Z>R,\ 0<\Ima Z<h/2\}$ 之并，所以连通。
+
+\begin{lemma}[分支]\label{ch7:lem:branch}
+设 $s>0$ 充分小。级数 $\cfR_s=\Psi_s+\sum_{k\ge0}F_s\circ f_s^k+c_R$（$c_R$ 如 \cref{ch7:lem:band}(ii)）在 $W_s$ 上定义一个全纯函数，
+它是 $R_s^{-1}$ 的分支；它在 $x_0(s)$ 处有从上半平面来的连续延拓，并且
+\[
+ \cfR_s\bigl(x_0(s)+\ii0\bigr)=N_0 .
+\]
+换言之：从 $w_0$ 出发（$R_s^{-1}(w_0)=0$），沿实轴走到 $x_0(s)$，再进入上半平面、在 $u_1$ 上方绕到线段 $(u_1,u_2)$，
+这样延拓得到的 $R_s^{-1}$ 的分支恰好在线段上有 $\Ima=h/2$，即 $T_s$ 所用的分支。
+\end{lemma}
+
+\begin{proof}
+级数在 $\cfB_s(Y_B)$ 上收敛（\cref{ch7:lem:band}(i)），在 $\Omega_{R,s}$ 上也收敛（\cref{lem:petal}(3) 与 \ref{ch7:M1}），
+所以在 $W_s$ 上定义全纯函数，并且连续到 $\Omega_{R,s}$ 中实轴上的点（从 $H$ 一侧趋近；$\Psi_s$ 在 $(-\infty,u_1)$ 上有从上方来的连续延拓，
+那里 $\arg(u-u_1)=\arg(u-u_2)=\pi$）。由 \cref{ch7:rem:real-H}，$f_s$ 保持 $\Omega_{R,s}\cap H$；与 \eqref{ch7:eq:Psi-step} 同样的可数值论证
+（在含线段的连通集 $\Omega_{R,s}\cap(H\cup(u_1,u_2))$ 上）给出 $\Psi_s\circ f_s=\Psi_s+1+F_s$。于是在 $\Omega_{R,s}\cap H$ 上
+也有 $\cfR_s-c_R=\lim[\Psi_s(f_s^nu)-n]$，同 \cref{ch7:lem:band}(ii) 的计算知 $\lambda_1^{\cfR_s}/\sigma_s$ 在 $\Omega_{R,s}\cap H$ 上是常数。
+它在带上等于 $1/\sigma_s(\ustar)$，而 $W_s$ 连通，两块有公共点，所以在 $W_s$ 上处处等于 $1/\sigma_s(\ustar)$：$\cfR_s$ 是 $R_s^{-1}$ 的分支。
+
+由连续性，$\sigma_s(x_0)=\sigma_s(\ustar)\lambda_1^{\cfR_s(x_0+\ii0)}$。另一方面，在 $[\ustar,u_1)$ 上 $\sigma_s<0$，
+$R_s^{-1}$ 的实分支 $A_1\log(\sigma_s(u)/\sigma_s(\ustar))$（比值为正）在 $\ustar$ 处为 $0$，满足 Abel 方程，所以在
+$x_0=f_s^{N_0}(\ustar)$ 处等于 $N_0$。因此 $\cfR_s(x_0+\ii0)\in N_0+\ii h\Z$，只需证明它的虚部为零。
+
+取 $x_1\in(u_1,u_2)\cap\Omega_{R,s}$。在 $x_0$ 和 $x_1$ 处，轨道是实的，$F_s$ 在实轴上取实值，所以级数是实数。于是
+\[
+ \Ima\cfR_s(x_1)-\Ima\cfR_s(x_0+\ii0)=\Ima\Psi_s(x_1)-\Ima\Psi_s(x_0+\ii0)
+ =A_1\bigl[0-\pi\bigr]+A_2\bigl[\pi-\pi\bigr]=-\pi A_1=\frac h2,
+\]
+这里按 \eqref{ch7:eq:Psi-branch} 的分支：$\arg(x_1-u_1)=0$、$\arg(x_0+\ii0-u_1)=\pi$，$\arg(x_1-u_2)=\arg(x_0+\ii0-u_2)=\pi$。
+由于 $\Ima\cfR_s(x_1)=h/2$，得 $\Ima\cfR_s(x_0+\ii0)=0$。
+\end{proof}
+
+这个计算是整个汇流定理中唯一``看得见''的一步：缝口在实轴下方半个周期，来自于从基点出发在 $u_1$ 上方绕行半圈，
+$A_1\cdot(-\pi)=h/2$；在 $u_2$ 周围没有绕行，所以 $A_2$ 不出现。这与族无关。
+
+\subsection{定理}
+
+\begin{theorem}[汇流]\label{thm:confluence}
+设 (H1)--(H4) 成立。取 $Y_*\ge\max\{Y_g+\pi|\rho|+3,\ Y_B+3c_\rho+3\}$，令 $\cfG=\cfG(Y_*)$，$u_\sharp\in\cfG$ 为固定的一点。
+对小的 $s>0$，令 $\cfR_s$、$\cfS_s$ 为 \cref{ch7:lem:band}(ii) 中（$Y=Y_B$）的两个时间，$s_*(s):=\Phirep(u_\sharp)-\cfS_s(u_\sharp)$。则：
+\begin{enumerate}
+\item $\cfG\subset\cfB_s(Y_*-c_\rho-2)\cap H$，并且在 $\cfG$ 上一致地 $\cfR_s\to\Phiatt-a$；
+\item 在 $\cfG$ 上一致地 $\cfS_s+s_*(s)\to\Phirep$；
+\item $\cfS_s(\cfG)\subset\Sigma_s(Y_B+1)$，并且 $T_s\circ\cfS_s=\cfR_s$ 在 $\cfG$ 上成立；
+\item 对每个 $n\ge1$，当 $s\to0^+$ 时
+  \[
+   \tau_n(s)\longrightarrow B_n\,\ee^{2\pi\ii na},\qquad a=\Phiatt(\ustar).
+  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{闸门在带里.} 由 \cref{lem:petal}(4) 的证明，$Z_s\to\zeta$ 在 $\cfG$ 的一个紧邻域上一致：对 $u\in H$ 且 $|u|\gg|u_j|$，
+$Z_s(u)=A_1\Log\bigl(1+\frac{u_2-u_1}{u-u_2}\bigr)$（两边都是 $\ee^{Z/A_1}=\varpi(u)$ 的连续解，虚部都在 $(0,h)$ 中且很小，故相等），
+右边一致收敛到 $-1/(a_2u)$。由 \eqref{ch7:eq:gate-height}，$s$ 小时 $\cfG\subset\{Y_*-c_\rho-2<\Ima Z_s<Y_*+c_\rho+3\}$；
+又 $h\to\infty$，所以 $\cfG\subset\cfB_s(Y_*-c_\rho-2)\subset\cfB_s(Y_B)$。
+
+\emph{(1)} 由 \cref{ch7:lem:branch}，对 $u\in\cfG$，
+\[
+ \cfR_s(u)=N_0+\bigl[\Psi_s(u)-\Psi_s(x_0+\ii0)\bigr]+\sum_{k\ge0}\bigl[F_s(f_s^ku)-F_s(f_s^kx_0)\bigr].
+\]
+取单连通区域 $U:=\bigl(H\cap\{\delta<|u|<r'\}\bigr)\cup D(x_0^0,\eta)$，$\delta,\eta$ 小，使 $U\supset\cfG$、$0\notin\overline U$。
+在 $U\cap H$ 上 $\Psi_s$ 的分支 \eqref{ch7:eq:Psi-branch} 跨过负实轴连续延拓到 $U$ 上；$\alpha_0$ 在 $U$ 上取在 $H$ 中为主值 $\Log(-u)$ 的分支。
+由 \ref{ch7:M3} 与 $\alpha_0$ 的一致连续性，$\Psi_s(u)-\Psi_s(x_0(s))\to\alpha_0(u)-\alpha_0(x_0^0)$ 在 $\cfG$ 上一致。
+级数中每一项收敛：$f_s\to g$ 在 $D_{r'}$ 上一致，轨道留在 $D_{r'/2}$ 中，所以对固定的 $k$，$f_s^k\to g^k$ 一致；$F_s\to F_0$ 一致（\ref{ch7:M2}）。
+尾部一致地小：对 $u\in\cfG$，$\Rea Z_s(u)$ 有界（不依赖于 $s$），由 \eqref{ch7:eq:band-sum}，$\sum_{k\ge K}|F_s(f_s^ku)|\le MC_B[1/(Y_B+K/2-C)+|\log\lambda_1|]$；
+对 $x_0$，由 \cref{lem:petal}(3)，$\sum_{k\ge K}|F_s(f_s^kx_0)|\le2MC_1/(R+\frac34K)$。所以
+\[
+ \cfR_s(u)\longrightarrow N_0+\alpha_0(u)-\alpha_0(x_0^0)+\sum_{k\ge0}\bigl[F_0(g^ku)-F_0(g^kx_0^0)\bigr].
+\]
+由 \cref{ch7:lem:gate}(2)，$\alpha_0(u)+\sum_kF_0(g^ku)=\Phiatt(u)$；同理（轨道是负实数，对数取实值）
+$\alpha_0(x_0^0)+\sum_kF_0(g^kx_0^0)=\Phiatt(x_0^0)=\Phiatt(\ustar)+N_0=a+N_0$。所以极限是 $\Phiatt(u)-a$。
+
+\emph{(2)} 对 $u\in\cfG$，
+$\cfS_s(u)-\cfS_s(u_\sharp)=\Psi_s(u)-\Psi_s(u_\sharp)-\sum_{k\ge1}\bigl[F_s(f_s^{-k}u)-F_s(f_s^{-k}u_\sharp)\bigr]$。
+同样，$\Psi$ 的差收敛到 $\alpha_0(u)-\alpha_0(u_\sharp)$，每一项收敛（局部逆 $f_s^{-1}\to g^{-1}$ 一致），尾部由 \eqref{ch7:eq:band-sum} 一致地小。
+由 \cref{ch7:lem:gate}(2)，极限是 $\Phirep(u)-\Phirep(u_\sharp)$。按 $s_*$ 的定义，这正是 (2)。
+
+\emph{(3)} 设 $u\in\cfG\subset\cfB_s(Y')$，$Y':=Y_*-c_\rho-2\ge Y_B+2c_\rho+1$。由 \eqref{ch7:eq:ImS}，
+$|\Ima\cfS_s(u)|\le|\Ima Z_s(u)-h/2|+\pi|\rho|+\frac12<h/2-Y'+c_\rho\le h/2-(Y_B+1)-c_\rho$。所以 $\cfS_s(u)\in\Sigma_s(Y_B+1)$。
+由 \cref{ch7:lem:band}(ii)、(iii)，$S_s(\cfS_s(u))=u$，$T_s=\cfR_s\circ S_s$ 在 $\Sigma_s(Y_B+1)$ 上成立，故 $T_s(\cfS_s(u))=\cfR_s(u)$。
+
+\emph{(4)} 由 \cref{ch7:lem:band}(iii)，$T_s$ 在 $\Sigma_s(Y_B+1)$ 上全纯。所以 \cref{thm:reduction} 的条件 (a)（$y_s=h/2-Y_B-1-c_\rho$）、
+(b)、(c) 分别由 (3)、(3)、(1)(2) 给出。
+\end{proof}
+
+\begin{remark}\label{ch7:rem:basin}
+(1) 的论证对\emph{任何}一个紧集 $K\subset P_R\cap(H\cup\R_{<0})$ 都适用，再用 $R_s^{-1}=R_s^{-1}\circ f_s^m-m$ 可推广到抛物吸引域的任意紧子集
+（分支沿吸引域中的道路延拓）；这是 \cite[定理~4.4(1)]{KneserPaper}。排斥侧对反射逆 $\check f_s$ 作同样的事。
+本书只需要闸门和基点轨道上的收敛。
+\end{remark}
+
+\subsection{推论}
+
+\begin{corollary}[规范无关的比值]\label{ch7:cor:ratios}
+设 (H1)--(H4) 成立，且 $B_1\ne0$（(H5)）。则对每个 $n\ge1$，$t_n/t_1^n\to B_n/B_1^n$。
+\end{corollary}
+
+\begin{proof}
+$\tau_n/\tau_1^n=t_n\ee^{-2\pi\ii nt_0}/(t_1\ee^{-2\pi\ii t_0})^n=t_n/t_1^n$。由 \cref{thm:confluence}，
+$\tau_1\to B_1\ee^{2\pi\ii a}\ne0$，所以 $t_n/t_1^n=\tau_n/\tau_1^n\to B_n\ee^{2\pi\ii na}/(B_1\ee^{2\pi\ii a})^n=B_n/B_1^n$。
+\end{proof}
+
+比值 $t_n/t_1^n$ 不依赖于基点，也不依赖于 $S_s$ 的平移；它的极限 $B_n/B_1^n$ 只依赖于芽 $g$。
+
+\begin{corollary}[缝合解的分离系数]\label{ch7:cor:sewing}
+设 (H1)--(H4) 成立，$\hat c_n=c_n/\Lam^n$ 是缝合解 $\Ksew$ 的规范化分离系数。则对每个 $n\ge1$，
+\[
+ \hat c_n\longrightarrow B_n\ee^{2\pi\ii na},\qquad |\hat c_n|\to|B_n| .
+\]
+若又有 $B_1\ne0$，则 $\Xi_n=c_n/c_1^n\to B_n/B_1^n$，并且 $\arg\hat c_1\to\arg B_1+2\pi a\pmod{2\pi}$。
+\end{corollary}
+
+\begin{proof}
+由 \cref{thm:sewing}，$|\hat c_n-\tau_n(s)|\le C_n\Lam$，而 $\Lam\to0$（\eqref{ch7:eq:scales}）。再用 \cref{thm:confluence}。
+若 $B_1\ne0$，则 $s$ 小时 $\hat c_1\ne0$，$\Xi_n=c_n/c_1^n=\hat c_n/\hat c_1^n\to B_n/B_1^n$。
+\end{proof}
+
+对 tetration，$|B_1|=0.0890584364122133\ldots$、$a=3.0292972144180\ldots$，极限相位
+$\arg B_1+2\pi a=1.5865330757\ldots$（\cite{KneserPaper}；$|B_1|$ 与 $a$ 有区间证书，相位只是数值）。
+所以底数 $b\uparrow\eta$ 时，Kneser 解的第一个分离系数满足 $|c_1|/\Lam\to0.0890584\ldots$。
+
+\begin{remark}[收敛速率]\label{ch7:rem:rate}
+上面的证明只给出收敛，没有给出速率。第~\ref{ch:first-order} 章证明 $\tau_n$ 在 $s=0$ 处单侧可微，
+从而 $\tau_n-B_n\ee^{2\pi\ii na}=O(s)=O(p)$；而且对数偏差对 $p$ 有全阶渐近展开。
+\end{remark}
+
+% ======================================================================
+\section{数值}\label{ch7:sec:numerics}
+
+下面的数值用 \texttt{docs/generality\_check.py} 的通用构造算出：双曲侧用两个 Schröder 级数求 $R_s^{-1}$ 与 $S_s$，
+在 $S_s$ 时间的水平线 $\Ima z=-h_2/2+Y_0$ 上对 $T_s-\id$ 作 $32$ 点离散 Fourier 变换；
+抛物侧用截断到 $u^{30}$ 的 $\alpha$ 和闸门线 $\Ima z=1.5$ 上的 $24$ 点变换求 $B_n$ 与 $a$。工作精度 $40$ 位。
+调用脚本是 \texttt{figures/fig8\_deficit.py}（tetration 取 $Y_0=1.5$，二次族 $w^2+c$ 取 $Y_0=3$、基点 $w_0=0.2$）。
+所有 $\lambda_1$ 处 $|\Ima t_0-h/2|<10^{-26}$（$\lambda_1\ge0.8$ 时 $<10^{-36}$），即分支 $\Ima t_0=h/2$ 在数值精度内成立。
+
+\begin{table}[htbp]
+\centering
+\caption{$|\tau_1|/|B_1|-1$ 随 $p=-\log\lambda_1\log\lambda_2$ 的变化（数值）。}
+\label{ch7:tab:approach}
+\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lllllll}
+\toprule
+& \multicolumn{3}{c}{tetration $b^w$（$|B_1|=0.0890584364$）} & \multicolumn{3}{c}{$w^2+c$（$|B_1|=0.0597942362$）}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+$\lambda_1$ & $p$ & $|\tau_1|/|B_1|-1$ & 比值$/p$ & $p$ & $|\tau_1|/|B_1|-1$ & 比值$/p$\\
+\midrule
+$0.5$  & $0.39044$ & $-3.98543\cdot10^{-3}$ & $-0.010208$ & $0.28105$ & $-4.57870\cdot10^{-3}$ & $-0.016292$\\
+$0.6$  & $0.22302$ & $-2.27574\cdot10^{-3}$ & $-0.010204$ & $0.17188$ & $-2.71551\cdot10^{-3}$ & $-0.015799$\\
+$0.7$  & $0.11371$ & $-1.16002\cdot10^{-3}$ & $-0.010202$ & $0.093579$ & $-1.44597\cdot10^{-3}$ & $-0.015452$\\
+$0.8$  & $0.046347$ & $-4.72746\cdot10^{-4}$ & $-0.010200$ & $0.040684$ & $-6.19226\cdot10^{-4}$ & $-0.015220$\\
+$0.9$  & $0.010724$ & $-1.09380\cdot10^{-4}$ & $-0.010199$ & $0.010042$ & $-1.51508\cdot10^{-4}$ & $-0.015087$\\
+$0.95$ & $0.0025868$ & $-2.63827\cdot10^{-5}$ & $-0.010199$ & $0.0025026$ & $-3.76765\cdot10^{-5}$ & $-0.015055$\\
+$0.97$ & $0.00091844$ & $-9.36718\cdot10^{-6}$ & $-0.010199$ & $0.00090034$ & $-1.35483\cdot10^{-5}$ & $-0.015048$\\
+$0.98$ & $0.00040542$ & $-4.13488\cdot10^{-6}$ & $-0.010199$ & $0.00040007$ & $-6.01934\cdot10^{-6}$ & $-0.015046$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\cref{ch7:tab:approach} 显示：$|\tau_1|\to|B_1|$，偏差与 $p$ 成正比，比例常数对 tetration 约为 $-0.010199$，对二次族约为 $-0.01504$。
+tetration 一列与 \cite[表~4]{KneserPaper}（那里列出 $\delta_1=1-|\tau_1|/|B_1|$ 与 $\delta_1/p$）逐位一致。
+第~\ref{ch:first-order} 章将证明这个比例常数是 $\Rea\kappa^{(1)}$，并在 $s=0$ 处把它算到 $20$ 位：
+tetration 为 $-0.010199006345897402441$，二次族为 $-0.0150441028391897$。
+
+同一构造对另外两个族也适用（\texttt{docs/generality-check-zh.md} §2.2，数值）。在 $\lambda_1=0.97$（$p\approx9\cdot10^{-4}$）处，
+$|\tau_1|/|B_1|-1$ 对 tetration、二次族、正弦族 $v-\sin v+c$、以及 $\rho=0$ 的族 $w+(w^2-c)\ee^w$ 分别为
+$-9.4\cdot10^{-6}$、$-1.4\cdot10^{-5}$、$-1.3\cdot10^{-5}$、$+1.0\cdot10^{-3}$；$|t_2/t_1^2-B_2/B_1^2|$ 分别为
+$6.8\cdot10^{-5}$、$4.2\cdot10^{-4}$、$2.6\cdot10^{-4}$、$1.3\cdot10^{-4}$，在 $\lambda_1$ 从 $0.95$ 到 $0.97$ 时与 $p$ 同比例减小。
+最后一族的 $|B_1|=2744.09$ 很大，相对偏差的比例常数 $\approx1.09$ 也大，但收敛速率仍是 $O(p)$。
+
+\begin{remark}[采样线的位置]\label{ch7:rem:sampling}
+数值上，$T_s$ 的系数在哪条水平线上采样都一样，只要那条线在 $T_s$ 的全纯带中（\cref{ch7:lem:band}(iii)）。
+但全纯带的实际宽度、以及线的像是否落在吸引域内，依赖于族的全局动力学：tetration 用 $Y_0=1.5$ 即可，
+二次族与正弦族需要 $Y_0\approx3$（\texttt{docs/generality-check-zh.md} §3）。证明中的闸门高度 $Y_*$ 只要求``足够大''，
+与此一致；$Y_B$ 通过 $c_\rho=\pi|\rho|+1$ 依赖于 $\rho$，二次族与正弦族的 $\rho=1$ 大于 tetration 的 $\rho=\frac13$。
+这只是方向上的一致，不是定量预测：$Y_B$ 的显式值没有算过。
+\end{remark}
+
+% ======================================================================
+\notes
+
+\paragraph{汇流.}
+双曲不动点的 Koenigs 坐标在合并时收敛到抛物芽的扇形 Fatou 坐标，这是 Glutsyuk \cite{Glutsyuk2001} 研究的现象
+（他称之为奇点的汇流与非线性 Stokes 现象）。Mardešić、Roussarie 与 Rousseau \cite{MRR2004} 对一般的通有抛物开折构造了完整的
+解析分类模，并证明模在 $\varepsilon=0$ 处连续；Christopher 与 Rousseau \cite{ChristopherRousseau} 描述了这些模构成的空间，
+并证明模在其规范参数中是 $\frac12$-可和的，不可和方向正是 Glutsyuk 方向。Rousseau 与 Teyssier \cite{RousseauTeyssier2008}
+对鞍结向量场的开折做了平行的工作。这些结果都蕴含汇流定理的定性内容；但把它们的规范化与本书的
+$\tau_n=t_n\ee^{-2\pi\ii nt_0}$（以基点归一化、$\Ima t_0=h/2$）对齐，需要的记账与直接证明差不多，所以本章选择直接证明。
+
+\paragraph{互补的方向.}
+$s<0$ 时两个不动点是共轭复数，那里的极限现象是 Lavaurs \cite{Lavaurs1989} 的抛物内爆：
+$f_s$ 的高次迭代收敛到 Lavaurs 映射 $\Phirep^{-1}\circ T_\theta\circ\Phiatt$。Shishikura \cite{Shishikura2000}
+（另见 \cite{InouShishikura}、\cite{Oudkerk1999}）证明了扰动 Fatou 坐标与 horn 映射在这一侧全纯依赖于参数。
+本书的 Glutsyuk 方向与之互补：两个不动点都是实的，没有``穿过闸门''的轨道，极限对象是 $\horn^{-1}$ 的 Fourier 系数本身。
+
+\paragraph{与 \cite{KneserPaper} 的对应.}
+\cref{thm:reduction} 是论文 §3.4 的化归（\cite[定理~3.6]{KneserPaper}），这里把论文证明后面的 (a)--(c) 三点作为假设写进了陈述。
+\cref{lem:petal} 对应论文引理~4.3（$-2/u$ 换成 $-1/(a_2u)$）；\ref{ch7:M1}、\ref{ch7:M2} 对应论文引理~4.2；\eqref{ch7:eq:scales} 对应论文引理~4.1
+（$A_1(u_1-u_2)\to2$、$A_1+A_2\to\frac13$ 换成 $1/a_2$、$\rho$）。\cref{ch7:lem:band} 是论文第~6~节引理~6.1 的一般形式（$\pi/3$ 换成 $\pi|\rho|$，条的半宽见 \cref{ch7:rem:margin}）。
+\cref{thm:confluence} 对应论文定理~4.4 和其后的 (a)--(d)：(a) 是 \cref{thm:reduction} 证明的第一步；(b) 是 \cref{thm:confluence}(3)；
+(c) 是 \cref{ch7:lem:branch}；(d) 是 \cref{ch7:lem:gate}(4)。与论文略有不同，这里 (c) 中 $\Ima=h/2$ 是直接算出的（两端的级数都是实数），
+不需要借助 \cref{lem:realT} 来``强制''精确值。一般开折的改写清单见论文第~9~节（定理~9.2）与 \texttt{docs/general-statements-zh.md} §2.2。
+
+\paragraph{tetration.}
+对 tetration，$a_2=\frac12$、$\gamma=1$、$\rho=\frac13$、$\ustar=1/\ee-1$。\cref{ch7:cor:sewing} 回答了 Kneser 解在 $b\uparrow\eta$ 时的分离问题：
+$|c_1|/\Lam\to|B_1|=0.0890584\ldots$。论文中把这一事实的数值证据（Kneser 阶梯外推，\cite[表~3]{KneserPaper}）与 Kneser 无关的预言 $\tau_1$ 作了比较。
+
+% ======================================================================
+\exercises
+
+\begin{exercise}\label{ch7:ex:reflected}
+设 $g(u)=u+a_2u^2+a_3u^3+O(u^4)$。验证 $\check g(v)=-g^{-1}(-v)$ 的迭代留数为 $-\rho$，并验证
+$\check\alpha(v):=-\alpha_0(-v)$ 满足 $\check\alpha(\check g(v))=\check\alpha(v)+1+O(v^2)$。由此说明
+$\check g$ 的吸引 Fatou 坐标是 $-\Phirep(-v)$ 加常数。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:quad-residues}
+对二次族 $w^2+c$，$c=\frac14-s$，写出 $u_{1,2}$、$\lambda_{1,2}$ 的闭式，直接验证 $A_1+A_2\to1$、$A_1(u_1-u_2)\to1$，
+以及 $p=4s+O(s^2)$。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:lens}
+证明 $\cfB_s(Y)$ 的两条边界是过 $u_1$、$u_2$ 的圆弧，并求出圆弧在 $u_1$ 处与实轴的夹角。说明当 $Y$ 固定、$s\to0$ 时，
+$\cfB_s(Y)$ 收敛到两个相切于 $0$ 的圆盘 $H_Y\cup(-H_Y)$。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:branch-shift}
+设把 $T_s$ 换成 $T_s+\ii kh$。证明 $\tau_n$ 乘以 $\Lam^{-nk}$，因而 $s\to0$ 时 $|\tau_n|$ 对 $k>0$ 趋于无穷、对 $k<0$ 趋于零。
+这说明 \cref{ch7:lem:branch} 中 $\Ima=h/2$ 的计算是必不可少的。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:basepoint}
+设 $w_0,w_0'$ 都满足 (H4)。证明 $B_n\ee^{2\pi\ii na'}=B_n\ee^{2\pi\ii na}\ee^{2\pi\ii n\Delta_0}$，$\Delta_0=\Phiatt(u^{*\prime})-\Phiatt(\ustar)\in\R$，
+并与 \cref{prop:base-point} 中 $\tau_n'=\tau_n\ee^{2\pi\ii n\Delta(s)}$ 比较。由 \cref{thm:confluence} 推出 $\Delta(s)\to\Delta_0$。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:negative-modes}
+在 \cref{thm:reduction} 的证明中，说明对 $n\ge1$ 有 $\tilde t_{-n}\to0$，即 $t_{-n}\ee^{2\pi\ii nt_0}\to0$。
+另一方面，由 \cref{lem:realT} 的实结构 $t_{-n}=\overline{t_n}$（取 $\Ima t_0=h/2$ 的分支）证明 $|t_n|=|t_{-n}|\to0$。
+这两件事与 $|\tau_n|\to|B_n|\ne0$ 矛盾吗？
+\end{exercise}
+\begin{hint}
+$|t_n|=|\tau_n|\,|\ee^{2\pi\ii nt_0}|=|\tau_n|\ee^{-\pi nh}=|\tau_n|\Lam^{n/2}$，而 $|t_{-n}\ee^{2\pi\ii nt_0}|=|\tau_n|\Lam^{n}$。
+\end{hint}
+
+\begin{exercise}\label{ch7:ex:horn-not-inverse}
+设用 $\tilde T_s:=S_s^{-1}\circ R_s$ 代替 $T_s$。仿照 \cref{thm:reduction} 叙述并证明它的 Fourier 系数的极限，用 horn 映射 $\horn$ 的系数表示。
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:tail}
+证明 \eqref{ch7:eq:band-sum} 中的 $|\log\lambda_1|$ 一项不能去掉。对 $u$ 在线段 $(u_1,u_2)$ 的中点，
+估计 $\sum_k|q_s(f_s^ku)|$ 的大小，说明它是 $|\log\lambda_1|$ 量级。
+\end{exercise}
+\begin{hint}
+在线段上，$f_s$ 近似于向量场 $q_s(u)k_s(u)\partial_u$ 的时间一映射，$\sum_k|q_s(u_k)|\approx\int|q_s|\,\dd t=\int\dd u/k_s\approx|u_2-u_1|/a_2$。
+\end{hint}
+
+\begin{exercise}\label{ch7:ex:general-compact}
+（\cref{ch7:rem:basin}）设 $K$ 是 $g$ 的抛物吸引域的紧子集，$m$ 使 $g^m(K)\subset P_{R+1}\cap H$。证明：存在 $R_s^{-1}$ 在 $K$ 邻域上的分支，
+它在 $K$ 上一致收敛到 $\Phiatt-a$。分支是怎样选的？
+\end{exercise}
+
+\begin{exercise}\label{ch7:ex:lavaurs}
+设 $s<0$。说明此时两个不动点 $u_{1,2}$ 是共轭复数、乘子模相同，$\cfU_s$、$Z_s$ 与带的构造在哪一步失效。
+为什么 \cref{thm:confluence} 不能直接推广到 Lavaurs 方向？
+\end{exercise}
+\begin{hint}
+$|\lambda_1|=|\lambda_2|$；两个 Koenigs 坐标不再一个吸引一个排斥。参看 \cite{Lavaurs1989}、\cite{Shishikura2000}。
+\end{hint}

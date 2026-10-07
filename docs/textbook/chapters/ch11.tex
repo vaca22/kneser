@@ -1,0 +1,548 @@
+% 第 11 章 数值方法
+% 来源：docs/generality_check.py, docs/mrr_derivative.py, docs/kappa_variation.py,
+% docs/certify_*.py, docs/independent/, lean/README-zh.md, lean/Kneser/Interface.lean,
+% KneserPaper 附录 "Interval certificates"、§ "The first-order term"（Numerics）。
+% 新宏（排版 Lean 源码用）：\leancode、\leansym。
+\providecommand{\leancode}[1]{{\fontspec{Menlo}[Scale=0.85]#1}}
+\providecommand{\leansym}[1]{{\fontspec{STIX Two Math}#1}}
+
+\chapter{数值方法}\label{ch:numerics}
+
+本书中的数有三种身份。第一种是\textbf{数值}：用高精度浮点算出，在改变精度、截断和采样参数时保持稳定的位数；
+它们是证据，不是证明。第二种是\textbf{区间证书}（computer-assisted proof）：用外向舍入的球算术证明某个严格不等式，
+它们是证明的一部分，可靠性取决于程序是否忠实地实现了约化到有限检验的那个引理。第三种是\textbf{形式化}：
+定理及其证明在 Lean~4 中被机器检查。本章逐一说明书中的数属于哪一种、由哪个脚本算出、可靠到几位。
+
+本章的读者应能用仓库中的脚本重现每一个数。我们因此描述算法时尽量贴近代码：参数名、截断阶、停止准则都与脚本一致。
+
+\begin{goals}
+\item Koenigs 坐标用 Schr\"oder 级数在不动点附近计算，远处用迭代搬运。
+\item Fatou 坐标用截断的形式 Abel 函数加轨道迭代计算，误差约为 $u_{\max}^{K+1}$。
+\item horn 系数与转移系数用闸门线上的梯形 DFT 读出；混叠误差指数小，但第 $n$ 个模的舍入误差被放大 $\ee^{2\pi nY}$ 倍。
+\item 一致模型的导数用 $s=\pm\varepsilon$ 处的中心差分计算；$s<0$ 一侧的值是同一个全纯截断的值，因而是合法的。
+\item 区间证书用 Arb 球算术与 Krawczyk 检验；本章说明它们证明了什么、依赖什么。
+\item Lean 工程形式化了 tetration 族的缝合、汇流基线和全阶展开；与经典 Kneser 解的同一性、整体延拓、$B_1\ne0$ 与变分公式未形式化。
+\end{goals}
+
+%====================================================================
+\section{总表：数、脚本与精度}\label{ch11:sec:table}
+
+\cref{ch11:tab:numbers} 列出书中主要的数。脚本都在仓库的 \texttt{docs/} 目录下（Kneser 解在 \texttt{src/kneser/}）。
+「精度」一栏对数值结果给出在参数变化下稳定的位数，对证书给出区间宽度。标记 [证·机] 表示区间算术证书，[数] 表示数值。
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{书中的数与脚本。}
+\label{ch11:tab:numbers}
+\begin{tabular}{p{0.38\textwidth}p{0.27\textwidth}p{0.26\textwidth}}
+\toprule
+数 & 脚本 & 精度与身份\\
+\midrule
+\raggedright $|B_1|=0.08905843641221333156\ldots$（$\ee^u-1$） & \raggedright \texttt{certify\_\allowbreak{}horn\_\allowbreak{}coefficients.py} & 区间宽 $2\cdot10^{-22}$，[证·机]\\
+\raggedright $|B_2|=0.012487384111564700\ldots$，$|B_3|=0.00159278993\ldots$ & \raggedright 同上 & 宽 $2\cdot10^{-17}$、$2\cdot10^{-11}$，[证·机]\\
+\raggedright $B_2/B_1^2$，$B_3/B_1^3$ & \raggedright 同上；\texttt{parabolic\_\allowbreak{}horn\_\allowbreak{}inverse.py} & 证书 12 位、8 位；数值 19 位 [数]\\
+\raggedright $a=\Phiatt(1/\ee-1)=3.02929721441803609892499\ldots$ & \raggedright \texttt{certify\_\allowbreak{}parabolic\_\allowbreak{}a.py} & 区间宽 $2\cdot10^{-25}$，[证·机]\\
+\raggedright $|B_1|$ 等，$w^2+c$、$v-\sin v+c$、$w+(w^2-c)\ee^w$ & \raggedright \texttt{generality\_\allowbreak{}check.py} & 打印 12--15 位，[数]\\
+\raggedright $\tau_n$、$|\tau_1|/|B_1|$、$t_2/t_1^2$（有限 $\lambda$） & \raggedright \texttt{transition\_\allowbreak{}map.py}，\texttt{eta\_\allowbreak{}approach.py}，\texttt{generality\_\allowbreak{}check.py} & 打印位数，[数]\\
+\raggedright 拟合的 $\kappa^{(n)}$（$b<\eta$ 一侧） & \raggedright \texttt{deficit\_\allowbreak{}param.py}，\texttt{deficit\_\allowbreak{}modes.py} & 11 位，[数]\\
+\raggedright $\kappa^{(1)}=-0.010199006345897402441-0.013250956182506712250\,\ii$ & \raggedright \texttt{mrr\_\allowbreak{}derivative.py} & 约 20 位，[数]\\
+\raggedright $\kappa^{(n)}_2$，$n=1,2,3$ & \raggedright \texttt{mrr\_\allowbreak{}second.py} & 18、16、12 位，[数]\\
+\raggedright $\ktr^{(n)}$、变分公式的两边、horn 项 & \raggedright \texttt{kappa\_\allowbreak{}variation.py} & $n=1$ 时 $10^{-17}$，[数]\\
+\raggedright 上闭链检验 & \raggedright \texttt{kappa\_\allowbreak{}cocycle.py} & $3\cdot10^{-17}$（$n=1$），[数]\\
+\raggedright 汇流的逐点检验 & \raggedright \texttt{confluence\_\allowbreak{}check.py} & 误差随 $\varepsilon^2$ 下降，[数]\\
+\raggedright 缝合解的 $\hat c_n$ & \raggedright \texttt{weld\_\allowbreak{}solve.py} & $\hat c_n=\tau_n(1+O(\Lam))$，[数]\\
+\raggedright 半指数 $f(0.5)=1.0016400378866632\ldots$，$\operatorname{sexp}(0.5)$ & \raggedright \texttt{src/kneser}（\texttt{kneser.build}） & 50 位；与 \texttt{fatou.gp} 吻合 52 位，[数]\\
+\raggedright 边界区、最后边界弧、上半平面、端点段（第~\ref{ch:examples} 章） & \raggedright \texttt{certify\_\allowbreak{}far\_\allowbreak{}collar.py} 等 & [证·机]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+后面各节按计算的流程组织：先是两种不动点坐标（\cref{ch11:sec:koenigs,ch11:sec:fatou}），再是从坐标读出 Fourier 系数（\cref{ch11:sec:dft,ch11:sec:transition}），
+然后是导数（\cref{ch11:sec:derivative}）、Kneser 解（\cref{ch11:sec:kneser}），最后是三种更强的可靠性（\cref{ch11:sec:certificates,ch11:sec:independent,ch11:sec:lean}）。
+
+%====================================================================
+\section{Koenigs 级数与 Schr\"oder 系数}\label{ch11:sec:koenigs}
+
+设 $w_1$ 是 $f$ 的双曲不动点，乘子 $\lambda$，$0<|\lambda|\ne1$。在 $x=w-w_1$ 坐标下写 $f(w_1+x)-w_1=\phi(x)=\lambda x+\phi_2x^2+\cdots$。
+Koenigs 坐标（\cref{thm:koenigs}）$\sigma(x)=x+\sum_{k\ge2}\varsigma_kx^k$ 满足 Schr\"oder 方程 $\sigma\circ\phi=\lambda\sigma$。
+（这里 $\varsigma_k$ 只表示 Taylor 系数；本节中 $w_1$、$w_2$ 是 $w$ 坐标下的吸引、排斥不动点，对应 $u$ 坐标中的 $u_1$、$u_2$。）
+
+\begin{proposition}[Schr\"oder 递推]\label{ch11:prop:schroeder}
+记 $[\phi^j]_k$ 为幂（不是迭代）$\phi(x)^j$ 中 $x^k$ 的系数。则 $\varsigma_1=1$，且对 $k\ge2$，
+\[
+ \varsigma_k=\frac{1}{\lambda-\lambda^k}\sum_{j=1}^{k-1}\varsigma_j\,[\phi^j]_k .
+\]
+\end{proposition}
+
+\begin{proof}
+$\sigma(\phi(x))=\sum_j\varsigma_j\phi(x)^j$ 中 $x^k$ 的系数是 $\sum_{j\le k}\varsigma_j[\phi^j]_k$，而 $[\phi^k]_k=\lambda^k$。
+令其等于 $\lambda\varsigma_k$ 并解出 $\varsigma_k$。$|\lambda|\ne1$ 保证 $\lambda-\lambda^k\ne0$。
+\end{proof}
+
+\texttt{generality\_\allowbreak{}check.py} 的函数 \texttt{schroeder} 正是这个递推：它先用卷积算出幂系数表 $[\phi^j]_k$（$j,k\le N$），再逐项求 $\varsigma_k$。
+默认 $N=60$，Taylor 系数由各族的 \texttt{taylor} 方法精确给出。
+
+\paragraph{小除数与求值半径.} 当 $\lambda\to1$（接近鞍结）时，$\lambda-\lambda^k\approx(k-1)(\lambda-1)$ 变小，$\varsigma_k$ 增长。
+$\sigma$ 的收敛半径不超过 $|w_2-w_1|$：若 $\sigma$ 在 $w_2$ 附近全纯，把 Schr\"oder 方程在 $w_2$ 处展开，最低阶项给出 $\lambda_2^m=\lambda$，这不可能。
+而 $|w_2-w_1|$ 是 $O(\sqrt s)$（\cref{prop:scales}）。所以脚本只在 $|w-w_1|<r_0=10^{-4}$ 时直接求和，其余的点先迭代到这个小圆内。
+以 tetration 在 $\lambda=0.99$ 为例，$|w_2-w_1|\approx0.054$，比值 $r_0/|w_2-w_1|\approx2\cdot10^{-3}$，60 项的截断误差远低于 60 位的工作精度。
+
+\paragraph{吸引坐标.} 正则解 $R$ 满足 $R(z)=w_1+\sigma^{-1}\bigl(\sigma(w_0-w_1)\lambda_1^z\bigr)$。记 $\hat\sigma(w)=\sigma(w-w_1)$，则
+\[
+ R^{-1}(w)=\frac{\log\hat\sigma(w)-\log\hat\sigma(w_0)}{\log\lambda_1}
+ =n_0-n+\frac{\log\hat\sigma(f^nw)-\log\hat\sigma(f^{n_0}w_0)}{\log\lambda_1},
+\]
+其中 $n$、$n_0$ 是 $w$、$w_0$ 进入 $|w-w_1|<r_0$ 所需的迭代次数，这里用了 $\hat\sigma(f^nw)=\lambda_1^n\hat\sigma(w)$。
+对数的分支只差 $2\pi\ii/\log\lambda_1=-\ii h$ 的整数倍；脚本在相邻采样点之间按连续性选择分支（\texttt{Hyper.modes} 中的 \texttt{nint} 修正）。
+
+\paragraph{排斥坐标.} 在排斥不动点 $w_2$ 处同样得到 $\sigma_{\mathrm{rep}}$（脚本中记作 \texttt{t}），$S(z)=w_2+\sigma_{\mathrm{rep}}^{-1}(-\lambda_2^z)$。
+负号使 $S$ 把实轴映到线段 $(w_1,w_2)$。求值时取整数 $m\ge0$ 使 $|\lambda_2^{z-m}|<r_0$，用 Newton 法解出 $\sigma_{\mathrm{rep}}^{-1}(-\lambda_2^{z-m})$，再作用 $f^m$：
+$S(z)=f^m\bigl(S(z-m)\bigr)$。这样只在小圆内求逆，迭代是向前的、稳定的。
+
+%====================================================================
+\section{形式 Abel 函数与 Fatou 坐标}\label{ch11:sec:fatou}
+
+抛物芽 $g(u)=u+a_2u^2+\cdots$ 的形式 Abel 函数（\cref{def:formal-abel}）是
+\[
+ \alpha(u)=-\frac1{a_2u}+\rho\log(-u)+\sum_{k=1}^Kd_ku^k,\qquad \alpha\circ g=\alpha+1\ \ (\text{形式地}) .
+\]
+
+\begin{lemma}[截断的 Abel 亏量]\label{ch11:lem:defect}
+设 $d_1,\dots,d_K$ 是形式解的前 $K$ 个系数，$\alpha_K$ 为上式的截断。则亏量 $E_K=\alpha_K\circ g-\alpha_K-1$ 在 $0$ 处全纯，且 $E_K(u)=O(u^{K+2})$。
+\end{lemma}
+
+\begin{proof}
+$\alpha_K\circ g-\alpha_K$ 中，$-1/(a_2u)$ 一项贡献 $\frac{g-u}{a_2ug}=1+\bigl(\frac{a_3}{a_2}-a_2\bigr)u+O(u^2)$，$\rho\log(-u)$ 一项贡献 $\rho\log(g/u)=\rho a_2u+O(u^2)$，
+都在 $0$ 处全纯；$\rho=1-a_3/a_2^2$ 正是使 $u^1$ 项为零的数。又 $d_k(g^k-u^k)=d_k(ka_2u^{k+1}+\cdots)$，所以 $d_k$ 由亏量中 $u^{k+1}$ 的系数唯一确定，
+$d_1,\dots,d_K$ 依次消去 $u^2,\dots,u^{K+1}$ 的系数。
+\end{proof}
+
+\texttt{generality\_\allowbreak{}check.py} 的类 \texttt{Alpha} 用级数 $G(u)=g(u)/u-1$、$1/(1+G)-1$、$\log(1+G)$ 与 $(1+G)^k$ 逐阶解出 $A=-1/a_2$、$\rho=1-a_3/a_2^2$ 和 $d_k$；默认 $K=30$。
+这个形式级数一般发散，所以不能在大的 $|u|$ 上直接用；只在 $|u|\le u_{\max}$ 时使用。
+
+\paragraph{吸引 Fatou 坐标.} $\Phiatt(u)=\lim_k[\alpha(g^ku)-k]$（\cref{thm:fatou-coordinates}）。脚本 \texttt{Parab.phi\_\allowbreak{}att} 迭代到
+$|u_k|\le u_{\max}$ 且 $\Rea u_k\le0$，再多走 $8$ 步，返回 $\alpha_K(u_k)-k$；对数沿轨道连续延拓。
+
+\begin{proposition}[截断误差]\label{ch11:prop:fatou-error}
+设 $u_k$ 在吸引花瓣中，$|u_k|\le u_{\max}$。则
+\[
+ \bigl|\Phiatt(u)-\bigl(\alpha_K(u_k)-k\bigr)\bigr|\le\sum_{j\ge k}|E_K(u_j)|\le C_K\,\frac{u_{\max}^{K+1}}{a_2(K+1)}\,(1+o(1)),
+\]
+其中 $C_K$ 是 $|E_K(u)|/|u|^{K+2}$ 在小圆上的上界。
+\end{proposition}
+
+\begin{proof}
+由 $\alpha_K(u_{j+1})-(j+1)=\alpha_K(u_j)-j+E_K(u_j)$，伸缩求和得 $\Phiatt(u)-(\alpha_K(u_k)-k)=\sum_{j\ge k}E_K(u_j)$。
+在花瓣中 $u_j\approx-1/(a_2j)$，$|u_k|\le u_{\max}$ 意味着 $k\gtrsim1/(a_2u_{\max})$，故
+$\sum_{j\ge k}|u_j|^{K+2}\approx\int_k^\infty(a_2x)^{-K-2}\dd x=\frac{(a_2k)^{-K-1}}{a_2(K+1)}$。
+\end{proof}
+
+脚本的默认值 $K=30$、$u_{\max}=0.004$ 给出 $u_{\max}^{31}\approx4\cdot10^{-75}$。迭代步数约 $1/(a_2u_{\max})$，对 $a_2=\tfrac12$ 是 $500$ 步。
+$C_K$ 随 $K$ 增长（$d_k$ 的增长），所以这不是严格的误差界；严格的版本见 \cref{ch11:sec:certificates}，那里 $C_K$ 由 Cauchy 估计在 $|u|=\tfrac12$ 上用区间算术界出。
+
+\paragraph{排斥 Fatou 坐标的逆.} $\Phirep(u)=\lim_k[\alpha(g^{-k}u)+k]$。数值上需要的是逆映射 $z\mapsto\Phirep^{-1}(z)$。
+脚本 \texttt{Parab.phi\_\allowbreak{}rep\_\allowbreak{}inv} 取 $n=\lceil1/(a_2u_{\max})+\Rea z\rceil+6$，用 Newton 法从 $u=-1/(a_2(z-n))$ 出发解 $\alpha_K(u)=z-n$，
+得到排斥花瓣深处的点，然后向前迭代 $n$ 次。这样只用到 $g$ 本身，不需要 $g$ 的逆，并且向前迭代在排斥花瓣中是稳定的
+（这里「向前」把点从 $0$ 附近推出来，误差按 $|g'|$ 的乘积增长；该乘积等于 $\Phirep'(v_n)/\Phirep'(v_0)$，其中 $v_n$ 是深处的起点，
+$|\Phirep'(v_n)|\approx a_2n^2$，所以误差只按 $n$ 的多项式放大，而不是指数放大）。
+
+%====================================================================
+\section{闸门线上的梯形 DFT}\label{ch11:sec:dft}
+
+逆 horn 映射 $\horn^{-1}=\Phiatt\circ\Phirep^{-1}$（\cref{def:horn}）满足 $\horn^{-1}(z+1)=\horn^{-1}(z)+1$。
+$D(z)=\horn^{-1}(z)-z=\sum_{n\ge1}B_n\ee^{2\pi\ii nz}$ 在某个上半平面 $\Ima z>Y_0$ 内全纯。
+系数 $B_n$ 由水平线 $\Ima z=Y$ 上 $N$ 个等距样本的离散 Fourier 变换读出：
+\[
+ \hat B_n=\ee^{2\pi nY}\cdot\frac1N\sum_{j=0}^{N-1}D(z_j)\,\ee^{-2\pi\ii nj/N},\qquad z_j=\frac jN+\ii Y .
+\]
+
+\begin{lemma}[周期梯形法的混叠界]\label{ch11:lem:alias}
+设 $D$ 是 $1$-周期全纯函数，在带形 $|\Ima z-Y|\le\delta$ 上 $|D|\le M$，$D=\sum_{m\in\Z}b_m\ee^{2\pi\ii mz}$。则对 $|n|\le N/2$，
+\[
+ |\hat B_n-b_n|\le2M\,\ee^{2\pi n(Y+\delta)}\,\frac{\ee^{-2\pi N\delta}}{1-\ee^{-2\pi N\delta}}\quad(n\ge0).
+\]
+\end{lemma}
+
+\begin{proof}
+在线 $\Ima z=Y$ 上 $D(x+\ii Y)=\sum_m\gamma_m\ee^{2\pi\ii mx}$，$\gamma_m=b_m\ee^{-2\pi mY}$。把积分路径移到 $\Ima z=Y\pm\delta$，得 $|\gamma_m|\le M\ee^{-2\pi|m|\delta}$。
+离散和满足 $\frac1N\sum_jD(z_j)\ee^{-2\pi\ii nj/N}=\sum_{k\in\Z}\gamma_{n+kN}$（离散正交性）。所以误差是 $\sum_{k\ne0}\gamma_{n+kN}$，
+而 $|n+kN|\ge|k|N-|n|$，
+\[
+ \Bigl|\sum_{k\ne0}\gamma_{n+kN}\Bigr|\le M\ee^{2\pi|n|\delta}\cdot2\sum_{k\ge1}\ee^{-2\pi kN\delta}=2M\ee^{2\pi|n|\delta}\frac{\ee^{-2\pi N\delta}}{1-\ee^{-2\pi N\delta}} .
+\]
+乘以 $\ee^{2\pi nY}$ 即得。
+\end{proof}
+
+这是 \cite{KneserPaper} 附录（区间证书）中所用的界：在那里 $Y=2$，$\delta=\tfrac1{10}$，$N=128$，$M=1$（由证书本身证明 $|D|<1$）。
+代入得到 $n=1,2,3$ 的混叠误差分别不超过 $1.3\cdot10^{-29}$、$6.8\cdot10^{-24}$、$3.7\cdot10^{-18}$。
+
+\paragraph{两种误差的平衡.} 公式中的因子 $\ee^{2\pi nY}$ 有两面性。混叠误差随 $N\delta$ 指数下降，取 $N=24$ 或 $32$ 已足够；
+但样本的舍入误差（以及 Fatou 坐标的截断误差）也被乘以 $\ee^{2\pi nY}$。每单位 $Y$、每个模大约损失 $2\pi/\ln10\approx2.73$ 位十进制数字。
+所以 $n=3$ 的系数总是比 $n=1$ 少约 $5.5Y$ 位，这就是第~\ref{ch:variation} 章和本章各表中高阶模精度下降的原因。
+脚本 \texttt{parabolic\_\allowbreak{}horn\_\allowbreak{}inverse.py} 报告的 $B_n$ 在工作精度 $40$--$60$ 位、$N=16,24,32$、$Y=1,1.5,2$ 之间稳定到所列位数\cite{KneserPaper}。
+
+\begin{example}[horn 系数的稳定性]\label{ch11:ex:horn}
+对 $g=\ee^u-1$，$|B_1|=0.089058436412213331563$，$B_2/B_1^2=-0.02532049309975755123+1.5742190652319516267\,\ii$，
+$B_3/B_1^3=-2.254799124523803111-0.024408714296883171\,\ii$（\texttt{parabolic\_\allowbreak{}horn\_\allowbreak{}inverse.py}，数值）。
+它们落在 \cref{ch11:sec:certificates} 的证书区间中。由 $B_1$ 与 $B_2/B_1^2$ 还可以算出逆 horn 映射在圆柱坐标下的迭代留数
+$\rho_F=0.249455254258832-0.004029881638351\,\ii$\cite{KneserPaper}，即 $\zeta=\ee^{2\pi\ii z}$ 坐标中的芽 $F(\zeta)=\zeta\exp\bigl(2\pi\ii\sum_nB_n\zeta^n\bigr)$ 的迭代留数，
+满足 $B_2/B_1^2=2\pi\ii(\tfrac12-\rho_F)$（不要与芽 $g$ 的 $\rho$ 混淆）。
+\end{example}
+
+%====================================================================
+\section{有限 \texorpdfstring{$\lambda$}{lambda} 处的转移系数}\label{ch11:sec:transition}
+
+转移映射 $T=R^{-1}\circ S$（\cref{def:transition}）在 $\Ima z=y$ 上的样本是 $R^{-1}(S(z_j))-z_j$。
+两个 Koenigs 坐标都由 \cref{ch11:sec:koenigs} 的方法计算，不用 Kneser 解，也不用任何梯子计算。
+
+\paragraph{采样线的选择.} 关键是选 $y$。由 $\tau_n=t_n\ee^{-2\pi\ii nt_0}$ 与 $\Ima t_0=h/2$（实参数时精确成立），
+$|t_n|=|\tau_n|\ee^{-\pi nh}$。当 $\lambda_1\to1$ 时 $h\to\infty$，实轴上的模小到无法读出。脚本把采样线放在
+\[
+ \Ima z=-\tfrac{h_2}2+Y_0 ,
+\]
+即排斥时间中靠近携带正模的那一端。在这条线上第 $n$ 个模的大小是
+\[
+ |t_n|\ee^{-2\pi n(-h_2/2+Y_0)}=|\tau_n|\,\ee^{\pi n(h_2-h)}\,\ee^{-2\pi nY_0},
+\]
+而 $h_2-h=2\pi(A_1+A_2)\to2\pi\rho$（\cref{prop:scales}）。所以所需的工作精度与 $h$ 无关。$Y_0$ 必须使采样线的 $S$-像落在吸引盆地内，默认 $Y_0=1.5$。
+
+\paragraph{算法（\texttt{Hyper.modes}）.}
+\begin{enumerate}
+\item 在 $z_j=j/N+\ii y$（$N=32$）上计算 $v_j=R^{-1}(S(z_j))-z_j$，相邻点之间按连续性修正 $-\ii h$ 的整数倍。
+\item DFT 得到 $t_n$（$|n|\le3$）。
+\item 把 $t_0$ 移到分支 $\Ima t_0=h/2$（\cref{lem:realT} 给出的分支）上，然后 $\tau_n=t_n\ee^{-2\pi\ii nt_0}$。
+\end{enumerate}
+脚本同时打印 $|t_{-1}|$ 与 $\Ima t_0-h/2$ 作为自检；后者在 $10^{-31}$ 或更小\cite{KneserPaper}。
+
+\begin{example}[向抛物极限逼近]\label{ch11:ex:eta-approach}
+对 tetration，\texttt{eta\_\allowbreak{}approach.py} 在 $\lambda=0.5,\dots,0.99$ 上计算 $\tau_n$。$|\tau_1|/|B_1|$ 从 $0.99601457$（$\lambda=0.5$）
+增到 $0.99999897$（$\lambda=0.99$，$\eta-b=2.7\cdot10^{-5}$），而 $(1-|\tau_1|/|B_1|)/p$ 从 $0.0102076$ 收敛到 $0.0101990$，与 $-\operatorname{Re}\kappa^{(1)}$ 一致（\cref{thm:first-order}）。
+对一般族，\texttt{generality\_\allowbreak{}check.py} 在 $\lambda=0.97$ 处给出 $\operatorname{Re}\log(\tau_1/B_1\ee^{2\pi\ii a})/p$：
+$b^w$ 为 $-0.0101990$，$w^2+c$ 为 $-0.0150481$，$v-\sin v+c$ 为 $-0.0142133$，$w+(w^2-c)\ee^w$ 为 $+1.08542$；
+它们以 $O(p)$ 的速度收敛\cite{KneserPaper}。对 $w^2+c$ 取三个基点 $w_0=0,0.2,0.35$，实部十位全同（\cref{prop:base-point}）。
+\end{example}
+
+\paragraph{拟合.} 由有限 $\lambda$ 的值拟合 $\log(\tau_n/B_n\ee^{2\pi\ii na})$ 关于 $p$ 的多项式（\texttt{deficit\_\allowbreak{}param.py}、\texttt{deficit\_\allowbreak{}modes.py}），
+二、三、四次拟合在十二个底数上吻合到 11 位。这是一阶系数的第一个来源；第二个来源（直接在抛物点计算）见下节。两者独立，吻合到拟合的全部位数。
+
+%====================================================================
+\section{一致模型的导数}\label{ch11:sec:derivative}
+
+\cref{thm:first-order} 把 $\kappa^{(n)}$ 写成导数 $\dot{\mathcal A}$ 的级数。\texttt{mrr\_\allowbreak{}derivative.py}（tetration 族）与
+\texttt{kappa\_\allowbreak{}variation.py}（任意芽 $g$、任意方向 $X$）按下面的步骤计算它。
+
+\subsection{模型的构造}
+对给定的（可以是复数的）$s$，类 \texttt{Model}：
+\begin{enumerate}
+\item 用 \texttt{findroot} 从 $\pm\sqrt{s\gamma/a_2}$ 出发求两个不动点 $u_1,u_2$，算出 $\lambda_j$、$A_j=1/\log\lambda_j$、$\nu=A_1+A_2$、$p=-\log\lambda_1\log\lambda_2$；
+\item 取 $f_s$ 在 $0$ 处的 Taylor 级数到 $M=48$ 阶，算出 $F^{\log}$ 的级数；
+\item 求多项式 $P_s=\sum_{i=1}^{2N-2}\mathsf p_iu^i$（脚本中的数组 \texttt{e}），使 $F^{\log}+\sum_i\mathsf p_i(f_s^i-u^i)$ 模 $q^N$ 为零（\cref{lem:uniform-model}）。这是 $2N$ 个方程、$2N-2$ 个未知数的相容线性方程组，
+脚本用最小二乘（法方程）求解，残差 \texttt{res} 反映 Taylor 截断的误差，在 \texttt{docs/data/} 的运行中为 $10^{-32}$（45 位）到 $10^{-63}$（约 90 位）。
+\end{enumerate}
+默认 $N=6$。
+
+\subsection{截断与求和}
+对吸引一侧，\texttt{phi\_\allowbreak{}att} 沿轨道 $u_k=f_s^k(u)$ 走 $n$ 步（默认 $n=1500$），在第一次进入 $|u_k|<r_0=0.05$、$\Rea u_k<0$ 的步 $m$ 处开始累加：
+\[
+ \mathcal A^{(n)}_s(u)=\Psi_s(u_m)-m+\sum_{k=m}^{n-1}F_s(u_k) .
+\]
+由 $F_s=\Psi_s\circ f_s-\Psi_s-1$，这个和在对数分支的意义下伸缩为 $\Psi_s(u_n)-n$；脚本用 $F_s$（主值对数，单值）求和，是为了避免追踪 $\Psi_s$ 的分支。
+排斥一侧（\texttt{phi\_\allowbreak{}rep}）沿后向轨道 $v_k=f_s^{-k}(u)$ 作同样的累加，$f_s$ 的逆由 Newton 法逐步求出，种子取 $s=0$ 的后向轨道。闸门点由 $s=0$ 的 Fatou 坐标给出（$\Ima z=1$ 上 $24$ 点）。
+
+\subsection{为什么可以在 \texorpdfstring{$s=-\varepsilon$}{s=-eps} 处求值}\label{ch11:sec:both-signs}
+$s<0$ 时 $f_s$ 的两个不动点是复共轭的，没有实吸引不动点，$\tau_n$ 也没有定义。中心差分
+\[
+ \frac{\mathcal A^{(n)}_{\varepsilon}(u)-\mathcal A^{(n)}_{-\varepsilon}(u)}{2\varepsilon}
+\]
+为什么是合法的？
+
+\begin{proposition}\label{ch11:prop:both-signs}
+固定 $u$、$m$、$n$，并设 $u_m,\dots,u_n$ 在 $s=0$ 时位于 $\delta<|u|<r$ 内。则 $s\mapsto\mathcal A^{(n)}_s(u)$ 在 $s=0$ 的一个圆盘内全纯，
+其在 $0$ 处的导数等于 \cref{thm:first-order} 中级数 $\dot{\mathcal A}(u)$ 的前 $n$ 项部分和（包括 $\Psi$ 项），并且
+\[
+ \frac{\mathcal A^{(n)}_{\varepsilon}-\mathcal A^{(n)}_{-\varepsilon}}{2\varepsilon}=\partial_s\mathcal A^{(n)}_s\big|_{s=0}+O(\varepsilon^2),\qquad
+ \bigl|\partial_s\mathcal A^{(n)}_s|_{s=0}-\dot{\mathcal A}(u)\bigr|=O(n^{3-2N}) .
+\]
+\end{proposition}
+
+\begin{proof}
+$f_s^k(u)$（$k\le n$）关于 $s$ 全纯；由 \cref{lem:uniform-model}，$\Psi_s(u)-\nu(s)\log u$ 在 $\{|s|<s_\delta\}\times\{\delta<|u|<r\}$ 上全纯，$\nu$ 与 $F_s$ 在整个圆盘 $|s|<s_0$ 上全纯。
+所以 $\mathcal A^{(n)}_s(u)$ 是有限个全纯函数的复合与和，关于 $s$ 在一个圆盘内全纯，不区分 $s$ 的正负。
+导数可以逐项计算，按链式法则恰好得到级数 $\dot{\mathcal A}(u)$ 的部分和；由 Taylor 展开，中心差分的误差是 $\tfrac{\varepsilon^2}6$ 乘以三阶导数，后者由 Cauchy 估计有界。
+最后，第~\ref{ch:first-order} 章证明了级数的项是 $O(k^{2-2N})$，故尾部是 $O(n^{3-2N})$。
+\end{proof}
+
+换言之，脚本从来不计算「$s<0$ 时的 $\tau_n$」；它计算的是一个全纯截断在 $s=\pm\varepsilon$ 两点的值。这两个值同样合法，正如对多项式在 $\pm\varepsilon$ 处求值。
+数据也显示了这一点：在数据文件 \texttt{docs/\allowbreak data/\allowbreak mrr-\allowbreak derivative-\allowbreak N6-\allowbreak n1500-\allowbreak Y1.txt} 中，$s=-\varepsilon$ 一侧的 $u_1=-1.67\cdot10^{-26}-1.41\cdot10^{-13}\ii$，是复数，
+而 $\nu=0.333333333333$ 在两侧相同，Hermite 系数 $\mathsf p_i$ 在两侧打印的位数上相同（它们关于 $s$ 全纯）。
+
+\paragraph{误差来源.} 总误差由五部分组成：(i) 级数尾部 $O(n^{3-2N})$；(ii) 中心差分 $O(\varepsilon^2)$；(iii) 舍入 $10^{-\mathrm{dps}}/\varepsilon$；
+(iv) Hermite 方程组的残差除以 $\varepsilon$；(v) 闸门线 DFT 的混叠与 $\ee^{2\pi nY}$ 放大（\cref{ch11:sec:dft}）。
+\texttt{mrr\_\allowbreak{}derivative.py} 取 $\varepsilon=10^{-\lfloor\mathrm{dps}/3\rfloor}$，使 (ii) 与 (iii) 平衡。
+
+\begin{example}[截断阶的影响]\label{ch11:ex:mrr}
+\texttt{docs/data/} 中三次运行（tetration；$N$ 是模型阶，$n$ 是轨道长度，$Y$ 是闸门线高度）。文件没有记录工作精度，但 $s=+\varepsilon$ 一侧打印的
+$u_1\approx-\sqrt{2\varepsilon}$ 给出 $\varepsilon=10^{-26}$（前两次）与 $10^{-30}$（第三次），按 $\varepsilon=10^{-\lfloor\mathrm{dps}/3\rfloor}$ 对应约 $80$ 位与 $90$ 位：
+\begin{center}\small
+\begin{tabular}{llll}
+\toprule
+$(N,n,Y)$ & $\operatorname{Re}\kappa^{(1)}$ & $\operatorname{Im}\kappa^{(1)}$ & $\operatorname{Re}\kappa^{(3)}$\\
+\midrule
+$(3,3000,1)$ & $-0.010199006345897359976$ & $-0.013250956182506434686$ & $-0.14004434812470$\\
+$(6,1500,1)$ & $-0.010199006345897402441$ & $-0.013250956182506712250$ & $-0.14004434812939$\\
+$(8,3000,1.5)$ & $-0.010199006345897402441$ & $-0.013250956182506712250$ & $-0.14004434812949$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$N=6$ 与 $N=8$ 的 $\kappa^{(1)}$ 全部 20 位相同。$N=3$ 时尾部只按 $n^{-3}\approx4\cdot10^{-11}$ 衰减，$\kappa^{(1)}$ 在小数点后第 16 位、$\kappa^{(3)}$ 在小数点后第 12 位就不同了。
+同一计算在 $s=0$ 处重现 $\tau_n(0)=B_n\ee^{2\pi\ii na}$，相对误差 $5\cdot10^{-17}$（受存储的 $B_n$ 的精度限制）。
+\end{example}
+
+\paragraph{二阶系数.} \texttt{mrr\_\allowbreak{}second.py} 对同样的截断用五点模板（$s=\pm10^{-12},\pm2\cdot10^{-12}$，90 位）求二阶导数，
+$N=7$ 与 $N=10$ 两次计算吻合到 18、16、12 位（$n=1,2,3$）。证明需要 $N\ge m^2+m+1=7$（\cref{thm:all-orders}），而级数对 $N\ge3$ 就收敛。
+
+\paragraph{一般芽.} \texttt{kappa\_\allowbreak{}variation.py} 把以上步骤推广到 $f_s=g-sX$，芽和方向由类 \texttt{Fn}（值、导数、Taylor 级数）给出。
+它还计算 $\dd p/\dd s$ 并与 $4a_2\gamma$ 核对；第~\ref{ch:variation} 章所有表格的左边都由它算出，精度 $45$ 位，$\varepsilon=10^{-15}$。
+误差下限约为 Hermite 残差（$10^{-32}$）除以 $\varepsilon$，即 $10^{-17}$，与观察到的 $n=1$ 的差一致。
+horn 变分的轨道级数（第~\ref{ch:variation} 章）在同一脚本的 \texttt{melnikov()} 中实现，它只对形式 Abel 函数的系数作差分（步长 $10^{-\lfloor\mathrm{dps}/2\rfloor}$）；
+这些系数是芽 Taylor 系数的有理函数，所以差分同样是对一个全纯函数求导。
+
+%====================================================================
+\section{Kneser 解的数值构造}\label{ch11:sec:kneser}
+
+仓库的 Python 库 \texttt{kneser}（\texttt{src/kneser/}）计算 Kneser 的实解析 tetration $\operatorname{sexp}$ 及半指数函数。
+它用的是与本书主线不同的构造，即 sheldonison 的 $\theta$ 映射迭代：
+\begin{enumerate}
+\item 在 $\exp$ 的复不动点 $L\approx0.318+1.337\,\ii$ 处线性化，得到一个精度为 $O(|L|^{-\mathrm{DEPTH}})$ 的超函数；
+\item 用 $1$-周期函数 $\theta(z)$ 修正它，只保留在上半平面衰减的 Fourier 模（这一步选出 Kneser 的实解）；
+\item 在单位圆上用 Cauchy 积分重新采样 $\operatorname{sexp}$ 的 Taylor 级数；迭代，每轮约增加 $1.4$ 位。
+\end{enumerate}
+50 位的表取 DEPTH$=370$、114 位工作精度、150 个 Taylor 项、192 个 Fourier 模，约 30 轮后残差 $2.6\cdot10^{-52}$（仓库 \texttt{README.md}）。
+检验包括：定义方程在 50 位上成立；与另一个代码库 \texttt{semi\_\allowbreak{}exp}（同一算法族）的 50 位值吻合到 $10^{-47}$；与 \texttt{fatou.gp} 的值吻合到 52 位。
+最后一项是唯一约束 $\theta$ 自由度的检验，即唯一说明表中是 \emph{Kneser 的}解而不只是\emph{某个}解的证据。
+这些都是数值证据。本书第~\ref{ch:examples} 章关于 Kneser 解的定理不依赖这个库。
+
+本书主线中的缝合解 $\Ksew$ 由 \texttt{weld\_\allowbreak{}solve.py} 计算：在接缝上解不动点方程 $Q=-\Pi_{<0}[T^\circ\circ(\id+Q)]$
+（$\Pi_{<0}$ 是取负 Fourier 模的投影），再读出 $\hat c_n$ 并与 $\tau_n$ 比较。这是第~\ref{ch:sewing} 章 Wiener 代数中压缩映射的离散版本（$N$ 个采样点、$12$ 轮迭代）；
+第~\ref{ch:sewing} 章的收缩估计针对连续问题，离散迭代的收敛是数值观察。
+
+%====================================================================
+\section{区间算术证书}\label{ch11:sec:certificates}
+
+\subsection{球算术与 Krawczyk 检验}
+证书用 python-flint 调用的 Arb 库\cite{Johansson2017Arb}。Arb 的数是「球」$[m\pm r]$；每个运算返回一个保证包含真值的球（外向舍入）。
+严格不等式只在球上判定：例如 $[m\pm r]<c$ 当且仅当 $m+r<c$。浮点数只用来选取中心与预条件子。
+
+存在性与唯一性由 Krawczyk 检验给出。下面是一维实情形的陈述与证明；复情形与多维情形的证明相同，见\cite[§5.1]{Neumaier1990}。
+
+\begin{lemma}[Krawczyk]\label{ch11:lem:krawczyk}
+设 $B=[m-\rho,m+\rho]$，$f\in C^1(B)$ 实值，$y\ne0$ 是实数，并设区间 $J\supset f'(B)$。令
+\[
+ \mathcal K=m-yf(m)+(1-yJ)(B-m) .
+\]
+若 $\mathcal K\subset\operatorname{int}B$，则 $f$ 在 $B$ 中有唯一零点。
+\end{lemma}
+
+\begin{proof}
+令 $\varphi(x)=x-yf(x)$。对 $x\in B$，由中值定理 $\varphi(x)=\varphi(m)+\varphi'(\xi)(x-m)$，$\varphi'(\xi)=1-yf'(\xi)\in1-yJ$，所以 $\varphi(B)\subset\mathcal K\subset B$。
+区间 $\mathcal K$ 的半径是 $\sup_{c\in J}|1-yc|\cdot\rho$，而 $\mathcal K\subset\operatorname{int}B$ 推出它小于 $\rho$，即 $\sup_{c\in J}|1-yc|<1$。
+于是 $\varphi$ 是 $B$ 上的压缩，有唯一不动点 $x^*$，且 $yf(x^*)=0$，$f(x^*)=0$。反之 $f$ 的零点都是 $\varphi$ 的不动点，故唯一。
+\end{proof}
+
+\subsection{例：horn 系数的证书}\label{ch11:sec:horn-cert}
+\texttt{certify\_\allowbreak{}horn\_\allowbreak{}coefficients.py} 按 \cite{KneserPaper} 附录的步骤工作：
+\begin{enumerate}
+\item 前 $12$ 个形式 Abel 系数用精确有理数算出。截断 $\alpha_{12}$ 的亏量在 $0$ 处消失到 $14$ 阶（\cref{ch11:lem:defect}），在 $|u|=\tfrac12$ 上模小于 $4$。
+\item 轨道进入 $\Rea(-2/u)>80$（吸引）或 $\Rea(2/u)>80$（排斥）之后，由亏量估计与每步实部至少增加 $\tfrac34$，
+  Fatou 坐标的尾部在 $100$ 步后小于 $2.25\cdot10^{-17}$，在 $1200$ 步后小于 $4.08\cdot10^{-31}$（精确有理数界）。
+\item 带形 $0\le\Rea z\le1$，$1.9\le\Ima z\le2.1$ 被 $256\times40$ 个盒覆盖；每个盒上 Krawczyk 检验给出 $\Phirep$ 的唯一局部逆，
+  相邻盒的根在公共边上一致，$\Rea z=0$ 与 $1$ 处的根由 $g(u)=\ee^u-1$ 相联系；同时证明 $|D|<1$，$D=\horn^{-1}-\id$。
+  另有 $400$ 个盒的链把这一支连到上闸门中的 $u=11\ii/20$，固定 horn 映射的归一化。
+\item 在 $z_j=j/128+2\ii$ 上用 $1200$ 次迭代包住 $D(z_j)$，作离散 Fourier 平均，乘以 $\ee^{4\pi n}$，再加上 \cref{ch11:lem:alias} 的混叠界。
+\end{enumerate}
+结果是
+\begin{gather*}
+ 0.0890584364122133315631<|B_1|<0.0890584364122133315633,\\
+ 0.01248738411156469<|B_2|<0.01248738411156471,
+\end{gather*}
+以及 $0.00159278992<|B_3|<0.00159278994$。\texttt{certify\_\allowbreak{}parabolic\_\allowbreak{}a.py} 用 $10$ 个有理系数、$1000$ 步轨道与尾部界 $<10^{-27}$ 证明
+\[
+ 3.0292972144180360989249938<a<3.0292972144180360989249940 .
+\]
+注意 $B_1\ne0$ 也由此得到数值证书；它的理论证明另见 \cref{prop:B1-nonzero}。
+
+\subsection{其他证书}
+第~\ref{ch:examples} 章的整体延拓用到下列证书（细节见 \cite{KneserPaper} 附录）：
+\begin{center}\small
+\begin{tabular}{p{0.3\textwidth}p{0.42\textwidth}p{0.18\textwidth}}
+\toprule
+脚本 & 内容 & 规模\\
+\midrule
+\texttt{certify\_\allowbreak{}far\_\allowbreak{}collar.py} & 远离尖点处跨过 Shell--Thron 边界的边界区 & 33\,027 个盒，约 6 分钟\\
+\texttt{certify\_\allowbreak{}last\_\allowbreak{}boundary\_\allowbreak{}arc.py} & 最后一段边界弧（$\lambda_+=-1$ 附近） & 79 个参数盒\\
+\texttt{certify\_\allowbreak{}upper\_\allowbreak{}halfplane.py} & 上半 $b$ 平面：尾部、核心、尖点、接口四部分 & 尾部 6230 个盒\\
+\texttt{certify\_\allowbreak{}endpoint.py} & 端点 $b=\ee^{-\ee}$ 附近与实线段 & 不到 1 分钟\\
+\bottomrule
+\end{tabular}
+\end{center}
+二次族的单独证明稿用到 \texttt{certify\_\allowbreak{}quad\_\allowbreak{}entry.py}、\texttt{certify\_\allowbreak{}quad\_\allowbreak{}geometry.py}、\texttt{certify\_\allowbreak{}quad\_\allowbreak{}theta\_\allowbreak{}obstruction.py}，见第~\ref{ch:examples} 章。
+仓库中还有一系列 \texttt{certify\_\allowbreak{}theta\_\allowbreak{}*}、\texttt{certify\_\allowbreak{}interior\_\allowbreak{}*}、\texttt{certify\_\allowbreak{}exterior\_\allowbreak{}*} 等脚本，服务于研究笔记中的其他结论（$\theta$ 算子等），本书不引用它们。
+
+\subsection{证书证明了什么}
+一个证书证明的是：在给定的参数盒上，某些\emph{有限}的不等式成立。把定理约化到这些不等式，是纸面证明的工作（例如 \cref{ch11:lem:alias} 与尾部估计）。
+所以证书的可靠性取决于三件事：(a) 约化引理正确；(b) 程序忠实地实现了约化引理中的量；(c) Arb 与 Python 运行时正确。
+(c) 是公共的风险，(a) 由审读负责，(b) 是最容易出错的一环。下一节的独立复核针对的就是 (b)。
+
+%====================================================================
+\section{独立复核}\label{ch11:sec:independent}
+
+目录 \texttt{docs/independent/} 中有两个独立复核程序：\texttt{verify\_\allowbreak{}endpoint\_\allowbreak{}iv.py} 与 \texttt{verify\_\allowbreak{}upper\_\allowbreak{}iv.py}。
+它们「只依据论文」编写（程序文档的原话是 \emph{written only from the paper}），使用 mpmath 的区间上下文（外向舍入）和精确有理数，而不是 Arb；
+\texttt{verify\_\allowbreak{}upper\_\allowbreak{}iv.py} 还对 \cite{KneserPaper} 中的不等式作了独立推导的改写（在 $t=\pm1$ 附近消去 $\Ima\lambda\to0$ 的退化）。
+用不同的库、不同的推导重做同一组检验，针对的是上一节的风险 (b)。
+
+运行记录 \texttt{docs/independent/upper\_\allowbreak{}iv\_\allowbreak{}out/log.txt} 显示：
+\begin{itemize}
+\item 尖点部分 (P)、尾部 (T，128 个盒，0 失败)、核心 (K) 与接口 (I) 全部通过：20\,901 个核心叶盒认证，16\,811 个被排除，
+  78\,491 对相邻盒的根唯一性检验无失败，锚点 $\lambda=\cot1+\ii$ 处的分支正确。
+\item 其中 20\,042 个核心盒的「标记」条件引用了论文的引理（$\theta$ 盒落在 $\Theta$ 或其共轭中），而不是直接验证。
+  随后的运行试图对全部 20\,901 个核心盒直接验证标记。只沿轨道的第一次尝试有 19\,300 个失败（都是引用论文的那一类盒）；
+  加入接缝规则并细分 $\theta$ 之后，前 6000 个盒中出现 34 个失败，修正接缝规则后重做，其中一个盒（编号 \texttt{(5, 797, 72)}）仍然失败；
+  之后的续跑在剩余 14\,901 个盒中处理到第 6500 个（累计约 12\,500 个），没有新的失败，记录在此中断。
+\end{itemize}
+所以，上半平面证书的主体已被独立复核；不引用论文的标记检验只完成了约 60\%，并留有一个未解决的盒。
+仓库中没有保存 \texttt{verify\_\allowbreak{}endpoint\_\allowbreak{}iv.py} 的运行记录，本书不引用它的结果。
+
+%====================================================================
+\section{Lean 4 形式化}\label{ch11:sec:lean}
+
+目录 \texttt{lean/} 是一个独立的 Lean~4 工程\cite{Moura2021Lean4}，依赖 mathlib\cite{mathlib2020}。它针对 tetration 的实际族
+\[
+ f_s(u)=\exp\bigl(-s+(1-s)u\bigr)-1,\qquad b(s)=\exp\bigl((1-s)/\ee\bigr),
+\]
+从实际的指数函数构造两侧的轨道坐标、同一个移动逆映射、实际基点 $\ee^{-1}-1$、规范的整体上 horn 映射、Koenigs 转移和 Fourier 缝合，
+并证明缝合系数的全阶展开。
+
+\paragraph{审计.} 审计记录 \texttt{lean/audit/first-order-result.json} 记载：323 个模块，检查了 1994 条命名定理及引理；
+没有 \texttt{sorry}，没有自定义公理，公理依赖只有 \texttt{propext}、\texttt{Classical.choice}、\texttt{Quot.sound}；
+Lean 版本 4.34.0-rc2，依赖由清单锁定。复现方法是在 \texttt{lean/} 中执行 \texttt{lake exe cache get} 与 \texttt{python3 check.py}。
+
+\paragraph{主定理.} 可读入口 \texttt{lean/Kneser/Interface.lean} 把构造打包成结构 \texttt{SewnTetrationFamily}，并陈述：
+\begin{quote}
+\begingroup\fontspec{Menlo}[Scale=0.78]\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}%
+\def\T#1{\hspace*{#1\fontcharwd\font`\x}}%
+\obeylines
+theorem exists\_sewn\_tetration :
+\T{4}∃ F : SewnTetrationFamily,
+\T{6}(∀ s ∈ Ioo 0 F.s₀, F.K s 0 = 1 ∧
+\T{8}∀ z ∈ F.domain s, z + 1 ∈ F.domain s ∧
+\T{10}F.K s (z + 1) = (tetrationBase s : ℂ) \textasciicircum{} F.K s z) ∧
+\T{6}F.p 0 = 0 ∧ HasDerivAt F.p 2 0 ∧
+\T{6}∀ n : ℕ, 1 ≤ n → F.B n ≠ 0 → ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ s : ℝ in \leansym{𝓝}[>] 0,
+\T{8}\leansym{‖}log (F.τ s n / (F.Λ s : ℂ) \textasciicircum{} n / F.B n) - F.κ n * F.p s\leansym{‖}
+\T{10}≤ C * \leansym{‖}F.p s\leansym{‖} \textasciicircum{} 2
+\endgroup
+\end{quote}
+（为排版断了两行，其余与源码一致。）用本书的语言：存在 $s_0>0$ 与一族在开区域上全纯的函数 $K_s$（$0<s<s_0$），满足 $K_s(0)=1$、
+$K_s(z+1)=b(s)^{K_s(z)}$；乘子参数 $p$ 是解析芽，$p(0)=0$、$p'(0)=2$；对每个 $n\ge1$，只要 $B_n\ne0$，就有
+\[
+ \Bigl|\log\frac{c_n(s)}{\Lam(s)^nB_n}-\kappa_np(s)\Bigr|\le C|p(s)|^2\qquad(s\to0^+) .
+\]
+\emph{记号注意}：Lean 中的 \leancode{F.τ s n} 是 $K_s$ 的 Koenigs--Abel 升举 $R^{-1}\circ K_s-\id$ 在周期线上的 Fourier 积分，即本书的\emph{分离系数} $c_n$，
+不是本书的转移不变量 $\tau_n$；Lean 中的 \texttt{F.B n} 已包含基点相位，即本书的 $B_n\ee^{2\pi\ii na}$。
+$\kappa_n=d_n/(2t_n)-\pi\ii n\,d_0$ 中的 $d_m$、$t_m$ 是显式一阶修正与 $s=0$ 时转移的 Fourier 系数，与 \cref{thm:first-order} 在 $a_2=\tfrac12$、$\gamma=1$ 时的公式相同。
+任意阶版本 \texttt{exists\_\allowbreak{}sewn\_\allowbreak{}tetration\_\allowbreak{}all\_\allowbreak{}orders} 断言存在一个系数序列 $\alpha$，$\alpha_1=\kappa_n$，对每个有限 $m$ 余项为 $O(|p|^{m+1})$。
+
+\paragraph{没有形式化的内容.} 模块文档（\texttt{Interface.lean} 的 \emph{What is NOT covered}）与审计文件明确列出前四项：
+\begin{itemize}
+\item 构造出的缝合函数与独立定义的经典 Kneser 解的同一性（Kneser 单值化恒等式）；
+\item 完整的复参数延拓与整体单值性（第~\ref{ch:examples} 章的定理）；
+\item 特定模的非零性与数值证书，特别是 $B_1\ne0$：对数陈述只在 $B_n\ne0$ 的假设下断言；
+\item 余项常数可以依赖于 $n$，没有关于 $n$ 一致的断言；
+\end{itemize}
+模块文档还说明，修正项 $D$ 的显式绝对轨道级数公式没有在可读接口中重述，$D$ 由字段 \texttt{realized} 钉到底层构造中的对象。
+此外，工程只处理指数族：第~\ref{ch:variation} 章的变分公式与一般开折都不在它的范围内。
+\begin{sloppypar}审计中的标志 \texttt{full\_\allowbreak{}kneser\_\allowbreak{}identity\_\allowbreak{}formalized} 与 \texttt{full\_\allowbreak{}paper\_\allowbreak{}first\_\allowbreak{}order\_\allowbreak{}formalized} 都是 \texttt{false}。\end{sloppypar}
+
+%====================================================================
+\section{复现}\label{ch11:sec:reproduce}
+
+下面的命令在仓库根目录执行（Python~3，mpmath；证书另需 python-flint）。括号中是本书引用其输出的位置。
+{\sloppy
+\begin{itemize}
+\item \texttt{python3 docs/\allowbreak generality\_\allowbreak check.py quad 0.5 0.9 0.97}：一般族的转移系数与 horn 数据（\cref{ch11:ex:eta-approach}）；
+  族名可换成 \texttt{sine}、\texttt{expq}、\texttt{exp}，环境变量 \texttt{GC\_Y0}、\texttt{GC\_W0} 改变采样线与基点。
+\item \texttt{python3 docs/\allowbreak mrr\_\allowbreak derivative.py 6 1500 70}：tetration 的 $\kappa^{(n)}$（\cref{ch11:ex:mrr}）。
+\item \texttt{python3 docs/\allowbreak kappa\_\allowbreak variation.py exp 45} 与 \texttt{\dots\ quad 45}：变分公式的两边；
+  \texttt{python3 docs/\allowbreak kappa\_\allowbreak variation.py melnikov exp 45}：轨道级数；\texttt{python3 docs/\allowbreak kappa\_\allowbreak cocycle.py}：上闭链（第~\ref{ch:variation} 章）。
+\item \texttt{python3 docs/\allowbreak certify\_\allowbreak horn\_\allowbreak coefficients.py}、\texttt{python3 docs/\allowbreak certify\_\allowbreak parabolic\_\allowbreak a.py}：$B_1,B_2,B_3$ 与 $a$ 的证书（\cref{ch11:sec:horn-cert}）。
+\item \texttt{cd lean \&\& lake exe cache get \&\& python3 check.py}：构建 Lean 工程并做公理审计（\cref{ch11:sec:lean}）。
+\end{itemize}\par}
+脚本的默认参数就是本章描述的参数；输出的数据文件在 \texttt{docs/data/} 中。重算时应得到相同的稳定位数，而不必逐位相同：
+最后几位受舍入顺序与 mpmath 版本影响。
+
+%====================================================================
+\notes
+
+本章的算法描述以脚本为准；与论文的对应是：Fatou 坐标与 horn 系数见 \cite{KneserPaper} §2.2 及 \texttt{parabolic\_\allowbreak{}horn*.py}；
+有限 $\lambda$ 的转移系数见论文的数值一节；一阶系数的直接计算见论文「一阶项」一节末的 Numerics 小节；区间证书见论文附录。
+一般族的数值检验（\texttt{generality\_\allowbreak{}check.py}）对应论文「一般实鞍结开折」一节的 注~9.14。
+
+周期梯形法的指数收敛是经典的，综述见\cite{TrefethenWeideman2014}。区间算术与 Krawczyk 算子见\cite{Neumaier1990}；Arb 的球算术见\cite{Johansson2017Arb}。
+所有浮点计算用 mpmath；Kneser 解的 $\theta$ 映射算法来自 sheldonison 的 \texttt{fatou.gp}，它也是本书数值的外部参照。
+Kouznetsov 用 Cauchy 积分方法独立计算了 tetration\cite{Kouznetsov2009}，Paulsen 与 Cowgill 给出了另一种构造与唯一性定理\cite{PaulsenCowgill2017}。
+
+%====================================================================
+\exercises
+
+\begin{exercise}\label{ch11:ex:schroeder}
+用 \cref{ch11:prop:schroeder} 手算 $\phi(x)=\lambda x+x^2$ 的 $\varsigma_2,\varsigma_3$。当 $\lambda\to1$ 时它们如何增长？
+用 \texttt{generality\_\allowbreak{}check.schroeder} 检验你的答案。
+\begin{hint}$\varsigma_2=1/(\lambda-\lambda^2)$。\end{hint}
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:alpha}
+用 \texttt{generality\_\allowbreak{}check.Alpha} 计算 $g=u+u^2$ 与 $g=\ee^u-1$ 的 $\rho$ 与 $d_1,d_2$，并与 $\rho=1-a_3/a_2^2$ 比较。
+然后对 $K=10,20,30$ 与 $u_{\max}=0.01,0.004$ 计算 $\Phiatt(1/\ee-1)$，观察误差与 \cref{ch11:prop:fatou-error} 的对应。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:alias}
+对 $D(z)=\ee^{2\pi\ii z}/(1-0.5\ee^{2\pi\ii z})$（$\Ima z>-\log2/(2\pi)$ 时全纯），在 $\Ima z=1$ 上用 $N=8,16,24$ 点估计 $b_1=1$、$b_3=0.25$，
+与 \cref{ch11:lem:alias} 的界比较。观察 $b_3$ 的相对误差为什么比 $b_1$ 大。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:line}
+对 tetration 在 $\lambda=0.9$ 处，用 \texttt{eta\_\allowbreak{}approach.py} 在 $Y_0=1,1.5,2$ 上测 $\tau_1,\tau_2$。
+验证结果与 $Y_0$ 无关，并解释为什么在实轴上直接测 $t_2$ 需要多出约 $2\pi h/\ln10$ 位精度。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:telescoping}
+证明 \cref{ch11:sec:derivative} 中的截断 $\mathcal A^{(n)}_s(u)$ 与 $\Psi_s(f_s^n(u))-n$ 只差 $2\pi\ii A_1$、$2\pi\ii A_2$ 的整数组合。
+为什么在 $s\to0$ 时这些常数是危险的，而用 $F_s$ 求和就没有这个问题？
+\begin{hint}$A_j\sim\pm1/\sqrt{4a_2\gamma s}$。\end{hint}
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:central}
+用 \texttt{mrr\_\allowbreak{}derivative.py} 在 70 位下分别取 $\varepsilon=10^{-15},10^{-23},10^{-30}$，比较 $\kappa^{(1)}$。
+用 \cref{ch11:sec:derivative} 的五项误差来源解释结果。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:one-sided}
+只用 $s=+\varepsilon$ 与 $s=0$ 作前向差分会怎样？在 $s=0$ 处 $A_1,A_2$ 无定义，脚本中的哪些量需要改写？
+说明中心差分为什么既更准确、又更方便。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:krawczyk}
+用任意区间算术库（例如 mpmath 的 \texttt{iv}）对 $f(x)=\ee^x-1-x-0.01$ 在 $B=[0.13,0.15]$ 上做 Krawczyk 检验，证明 $f$ 在 $B$ 中有唯一零点。
+再把 $B$ 换成 $[-0.2,0.2]$，检验为什么失败。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:variation-check}
+用 \texttt{kappa\_\allowbreak{}variation.py exp 45} 重现第~\ref{ch:variation} 章的变分公式检验，然后加入你自己的方向（例如 $X=1+0.2u^3$），
+预测 $\operatorname{Re}\kappa^{(1)}$ 与 $\operatorname{Re}\ktr^{(1)}$ 之差的符号是否确定。
+\end{exercise}
+
+\begin{exercise}\label{ch11:ex:lean}
+阅读 \texttt{lean/Kneser/Interface.lean} 中结构 \texttt{SewnTetrationFamily} 的字段 \leancode{B\_eq} 与 \leancode{κ\_eq}，写出它们与本书 $B_n\ee^{2\pi\ii na}$、
+\cref{thm:first-order} 中 $\kappa^{(n)}$ 的对应。为什么主定理需要假设 \leancode{F.B n ≠ 0}，而不能引用 \cref{prop:B1-nonzero}？
+\end{exercise}

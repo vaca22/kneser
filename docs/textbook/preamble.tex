@@ -1,0 +1,91 @@
+% 公共导言区：所有章节共用。只在这里新增宏，章节文件里不要 \newcommand。
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{tikz-cd}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+% ---------------- 定理环境（按章编号，共用一个计数器）
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}{习题}[chapter]
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注}
+\newtheorem*{hint}{提示}
+\crefname{theorem}{定理}{定理}
+\crefname{proposition}{命题}{命题}
+\crefname{lemma}{引理}{引理}
+\crefname{corollary}{推论}{推论}
+\crefname{definition}{定义}{定义}
+\crefname{example}{例}{例}
+\crefname{exercise}{习题}{习题}
+\crefname{remark}{注}{注}
+\crefname{chapter}{第}{第}
+\crefformat{chapter}{第~#2#1#3~章}
+\crefformat{appendix}{附录~#2#1#3}
+\crefname{section}{§}{§}
+\crefname{equation}{式}{式}
+\crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\renewcommand{\proofname}{证明}
+
+% 每章开头的「本章要点」框与章末「注记与文献」
+\newenvironment{goals}{\par\medskip\noindent\textbf{本章要点}\begin{itemize}[leftmargin=2em,itemsep=1pt]}{\end{itemize}\medskip}
+\newcommand{\notes}{\section*{注记与文献}\addcontentsline{toc}{section}{注记与文献}}
+\newcommand{\exercises}{\section*{习题}\addcontentsline{toc}{section}{习题}}
+
+% ---------------- 记号（一字一义；见附录 B 记号表）
+\newcommand{\ee}{\mathrm{e}}                 % 自然对数底
+\newcommand{\ii}{\mathrm{i}}                 % 虚数单位
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\HH}{\mathbb{H}}                 % 上半平面
+\newcommand{\D}{\mathbb{D}}                  % 单位圆盘
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\Log}{\operatorname{Log}}        % 主值对数
+\newcommand{\Phiatt}{\Phi_{\mathrm{att}}}    % 吸引 Fatou 坐标
+\newcommand{\Phirep}{\Phi_{\mathrm{rep}}}    % 排斥 Fatou 坐标
+\newcommand{\horn}{\mathfrak h}              % horn 映射；逆 horn 映射 \horn^{-1}
+\newcommand{\Lam}{\Lambda}                   % 强迫尺度 exp(4π²/log λ₁)
+\newcommand{\Ksew}{K^{\mathrm W}}            % 缝合解
+\newcommand{\Kkn}{\mathcal K}                % Kneser 解（底数延拓族）
+\newcommand{\Pstr}{\mathcal P}               % 抛物层
+\newcommand{\Ocal}{\mathcal O}               % 有界全纯函数的 Banach 空间
+\newcommand{\Lfun}{\mathfrak L}              % 线性泛函 𝔏_n
+\newcommand{\Ifun}{\mathcal I}               % 不变量 𝓘_n
+\newcommand{\Dfun}{\mathcal D}               % 抛物层上的对数微分 𝒟_n
+\newcommand{\ktr}{\kappa_{\mathrm{tr}}}      % 平移开折的一阶系数
+\newcommand{\Lop}{\mathsf L}                 % 同调算子 Lφ = φ∘g − g'φ
+\newcommand{\ustar}{u^{*}}                   % 基点（u 坐标）
+
+% ---------------- 页眉：不转大写（避免数学与人名被大写）
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\small\leftmark}
+\fancyhead[LO]{\small\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\renewcommand{\chaptermark}[1]{\markboth{\CTEXthechapter\quad #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+
+% 章号用阿拉伯数字（正文引用写作「第~\ref{…}~章」）
+\ctexset{chapter={number=\arabic{chapter}}}

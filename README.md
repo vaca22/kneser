@@ -304,6 +304,9 @@ outside the current audit; its full-paper completion flags stay false.
   first example, one main theorem, and a variation formula for the
   first-order coefficient ([`docs/kappa-variation-zh.md`](docs/kappa-variation-zh.md)).
   `docs/theory-framework-zh.md` is the detailed archive of results.
+- `docs/textbook/` — a Chinese graduate textbook, *鞍结开折的分数迭代：双坐标理论导引*
+  ([`book.pdf`](docs/textbook/book.pdf), 211 pages): full proofs in the general
+  unfolding setting, worked examples, exercises; build with `docs/textbook/build_book.sh`.
 - `docs/independent/` — independent interval-arithmetic re-verification of the
   computer-assisted theorems.
 - `docs/certify_*.py`, `docs/certificates/` — the computer-assisted
