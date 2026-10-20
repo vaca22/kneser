@@ -1193,10 +1193,11 @@ def mark_cover(B, maxdepth=10):
 
 # ============================================================ (M) optional direct marks
 def _mark_worker(args):
-    key, Braw, thf = args
+    key, Braw, thf = args[:3]
+    maxdepth = args[3] if len(args) > 3 else 10
     B = C.fromraw(Braw)
     try:
-        ok, info, npc = mark_cover(B)
+        ok, info, npc = mark_cover(B, maxdepth=maxdepth)
     except (ZeroDivisionError, ValueError) as ex:
         ok, info, npc = False, repr(ex), 0
     return key, (ok, info, npc)
@@ -1242,12 +1243,14 @@ def part_M(pool, done):
 
 
 def part_MF(pool, done):
-    log('(MF) re-run direct marks on previously failed cells (patched seam rule)')
+    # Retry with a deeper theta-subdivision: cells whose mark lies very close to
+    # the chord (e.g. (5,797,72): Im zeta_0 ~ -4e-4, sigma ~ 1e-3) need depth 12.
+    log('(MF) re-run direct marks on previously failed cells (patched seam rule, maxdepth 14)')
     ck = os.path.join(os.path.dirname(LOGFILE), 'marks.pkl')
     with open(ck, 'rb') as f:
         res = pickle.load(f)
     lv = {o[0]: o for out in done.values() for o in out if o[1] == 'ok'}
-    jobs = [(k, lv[k][2]['B'], lv[k][2]['thf']) for k, v in res.items() if not v[0]]
+    jobs = [(k, lv[k][2]['B'], lv[k][2]['thf'], 14) for k, v in res.items() if not v[0]]
     log('  failed cells to redo:', len(jobs))
     fails = []
     for key, r in pool.imap_unordered(_mark_worker, jobs):

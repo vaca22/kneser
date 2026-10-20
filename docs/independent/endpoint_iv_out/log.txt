@@ -1,0 +1,8 @@
+NW on R': ok=True  boxes=825
+   min lower bound of Re(lambda'/c) over the 825 boxes: 0.6218
+square: 1600 lambda-boxes, 26895 t-intervals total, failures=0
+strip: 624 lambda-boxes, 23747 t-intervals total, failures=0
+strip anchor box [-1.02, -1.0, -0.001, 0.001] root in R': True
+strip chaining: ok=True (min Re(lambda'/c) lower bound on hulls 0.6325)
+ALL PASS  time 15.9s
+python3 verify_endpoint_iv.py  132.86s user 1.00s system 804% cpu 16.639 total

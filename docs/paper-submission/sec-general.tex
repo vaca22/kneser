@@ -7,31 +7,52 @@ Sections~\ref{sec:transition}--\ref{sec:char} use the exponential only through a
 few constants.  This section states their results for a general real
 saddle-node unfolding, lists the changes in the proofs, and adds one exact
 invariance statement.  Tetration is the case $a_2=\tfrac12$, $\gamma=1$,
-$\rho=\tfrac13$ below.
+$\rho=\tfrac13$ below, in the coordinate $w=\eee(1+u)$ (so $c=\eee$ below) and
+with the parameter $\mu=\eee\log b$, $\mu_0=1$.
 
 \subsection{Setting}
+Fix an affine coordinate $u$ centred at the saddle-node, $w=w^*+c\,u$ with a
+constant $c>0$, and write maps in this coordinate as
+$f_\mu(u)=(f_\mu(w^*+cu)-w^*)/c$.
 Let $f_\mu(w)$ be a family with the following properties.
 \begin{enumerate}
 \item[(H1)] $f_\mu(w)$ is entire in $w$, holomorphic in $\mu$ near $\mu_0$, and
   real for real $(\mu,w)$.
 \item[(H2)] $f_{\mu_0}(w^*)=w^*$, $f_{\mu_0}'(w^*)=1$ and
-  $a_2:=f_{\mu_0}''(w^*)/2>0$ (replace $w$ by $-w$ if necessary).
-\item[(H3)] $\gamma:=\partial_\mu f_\mu(w^*)|_{\mu_0}>0$ (reverse $\mu$ if
+  $a_2:=c\,f_{\mu_0}''(w^*)/2>0$ (replace $w$ by $-w$ if necessary).
+\item[(H3)] $\gamma:=c^{-1}\partial_\mu f_\mu(w^*)|_{\mu_0}>0$ (reverse $\mu$ if
   necessary).  For $s:=\mu_0-\mu>0$ small there are two real fixed points
   $L<L_2$ near $w^*$, $L$ attracting with multiplier $\lambda$ and $L_2$ repelling
   with multiplier $\lambda_2$.
 \item[(H4)] The base point $w_0<w^*$ is real, and $f_{\mu_0}$ is increasing with
   $f_{\mu_0}(w)>w$ on $[w_0,w^*)$.  Then for $s$ small, $w_0<L$ lies in the
-  immediate basin of $L$, and the Koenigs map satisfies $\sigma(w_0)<0$.
+  immediate basin of $L$, and the Koenigs map satisfies $\sigma(w_0)<0$
+  (Lemma~\ref{lem:gen-real}).
 \item[(H5)] $B_1\ne0$, where $B_n$ are the Fourier coefficients of the inverse upper
   horn map of the germ at $s=0$ (used only where indicated).
 \end{enumerate}
-Write the germ as $g(u)=f_{\mu_0}(w^*+u)-w^*=u+a_2u^2+a_3u^3+\cdots$, with
+Write the germ as $g(u)=(f_{\mu_0}(w^*+cu)-w^*)/c=u+a_2u^2+a_3u^3+\cdots$, with
 iterative residue $\rho=1-a_3/a_2^2$.  Its formal Abel function is
 $\alpha(u)=-1/(a_2u)+\rho\log(-u)+\sum_{k\ge1}d_ku^k$, and $\Phi_{\mathrm{att}}$,
 $\Phi_{\mathrm{rep}}$, $B_n$ are defined as in Section~\ref{sec:horn}.  The
 normalisation $F(0)=1$ becomes $F(0)=w_0$: $\Rr^{-1}(w_0)=0$,
-$u^*:=w_0-w^*$ and $a:=\Phi_{\mathrm{att}}(u^*)\in\mathbb R$.  The definitions of
+$u^*:=(w_0-w^*)/c$ and $a:=\Phi_{\mathrm{att}}(u^*)\in\mathbb R$.
+
+The choice of $c$ does not matter.  Replacing $c$ by $c'$ conjugates the germ
+by the linear map $\psi(v)=(c'/c)v$; then $\rho$, $a_2\gamma$ and the multipliers
+are unchanged, while the Fatou coordinates become
+$\Phi\circ\psi-\kappa$ with the real constant $\kappa=\rho\log(c'/c)$.  Hence
+$B_n\mapsto B_n\eee^{2\pi\ii n\kappa}$ and $a\mapsto a-\kappa$, so
+$B_n\eee^{2\pi\ii na}$ and $|B_n|$ do not depend on $c$.  More generally, for a real
+germ $\psi(v)=c_\psi v+O(v^2)$ with $c_\psi>0$, the Fatou coordinates of
+$\psi^{-1}\circ g\circ\psi$ are $\Phi_{\mathrm{att}}\circ\psi-\kappa$ and
+$\Phi_{\mathrm{rep}}\circ\psi-\kappa$ with
+$\kappa=\rho\log c_\psi+\psi''(0)/(2a_2c_\psi^2)\in\mathbb R$: both functions satisfy the
+Abel equation of the conjugated germ, and their difference from its formal Abel
+function tends to $\kappa$ along orbits.  So $B_n\eee^{2\pi\ii na}$ is unchanged
+under real-analytic conjugacy of the germ, with the base point transported.
+
+The definitions of
 $S$, $T$, $t_n$, $\tau_n$, $h$, $\Lambda$, $\Kk^W$ and $\mathcal C(Y)$ are those of
 Sections~\ref{sec:transition} and~\ref{sec:char}, with $\mu$ in place of $b$.
 
@@ -46,7 +67,7 @@ As $s\to0^+$,
 \]
 and $p:=|\log\lambda|\log\lambda_2$ is holomorphic in $s$ with
 $p=4a_2\gamma s+O(s^2)$.  Moreover, with $A_1=1/\log\lambda$, $A_2=1/\log\lambda_2$
-and $u_1=L-w^*$, $u_2=L_2-w^*$,
+and $u_1=(L-w^*)/c$, $u_2=(L_2-w^*)/c$,
 \[
  A_1+A_2\to\rho,\qquad A_1(u_1-u_2)\to1/a_2,\qquad h_2-h\to2\pi\rho,
 \]
@@ -62,6 +83,60 @@ limits of $A_1+A_2$ and $A_1(u_1-u_2)$ are those of Lemma~\ref{lem:res}, with
 $1-k'(0)/k(0)^2=1-a_3/a_2^2$ and $1/k(0)=1/a_2$.  Finally
 $h_2-h=2\pi(A_1+A_2)$.  For tetration this gives $C_\eta$ of
 Proposition~\ref{prop:saddle} and $p=2s+\cdots$.
+
+Holomorphy of $p$.  Shrink $r$ and $s_0$ so that $|f_s'(u)-1|\le\tfrac14$ on
+$\{|s|<s_0\}\times\overline{D_r}$ and both roots of $q_s$ lie in $D_{r/2}$.
+For $\phi(s,u)$ jointly holomorphic there, the power sum
+\[
+ \phi(s,u_1(s))+\phi(s,u_2(s))=\frac1{2\pi\ii}\oint_{|u|=r}\phi(s,u)\,
+ \frac{q_s'(u)}{q_s(u)}\,du
+\]
+(roots counted with multiplicity) is holomorphic in $s$, since $q_s$ has no
+zeros on $|u|=r$.  Apply this to $\ell=\operatorname{Log}f_s'$ and to $\ell^2$.
+For real $s>0$, $\log\lambda_j=\ell(s,u_j)$, so
+\[
+ p=-\ell(s,u_1)\,\ell(s,u_2)
+ =\tfrac12\Bigl[\bigl(\ell(s,u_1)^2+\ell(s,u_2)^2\bigr)-\bigl(\ell(s,u_1)+\ell(s,u_2)\bigr)^2\Bigr]
+\]
+extends holomorphically to $|s|<s_0$, with $p(0)=0$.  By the first display,
+$p(s)/s\to4a_2\gamma$ as $s\to0^+$, so $p'(0)=4a_2\gamma$ and
+$p=4a_2\gamma s+O(s^2)$.
+\end{proof}
+
+\begin{lemma}[Real dynamics]\label{lem:gen-real}
+Assume \textup{(H1)--(H4)}.  For $s>0$ small, $f_\mu$ is increasing on
+$[L,L_2]$ with $f_\mu(w)<w$ on $(L,L_2)$, so $(L,L_2)$ lies in the immediate
+basin of $L$.  Moreover $w_0<L$, $f_\mu$ maps $[w_0,L)$ into itself with
+$f_\mu(w)>w$ there, and $w_0$ lies in the immediate basin of $L$.  The Koenigs
+map $\sigma$ of $L$, $\sigma'(L)=1$, is negative on $[w_0,L)$ and positive on
+$(L,L_2)$.
+\end{lemma}
+
+\begin{proof}
+We work in the coordinate $u$; since $c>0$, order and signs are the same as in
+$w$.  Shrinking $r$ and $s_0$, in~\eqref{eq:weier} we may assume
+$|k_s-a_2|\le a_2/2$ and $|f_s'-1|\le\tfrac14$ on $D_r$.  For real $s>0$ the
+discriminant $D(s)=4\gamma s/a_2+O(s^2)$ is positive, so $u_1<u_2$ are real and
+$|u_j|\le C\sqrt s$; on $D_r\cap\mathbb R$, $f_s$ is increasing and $k_s>0$.
+
+On $(u_1,u_2)$, $q_s<0$, so $f_s(u)<u$, while $f_s(u)>f_s(u_1)=u_1$.  Orbits in
+$(u_1,u_2)$ therefore decrease to a fixed point in $[u_1,u_2)$, i.e.\ to $u_1$;
+the connected set $[u_1,u_2)$ lies in the basin and contains $u_1$.
+
+Take $\delta\in(0,r)$ with $g(-\delta)<-\delta/2$.  By \textup{(H4)}, $g(u)-u$ has a
+positive minimum $m$ on the compact interval $I=[u^*,-\delta]$, and since $g$ is
+increasing, $g(I)\subset[u^*+m,-\delta/2]$.  By uniform convergence $f_s\to g$
+on $I$, for $s$ small $f_s(u)>u$ on $I$ and $f_s(I)\subset(u^*,-\delta/4)$; and
+$-\delta/4<u_1$ because $|u_1|\le C\sqrt s$.  On $[-\delta,u_1)$, $q_s>0$, so
+$f_s(u)>u$, and $f_s(u)<f_s(u_1)=u_1$ by monotonicity.  Hence $f_s$ maps
+$[u^*,u_1)$ into itself with $f_s(u)>u$; orbits increase to a fixed point in
+$(u^*,u_1]$, which can only be $u_1$.  As before $[u^*,u_1]$ lies in the
+immediate basin.
+
+The map $\sigma$ is real and increasing near $L$ with $\sigma(L)=0$.  For
+$w\in[w_0,L)$, $f^n(w)\uparrow L$, so $\sigma(f^nw)<0$ for large $n$ and
+$\sigma(w)=\lambda^{-n}\sigma(f^nw)<0$, as $\lambda\in(0,1)$.  For $w\in(L,L_2)$ the
+same argument gives $\sigma(w)>0$.
 \end{proof}
 
 \subsection{The theorems}
@@ -77,7 +152,8 @@ Under \textup{(H1)--(H4)} there is $\mu_1<\mu_0$ such that for
 $\mu\in(\mu_1,\mu_0)$ the following hold.  The sewn solution $\Kk^W_\mu$,
 normalised by $\Kk^W_\mu(0)=w_0$, is the unique element of $\mathcal C_\mu(Y)$.  Its
 coefficients satisfy $|c_n/\Lambda^n-\tau_n(\mu)|\le C_n\Lambda$, with $C_n$ as in
-Theorem~\ref{thm:W2}(4) and constants $Y_B,Y_0,D,M$ that depend on the family.
+Theorem~\ref{thm:W2}(4) and constants $Y_B,Y_0,D,M$ that depend on the family
+\textup{(}with $Y_0=Y_B+2+\pi|\rho|$; see the proof below\textup{)}.
 The family is holomorphic in $\mu$ near $(\mu_1,\mu_0)$, and for $\operatorname{Im}\mu>0$
 small it tends to $L$ and $L_2$ as $\operatorname{Im}z\to+\infty$ and $-\infty$,
 respectively.
@@ -102,14 +178,38 @@ with the following replacements.
   Lemma~\ref{lem:finite}, replace
   $\alpha_2=-2/u+\tfrac13\log(-u)$ by $-1/(a_2u)+\rho\log(-u)$ and $-2/u$ by
   $-1/(a_2u)$.  The limiting petal is $\{\operatorname{Re}(-1/(a_2u))>R\}$.
+\item The gate of Theorem~\ref{thm:C} needs a margin depending on $\rho$.  Put
+  $c_\rho:=\pi|\rho|+1$.  On the gate,
+  $\operatorname{Im}\Phi_{\mathrm{rep}}-\operatorname{Im}(-1/(a_2u))
+  =\rho\arg(-u)+O(1/Y_*)$, so $|\operatorname{Im}Z-\operatorname{Im}\Phi_{\mathrm{rep}}|<c_\rho$
+  for $\mu$ near $\mu_0$, and the gate lies in the band
+  $\mathcal B_\mu(Y')$, $Y':=Y_*-c_\rho-2$, rather than $\mathcal B_\mu(Y_*-2)$.
+  In step~(b) after the proof of Theorem~\ref{thm:C}, fix
+  $Y_*\ge Y_B+3c_\rho+3$, so that $Y'\ge Y_B+2c_\rho+1$.  For points within
+  $o(1)$ of the gate, Lemma~\ref{lem:band}(ii) (with the constant of the next
+  item) gives
+  $|\operatorname{Im}\mathcal S_\mu|\le h/2-Y'+\pi|\rho|+\tfrac12+o(1)
+  <h/2-Y'+c_\rho\le h/2-(Y_B+1)-c_\rho$.  So the shifted gate line lies in the
+  strip $\Sigma$ of Lemma~\ref{lem:band}(iii) taken with $Y=Y_B+1$, where $T$ is
+  holomorphic, and the rest of step~(b) is unchanged.
 \item In Theorem~\ref{thm:C}(2), the reflected inverse
   $G_\mu(v)=-f_\mu^{-1}(-v)$ is the local inverse near $w^*$.  It is jointly
   holomorphic, its germ is $v+a_2v^2+(2a_2^2-a_3)v^3+\cdots$, and its iterative
   residue is $-\rho$.
 \item In Lemma~\ref{lem:realT}, $1<L$ is replaced by \textup{(H4)}: $S$ maps
-  $\mathbb R$ onto $(L,L_2)$, where $\sigma>0$, while $\sigma(w_0)<0$.
-\item In Lemma~\ref{lem:band}, the bound $\pi/3$ becomes $\pi|\rho|$ and
-  $h_2=h+2\pi/3+o(1)$ becomes $h_2=h+2\pi\rho+o(1)$.  Injectivity of $f_\mu$ on
+  $\mathbb R$ onto $(L,L_2)$, where $\sigma>0$, while $\sigma(w_0)<0$
+  (Lemma~\ref{lem:gen-real}).
+\item In Lemma~\ref{lem:band}, the bound $\pi/3$ in (ii) becomes $\pi|\rho|$
+  (and $C/Y+C|\log\lambda|\le\tfrac12$ for $Y\ge Y_B$ and $\mu$ near $\mu_0$), and
+  $h_2=h+2\pi/3+o(1)$ becomes $h_2=h+2\pi\rho+o(1)$.  Since $\pi|\rho|$ may exceed
+  $2$, the half-width $h/2-Y-2$ of the strip in (iii) is replaced by
+  $h/2-Y-c_\rho$, $\Sigma=\{|\operatorname{Im}w'|<h/2-Y-c_\rho\}$; the proof of
+  (iii) is unchanged, because on the arcs
+  $|\operatorname{Im}\mathcal S_\mu|\ge h/2-Y-\pi|\rho|-\tfrac12>h/2-Y-c_\rho$.  In
+  (i) the drift $2\pi/3$ becomes $2\pi|\rho|$, and we take $Y_B\ge8c_\rho$.
+  Accordingly, Lemma~\ref{lem:modes} holds with $Y_0:=Y_B+1+c_\rho$ in place of
+  $Y_B+3$: with $Y=Y_B+1$, $\Sigma$ has half-width $h/2-Y_B-1-c_\rho=d+1$,
+  $d=h/2-Y_0-1$.  Injectivity of $f_\mu$ on
   $D_{r'}$ follows from $f'_{\mu_0}(w^*)=1$ after shrinking $r'$.
 \item In Proposition~\ref{prop:weld}, the singular set of $\Rr$ is the closed
   set $\Sigma_\Rr$ of inverse-branch images of the singular values of $f$.
@@ -149,18 +249,27 @@ $n\ge1$,
  B_n\eee^{2\pi\ii na'}=B_n\eee^{2\pi\ii na}\,\eee^{2\pi\ii n\Delta_0},
 \]
 with $\Delta(\mu)=\Rr_\mu^{-1}(w_0')$ and $\Delta_0=\Phi_{\mathrm{att}}(u^{*\prime})-\Phi_{\mathrm{att}}(u^*)$
-both real.  Hence $|\tau_n(\mu)|$ does not depend on the base point, and
+both real, and $\Delta(\mu)\to\Delta_0$ as $\mu\to\mu_0^-$.  Hence $|\tau_n(\mu)|$ does not depend on the base point, and
 neither does $\operatorname{Re}\kappa^{(n)}_j$ for any $j$.  The moduli $|c_n|$
 and $|\hat c_n|$ of the sewn solution change only at relative order $O(n\Lambda)$.
 \end{proposition}
 
+The second identity is the definition $\Delta_0=a'-a$.  Its content is that
+$\Delta_0$ is real and is the limit of $\Delta(\mu)$, so that the first identity
+is compatible with Theorem~\ref{thm:gen-A}.  The independence of
+$B_n\eee^{2\pi\ii na}$ from the choice of coordinates is a different statement;
+it is the conjugation invariance shown in the Setting.
+
 \begin{proof}
-By \textup{(H4)}, $\sigma(w_0)$ and $\sigma(w_0')$ are negative, so
+By Lemma~\ref{lem:gen-real}, $\sigma(w_0)$ and $\sigma(w_0')$ are negative, so
 $\Delta=\log(\sigma(w_0')/\sigma(w_0))/\log\lambda$ is real.  Then
 $\Rr'^{-1}=\Rr^{-1}-\Delta$ and $T'=T-\Delta$, so $t_n'=t_n$ for $n\ne0$ and
 $t_0'=t_0-\Delta$.  The branch condition $\operatorname{Im}t_0=h/2$ is preserved,
-and $\tau_n'=\tau_n\eee^{2\pi\ii n\Delta}$.  At $\mu_0$, $u^*$ and $u^{*\prime}$ lie
-on the real attracting axis, where $\Phi_{\mathrm{att}}$ is real.  Taking real
+and $\tau_n'=\tau_n\eee^{2\pi\ii n\Delta}$.  At $\mu_0$, by \textup{(H4)} the
+$g$-orbits of $u^*$ and $u^{*\prime}$ increase along the negative axis to $0$,
+where $\alpha$ is real, so $a=\lim_k[\alpha(g^ku^*)-k]$ and $a'$ are real.  By
+Theorem~\ref{thm:C}(1) in the general form,
+$\Delta(\mu)=\Rr_\mu^{-1}(w_0')\to\Phi_{\mathrm{att}}(u^{*\prime})-a=\Delta_0$.  Taking real
 parts of the logarithm of the first identity divided by the second gives the
 statement on $\operatorname{Re}\kappa^{(n)}_j$.  For the sewn solutions, the
 normalisation $\Kk^W(0)=w_0'$ gives $\Kk^W[w_0']=\Kk^W[w_0](\cdot+\delta)$ with
@@ -177,11 +286,55 @@ $(\mu_0,w^*)$ and under reparametrisation of $\mu$.
 \end{corollary}
 
 \begin{proof}
-A conjugacy $\phi_\mu$ transports Koenigs charts, $\tilde\Rr=\phi\circ\Rr$ and
-$\tilde S=\phi\circ S$.  So $\tilde T=T$ up to the normalising translations.  Take a
-base point inside the domain of $\phi$ and apply
-Proposition~\ref{prop:gen-base}.  The parameter $p$ depends only on the
-multipliers.
+Let $(\tilde f_{\tilde\mu},\tilde w_0)$ be a second unfolding satisfying
+\textup{(H1)--(H4)}, $\tilde\mu=\theta(\mu)$ a real-analytic reparametrisation
+with $\theta(\mu_0)=\tilde\mu_0$, $\theta'>0$, and $\phi_\mu$ univalent on a disc
+$N$ about $w^*$, continuous in $\mu$, real with $\phi_\mu'>0$ on $N\cap\mathbb R$,
+such that $\phi_\mu\circ f_\mu=\tilde f_{\theta(\mu)}\circ\phi_\mu$ on
+$N\cap f_\mu^{-1}(N)$.  Fix $\mu<\mu_0$ near $\mu_0$ and write $\phi=\phi_\mu$,
+$\tilde f=\tilde f_{\theta(\mu)}$.  Then $\phi(L)=\tilde L$ and
+$\phi(L_2)=\tilde L_2$ with the same multipliers, so $h$, $\Lambda$ and $p$
+agree; in particular $p$ depends only on the multipliers.
+
+The base point $w_0$ need not lie in $N$.  Fix an auxiliary base point
+$w_0'\in N$ with $w_0<w_0'<w^*$ and $[w_0',w^*]\subset N$; it satisfies
+\textup{(H4)}, and for $\mu$ near $\mu_0$, $[w_0',L_2]\subset N$.
+
+\emph{Attracting side.}  By uniqueness of Koenigs coordinates,
+$\tilde\sigma=\phi'(L)\,\sigma\circ\phi^{-1}$ near $\tilde L$, and
+$\sigma=\lambda^{-n}\sigma\circ f^n$ extends this to
+$\tilde\sigma\circ\phi=\phi'(L)\,\sigma$ at every $w$ whose forward orbit stays
+in $N$.  This includes $w_0'$ and a complex neighbourhood of $(L,L_2)$.  In
+particular $\tilde\sigma(\phi(w_0'))=\phi'(L)\sigma(w_0')<0$ by
+Lemma~\ref{lem:gen-real}, and the attracting Abel coordinates with base points
+$w_0'$ and $\phi(w_0')$ satisfy $\tilde\Rr'^{-1}\circ\phi=\Rr'^{-1}$ there.
+
+\emph{Repelling side.}  Likewise
+$\tilde\sigma_{\rm rep}=\phi'(L_2)\,\sigma_{\rm rep}\circ\phi^{-1}$ near $\tilde L_2$, i.e.\
+$\tilde\sigma_{\rm rep}^{-1}(\zeta)=\phi\bigl(\sigma_{\rm rep}^{-1}(\zeta/\phi'(L_2))\bigr)$
+for small $\zeta$.  Both sides continue along a neighbourhood of the negative
+axis, because $\sigma_{\rm rep}^{-1}((-\infty,0))=(L,L_2)\subset N$.  Hence, for $z$
+near $\mathbb R$,
+\[
+ \tilde S(z)=\tilde\sigma_{\rm rep}^{-1}\bigl(-\lambda_2^{\,z}\bigr)
+ =\phi\bigl(S(z-c')\bigr),\qquad c'=\frac{\log\phi'(L_2)}{\log\lambda_2}\in\mathbb R .
+\]
+
+Combining, $\tilde T'(z)=\tilde\Rr'^{-1}(\tilde S(z))=T'(z-c')$ near $\mathbb R$,
+where $T'$ and $\tilde T'$ are computed from $w_0'$ and $\phi(w_0')$.  Since
+$c'$ is real, both sides lie on the branch $\operatorname{Im}t_0=h/2$, and by
+the translation invariance~\eqref{eq:taun}, $\tilde\tau_n'=\tau_n'$.  The proof of
+Proposition~\ref{prop:gen-base} uses only $\sigma<0$ at the two base points at
+the given $\mu$; applied to $f$ with $w_0,w_0'$ and to $\tilde f$ with
+$\tilde w_0,\phi(w_0')$, it gives
+$|\tau_n|=|\tau_n'|=|\tilde\tau_n'|=|\tilde\tau_n|$.
+
+By Theorem~\ref{thm:gen-A} and $a\in\mathbb R$, $|B_n|=\lim|\tau_n|$, so
+$|\tilde B_n|=|B_n|$.  Since $a$ is real,
+$\operatorname{Re}\log(\tau_n/B_n\eee^{2\pi\ii na})=\log|\tau_n|-\log|B_n|$, which is
+therefore the same function of $p$ for both unfoldings.  As $p$ is increasing
+in $s$ (Proposition~\ref{prop:gen-scale}), the coefficients of the asymptotic
+expansion in $p$ are unique, and $\operatorname{Re}\tilde\kappa^{(n)}_j=\operatorname{Re}\kappa^{(n)}_j$.
 \end{proof}
 
 \subsection{The first-order term as a derivative on the parabolic stratum}
@@ -193,7 +346,7 @@ continuously to the parabolic maps, and on those maps the function is the horn
 coefficient.  So $\kappa^{(n)}$ splits into one number attached to the germ and
 the derivative of the horn map along the unfolding.
 
-Work in the coordinate $u=w-w^*$.  Let $\mathcal O_r$ be the Banach space of
+Work in the affine coordinate $u$ of the Setting, $w=w^*+cu$.  Let $\mathcal O_r$ be the Banach space of
 bounded holomorphic functions on $D_r=\{|u|<r\}$ with the supremum norm.  An
 unfolding in this subsection is a real-analytic curve
 $s\mapsto f_s\in\mathcal O_r$ with $f_0=g$ and the sign condition of

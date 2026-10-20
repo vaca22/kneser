@@ -736,7 +736,7 @@ $F=\tilde K\circ\tilde\Phi=\tilde K\circ\tilde\Phi^W(\cdot+c)$。注意 $\varphi
 这一注只涉及 tetration $E_b(w)=b^w$。记 $\mathcal L=\log b$，$\Kkn_b$ 为 $b>\eta$ 时 Kneser 的实解。
 
 \emph{定义.} \cite{Paulsen2019} 用 $\Kkn_b(z_0)$（$\Rea z_0>-2$）对底数 $b$ 从 $(\eta,\infty)$ 出发的解析延拓来定义复底数的 Kneser 族（那里的 Prop.~3）。
-该文 Lemma~1 断言两个端点处有正则表示。但仅凭「$\Ima z\to\pm\infty$ 时趋于不动点」并不能推出 $\id+(\text{有界周期})$ 形式的时间变换：
+该文 Prop.~1 断言两个端点处有正则表示。它的证明从 $\psi_1(F(z+1))=\psi_1(F(z))+1$ 出发；但 $\psi_1=\log\sigma_1/\log s_1$ 是多值的，在 $\Ima z>M$ 上由连续性只能得到这个等式差一个常数 $2\pi\ii m/\log s_1$，$m\in\mathbb Z$。但仅凭「$\Ima z\to\pm\infty$ 时趋于不动点」并不能推出 $\id+(\text{有界周期})$ 形式的时间变换：
 在一端附近只能得到 $\sigma(F(z))=\ee^{\ell z}q^m\mathsf g(q)$，$q=\etwopi{(\pm z)}$，$\mathsf g(0)\ne0$，$m\ge0$ 为整数，只有 $m=0$ 才是本章意义下的正则表示。
 \cref{def:class} 把这个「次数一」的形式明确地写进了定义。
 
@@ -760,6 +760,12 @@ $F_k$ 两条都违反：$z_k$ 不是实数（$K$ 在实轴上取实值而 $w_k$ 
 
 对复底数，必须给 \cite[Prop.~2]{Paulsen2019} 补上某种选根条件。\cref{def:class} 的缝口高度条件就是这样一个条件，\cref{thm:characterization} 说明它在 $(1,\eta)$ 附近足够。
 它和 \cref{ch6:prop:spurious} 是同一现象的两面：在两种情形中，「$F(0)=w_0$」都只确定了一个可数集合中的一个根。
+
+\emph{改用 $F(-1)=0$.} 把 $F(0)=1$ 换成 $F(-1)=0$ 可以排除 $F_k$，论证也能走一部分。设 $F_2=F_1(\cdot+C)$，两者都满足 $F(-1)=0$；必要时交换两者，使 $\Rea C\ge0$。
+$\Rea z>-2$ 上的解只可能在 $\Rea z\le-1$ 处为零，否则 $F(z)=b^{F(z-1)}\ne0$。所以由 $F_1(C-1)=F_2(-1)=0$ 得 $\Rea C=0$。
+要推出 $C=0$，还需要对实数 $t\ne0$ 有 $F_1(-1+\ii t)\ne0$。若 $F_1$ 能带着函数方程延拓到 $\C\setminus(-\infty,-2]$（实底数 $b>\eta$ 时 Kneser 解就是这样），则 $F_1(-1+\ii t)=b^{F_1(-2+\ii t)}\ne0$。
+复底数时一般没有这样的延拓：\cite{Paulsen2019} 报告 $b=\ii$ 时 $\mathcal K_\ii$ 在 $-3.810+0.146\ii$、$-6.591+0.273\ii$ 附近有零点，从而在 $(-\infty,-2]$ 之外还有分支点。
+所以在 $F(-1)=0$ 之下，还需要的条件是：$t\ne0$ 时 $F(-1+\ii t)\ne0$，再加上前面的次数一形式。
 \end{remark}
 
 \section{一阶修正}\label{ch6:sec:first-correction}

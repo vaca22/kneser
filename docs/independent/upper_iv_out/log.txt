@@ -352,3 +352,37 @@
 19:40:34    5500 / 14901  failures so far 1  current |theta|=0.1483  2247s
 19:45:04    6000 / 14901  failures so far 1  current |theta|=0.1428  2517s
 19:49:08    6500 / 14901  failures so far 1  current |theta|=0.1380  2761s
+16:53:02 ==== verify_upper_iv start, parts ['MF', 'M'] iv.prec 64 direct-marks False
+16:53:04 (MF) re-run direct marks on previously failed cells (patched seam rule, maxdepth 14)
+16:53:04   failed cells to redo: 1
+16:53:05 (MF) remaining failures: 0
+16:53:05 (M) direct (orbit + seam) marks on all certified core cells, theta-subdivision, no citation
+16:53:05   resumed 12500
+16:57:50    500 / 8401  failures so far 0  current |theta|=0.1336  285s
+17:02:32    1000 / 8401  failures so far 0  current |theta|=0.1297  567s
+17:06:57    1500 / 8401  failures so far 0  current |theta|=0.1262  831s
+17:10:28    2000 / 8401  failures so far 0  current |theta|=0.1227  1042s
+17:14:26    2500 / 8401  failures so far 0  current |theta|=0.1192  1281s
+17:18:38    3000 / 8401  failures so far 0  current |theta|=0.1156  1532s
+17:23:02    3500 / 8401  failures so far 0  current |theta|=0.1119  1797s
+17:27:44    4000 / 8401  failures so far 0  current |theta|=0.1083  2078s
+17:31:55    4500 / 8401  failures so far 0  current |theta|=0.1052  2330s
+17:35:41    5000 / 8401  failures so far 0  current |theta|=0.1025  2556s
+17:40:16    5500 / 8401  failures so far 0  current |theta|=0.1000  2830s
+17:50:23    5945 / 8401  failures so far 0  current |theta|=0.0969  3438s
+17:53:04    6000 / 8401  failures so far 0  current |theta|=0.0963  3599s
+18:03:28    6173 / 8401  failures so far 0  current |theta|=0.0942  4223s
+18:13:32    6333 / 8401  failures so far 0  current |theta|=0.0924  4827s
+18:23:35    6461 / 8401  failures so far 0  current |theta|=0.0909  5429s
+18:26:33    6500 / 8401  failures so far 0  current |theta|=0.0904  5607s
+18:36:36    6629 / 8401  failures so far 0  current |theta|=0.0889  6210s
+18:46:40    6837 / 8401  failures so far 0  current |theta|=0.0877  6814s
+18:51:35    7000 / 8401  failures so far 0  current |theta|=0.0870  7110s
+19:00:52    7500 / 8401  failures so far 0  current |theta|=0.0848  7667s
+19:10:23    8000 / 8401  failures so far 0  current |theta|=0.0825  8238s
+19:14:37    8401 / 8401  failures so far 0  current |theta|=0.0814  8491s
+19:14:37   entry indices occurring (cells): [(-1, 1843), (0, 1141), (1, 297), (2, 306), (3, 523), (4, 426), (5, 400), (6, 540), (7, 428), (8, 383), (9, 508), (10, 523), (11, 526), (12, 654), (13, 857), (14, 1039), (15, 1062), (16, 964), (17, 878), (18, 916), (19, 1001), (20, 1041), (21, 1126), (22, 1119), (23, 1018), (24, 941), (25, 865), (26, 909), (27, 1005), (28, 1006), (29, 633), (30, 562), (31, 528), (32, 708), (33, 993), (34, 889), (35, 1461), (36, 806)]
+19:14:37   theta-pieces total: 3517602
+19:14:37   direct failures: 0  of which theta-box in Theta u conj(Theta): 0
+19:14:37 (M) done 8491.4s
+19:14:37 ==== summary {'MF_fail': 0, 'M_fail': 0}  total 8495.0s

@@ -50,7 +50,8 @@ computer-assisted certificate, Kneser's family continues to a single-valued
 holomorphic family on the whole upper half $b$-plane: Kneser's own straight
 initial region survives on the entire exterior, and the family crosses every
 point of the open upper Shell--Thron boundary arc.  So the continuation is path
-independent, it coincides with Paulsen's base-continued family, and it is
+independent, it coincides with Paulsen's base-continued family (read as
+continuation along upper half-plane paths), and it is
 holomorphic across every real base in $(0,\eta)\setminus\{1\}$ (in particular
 at the neutral endpoint $\eee^{-\eee}$).  Writing
 $\Kk_b=\Rr_b\circ(\mathrm{id}+\sum_{n\ge0}c_n\eee^{2\pi\ii nz})$ and
@@ -203,6 +204,15 @@ The limiting phase is $\arg B_1+2\pi a$, and
 $c_n/c_1^n\to B_n/B_1^n$ for every $n\ge1$.
 \end{corollary}
 
+In the coordinate $u=(w-\eee)/\eee$ the map $\eta^w$ becomes $\eee^u-1$, the
+germ used by Trappmann and Kouznetsov~\cite{KouznetsovTrappmann2012} at
+$b=\eta$.  Their Abel function $\alpha$ has the normalisation of
+$\Phi_{\mathrm{att}}$, so $a=\alpha(\zeta(1))$ with $\zeta(z)=(z-\eee)/\eee$; the two
+agree to $40$ digits.  Paulsen~\cite[Prop.~1]{Paulsen2026} shows that $\mathcal K_b(z)$
+tends to their regular superexponential through $1$ as $b\to\eta$ off
+$(-\infty,\eta]$.  Corollary~\ref{cor:limits} describes the non-regular part that
+is lost in this limit: it is of size $\Lambda$, with the constants $B_n\eee^{2\pi\ii na}$.
+
 \begin{maintheorem}[First-order term]\label{mthm:D}
 Let $s=1-\eee\log b$ and $p=|\log\lambda|\log\lambda_2=2s+O(s^2)$.  For every
 $n\ge1$ with $B_n\ne0$ (in particular $n=1$ by Proposition~\ref{prop:horn-nonzero}),
@@ -237,7 +247,9 @@ the whole upper half $b$-plane.  It crosses every point of the open upper
 Shell--Thron boundary arc holomorphically, it is holomorphic at the neutral
 endpoint $b=\eee^{-\eee}$, and it extends holomorphically across every point of
 $(0,\eta)\setminus\{1\}$; $b=0$ and $b=1$ are genuine singularities.  In particular the continuation
-is path independent, and it is the base-continued family of~\cite{Paulsen2019}.
+is path independent, and it is the base-continued family of~\cite{Paulsen2019}, read as the
+continuation from $(\eta,\infty)$ along paths in the upper half-plane
+(Corollary~\ref{cor:paulsen}).
 \end{maintheorem}
 
 The precise statements are Theorems~\ref{thm:cusp} and~\ref{thm:global} for
@@ -352,10 +364,13 @@ parameter-dependence proof; Proposition~\ref{prop:exterior-real-parameter}
 supplies such a proof locally along the real exterior ray.  Near the cusp, Theorem~\ref{mthm:F} carries the family through
 the Shell--Thron boundary by a different route.  Away from the cusp,
 Theorems~\ref{thm:far} and~\ref{thm:last-arc} cross the boundary arcs with
-Kneser's untilted chord.  Off that boundary, Lemma~1 of
+Kneser's untilted chord.  Off that boundary, Proposition~1 of
 that paper asserts two
 regular representations $\psi_1^{-1}(\rho_1)$ and
-$\psi_2^{-1}(\rho_2)$ from the limits at $\pm\ii\infty$.
+$\psi_2^{-1}(\rho_2)$ from the limits at $\pm\ii\infty$.  Its proof starts from
+$\psi_1(F(z+1))=\psi_1(F(z))+1$; since $\psi_1=\log\sigma_1/\log s_1$ is
+multivalued, continuity on $\operatorname{Im}z>M$ only gives this up to a
+constant $2\pi\ii m/\log s_1$ with $m\in\mathbb Z$.
 We impose their degree-one form explicitly in
 Definition~\ref{def:class}.  A fixed-point limit alone leaves an integer
 end label open: near an end one only gets
@@ -394,6 +409,20 @@ For complex bases, some root-selection
 condition must be added to~\cite[Prop.~2]{Paulsen2019}.  The seam-height
 condition of Definition~\ref{def:class} is such a condition, and
 Theorem~\ref{thm:char} shows that it suffices near $(1,\eta)$.
+
+Replacing $F(0)=1$ by $F(-1)=0$ excludes the solutions $F_k$, and part of the
+argument then goes through.  Suppose $F_2=F_1(\cdot+C)$ on $\operatorname{Re}z>-2$,
+both with $F(-1)=0$; exchanging $F_1$ and $F_2$ if necessary, $\operatorname{Re}C\ge0$.
+A solution on $\operatorname{Re}z>-2$ can vanish only where $\operatorname{Re}z\le-1$, since otherwise
+$F(z)=b^{F(z-1)}\ne0$.  Hence $F_1(C-1)=F_2(-1)=0$ forces $\operatorname{Re}C=0$.  To
+conclude $C=0$ one still needs $F_1(-1+\ii t)\ne0$ for real $t\ne0$.  This holds
+if $F_1$ continues to $\mathbb C\setminus(-\infty,-2]$ with the functional
+equation, as Kneser's solution does for real $b>\eta$: then
+$F_1(-1+\ii t)=b^{F_1(-2+\ii t)}$.  For complex bases this continuation is not
+available in general.  For $b=\ii$, \cite{Paulsen2019} reports zeros of
+$\mathcal K_\ii$ near $-3.810+0.146\ii$ and $-6.591+0.273\ii$, hence further branch
+points off $(-\infty,-2]$.  So with $F(-1)=0$ the extra condition needed is
+$F(-1+\ii t)\ne0$ for $t\ne0$, together with the degree-one form above.
 \end{remark}
 
 \section{Setup and parabolic data}\label{sec:setup}
@@ -908,7 +937,7 @@ continued along the same path,
 $F_b:=\Psi_b\circ f_b-\Psi_b-1$ is single-valued and holomorphic on a fixed disc
 $D_{r'}$, $F_b\to F_\eta:=\alpha_2\circ f_\eta-\alpha_2-1$ uniformly there, and
 \[
- |F_b(u)|\le M\,|u-u_1|\,|u-u_2|\qquad(u\in D_{r'/2})
+ |F_b(u)|\le M\,|u-u_1|\,|u-u_2|\qquad(u\in D_{r'})
 \]
 with $M$ independent of $b$.
 \end{lemma}
@@ -1021,13 +1050,13 @@ non-immediate components of the basin the branch is defined by
 $\mathcal A_b\circ f_b^N-N$.  The Koenigs map is normalised by
 $\sigma_b'(u_1)=1$.)
 
-(2) Apply (1)'s argument to $G_b(v)=-f_b^{-1}(-v)$, the principal inverse
-branch reflected.  Then $G_\eta(v)=-\log(1-v)=v+\tfrac{v^2}2+\tfrac{v^3}3+\cdots$,
+(2) Apply (1)'s argument to $\check f_b(v)=-f_b^{-1}(-v)$, the principal inverse
+branch reflected.  Then $\check f_\eta(v)=-\log(1-v)=v+\tfrac{v^2}2+\tfrac{v^3}3+\cdots$,
 which is of the same prepared form with $k_\eta'(0)=\tfrac13$ and residue
-$-\tfrac13$.  The attracting fixed point of $G_b$ is $-u_2$, with multiplier
+$-\tfrac13$.  The attracting fixed point of $\check f_b$ is $-u_2$, with multiplier
 $1/\lambda_2$.  Its Koenigs Abel coordinate is $-S_b^{-1}(\eee(1-v))$ up to a
 constant, and its parabolic Fatou coordinate is $-\Phi_{\mathrm{rep}}(-v)$ up
-to a constant (since $\alpha_{f}(-v)=-\alpha_{G}(v)+\text{const}$).  The free
+to a constant (since $\alpha_{f}(-v)=-\alpha_{\check f}(v)+\text{const}$).  The free
 constant is fixed by $p'$.
 \end{proof}
 
@@ -1036,18 +1065,21 @@ Four points need checking; each is settled here.  The proof of
 Lemma~\ref{lem:band} uses only Lemmas~\ref{lem:res}--\ref{lem:petal}, so there is
 no circularity.
 
-\emph{(a) Inversion on the gate line.}  Fix $Y_*\ge Y_B+6$ and the line
+\emph{(a) Inversion on the gate line.}  Fix $Y_*\ge Y_B+7$ and the line
 $\ell=[0,1]+\ii Y_*$.  By Rouch\'e, the solution $v_b(z)$ of
 $\mathcal S_b(v)+s_*(b)=z$ near $\Phi_{\mathrm{rep}}^{-1}(z)$ exists and converges
 uniformly on $\ell$.  Moreover $S_b(z-s_*(b))=\eee(1+v_b(z))$, because $\mathcal S_b$
 is a branch of $S_b^{-1}$.
 
 \emph{(b) The gate line lies in the strip of holomorphy of $T$.}  The points
-$v_b(z)$, $z\in\ell$, lie within $o(1)$ of the gate, hence in the band $\mathcal B_b(Y_B+3)$.
+$v_b(z)$, $z\in\ell$, lie within $o(1)$ of the gate.  The gate lies in
+$\mathcal B_b(Y_*-2)\subset\mathcal B_b(Y_B+5)$ (Theorem~\ref{thm:C}), so these
+points lie in the band $\mathcal B_b(Y_B+4)$.
 By Lemma~\ref{lem:band}(ii) their $S$-times $z-s_*(b)$ satisfy
-$|\operatorname{Im}(z-s_*(b))|\le h/2-Y_B-3+\pi/3+C/Y_B+C\varepsilon<h/2-Y_B-2$.  So the
-shifted line $\ell-s_*(b)$ lies in the strip $\Sigma$ of Lemma~\ref{lem:band}(iii),
-where $T$ is holomorphic.  Therefore the Fourier coefficients of
+$|\operatorname{Im}(z-s_*(b))|\le h/2-Y_B-4+\pi/3+C/Y_B+C\varepsilon<h/2-Y_B-2$,
+since $\pi/3<2$.  So the
+shifted line $\ell-s_*(b)$ lies in the strip $\Sigma$ of Lemma~\ref{lem:band}(iii)
+with $Y=Y_B$, where $T$ is holomorphic.  Therefore the Fourier coefficients of
 $\tilde T=T(\cdot-s_*)$ on $\ell$ are $t_n\eee^{-2\pi\ii ns_*}$ and
 $\tilde t_0=t_0-s_*$, with the $t_n$ those of $T$ on $\mathbb R$.  No prior
 knowledge of $\operatorname{Im}s_*$ is used.
@@ -1352,9 +1384,9 @@ expansion of Proposition~\ref{prop:diff} persists, with
 $\dot{\mathcal A}=\dot{\mathcal A}\circ f_0^m+\mathcal A_0'\circ f_0^m\cdot\partial_sf_s^m$.
 
 For the repelling side, apply everything to the reflected family
-$G_s(v)=-f_s^{-1}(-v)=-(\log(1-v)+s)/(1-s)$, exactly as in
+$\check f_s(v)=-f_s^{-1}(-v)=-(\log(1-v)+s)/(1-s)$, exactly as in
 Theorem~\ref{thm:C}(2).  This family is again of the form~\eqref{eq:weier},
-with fixed points $-u_2,-u_1$.  Let $\mathcal S_s(u)=-\mathcal A^G_s(-u)$.  By
+with fixed points $-u_2,-u_1$.  Let $\mathcal S_s(u)=-\mathcal A^{\check f}_s(-u)$.  By
 Remark~\ref{rem:invariance} and~\eqref{eq:taun}, $\tau_n$ does not depend on the
 additive normalisation of the repelling coordinate.  We use
 $\mathcal S^\sharp_s=\mathcal S_s-\mathcal S_s(p')+\Phi_{\mathrm{rep}}(p')$.
@@ -1631,8 +1663,9 @@ $Y_B$ such that for $Y\ge Y_B$ and all $b$ near $\eta$:
 \item[(ii)] the real-normalised times $\mathcal R_b=\Psi_b+\sum_{k\ge0}F_b\circ f_b^k+c_R$
   and $\mathcal S_b=\Psi_b-\sum_{k\ge1}F_b\circ f_b^{-k}+c_S$ are holomorphic and
   injective on $\mathcal B_b(Y)$.  They are branches of $\Rr_b^{-1}$ and
-  $S_b^{-1}$, with $\mathcal S_b$ real on $(u_1,u_2)$ and $\mathcal R_b$ as in
-  item (c) above, and
+  $S_b^{-1}$, with $\mathcal S_b$ real on $(u_1,u_2)$ and $\mathcal R_b$ the
+  branch with $\operatorname{Im}\mathcal R_b=h/2$ on $(u_1,u_2)$
+  (Lemma~\ref{lem:realT}), and
   \[
    \bigl|\operatorname{Im}\mathcal S_b(u)-(\operatorname{Im}Z_b(u)-h/2)\bigr|
    \le\tfrac\pi3+C/Y+C|\log\lambda| ;
@@ -1683,17 +1716,22 @@ $\mathcal B_b(Y/2)\subset D_{r'/2}$, and $\operatorname{Re}Z_k\to+\infty$,
 i.e.\ $u_k\to u_1$.  The continued values of $Z$ along the orbit have
 $\operatorname{Im}\in(Y/2,h-Y/2)\subset(0,h)$, so they agree with the fixed
 slit-plane branch.  The backward orbit is the forward orbit of the reflected
-inverse family $G_b(v)=-f_b^{-1}(-v)$, to which the same argument applies
+inverse family $\check f_b(v)=-f_b^{-1}(-v)$, to which the same argument applies
 (its prepared form is checked in the proof of Theorem~\ref{thm:C}(2)).  Its
 period is $h_2=h+2\pi/3+o(1)$, so $\mathcal B_b(Y)$ is contained in the
-corresponding band of $G_b$ at height $Y(1+O(|\log\lambda|))-1$.  This is harmless
+corresponding band of $\check f_b$ at height $Y(1+O(|\log\lambda|))-1$.  This is harmless
 for $Y\ge Y_B$.
 
 (ii) As in the proof of Theorem~\ref{thm:C}(1), $\Psi_b(f^nu)-n\to A_1\log\sigma_b(u)+\mathrm{const}$
 along forward orbits.  So $\mathcal R_b$ is a branch of the attracting Abel
-coordinate, and $\mathcal S_b$ likewise of the repelling one.  Choose the
-constants $c_R$ (by item (c) above) and $c_S$ so that $\mathcal S_b$ is real on
-the segment.  Both $F_b$ and $f_b$ are real, so the sums are real there.  On
+coordinate, and $\mathcal S_b$ likewise of the repelling one.  ($\mathcal B_b(Y)$
+is simply connected and $\sigma_b$ has no zero on it, since $f_b$ is injective
+on $D_{r'}$ and $u_1\notin\mathcal B_b(Y)$.)  Both $F_b$ and $f_b$ are real,
+so the sums are real on the segment.  By Lemma~\ref{lem:realT},
+$\operatorname{Im}\Rr_b^{-1}\equiv h/2\pmod h$ on $(u_1,u_2)=S_b(\mathbb R)$;
+choose $c_R$ so that $\mathcal R_b$ is the branch of $\Rr_b^{-1}$ with
+$\operatorname{Im}\mathcal R_b=h/2$ there, and $c_S$ so that $\mathcal S_b$
+is real on the segment.  On
 the segment $\operatorname{Im}Z=h/2$ and $\arg(u-u_2)=\pi$, which fixes
 $\operatorname{Im}c_S$.  The displayed estimate then follows from
 $\operatorname{Im}\Psi=\operatorname{Im}Z+(A_1+A_2)\arg(u-u_2)$,
@@ -1745,15 +1783,15 @@ $\|\eee^{g}\|_H\le\eee^{\|g\|_H}$ and
 $\|\eee^{g_1}-\eee^{g_2}\|_H\le\|g_1-g_2\|_H\,\eee^{\max\|g_j\|_H}$.
 
 \begin{theorem}[W2]\label{thm:W2}
-Let $M,d$ be as in Lemma~\ref{lem:modes}, $\rho=\tfrac14$, and choose $D\ge1$
-with $4\pi M\eee^{-2\pi D}\le\rho(1-\eee^{-2\pi D})^2$.  Put $H=d-D-\rho$ and
+Let $M,d$ be as in Lemma~\ref{lem:modes}, $\beta=\tfrac14$, and choose $D\ge1$
+with $4\pi M\eee^{-2\pi D}\le\beta(1-\eee^{-2\pi D})^2$.  Put $H=d-D-\beta$ and
 $T^\circ=T-\mathrm{id}-t_0$.  Assume $H>1$, which holds for $b$ near $\eta$ since
 $d\sim\pi/|\log\lambda|$, and that $b$ is so close to $\eta$ that
-$C_1\Lambda\eee^{4\pi(Y_0+D+1)}<\tfrac12$, where $C_1=4M+2\rho$.  Then:
+$C_1\Lambda\eee^{4\pi(Y_0+D+1)}<\tfrac12$, where $C_1=4M+2\beta$.  Then:
 \begin{enumerate}
 \item The map $\mathcal T(Q)=-\Pi_{<0}[T^\circ\circ(\mathrm{id}+Q)]$ is a
   contraction, with constant $\le\tfrac12$, of the ball
-  $\{Q\in\Pi_{<0}\mathfrak A_H:\|Q\|_H\le\rho\}$ into itself.  Its fixed point
+  $\{Q\in\Pi_{<0}\mathfrak A_H:\|Q\|_H\le\beta\}$ into itself.  Its fixed point
   $Q^*$ and $P':=\Pi_{\ge0}[T^\circ\circ(\mathrm{id}+Q^*)]$ satisfy
   \[
    T\circ(\mathrm{id}+Q^*)=\mathrm{id}+t_0+P'\qquad\text{on }|\operatorname{Im}z|<H.
@@ -1780,23 +1818,23 @@ $C_1\Lambda\eee^{4\pi(Y_0+D+1)}<\tfrac12$, where $C_1=4M+2\rho$.  Then:
 (1) Write $T^\circ\circ(\mathrm{id}+Q)=\sum_{m\ne0}t_m\eee^{2\pi\ii mz}\eee^{2\pi\ii mQ}$.
 Then
 \[
- \|T^\circ\circ(\mathrm{id}+Q)\|_H\le\sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\rho)}
- \le2M\sum_{m\ge1}\eee^{-2\pi mD}\le\rho
+ \|T^\circ\circ(\mathrm{id}+Q)\|_H\le\sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\beta)}
+ \le2M\sum_{m\ge1}\eee^{-2\pi mD}\le\beta
 \]
 by Lemma~\ref{lem:modes} and the choice of $D$.  Similarly
 \[
  \|T^\circ\circ(\mathrm{id}+Q_1)-T^\circ\circ(\mathrm{id}+Q_2)\|_H\le
- \sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\rho)}2\pi|m|\,\|Q_1-Q_2\|_H
+ \sum_{m\ne0}|t_m|\eee^{2\pi|m|(H+\beta)}2\pi|m|\,\|Q_1-Q_2\|_H
  \le\frac{4\pi M\eee^{-2\pi D}}{(1-\eee^{-2\pi D})^2}\|Q_1-Q_2\|_H ,
 \]
-which is at most $\tfrac12\|Q_1-Q_2\|_H$.  Since $|\operatorname{Im}(z+Q)|\le H+\rho<d$
+which is at most $\tfrac12\|Q_1-Q_2\|_H$.  Since $|\operatorname{Im}(z+Q)|\le H+\beta<d$
 on the strip, the Fourier series of $T$ converges at $z+Q(z)$ and equals $T$
 there (Lemma~\ref{lem:band}).  The identity follows by splitting
 $T^\circ\circ(\mathrm{id}+Q^*)=P'+\Pi_{<0}[\ldots]=P'-Q^*$.
 
 (2) The series of $Q^*$ has only negative modes and converges on
 $\operatorname{Im}z\le H$, so it converges on the whole lower half-plane
-$\operatorname{Im}z<H$.  There $|{Q^*}'|\le2\pi\eee^{-2\pi}\rho\,/(1-\eee^{-2\pi})^2<1$ on
+$\operatorname{Im}z<H$.  There $|{Q^*}'|\le2\pi\eee^{-2\pi}\beta\,/(1-\eee^{-2\pi})^2<1$ on
 $\operatorname{Im}z\le H-1$, so $\operatorname{Re}\varphi_-'>0$ and $\varphi_-$
 is univalent (Noshiro--Warschawski).  The same holds for $\varphi_+$ above.  On
 the strip, $\Rr\circ(\varphi_+-\ii h)=\Rr\circ(T\circ\varphi_--\ii h)
@@ -1805,7 +1843,7 @@ $\Rr$ and $\Rr\circ T=S$.  The functional equation holds because $\varphi_\pm$
 commute with $z\mapsto z+1$.  The resulting function realises the sewing of
 Proposition~\ref{prop:weld}: the images of $\varphi_\pm$ are the two
 half-cylinders and the seam in the $z$-plane is $\Gamma=\varphi_-^{-1}(\mathbb R)$, a curve in
-$|\operatorname{Im}z|\le\rho$.  Since $\varphi_\pm-\mathrm{id}$ is bounded, the
+$|\operatorname{Im}z|\le\beta$.  Since $\varphi_\pm-\mathrm{id}$ is bounded, the
 argument principle shows that the restrictions of $\varphi_\pm$ to the two sides of
 $\Gamma$ map onto the two half-cylinders.  By uniqueness of the uniformisation
 it is $\Kk^W_b$ up to translation.  (The identity $\Rr\circ T=S$ is used on the
@@ -1814,17 +1852,17 @@ Lemma~\ref{lem:band}.)
 
 (3) For $\operatorname{Im}z\ge h/2-1$ we have
 $|P'(z)-p'_0|\le\sum_{n\ge1}|p'_n|\eee^{-2\pi n(h/2-1)}$ and
-$|p'_n|\le\rho\,\eee^{-2\pi nH}$.  Moreover
+$|p'_n|\le\beta\,\eee^{-2\pi nH}$.  Moreover
 $p'_0=\sum_{m\ge1}t_m[\eee^{2\pi\ii mQ^*}]_{-m}$, and
-$|[\eee^{2\pi\ii mQ^*}]_{-m}|\le\eee^{2\pi m\rho}\eee^{-2\pi mH}$, so
-$|p'_0|\le2M\eee^{-2\pi(d+H-\rho)}\le2M\Lambda\eee^{2\pi(2Y_0+D+2+2\rho)}$, and
-$\sum_{n\ge1}|p'_n|\eee^{-2\pi n(h/2-1)}\le2\rho\Lambda\eee^{2\pi(Y_0+D+2+\rho)}$.
-Both are bounded by
+$|[\eee^{2\pi\ii mQ^*}]_{-m}|\le\eee^{2\pi m\beta}\eee^{-2\pi mH}$, so
+$|p'_0|\le2M\eee^{-2\pi(d+H-\beta)}\le2M\Lambda\eee^{2\pi(2Y_0+D+2+2\beta)}$, and
+$\sum_{n\ge1}|p'_n|\eee^{-2\pi n(h/2-1)}\le2\beta\Lambda\eee^{2\pi(Y_0+D+2+\beta)}$.
+Both are bounded by (using $D\ge1$ and $Y_0\ge1$)
 \[
  \tfrac12 C_1\Lambda\eee^{4\pi(Y_0+D+1)}.
 \]
 Since
-$\operatorname{Im}(\ii h-t_0)=h/2$ and $|{P'}'|\le\rho$ there, Rouch\'e's theorem
+$\operatorname{Im}(\ii h-t_0)=h/2$ and $|{P'}'|\le\beta$ there, Rouch\'e's theorem
 on the disc of radius $1$ gives the unique root and the bound, using the
 smallness hypothesis.  Then
 $\Kk^W_b(z_0)=\Rr(\varphi_+(z_0)-\ii h)=\Rr(0)=1$, and after translation
@@ -1835,8 +1873,8 @@ Because $Q^*$ has no constant or positive modes,
 $[\eee^{2\pi\ii mQ^*}]_0=1$ and $[\eee^{2\pi\ii mQ^*}]_k=0$ for $k>0$.  Hence
 $p'_n=t_n+\sum_{m>n}t_m[\eee^{2\pi\ii mQ^*}]_{n-m}$, and
 \[
- |p'_n-t_n|\le\sum_{m>n}M\eee^{-2\pi md}\eee^{2\pi m\rho}\eee^{-2\pi(m-n)H}
- \le2M\eee^{-2\pi n(d-\rho)}\eee^{-2\pi(d+H-\rho)} .
+ |p'_n-t_n|\le\sum_{m>n}M\eee^{-2\pi md}\eee^{2\pi m\beta}\eee^{-2\pi(m-n)H}
+ \le2M\eee^{-2\pi n(d-\beta)}\eee^{-2\pi(d+H-\beta)} .
 \]
 With $z_0=\ii h-t_0+\zeta$, $|\zeta|\le C_1\Lambda\eee^{4\pi(Y_0+D+1)}$ by (3), we have
 $\eee^{2\pi\ii nz_0}=\Lambda^n\eee^{-2\pi\ii nt_0}\eee^{2\pi\ii n\zeta}$ and
@@ -1847,16 +1885,21 @@ $|t_n|=|\tau_n|\eee^{-\pi nh}$.  Dividing,
  +(p'_n-t_n)\eee^{-2\pi\ii nt_0}\eee^{2\pi\ii n\zeta}.
 \]
 In the first term $|\tau_n|=|t_n|\eee^{\pi nh}\le M\eee^{2\pi n(Y_0+1)}$ and
-$|\eee^{2\pi\ii n\zeta}-1|\le4\pi n|\zeta|$ when $2\pi n|\zeta|\le1$; in
+$|\eee^{2\pi\ii n\zeta}-1|\le4\pi n|\zeta|$ when $2\pi n|\zeta|\le1$ (since
+$|\eee^w-1|\le(\eee-1)|w|$ for $|w|\le1$); in
 the second, $|\eee^{2\pi\ii n\zeta}|\le\eee$ in that case.  If instead
 $2\pi n|\zeta|>1$, then
-$\Lambda\ge(2\pi nC_1)^{-1}\eee^{-4\pi(Y_0+D+1)}$, and the trivial bound
-$|c_n|\Lambda^{-n}+|\tau_n|\le C'M\eee^{2\pi n(Y_0+D+2)}$ is already
-$\le C_n\Lambda$ (this uses $D\ge1$).  In the second term,
-$|(p'_n-t_n)\eee^{-2\pi\ii nt_0}|\le2M\eee^{2\pi n(Y_0+1+\rho)}\Lambda
-\eee^{2\pi(2Y_0+2+D+2\rho)}$, by $d=h/2-Y_0-1$ and $H=d-D-\rho$.  Adding the two
+$\Lambda\ge(2\pi nC_1)^{-1}\eee^{-4\pi(Y_0+D+1)}$, and we use a trivial bound.
+The display above gives $|p'_n|\le3M\eee^{-2\pi n(d-\beta)}$, and $|\zeta|<1$, so
+$|c_n|\Lambda^{-n}=|p'_n|\eee^{2\pi n(h/2-\operatorname{Im}\zeta)}
+\le3M\eee^{2\pi n(Y_0+2+\beta)}$.  Hence
+$|c_n|\Lambda^{-n}+|\tau_n|\le4M\eee^{2\pi n(Y_0+2+\beta)}$, which is already
+$\le C_n\Lambda$ because $\eee^{2\pi n(D-\beta)}\ge2\pi n$ and $C_1\le5$
+(this uses $D\ge1$).  In the second term,
+$|(p'_n-t_n)\eee^{-2\pi\ii nt_0}|\le2M\eee^{2\pi n(Y_0+1+\beta)}\Lambda
+\eee^{2\pi(2Y_0+2+D+2\beta)}$, by $d=h/2-Y_0-1$ and $H=d-D-\beta$.  Adding the two
 gives the stated bound, since
-$n(Y_0+1+\rho)+2Y_0+2D+2.5\le(n+2)(Y_0+D+2)$.
+$n(Y_0+1+\beta)+2Y_0+2D+2.5\le(n+2)(Y_0+D+2)$.
 \end{proof}
 
 \begin{corollary}\label{cor:Kw}
@@ -1904,7 +1947,7 @@ $\Rr_b\to F_\eta^{\mathrm{att}}$ on a fixed disk about $0$.
 In Theorem~\ref{thm:W2}, write
 $P_b(z)=\zeta_b+P_b'(z+z_0(b))$, where
 $\zeta_b=z_0(b)+t_0(b)-\ii h(b)\to0$.  The proof of that theorem gives
-$p'_0(b)\to0$ and $|p'_n(b)|\le\rho\eee^{-2\pi nH(b)}$ for $n\ge1$,
+$p'_0(b)\to0$ and $|p'_n(b)|\le\beta\eee^{-2\pi nH(b)}$ for $n\ge1$,
 while $H(b)\to\infty$ and $\operatorname{Im}z_0(b)=h(b)/2+o(1)$.
 Hence $P_b\to0$ uniformly on every fixed bounded $z$-disk on which
 the upper representation is defined.  That representation contains a
@@ -1916,6 +1959,72 @@ $F_\eta^{\mathrm{att}}-1$ has only its simple zero at $0$.
 Rouch\'e's theorem and $\Kk_b^W(0)=1$ give the final assertions.
 \end{proof}
 
+\begin{proposition}[First-order correction]\label{prop:first-correction}
+In the setting of Theorem~\ref{thm:W2}, put $K_0=Y_0+D+2$ and assume also
+$\Lambda\eee^{4\pi(K_0+1)}\le\tfrac12$.  Then
+\[
+ \hat c_1=\tau_1+\Lambda\bigl[-4\pi^2|\tau_1|^2\tau_1-2\pi\ii\tau_1^2
+ -4\pi\ii\tau_2\bar\tau_1\bigr]+E,\qquad|E|\le C'\Lambda^2,
+\]
+with $C'$ depending only on $M,Y_0,D$.  Consequently, as $b\to\eta^-$,
+\[
+ \frac{\hat c_1}{\tau_1}-1=\Lambda\Bigl[-4\pi^2|\tau_1|^2-2\pi\ii\tau_1
+ -4\pi\ii\frac{\tau_2\bar\tau_1}{\tau_1}\Bigr]+O(\Lambda^2).
+\]
+\end{proposition}
+
+\begin{proof}
+Let $x=\Lambda^{1/2}\eee^{2\pi K_0}$ and let $q_{-1}$ be the $(-1)$-mode of
+$Q^*$.  Since $\eee^{-2\pi d}=\Lambda^{1/2}\eee^{2\pi(Y_0+1)}$ and
+$\eee^{-2\pi H}=\Lambda^{1/2}\eee^{2\pi(Y_0+1+D+\beta)}$, we have
+$|t_m|\le Mx^{|m|}$ and $|g_k|\le\|g\|_Hx^{|k|}$ for $g\in\mathfrak A_H$;
+also $\Lambda\le x^2$ and $x^2\eee^{\pi}\le\tfrac12$.  Below $C$ depends only
+on $M,Y_0,D$.
+
+\emph{The mode $q_{-1}$.}  Take the $(-1)$-mode of
+$Q^*=-\Pi_{<0}\sum_{m\ne0}t_m\eee^{2\pi\ii mz}\eee^{2\pi\ii mQ^*}$.  Since
+$\eee^{2\pi\ii mQ^*}$ has only non-positive modes and constant mode $1$, the
+terms $m\le-2$ do not contribute, $m=-1$ contributes $t_{-1}$, and $m\ge1$
+contributes $t_m[\eee^{2\pi\ii mQ^*}-1]_{-1-m}$.  With
+$\|\eee^{2\pi\ii mQ^*}-1\|_H\le2\pi m\beta\eee^{2\pi m\beta}$ this gives
+$q_{-1}=-t_{-1}+O(x^3)$.
+
+\emph{The modes $p'_1,p'_0$.}  By the formulas in the proof of
+Theorem~\ref{thm:W2}(3),(4), and because $(Q^*)^j$ has only modes $\le-j$,
+\[
+ p'_1=t_1+4\pi\ii t_2q_{-1}+\sum_{m\ge3}t_m[\eee^{2\pi\ii mQ^*}]_{1-m}
+ =t_1-4\pi\ii t_2t_{-1}+O(x^5),
+\]
+\[
+ p'_0=2\pi\ii t_1q_{-1}+\sum_{m\ge2}t_m[\eee^{2\pi\ii mQ^*}]_{-m}
+ =-2\pi\ii t_1t_{-1}+O(x^4).
+\]
+
+\emph{Real structure.}  By Lemma~\ref{lem:realT}, $t_{-1}=\bar t_1$ and
+$\bar t_0=t_0-\ii h$, so $t_{-1}=\bar\tau_1\Lambda\eee^{-2\pi\ii t_0}$,
+$t_1t_{-1}=\Lambda|\tau_1|^2$ and
+$t_2t_{-1}\eee^{-2\pi\ii t_0}=\Lambda\tau_2\bar\tau_1$.  With
+$|\eee^{-2\pi\ii t_0}|=\Lambda^{-1/2}$ and $|\tau_n|\le M\eee^{2\pi n(Y_0+1)}$,
+\[
+ p'_1\eee^{-2\pi\ii t_0}=\tau_1-4\pi\ii\Lambda\tau_2\bar\tau_1+O(x^4),\qquad
+ p'_0=-2\pi\ii\Lambda|\tau_1|^2+O(x^4).
+\]
+
+\emph{The root.}  Write $z_0=\ii h-t_0+\zeta$ as in Theorem~\ref{thm:W2}(3),
+so $\zeta+p'_0+\sum_{n\ge1}p'_n\eee^{2\pi\ii nz_0}=0$ and
+$\eee^{2\pi\ii z_0}=\Lambda\eee^{-2\pi\ii t_0}\eee^{2\pi\ii\zeta}$.  Since
+$|\zeta|<\tfrac12$, $|\eee^{2\pi\ii nz_0}|\le x^n\eee^{\pi n}$, and with
+$|p'_n|\le\beta x^n$ the terms $n\ge2$ sum to $O(x^4)$.  Hence first
+$|\zeta|\le Cx^2$, and then
+$\zeta=-p'_0-\Lambda\tau_1+O(x^4)=\Lambda(2\pi\ii|\tau_1|^2-\tau_1)+O(x^4)$.
+
+\emph{Conclusion.}  $\hat c_1=c_1/\Lambda=p'_1\eee^{-2\pi\ii t_0}\eee^{2\pi\ii\zeta}$
+and $\eee^{2\pi\ii\zeta}=1-4\pi^2\Lambda|\tau_1|^2-2\pi\ii\Lambda\tau_1+O(x^4)$.
+Multiplying gives the first formula, with $|E|\le Cx^4=C\Lambda^2\eee^{8\pi K_0}$.
+The second follows by dividing by $\tau_1$, which tends to
+$B_1\eee^{2\pi\ii a}\ne0$ (Corollary~\ref{cor:tauconv}).
+\end{proof}
+
 \noindent
 The construction is directly computable (\texttt{weld\_solve.py}).  At
 $b=1.10$ the iteration contracts by $\sim10^{-4}$ per step and gives
@@ -1923,11 +2032,10 @@ $\hat c_1=0.0864272029\,\eee^{1.5510921403\ii}$, against
 $\tau_1=0.0864272022\,\eee^{1.5510921408\ii}$.  The relative difference is
 $8.8\cdot10^{-9}=0.38\Lambda$, and at $b=1.30$ it is $3.9\cdot10^{-19}=0.40\Lambda$.
 At these bases $h$ is too small for the hypotheses of Theorem~\ref{thm:W2}, so
-the agreement is not an instance of the theorem.  It does match the first-order
-expansion of the correction,
-$c_1/(\Lambda\tau_1)-1\approx\Lambda\bigl[-4\pi^2|\tau_1|^2-2\pi\ii\tau_1
--4\pi\ii\tau_2\bar\tau_1/\tau_1\bigr]$, whose modulus is $0.3834\Lambda$ and
-$0.3984\Lambda$ respectively .
+the agreement is not an instance of the theorem or of
+Proposition~\ref{prop:first-correction}.  It does match the first-order term of
+Proposition~\ref{prop:first-correction}, whose modulus is $0.3834\Lambda$ and
+$0.3984\Lambda$ respectively.
 
 \section{Dependence on the base}\label{sec:W1}
 
@@ -1941,9 +2049,11 @@ that:
 \begin{enumerate}
 \item For $b'\in\Delta$, with $L(b'),L_2(b')$ the continued fixed points,
   $\Rr_{b'},S_{b'}$ the regular superfunctions, $\varpi(b')=2\pi\ii/\log\lambda(b')$
-  the period of $\Rr_{b'}$, and $\hat T_{b'}=\Rr_{b'}^{-1}\circ S_{b'}+\varpi/2$,
-  the contraction of Theorem~\ref{thm:W2} works with $\rho$ and $D$
-  unchanged, $2M$ in place of $M$, and $H-\tfrac12$ in place of $H$.  The solution is
+  the period of $\Rr_{b'}$, and $T_{b'}=\Rr_{b'}^{-1}\circ S_{b'}$ with its branch
+  continued from $b_0$, the function $T_{b'}-\mathrm{id}$ is holomorphic on
+  $|\operatorname{Im}z|<d(b_0)+\tfrac34$, and the contraction of
+  Theorem~\ref{thm:W2} works with $\beta$, $D$ and $H=H(b_0)$ unchanged and $2M$
+  in place of $M$.  The solution is
   $\Kk^W_{b'}=\Rr_{b'}\circ(\varphi_++\varpi)$ above, where
   $\varphi_+=T_{b'}\circ\varphi_-$, and $S_{b'}\circ\varphi_-$ below.  It is
   normalised by the root of $\varphi_+(z_0)=-\varpi$ in the disc of radius $1$
@@ -1961,30 +2071,36 @@ that:
 \item (Local uniqueness.)  If a solution $F$ with $F(0)=1$ admits such
   representations and, after the translation that puts its seam
   representation in the form $T\circ(\mathrm{id}+Q)=\mathrm{id}+t_0+P'$, has
-  $\|Q\|_H\le\rho$ and its normalising root in that disc, then
+  $\|Q\|_H\le\beta$ and its normalising root in that disc, then
   $F=\Kk^W_{b'}$.  (Without the root condition the statement is false: the
   translates of $\Kk^W_{b'}$ by the other roots $c_j$, $j\ge1$, have the same $Q$.)
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(1) By Lemma~\ref{lem:band}(iii), $T$ is holomorphic on the strip of half-width $d+1$,
-so there is slack $1$ in $d$; we use half of it.  The Koenigs maps at $L(b')$, $L_2(b')$ and the principal logarithms
+(1) By Lemma~\ref{lem:band}(iii), at $b_0$ the map $T$ is holomorphic on the
+strip of half-width $d(b_0)+1$, and by the proof of Lemma~\ref{lem:modes}
+(the bound there holds on all of $\Sigma$) $|T_{b_0}-\mathrm{id}-t_0|\le M$ on
+$|\operatorname{Im}z|\le d(b_0)+\tfrac12$.  The Koenigs maps at $L(b')$, $L_2(b')$ and the principal logarithms
 defining $\Rr^{-1}$ depend holomorphically on $b'$.  To choose one
 parameter disc for the unbounded strip, first work on the compact fundamental
 rectangle $0\le\operatorname{Re}z\le1$,
-$|\operatorname{Im}z|\le d(b_0)+\tfrac12$.  Its image under $S_{b_0}$
+$|\operatorname{Im}z|\le d(b_0)+\tfrac34$.  Its image under $S_{b_0}$
 is compactly contained in the common domain of the two chosen Abel charts;
 their local parameter continuations therefore give a single disc $\Delta$
 on this rectangle.  The identity $T_{b'}(z+1)=T_{b'}(z)+1$ extends the
-result to the whole strip.  Thus $\hat T_{b'}-\mathrm{id}$ is jointly
-holomorphic on $\Delta\times\{|\operatorname{Im}z|<d(b_0)+\tfrac12\}$.
-Shrinking $\Delta$ again,
-its modes satisfy $|t_n(b')|\le2M\eee^{-2\pi|n|(d(b_0)-1/2)}$ (Cauchy), and the
-estimates of Theorem~\ref{thm:W2}(1) hold with $2M$ in place of $M$:
+result to the whole strip.  Thus $T_{b'}-\mathrm{id}$ is jointly
+holomorphic on $\Delta\times\{|\operatorname{Im}z|<d(b_0)+\tfrac34\}$, and so is
+its mean $t_0(b')$.  Shrinking $\Delta$ again, uniform continuity on the compact
+rectangle $|\operatorname{Im}z|\le d(b_0)+\tfrac12$ gives
+$|T_{b'}-\mathrm{id}-t_0(b')|\le2M$ on the lines
+$\operatorname{Im}z=\pm(d(b_0)+\tfrac12)$.  Cauchy's estimate on these lines gives
+$|t_n(b')|\le2M\eee^{-2\pi|n|(d(b_0)+1/2)}\le2M\eee^{-2\pi|n|d(b_0)}$, so the
+estimates of Theorem~\ref{thm:W2}(1), with the same $H=d(b_0)-D-\beta$, hold
+with $2M$ in place of $M$:
 the original choice of $D$ gives a Lipschitz constant at most
-$2\rho=\tfrac12$ and a ball-image norm at most
-$\rho(1-\eee^{-2\pi D})/\pi<\rho$.  The iterates $\mathcal T^k(0)$ are holomorphic in $b'$
+$2\beta=\tfrac12$ and a ball-image norm at most
+$\beta(1-\eee^{-2\pi D})/\pi<\beta$.  The iterates $\mathcal T^k(0)$ are holomorphic in $b'$
 and converge uniformly, so $Q^*$ is holomorphic in $b'$.  So are $P'$ and,
 by the implicit function theorem (Rouch\'e), $z_0$.
 
@@ -2035,12 +2151,26 @@ equation where defined)
 
 Condition (b) says that the real line of repelling time, i.e.\ the segment
 $(L,L_2)$, sits half a period of attracting time below the real axis of $F$.
-Heuristically, some such condition is necessary.  For the sewing solution the
-roots of $\varphi^W_+(c)\in\ii h\mathbb Z$ near the axis are
-$c_j=c_0+\ii jh+O(\Lambda)$.  The translates $\Kk^W(\cdot+c_j)$ keep an
-$\Rr$-representation above and an $S$-representation on some lower half-plane,
-and give $|c_1|\asymp\Lambda^{1+j}$.  Condition (b) excludes $j\ne0$, as the
-proof shows.
+Some such condition is necessary.  In the coordinate of
+Theorem~\ref{thm:W2}(1), for each integer $j\ge0$ the equation
+$\varphi_+(c)=\ii h(1+j)$ has a unique root $c_j=\ii h(1+j)-t_0+\zeta_j$ with
+$|\zeta_j|<1$, and $c_0=z_0$: the Rouch\'e argument of Theorem~\ref{thm:W2}(3)
+applies verbatim, since it only uses $\operatorname{Im}z\ge h/2-1$, and gives
+$|\zeta_j|\le C_1\Lambda\eee^{4\pi(Y_0+D+1)}$.  The translate
+$\Kk^{(j)}_b=\Kk^W_b(\cdot+c_j-c_0)$ satisfies $\Kk^{(j)}_b(0)=\Rr(\ii hj)=1$, and has the
+representations $\Rr\circ(\mathrm{id}+P_j)$ above, with
+$P_j(z)=\varphi_+(z+c_j)-\ii h(1+j)-z$, and $S\circ(\mathrm{id}+Q_j)$ on a lower
+half-plane, with $Q_j(z)=c_j+Q^*(z+c_j)$.  The $n$-th mode $c_n^{(j)}$ of
+$P_j$ is $p'_n\eee^{2\pi\ii nc_j}$, so
+\[
+ c_n^{(j)}=c_n\eee^{2\pi\ii n(c_j-c_0)}
+ =c_n\Lambda^{nj}\eee^{2\pi\ii n(\zeta_j-\zeta_0)}
+ =c_n\Lambda^{nj}\bigl(1+O(n\Lambda)\bigr)\qquad(n\Lambda\le1).
+\]
+By Corollary~\ref{cor:Kw} and $B_1\ne0$, $|c_1^{(j)}|\asymp\Lambda^{1+j}$, so
+$\Kk^{(j)}_b\ne\Kk^W_b$ for $j\ge1$ (the function $P$ is determined by the solution, as $P(0)=0$).  On the
+other hand $|\operatorname{Im}Q_j-(h/2+jh)|\le\beta+O(\Lambda)$, so condition
+(b) fails for $j\ge1$; the proof shows that it excludes every $j\ne0$.
 
 \begin{theorem}[Characterisation]\label{thm:char}
 There are $b_1<\eta$ and $Y_B$ such that for $b\in(b_1,\eta)$ and
@@ -2056,11 +2186,11 @@ of $\mathcal C_b(Y)$.
 \begin{proof}
 \emph{$\Kk^W_b\in\mathcal C_b(Y)$.}  In the normalised coordinate,
 $\varphi_-(z)=z+z_0+Q^*(z+z_0)$ is defined for
-$\operatorname{Im}(z+z_0)<H$, i.e.\ for $\operatorname{Im}z<-(Y_0+1+D+\rho)+O(\Lambda)$,
-which contains $\{\operatorname{Im}z<-Y\}$.  There $|Q-z_0|\le\rho$, so
-$|\operatorname{Im}Q-h/2|\le\rho+O(\Lambda)<1$.  The $\Rr$-representation holds
+$\operatorname{Im}(z+z_0)<H$, i.e.\ for $\operatorname{Im}z<-(Y_0+1+D+\beta)+O(\Lambda)$,
+which contains $\{\operatorname{Im}z<-Y\}$.  There $|Q-z_0|\le\beta$, so
+$|\operatorname{Im}Q-h/2|\le\beta+O(\Lambda)<1$.  The $\Rr$-representation holds
 for $\operatorname{Im}(z+z_0)>-(H-1)$, i.e.\ above
-$-(h-Y_0-D-2-\rho)$, which contains $\{\operatorname{Im}z>-2Y\}$.  $P$ and $Q$
+$-(h-Y_0-D-2-\beta)$, which contains $\{\operatorname{Im}z>-2Y\}$.  $P$ and $Q$
 are bounded there.
 
 \emph{Uniqueness.}  Let $F\in\mathcal C_b(Y)$, $\varphi_+=\mathrm{id}+P$ and
@@ -2068,11 +2198,11 @@ $\varphi_-=\mathrm{id}+Q$.  Work with the strip
 $\Sigma_q=\{|\operatorname{Im}w'|<d-D\}$ of $S$-time.  By Lemma~\ref{lem:modes} and
 the choice of $D$, on $\overline{\Sigma_q}$
 \[
- |T-\mathrm{id}-t_0|\le\frac{2M\eee^{-2\pi D}}{1-\eee^{-2\pi D}}\le\frac{\rho}{2\pi},\qquad
- |T'-1|\le\rho<1 ,
+ |T-\mathrm{id}-t_0|\le\frac{2M\eee^{-2\pi D}}{1-\eee^{-2\pi D}}\le\frac{\beta}{2\pi},\qquad
+ |T'-1|\le\beta<1 ,
 \]
 so $T$ is univalent on the convex set $\Sigma_q$ (Noshiro--Warschawski),
-continuous up to the boundary, and within $\rho/2\pi$ of a translation.
+continuous up to the boundary, and within $\beta/2\pi$ of a translation.
 
 (i) \emph{The overlap.}  Let $O=\{-2Y<\operatorname{Im}z<-Y\}$.  For $z\in O$,
 $\operatorname{Im}\varphi_-(z)\in(h/2-2Y-1,\,h/2-Y+1)\subset(-(d-D),d-D)$,
@@ -2104,10 +2234,10 @@ harmonically over the puncture.  So on $\{\operatorname{Im}z\le-Y-\delta\}$ it i
 bounded by its values on the line $\operatorname{Im}z=-Y-\delta\subset O$.
 This gives $\operatorname{Im}\varphi_-\le-Y+h/2+1<d-D$.  Likewise, on a line
 in $O$ near $\operatorname{Im}z=-2Y$, (i) gives
-$\operatorname{Im}(\varphi_+-k\ii h)\ge\operatorname{Im}z-1-\rho/2\pi$.  The minimum
-principle then gives $\operatorname{Im}(\varphi_+-k\ii h)\ge-2Y-1-\rho/2\pi$
+$\operatorname{Im}(\varphi_+-k\ii h)\ge\operatorname{Im}z-1-\beta/2\pi$.  The minimum
+principle then gives $\operatorname{Im}(\varphi_+-k\ii h)\ge-2Y-1-\beta/2\pi$
 above that line.  This exceeds the height
-$-h/2-d+D+\rho/2\pi$ of the lower boundary of $V_+$, because
+$-h/2-d+D+\beta/2\pi$ of the lower boundary of $V_+$, because
 $2Y<h-Y_0-D-3$.
 
 (iii) \emph{$\tilde\Phi$ is a translate of $\tilde\Phi^W$.}  $\tilde\Phi$
@@ -2123,18 +2253,18 @@ an assumption.
 
 (iv) \emph{The root.}  Take a line $\ell\subset O$ with
 $\operatorname{Im}z=-Y''$ and $Y''$ close to $2Y$.  There
-$\operatorname{Im}\varphi_-\le-2Y+h/2+1+o(1)<H-\rho$, so $\varphi_-(\ell)$ lies
+$\operatorname{Im}\varphi_-\le-2Y+h/2+1+o(1)<H-\beta$, so $\varphi_-(\ell)$ lies
 in $\varphi_-^W(\{\operatorname{Im}<H\})$.  The inclusion
-$\varphi_-^W(\{\operatorname{Im}<H\})\supset\{\operatorname{Im}<H-\rho\}$ holds because
-$|Q^*|\le\rho$: for $w$ in the smaller set, $\varphi^W_--w$ has winding
+$\varphi_-^W(\{\operatorname{Im}<H\})\supset\{\operatorname{Im}<H-\beta\}$ holds because
+$|Q^*|\le\beta$: for $w$ in the smaller set, $\varphi^W_--w$ has winding
 number $1$ around $0$ on the boundary of a large fundamental rectangle.  By injectivity of
 $\tilde\Phi^W$, the points $z+c$ with $z\in\ell$ lie in
 $\{\operatorname{Im}<H\}$.  There $Q(z)=c+Q^*(z+c)$, so
-$|\operatorname{Im}c-h/2|\le1+\rho$.  On the upper chart,
+$|\operatorname{Im}c-h/2|\le1+\beta$.  On the upper chart,
 $\varphi_+(z)-k\ii h=\varphi^W_+(z+c)-\ii h$, and $P(0)=0$ gives
-$\varphi^W_+(c)=\ii h(1-k)$.  Since $|P'|\le\rho$ where $\varphi^W_+$ is defined,
-$|c-(\ii h(1-k)-t_0)|\le\rho$.  Comparing imaginary parts with the bound on
-$\operatorname{Im}c$ gives $|k|h\le1+2\rho$, so $k=0$.  Then $c$ lies in the
+$\varphi^W_+(c)=\ii h(1-k)$.  Since $|P'|\le\beta$ where $\varphi^W_+$ is defined,
+$|c-(\ii h(1-k)-t_0)|\le\beta$.  Comparing imaginary parts with the bound on
+$\operatorname{Im}c$ gives $|k|h\le1+2\beta$, so $k=0$.  Then $c$ lies in the
 Rouch\'e disc of Theorem~\ref{thm:W2}(3), so $c=z_0$ and $F=\Kk^W_b$.  The last
 sentence of the theorem is Corollary~\ref{cor:Kw}.
 \end{proof}
@@ -4587,7 +4717,7 @@ two-fixed-point computation at individual bases.  Sheldon Levenstein's PARI/GP
 program \texttt{fatou.gp} builds the ``merged'' two-fixed-point solution for
 complex bases.  At each base it constructs, independently, the solution with a
 $\theta$-mapping at each of the two fixed points: the two regular representations
-of~\cite[Lemma~1]{Paulsen2019}.  Its author regards this as the continuation of
+of~\cite[Prop.~1 and Lemma~1]{Paulsen2019}.  Its author regards this as the continuation of
 Kneser's solution in the base.  We use the unmodified program
 (sha256 \texttt{70559daf\ldots}): published reference values with $100$
 verified digits at $b=0.8+0.4\ii$ and $b=1+\ii$, and our own runs at
@@ -4632,6 +4762,26 @@ of the two-sided regular representation, at four bases, two of them near
 $(1,\eta)$.  It does \emph{not} test the analytic continuation across the
 Shell--Thron boundary: both programs work at one base at a time.  The
 continuation itself is proved near the cusp in Section~\ref{sec:cusp}.
+
+\subsection{The jump data of~\cite{Paulsen2026}}\label{sec:jump}
+For $1<b<\eta$ the base-continued values from above and below the real axis
+are complex conjugate.  Paulsen~\cite[(29)]{Paulsen2026} lists
+$G(b^+)-G(b^-)=2\ii\operatorname{Im}\mathcal K_{b^+}(\tfrac12)$ at seven bases in
+$[1.175,\sqrt2]$ and fits them by $K(\eta-b)^m\exp(C/(b-\eta))$, with
+$m\approx20.7$.  By Corollary~\ref{cor:paulsen} these are values of $\Kk^W_b$, and
+by Corollary~\ref{cor:limits} their scale is $\Lambda=\exp(4\pi^2/\log\lambda)$,
+which behaves like $\exp(-C_\eta(\eta-b)^{-1/2})$, not like $\exp(C/(b-\eta))$.
+The quotient by $\Lambda$ ($\lambda=-W_0(-\log b)$) is
+\[
+\begin{array}{c|ccccccc}
+ b & 1.175 & 1.2 & 1.25 & 1.3 & 1.35 & 1.4 & \sqrt2\\\hline
+ \log\Lambda & -24.24 & -26.81 & -32.95 & -41.47 & -55.30 & -86.87 & -107.71\\
+ |\operatorname{Im}\mathcal K_b(\tfrac12)|/\Lambda & 0.0273 & 0.0318 & 0.0410 & 0.0503 & 0.0596 & 0.0689 & 0.0716
+\end{array}
+\]
+Over this range $|\operatorname{Im}\mathcal K_b(\tfrac12)|$ changes by $36$ orders of magnitude and the
+quotient by a factor $2.6$.  The exponent $m$ of the fit absorbs the
+difference between the two laws.
 
 \subsection{A pointwise test near the Shell--Thron boundary}\label{sec:bndtest}
 Before Theorem~\ref{thm:upper} was available, we tested the pointwise output of

@@ -308,7 +308,9 @@ outside the current audit; its full-paper completion flags stay false.
   ([`book.pdf`](docs/textbook/book.pdf), 211 pages): full proofs in the general
   unfolding setting, worked examples, exercises; build with `docs/textbook/build_book.sh`.
 - `docs/independent/` — independent interval-arithmetic re-verification of the
-  computer-assisted theorems.
+  computer-assisted theorems, written from the paper alone. Both runs pass:
+  the upper half-plane certificate, including direct mark checks on all
+  20901 core cells, and the endpoint certificate. Logs are in `*_out/log.txt`.
 - `docs/certify_*.py`, `docs/certificates/` — the computer-assisted
   certificates used in the preprint, with their scripts.
 - `references/kneser1950/` — expository notes on Kneser's 1950 paper and on
